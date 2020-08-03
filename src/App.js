@@ -1,15 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import Button from '@material-ui/core/Button';
+// import Registrasi from './Petugas/Pages/Registrasi'
+import MainPosko from  './Posko/Page/MainPosko'
 
 import './App.css';
 
-
 function App() {
   return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
+    <MainPosko />
   );
 }
 
