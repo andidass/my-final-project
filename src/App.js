@@ -1,12 +1,29 @@
-import React from 'react';
-// import Registrasi from './Petugas/Pages/Registrasi'
-import MainPosko from  './Posko/Page/MainPosko'
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import './App.css';
+// import Registrasi from './Petugas/Pages/Registrasi'
+import MainPosko from "./Posko/Page/MainPosko";
+import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko";
+import Login from "./Posko/Page/Login";
+
+import "./App.css";
 
 function App() {
   return (
-    <MainPosko />
+    <div>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={MainPosko} />
+          <Route path="/posko" exact component={MainPosko} />
+          <Route
+            path="/posko/bantuan-masuk"
+            exact
+            component={BantuanMasukPosko}
+          />
+          <Route path="/posko-login" exact component={Login} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
