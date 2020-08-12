@@ -15,3 +15,7 @@ img {
 .sub-title {
     color: red;
 }
+
+.link {
+    text-decoration: none;
+}

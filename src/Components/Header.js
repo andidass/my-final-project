@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./Header.css";
 import { Typography, Grid } from "@material-ui/core";
@@ -7,10 +8,13 @@ function Header() {
   return (
     <Grid container alignItems="center" className="header">
       <Grid xs={2} item align="left">
-        <img src="bpbd-logo.png" alt="logo bpbd" />
+        <img
+          src="https://bpbd.ntbprov.go.id/sites/default/files/styles/medium/public/field/image/logo%20bulet_22_4.png?itok=ARUavpii"
+          alt="logo bpbd"
+        />
       </Grid>
-      <Grid xs={8} item>
-        <Typography align="center" component="h2" variant="p" className="title">
+      <Grid xs={8} item component={Link} to="/" className="link">
+        <Typography align="center" component="h2" variant="p">
           Sistem Informasi Pendataan Bencana Dan Pendistribusian Bantuan Bencana
           Gempa Bumi
         </Typography>
@@ -24,7 +28,10 @@ function Header() {
         </Typography>
       </Grid>
       <Grid xs={2} item align="right">
-        <img src="unram-logo.png" alt="logo unram" />
+        <img
+          src="https://lh3.googleusercontent.com/proxy/IIZJKm_NZsMLabI5EgSlAjKgvFyajdGstvJygyWd9zbBAxzSF19vHyK1-IWgN5qxclvB10Y8yGzN_2eWG5Q3bFCxAANrLUhEOqT0YA9FoU5g_4FHyng-nyf00H3jGrZsFTcu0M6q"
+          alt="logo unram"
+        />
       </Grid>
     </Grid>
   );

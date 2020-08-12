@@ -40,7 +40,7 @@ function MenuPosko() {
           className={classes.root}
           variant="outlined"
           component={Link}
-          to="/posko-bencana"
+          to="/posko/posko-bencana"
         >
           <CardContent className={classes.icon}>
             <HomeIcon />

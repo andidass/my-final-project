@@ -1,33 +1,21 @@
 import React from "react";
-import { Grid, Typography, Button, TextField } from "@material-ui/core";
-import Table from "./Table";
+import {
+  Grid,
+  Typography,
+  Button,
+  TextField,
+  Divider,
+} from "@material-ui/core";
+import Table from "../Components/Table";
 import SaveIcon from "@material-ui/icons/Save";
 import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Header from "../../Components/Header";
 import MenuBar from "../Components/MenuBar";
+import ItemData from "../Components/ItemData";
 
 import "./BantuanMasukPosko.css";
-
-const jenisBantuan = [
-  {
-    value: "Utama",
-    label: "Utama",
-  },
-  {
-    value: "Sandang",
-    label: "Sandang",
-  },
-  {
-    value: "Pangan",
-    label: "Pangan",
-  },
-  {
-    value: "Papan",
-    label: "Papan",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,15 +29,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function changeHandler(event) {
+  console.log(event.target.value);
+  console.log(event.target.id);
+}
+
 function BantuanMasukPosko() {
   const classes = useStyles();
-  const [currency, setCurrency] = React.useState("Utama");
-
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
   return (
-    <React.Fragment>
+    <div>
       <Header />
       <MenuBar />
       <div className="isi">
@@ -57,7 +45,7 @@ function BantuanMasukPosko() {
           Bantuan Masuk
         </Typography>
         <Grid container justify="space-around" className="isi-body">
-          <Grid xs={12} sm={6}>
+          <Grid xs={12} sm={6} item>
             <form className={classes.container} noValidate>
               <Typography variant="p" component="p" align="center">
                 Data Bantuan Masuk
@@ -121,6 +109,7 @@ function BantuanMasukPosko() {
                   style={{ margin: 8 }}
                   // helperText="Full width!"
                   fullWidth
+                  multiline
                   margin="normal"
                   variant="outlined"
                   size="small"
@@ -128,72 +117,10 @@ function BantuanMasukPosko() {
               </div>
             </form>
           </Grid>
-          <Grid xs={12} sm={6}>
-            <form>
-              <Typography variant="p" component="p">
-                Item Data
-              </Typography>
-              <div className="data">
-                <TextField
-                  id="jenis-bantuan"
-                  select
-                  label="Jenis Bantuan"
-                  value={currency}
-                  onChange={handleChange}
-                  fullWidth
-                  style={{ margin: 8 }}
-                  SelectProps={{
-                    native: true,
-                  }}
-                  variant="outlined"
-                  size="small"
-                >
-                  {jenisBantuan.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  id="nama-barang"
-                  label="Nama Barang"
-                  style={{ margin: 8 }}
-                  fullWidth
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                />
-                <TextField
-                  id="satuan-barang"
-                  label="Satuan"
-                  style={{ margin: 8 }}
-                  fullWidth
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                />
-                <TextField
-                  id="banyak-barang"
-                  label="Banyaknya"
-                  style={{ margin: 8 }}
-                  fullWidth
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  fullWidth
-                  style={{ margin: 8 }}
-                >
-                  Tambah
-                </Button>
-              </div>
-            </form>
+          <Grid xs={12} sm={6} item>
+            <ItemData changeHandlerItem={changeHandler} />
           </Grid>
-          <Grid xs={12}>
+          <Grid xs={12} item>
             <form>
               <Typography
                 variant="p"
@@ -227,7 +154,7 @@ function BantuanMasukPosko() {
           </Grid>
         </Grid>
       </div>
-    </React.Fragment>
+    </div>
   );
 }
 

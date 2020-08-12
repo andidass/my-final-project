@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Registrasi from './Petugas/Pages/Registrasi'
 import MainPosko from "./Posko/Page/MainPosko";
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko";
+import PoskoBencana from "./Posko/Page/PoskoBencana";
 import Login from "./Posko/Page/Login";
 
 import "./App.css";
@@ -20,6 +21,7 @@ function App() {
             exact
             component={BantuanMasukPosko}
           />
+          <Route path="/posko/posko-bencana" exact component={PoskoBencana} />
           <Route path="/posko-login" exact component={Login} />
         </Switch>
       </Router>
