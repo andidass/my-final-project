@@ -45,6 +45,12 @@ function ItemData(props) {
 
   function submitHandler(event) {
     props.addItem(data);
+    setData({
+      namaBarang: "",
+      satuan: "",
+      banyaknya: "",
+      jenisBantuan: "Utama",
+    });
     event.preventDefault();
   }
 
@@ -79,45 +85,41 @@ function ItemData(props) {
         </TextField>
         <TextField
           id="namaBarang"
-          value={data.namaBarang}
           label="Nama Barang"
-          // onChange={props.changeHandlerItem}
-          onChange={changeHandler}
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
           variant="outlined"
           size="small"
+          value={data.namaBarang}
+          onChange={changeHandler}
         />
         <TextField
           id="satuan"
           label="Satuan"
-          value={data.satuan}
-          // onChange={props.changeHandlerItem}
-          onChange={changeHandler}
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
           variant="outlined"
           size="small"
+          value={data.satuan}
+          onChange={changeHandler}
         />
         <TextField
           id="banyaknya"
-          value={data.banyaknya}
           label="Banyaknya"
-          // onChange={props.changeHandlerItem}
-          onChange={changeHandler}
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
           variant="outlined"
           size="small"
+          value={data.banyaknya}
+          onChange={changeHandler}
         />
         <Button
           variant="contained"
           onClick={submitHandler}
           color="primary"
-          size="small"
           fullWidth
           style={{ margin: 8 }}
         >

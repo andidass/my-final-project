@@ -15,7 +15,7 @@ function Header() {
       </Grid>
       <Grid xs={8} item component={Link} to="/" className="link">
         <Typography component="div">
-          <Box fontWeight="fontWeightBold" textAlign="center" fontSize={20}>
+          <Box fontWeight="fontWeightBold" textAlign="center" fontSize={23}>
             Sistem Informasi Pendataan Bencana Dan Pendistribusian Bantuan
             Bencana Gempa Bumi
           </Box>
@@ -28,7 +28,7 @@ function Header() {
       </Grid>
       <Grid xs={2} item align="right">
         <img
-          src="https://lh3.googleusercontent.com/proxy/IIZJKm_NZsMLabI5EgSlAjKgvFyajdGstvJygyWd9zbBAxzSF19vHyK1-IWgN5qxclvB10Y8yGzN_2eWG5Q3bFCxAANrLUhEOqT0YA9FoU5g_4FHyng-nyf00H3jGrZsFTcu0M6q"
+          src="https://i0.wp.com/mipa.unram.ac.id/wp-content/uploads/2019/11/Logo-Unram-Universitas-Mataram-PNG-e1574302527353.png?fit=393%2C394&ssl=1"
           alt="logo unram"
         />
       </Grid>

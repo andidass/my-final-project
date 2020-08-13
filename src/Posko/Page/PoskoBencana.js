@@ -4,11 +4,11 @@ import Header from "../../Components/Header";
 import MenuBar from "../Components/MenuBar";
 function PoskoBencana() {
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <MenuBar />
       <h1>Posko Bencana</h1>
-    </div>
+    </React.Fragment>
   );
 }
 

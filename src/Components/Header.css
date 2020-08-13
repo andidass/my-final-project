@@ -1,15 +1,9 @@
 .header {
-    padding: 1rem 2rem;
-    padding-top: auto;
-    padding-bottom: auto;
+    padding: 1rem 1rem;
 }
 
 img {
-    width: 50%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-
+    width: 90px;
 }
 
 .sub-title {
