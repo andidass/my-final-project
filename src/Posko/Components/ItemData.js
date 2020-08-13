@@ -1,5 +1,5 @@
-import React from "react";
-import { Typography, Button, TextField } from "@material-ui/core";
+import React, { useState } from "react";
+import { Typography, Box, Button, TextField } from "@material-ui/core";
 
 // import "./BantuanMasukPosko.css";
 const jenisBantuan = [
@@ -26,23 +26,43 @@ const jenisBantuan = [
 ];
 
 function ItemData(props) {
-  const [currency, setCurrency] = React.useState("Utama");
+  const [data, setData] = useState({
+    namaBarang: "",
+    satuan: "",
+    banyaknya: "",
+    jenisBantuan: "Utama",
+  });
 
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
+  function changeHandler(event) {
+    const { id, value } = event.target;
+    setData((prevData) => {
+      return {
+        ...prevData,
+        [id]: value,
+      };
+    });
+  }
+
+  function submitHandler(event) {
+    props.addItem(data);
+    event.preventDefault();
+  }
+
   return (
     <form>
-      <Typography variant="p" component="p">
-        Item Data
+      <Typography component="div">
+        <Box fontSize={17}>Item Data</Box>
       </Typography>
       <div className="data">
         <TextField
-          id="jenis-bantuan"
+          id="jenisBantuan"
           select
           label="Jenis Bantuan"
-          onChange={props.changeHandlerItem}
-          value={currency}
+          // onChange={handleChange}
+          onChange={changeHandler}
+          // onChange={props.changeHandlerItem}
+          // value={currency}
+          value={data.jenisBantuan}
           fullWidth
           style={{ margin: 8 }}
           SelectProps={{
@@ -58,10 +78,11 @@ function ItemData(props) {
           ))}
         </TextField>
         <TextField
-          onChange={handleChange}
-          id="nama-barang"
+          id="namaBarang"
+          value={data.namaBarang}
           label="Nama Barang"
-          onChange={props.changeHandlerItem}
+          // onChange={props.changeHandlerItem}
+          onChange={changeHandler}
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
@@ -69,9 +90,11 @@ function ItemData(props) {
           size="small"
         />
         <TextField
-          id="satuan-barang"
+          id="satuan"
           label="Satuan"
-          onChange={props.changeHandlerItem}
+          value={data.satuan}
+          // onChange={props.changeHandlerItem}
+          onChange={changeHandler}
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
@@ -79,9 +102,11 @@ function ItemData(props) {
           size="small"
         />
         <TextField
-          id="banyak-barang"
+          id="banyaknya"
+          value={data.banyaknya}
           label="Banyaknya"
-          onChange={props.changeHandlerItem}
+          // onChange={props.changeHandlerItem}
+          onChange={changeHandler}
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
@@ -90,6 +115,7 @@ function ItemData(props) {
         />
         <Button
           variant="contained"
+          onClick={submitHandler}
           color="primary"
           size="small"
           fullWidth

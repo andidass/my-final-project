@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./Header.css";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, Box } from "@material-ui/core";
 
 function Header() {
   return (
@@ -14,17 +14,16 @@ function Header() {
         />
       </Grid>
       <Grid xs={8} item component={Link} to="/" className="link">
-        <Typography align="center" component="h2" variant="p">
-          Sistem Informasi Pendataan Bencana Dan Pendistribusian Bantuan Bencana
-          Gempa Bumi
+        <Typography component="div">
+          <Box fontWeight="fontWeightBold" textAlign="center" fontSize={20}>
+            Sistem Informasi Pendataan Bencana Dan Pendistribusian Bantuan
+            Bencana Gempa Bumi
+          </Box>
         </Typography>
-        <Typography
-          align="center"
-          component="h4"
-          variant="p"
-          className="sub-title"
-        >
-          BPBD PROVINSI NTB
+        <Typography component="div" className="sub-title">
+          <Box fontWeight="fontWeightBold" textAlign="center" fontSize={15}>
+            BPBD PROVINSI NTB
+          </Box>
         </Typography>
       </Grid>
       <Grid xs={2} item align="right">

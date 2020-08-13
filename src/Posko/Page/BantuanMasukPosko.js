@@ -1,11 +1,5 @@
-import React from "react";
-import {
-  Grid,
-  Typography,
-  Button,
-  TextField,
-  Divider,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { Box, Grid, Typography, Button, TextField } from "@material-ui/core";
 import Table from "../Components/Table";
 import SaveIcon from "@material-ui/icons/Save";
 import EditIcon from "@material-ui/icons/Edit";
@@ -29,26 +23,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function changeHandler(event) {
-  console.log(event.target.value);
-  console.log(event.target.id);
-}
-
 function BantuanMasukPosko() {
+  const [rows, setRows] = useState([]);
+
+  function addItem(newItem) {
+    setRows((prevRows) => {
+      return [...prevRows, newItem];
+    });
+  }
+
+  function deleteItem(id) {
+    setRows((prevRows) => {
+      return prevRows.filter((theItem, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   const classes = useStyles();
   return (
     <div>
       <Header />
       <MenuBar />
       <div className="isi">
-        <Typography variant="p" component="h3" className="title">
-          Bantuan Masuk
+        <Typography component="div" className="title">
+          <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
+            Bantuan Masuk
+          </Box>
         </Typography>
         <Grid container justify="space-around" className="isi-body">
           <Grid xs={12} sm={6} item>
             <form className={classes.container} noValidate>
-              <Typography variant="p" component="p" align="center">
-                Data Bantuan Masuk
+              <Typography component="div">
+                <Box fontSize={17}>Data Bantuan Masuk</Box>
               </Typography>
               <TextField
                 id="kode-transaksi"
@@ -63,7 +70,7 @@ function BantuanMasukPosko() {
                 id="date"
                 label="Tanggal"
                 variant="outlined"
-                type="datetime-local"
+                type="date"
                 style={{ margin: 8 }}
                 className={classes.textField}
                 InputLabelProps={{
@@ -73,8 +80,8 @@ function BantuanMasukPosko() {
                 size="small"
               />
 
-              <Typography variant="p" component="p" align="center">
-                Data Donatur
+              <Typography component="div" align="center">
+                <Box fontSize={17}>Data Donatur</Box>
               </Typography>
               <div className="data">
                 <TextField
@@ -82,7 +89,6 @@ function BantuanMasukPosko() {
                   label="Nama Donatur (Perorang/Instansi)"
                   style={{ margin: 8 }}
                   // placeholder="Nama Donatur / Instansi"
-                  // helperText="Full width!"
                   fullWidth
                   margin="normal"
                   // InputLabelProps={{
@@ -96,7 +102,6 @@ function BantuanMasukPosko() {
                   id="sumber-dana"
                   label="Sumber Dana Bantuan"
                   style={{ margin: 8 }}
-                  // helperText="Full width!"
                   fullWidth
                   margin="normal"
                   variant="outlined"
@@ -107,7 +112,6 @@ function BantuanMasukPosko() {
                   id="alamat-donatur"
                   label="Alamat Donatur / Instansi"
                   style={{ margin: 8 }}
-                  // helperText="Full width!"
                   fullWidth
                   multiline
                   margin="normal"
@@ -118,19 +122,18 @@ function BantuanMasukPosko() {
             </form>
           </Grid>
           <Grid xs={12} sm={6} item>
-            <ItemData changeHandlerItem={changeHandler} />
+            {/* ------------------------ ItemData.js -----------------------*/}
+            <ItemData
+              addItem={addItem}
+              row={rows}
+              // changeHandlerItem={changeHandler}
+              // submitHandler={submitHandler}
+            />
           </Grid>
           <Grid xs={12} item>
             <form>
-              <Typography
-                variant="p"
-                component="h4"
-                align="center"
-                style={{ marginTop: 20 }}
-              >
-                Daftar Bantuan Masuk
-              </Typography>
-              <Table />
+              {/* ------------------ TABLE.JS ------------------------- */}
+              <Table rows={rows} deleteItem={deleteItem} />
               <Button
                 variant="contained"
                 color="primary"
