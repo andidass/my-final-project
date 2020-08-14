@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography, TextField } from "@material-ui/core";
-import _uniqueId from "lodash/uniqueId";
 
-function InitData() {
-  const [id] = useState(_uniqueId("bpbd-ntb-"));
-  const [dataInit, setDataInit] = useState({
-    kodeTransaksi: id,
-    tanggalTransaksi: "",
-    namaDonatur: "",
-    sumberDana: "",
-    alamatDonatur: "",
-  });
+function InitData(props) {
+  // initial data bantuan masuk
+  // var date = new Date().toLocaleDateString();
+  // const [id] = useState(_uniqueId("bpbd-ntb-"));
+  // const [dataInit, setDataInit] = useState({
+  //   kodeTransaksi: id,
+  //   tanggalTransaksi: date,
+  //   namaDonatur: "",
+  //   sumberDana: "",
+  //   alamatDonatur: "",
+  // });
+
+  // function changeHandler(event) {
+  //   const { id, value } = event.target;
+  //   setDataInit((prevData) => {
+  //     return {
+  //       ...prevData,
+  //       [id]: value,
+  //     };
+  //   });
+  // }
 
   function changeHandler(event) {
-    const { id, value } = event.target;
-    setDataInit((prevData) => {
-      return {
-        ...prevData,
-        [id]: value,
-      };
-    });
+    props.changeHandlerInit(event); //memanggil fungsi pada BantuanMasukPosko.js
   }
 
   return (
@@ -35,7 +40,7 @@ function InitData() {
           margin="normal"
           variant="outlined"
           size="small"
-          value={dataInit.kodeTransaksi}
+          value={props.dataInit.kodeTransaksi}
           onChange={changeHandler}
         />
         <TextField
@@ -43,13 +48,14 @@ function InitData() {
           label="Tanggal"
           variant="outlined"
           type="date"
+          format="dd-MM-yyyy"
           style={{ margin: 8 }}
           InputLabelProps={{
             shrink: true,
           }}
           margin="normal"
           size="small"
-          value={dataInit.tanggalTransaksi}
+          value={props.dataInit.tanggalTransaksi}
           onChange={changeHandler}
         />
       </div>
@@ -68,7 +74,7 @@ function InitData() {
           margin="normal"
           variant="outlined"
           size="small"
-          value={dataInit.namaDonatur}
+          value={props.dataInit.namaDonatur}
           onChange={changeHandler}
         />
 
@@ -80,7 +86,7 @@ function InitData() {
           margin="normal"
           variant="outlined"
           size="small"
-          value={dataInit.sumberDana}
+          value={props.dataInit.sumberDana}
           onChange={changeHandler}
         />
 
@@ -93,7 +99,7 @@ function InitData() {
           margin="normal"
           variant="outlined"
           size="small"
-          value={dataInit.alamatDonatur}
+          value={props.dataInit.alamatDonatur}
           onChange={changeHandler}
         />
       </div>

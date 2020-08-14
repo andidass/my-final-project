@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import CardMenu from "./CardMenu";
-import { Grid } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
+import { Grid, Box, Typography, Card, CardContent } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 
+//icon material-ui
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import InputIcon from "@material-ui/icons/Input";
 import AccessibleIcon from "@material-ui/icons/Accessible";
@@ -15,105 +12,94 @@ import HomeIcon from "@material-ui/icons/Home";
 import PanToolIcon from "@material-ui/icons/PanTool";
 
 const useStyles = makeStyles({
-  icon: {
-    textAlign: "center",
-  },
   root: {
-    minWidth: 150,
+    minWidth: 160,
+    textAlign: "center",
+    backgroundColor: "#3f51b5",
+    color: "white",
+    radius: 100,
+    fontSize: 15,
+    margin: 5,
   },
-  bodyMenuPosko: {
-    marginTop: 50,
-  },
-  menuPosko: {
-    padding: 10,
+  padding: {
+    paddingLeft: 50,
+    paddingRight: 50,
+    paddingTop: 50,
   },
 });
 
 function MenuPosko() {
   const classes = useStyles();
   return (
-    <Grid container className={classes.bodyMenuPosko} spacing={3}>
-      <Grid menu sm={3} />
+    <React.Fragment>
+      <Grid container className={classes.padding}>
+        <Grid item xs component={Link} to="/posko/posko-bencana">
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <HomeIcon />
+              <Typography component="div">
+                <Box>Posko Bencana</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
 
-      <Grid xs={4} sm={2} className={classes.menuPosko}>
-        <Card
-          className={classes.root}
-          variant="outlined"
-          component={Link}
-          to="/posko/posko-bencana"
-        >
-          <CardContent className={classes.icon}>
-            <HomeIcon />
-            <Typography gutterBottom="true" variant="body2" component="p">
-              Posko Bencana
-            </Typography>
-          </CardContent>
-        </Card>
+        <Grid item xs component={Link} to="/posko/posko-bencana">
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <AssignmentIcon />
+              <Typography component="div">
+                <Box>Data Bencana</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs component={Link} to="/posko/posko-bencana">
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <AccessibleIcon />
+              <Typography component="div">
+                <Box>Data Korban</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs component={Link} to="posko/bantuan-masuk">
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <InputIcon />
+              <Typography component="div">
+                <Box>Bantuan Masuk</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs component={Link} to="/posko/posko-bencana">
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <InputIcon reverse />
+              <Typography component="div">
+                <Box>Bantuan Keluar</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs component={Link} to="/posko/posko-bencana">
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <PanToolIcon />
+              <Typography component="div">
+                <Box>Request Bantuan</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
       </Grid>
-
-      <Grid xs={4} sm={2} className={classes.menuPosko}>
-        <Card className={classes.root} variant="outlined">
-          <CardContent className={classes.icon}>
-            <AssignmentIcon />
-            <Typography variant="body2" component="p">
-              Data Bencana
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid xs={4} sm={2} className={classes.menuPosko}>
-        <Card className={classes.root} variant="outlined">
-          <CardContent className={classes.icon}>
-            <AccessibleIcon />
-            <Typography variant="body2" component="p">
-              Data Korban
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid menu sm={3} />
-
-      <Grid xs={4} sm={2} className={classes.menuPosko}>
-        <Card
-          className={classes.root}
-          variant="outlined"
-          component={Link}
-          to="posko/bantuan-masuk"
-        >
-          <CardContent className={classes.icon}>
-            <InputIcon />
-            <Typography variant="body2" component="p">
-              Bantuan Masuk
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid xs={4} sm={2} className={classes.menuPosko}>
-        <Card className={classes.root} variant="outlined">
-          <CardContent className={classes.icon}>
-            <InputIcon reverse />
-            <Typography variant="body2" component="p">
-              Bantuan Keluar
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid xs={4} sm={2} className={classes.menuPosko}>
-        <Card className={classes.root} variant="outlined">
-          <CardContent className={classes.icon}>
-            <PanToolIcon />
-            <Typography variant="body2" component="p">
-              Permintaan Bantuan
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid menu sm={3} />
-    </Grid>
+    </React.Fragment>
   );
 }
 

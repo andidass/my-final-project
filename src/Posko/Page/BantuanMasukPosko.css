@@ -2,10 +2,6 @@
     margin: 2vw;
 }
 
-.title {
-    text-align: center;
-    margin-bottom: 200px;
-}
 
 .isi-body {
     margin-top: 3vw;
@@ -15,10 +11,4 @@
     margin-top: 1vw;
     margin-left: 1vw;
     margin-right: 5vw;
-}
-
-.button {
-    justify-content: center;
-    align-items: center;
-    align-content: center;
 }

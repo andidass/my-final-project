@@ -1,29 +1,31 @@
 import React from "react";
-import "./MainPosko.css";
 
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import MenuBar from "../Components/MenuBar";
 import MenuPosko from "../Components/MenuPosko";
 
-import { Typography } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 
 function MainPosko() {
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <MenuBar />
-      <Typography
-        align="center"
-        variant="p"
-        component="h3"
-        className="title-posko"
-      >
-        Posko 1 Desa A
+      <Typography component="div">
+        <Box
+          textAlign="center"
+          fontSize={20}
+          fontWeight="fontWeightBold"
+          marginTop={4}
+          color="red"
+        >
+          Posko 1 Desa A
+        </Box>
       </Typography>
       <MenuPosko />
       <Footer />
-    </div>
+    </React.Fragment>
   );
 }
 

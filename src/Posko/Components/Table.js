@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 export default function SimpleTable(props) {
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <form>
       <Typography component="div">
         <Box
           fontWeight="fontWeightBold"
@@ -41,21 +41,20 @@ export default function SimpleTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.rows.map((row2, index) => (
+            {props.rows.map((item, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
-                  {row2.namaBarang}
+                  {item.namaBarang}
                 </TableCell>
-                <TableCell align="right">{row2.satuan}</TableCell>
-                <TableCell align="right">{row2.banyaknya}</TableCell>
-                <TableCell align="right">{row2.jenisBantuan}</TableCell>
+                <TableCell align="right">{item.satuan}</TableCell>
+                <TableCell align="right">{item.banyaknya}</TableCell>
+                <TableCell align="right">{item.jenisBantuan}</TableCell>
                 <TableCell align="right">
                   <Button
                     variant="contained"
                     color="secondary"
                     size="small"
-                    // onClick={() => console.log(index)}
-                    onClick={() => props.deleteItem(index)}
+                    onClick={() => props.deleteItem(index)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
                   >
                     <DeleteIcon fontSize="small" />
                   </Button>
@@ -65,6 +64,6 @@ export default function SimpleTable(props) {
           </TableBody>
         </Table>
       </TableContainer>
-    </React.Fragment>
+    </form>
   );
 }

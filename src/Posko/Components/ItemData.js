@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Typography, Box, Button, TextField } from "@material-ui/core";
 
-// import "./BantuanMasukPosko.css";
 const jenisBantuan = [
   {
     value: "Utama",
@@ -27,6 +26,7 @@ const jenisBantuan = [
 
 function ItemData(props) {
   const [data, setData] = useState({
+    // penyimpanan state sementara
     namaBarang: "",
     satuan: "",
     banyaknya: "",
@@ -34,6 +34,7 @@ function ItemData(props) {
   });
 
   function changeHandler(event) {
+    // mengisi data pada state {data}
     const { id, value } = event.target;
     setData((prevData) => {
       return {
@@ -44,8 +45,10 @@ function ItemData(props) {
   }
 
   function submitHandler(event) {
-    props.addItem(data);
+    // utk menyimpan state sementara pada state permanent.
+    props.addItem(data); // memanggil fungsi pada BantuanMasukPosko.js
     setData({
+      // mereset state {data} serta inputan textField menjadi kosong setelah button submit tertekan.
       namaBarang: "",
       satuan: "",
       banyaknya: "",
@@ -64,10 +67,7 @@ function ItemData(props) {
           id="jenisBantuan"
           select
           label="Jenis Bantuan"
-          // onChange={handleChange}
           onChange={changeHandler}
-          // onChange={props.changeHandlerItem}
-          // value={currency}
           value={data.jenisBantuan}
           fullWidth
           style={{ margin: 8 }}
