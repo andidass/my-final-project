@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
-import Table from "../Components/Table";
 import SaveIcon from "@material-ui/icons/Save";
 import _uniqueId from "lodash/uniqueId";
 
-import Header from "../../Components/Header";
-import MenuBar from "../Components/MenuBar";
-import ItemData from "../Components/ItemData";
-import InitData from "../Components/InitData";
+import MenuBar from "../../Components/MenuBar";
+import Table from "./Table";
+import ItemData from "./ItemData";
+import InitData from "./InitData";
 
 import "./BantuanMasukPosko.css";
 
@@ -16,8 +15,7 @@ function BantuanMasukPosko() {
   var date = new Date().toLocaleDateString(); // set tanggal local sekarang
   const [id] = useState(_uniqueId("bpbd-ntb-"));
   const [rows, setRows] = useState([]);
-  const [initData, setInitData] = useState([]); // data init diakses disini
-  // const [semuaData, setSemuaData] = useState([]); //belum digunakan
+  const [allData, setAllData] = useState([]); // semua data disimpan pada var ini.
 
   // variabel penyimpanan data sementara (onChange textField)
   const [dataInit, setDataInit] = useState({
@@ -58,8 +56,8 @@ function BantuanMasukPosko() {
 
   function submitHandler() {
     // menyimpan secara permanen initData dan itemData
-    setInitData((prevInitData) => {
-      return [...prevInitData, dataInit, rows];
+    setAllData((prevAllData) => {
+      return [...prevAllData, dataInit, rows];
     });
     setDataInit({
       kodeTransaksi: id,
@@ -69,12 +67,11 @@ function BantuanMasukPosko() {
       alamatDonatur: "",
     });
     setRows([]);
-    console.log(initData);
+    console.log(allData);
   }
 
   return (
-    <React.Fragment>
-      <Header />
+    <React.Fragment className="main-container">
       <MenuBar />
       <div className="isi">
         <Typography component="div">

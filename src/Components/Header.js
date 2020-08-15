@@ -15,7 +15,12 @@ function Header() {
       </Grid>
       <Grid xs={8} item component={Link} to="/" className="link">
         <Typography component="div">
-          <Box fontWeight="fontWeightBold" textAlign="center" fontSize={23}>
+          <Box
+            fontWeight="fontWeightBold"
+            textAlign="center"
+            fontSize={23}
+            color="black"
+          >
             Sistem Informasi Pendataan Bencana Dan Pendistribusian Bantuan
             Bencana Gempa Bumi
           </Box>

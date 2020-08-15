@@ -33,7 +33,13 @@ function MenuPosko() {
   return (
     <React.Fragment>
       <Grid container className={classes.padding}>
-        <Grid item xs component={Link} to="/posko/posko-bencana">
+        <Grid
+          item
+          xs
+          component={Link}
+          to="/posko/posko-bencana"
+          className="link"
+        >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <HomeIcon />
@@ -44,7 +50,13 @@ function MenuPosko() {
           </Card>
         </Grid>
 
-        <Grid item xs component={Link} to="/posko/posko-bencana">
+        <Grid
+          item
+          xs
+          component={Link}
+          to="/posko/posko-bencana"
+          className="link"
+        >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <AssignmentIcon />
@@ -55,18 +67,30 @@ function MenuPosko() {
           </Card>
         </Grid>
 
-        <Grid item xs component={Link} to="/posko/posko-bencana">
+        <Grid
+          item
+          xs
+          component={Link}
+          to="/posko/data-pengungsi"
+          className="link"
+        >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <AccessibleIcon />
               <Typography component="div">
-                <Box>Data Korban</Box>
+                <Box>Data Pengungsi</Box>
               </Typography>
             </CardContent>
           </Card>
         </Grid>
 
-        <Grid item xs component={Link} to="posko/bantuan-masuk">
+        <Grid
+          item
+          xs
+          component={Link}
+          to="posko/bantuan-masuk"
+          className="link"
+        >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <InputIcon />
@@ -77,10 +101,16 @@ function MenuPosko() {
           </Card>
         </Grid>
 
-        <Grid item xs component={Link} to="/posko/posko-bencana">
+        <Grid
+          item
+          xs
+          component={Link}
+          to="/posko/posko-bencana"
+          className="link"
+        >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <InputIcon reverse />
+              <InputIcon />
               <Typography component="div">
                 <Box>Bantuan Keluar</Box>
               </Typography>
@@ -88,7 +118,13 @@ function MenuPosko() {
           </Card>
         </Grid>
 
-        <Grid item xs component={Link} to="/posko/posko-bencana">
+        <Grid
+          item
+          xs
+          component={Link}
+          to="/posko/posko-bencana"
+          className="link"
+        >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <PanToolIcon />

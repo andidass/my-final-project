@@ -1,13 +1,15 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
-
-import "./Footer.css";
+import { Typography, Box } from "@material-ui/core";
 
 function Footer() {
   return (
-    <footer>
-      <Typography variant="p">Created by Andi Ardhian (F1B015009)</Typography>
-    </footer>
+    <React.Fragment>
+      <Typography component="div">
+        <Box textAlign="center" fontSize={12}>
+          Created by Andi Ardhian (F1B015009)
+        </Box>
+      </Typography>
+    </React.Fragment>
   );
 }
 
