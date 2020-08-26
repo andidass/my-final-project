@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import MenuBar from "../../Components/MenuBar";
 import Tabel from "./Tabel";
@@ -11,47 +11,65 @@ import {
   Paper,
   Button,
 } from "@material-ui/core";
+import SaveIcon from "@material-ui/icons/Save";
 
-const jenisBantuan = [
-  {
-    value: "Utama",
-    label: "Utama",
-  },
-  {
-    value: "Sandang",
-    label: "Sandang",
-  },
-  {
-    value: "Pangan",
-    label: "Pangan",
-  },
-  {
-    value: "Papan",
-    label: "Papan",
-  },
-  {
-    value: "Uang",
-    label: "Uang",
-  },
-];
-const Pengungsi = [
-  {
-    namaPengungsi: "boy",
-    jenisKelamin: "laki-laki",
-    umur: "23",
-    keadaan: "sehat",
-    alamat: "dusun A",
-  },
-  {
-    namaPengungsi: "putri",
-    jenisKelamin: "perempuan",
-    umur: "23",
-    keadaan: "sehat",
-    alamat: "dusun B",
-  },
-];
+// const jenisKelamin = [
+//   {
+//     value: "Laki-laki",
+//     label: "Laki-laki",
+//   },
+//   {
+//     value: "Wanita",
+//     label: "Wanita",
+//   },
+// ];
 
 const DataPengungsi = () => {
+  const [dataPengungsi, setDataPengungsi] = useState([]);
+
+  const [Pengungsi, setPengungsi] = useState({
+    namaPengungsi: "",
+    jenisKelamin: "",
+    umur: "",
+    keadaan: "",
+    alamat: "",
+  });
+
+  function changeHandler(event) {
+    const { id, value } = event.target;
+    setPengungsi((prevData) => {
+      return {
+        ...prevData,
+        [id]: value,
+      };
+    });
+  }
+
+  // sumbit data dan data dimasukkan ke tabel
+  function submitHandler(event) {
+    setDataPengungsi((prevPengungsi) => {
+      return [...prevPengungsi, Pengungsi];
+    });
+
+    setPengungsi({
+      namaPengungsi: "",
+      jenisKelamin: "",
+      umur: "",
+      keadaan: "",
+      alamat: "",
+    });
+    event.preventDefault();
+  }
+
+  // hapus data pada tabel
+  function deleteItem(id) {
+    setDataPengungsi((prevPengungsi) => {
+      return prevPengungsi.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <React.Fragment>
       <MenuBar />
@@ -67,71 +85,82 @@ const DataPengungsi = () => {
       </Typography>
       <Paper variant="outlined" className="body-posko-bencana">
         <Grid container>
-          <Grid xs={0} sm={3} item />
-          <Grid xs={12} sm={6} item>
-            <TextField
-              id="namaPengungsi"
-              label="Nama Pengungsi"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              fullWidth
-              // value={dataPetugas.namaPetugas}
-            />
-            <TextField
-              id="jenisKelamin"
-              label="Jenis Kelamin"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              fullWidth
-              // value={dataPetugas.namaPetugas}
-            />
-            <TextField
-              id="usia"
-              label="Umur"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              fullWidth
-              // value={dataPetugas.namaPetugas}
-            />
-            <TextField
-              id="keadaan"
-              label="Keadaan"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              fullWidth
-              // value={dataPetugas.namaPetugas}
-            />
-            <TextField
-              id="alamat"
-              label="Alamat"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              fullWidth
-              // value={dataPetugas.namaPetugas}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              href="#contained-buttons"
-              style={{ margin: 8 }}
-            >
-              Tambah
-            </Button>
+          <Grid xs={1} sm={3} item />
+          <Grid xs={10} sm={6} item>
+            <form>
+              <TextField
+                id="namaPengungsi"
+                label="Nama Pengungsi"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={changeHandler}
+                value={Pengungsi.namaPengungsi}
+              />
+              <TextField
+                id="jenisKelamin"
+                label="Jenis Kelamin"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={changeHandler}
+                value={Pengungsi.jenisKelamin}
+              />
+              <TextField
+                id="umur"
+                label="Umur"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={changeHandler}
+                value={Pengungsi.umur}
+              />
+              <TextField
+                id="keadaan"
+                label="Keadaan"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={changeHandler}
+                value={Pengungsi.keadaan}
+              />
+              <TextField
+                id="alamat"
+                label="Alamat"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={changeHandler}
+                value={Pengungsi.alamat}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                href="#contained-buttons"
+                style={{ margin: 8 }}
+                onClick={submitHandler}
+              >
+                Tambah
+              </Button>
+            </form>
           </Grid>
-          <Grid xs={0} sm={3} />
+          <Grid xs={1} sm={3} item />
         </Grid>
       </Paper>
-      <Tabel Pengungsi={Pengungsi} />
+      <Tabel deleteItem={deleteItem} dataPengungsi={dataPengungsi} />
+      <Button variant="contained" color="primary" startIcon={<SaveIcon />}>
+        Save
+      </Button>
     </React.Fragment>
   );
 };

@@ -33,18 +33,12 @@ function MenuPosko() {
   return (
     <React.Fragment>
       <Grid container className={classes.padding}>
-        <Grid
-          item
-          xs
-          component={Link}
-          to="/posko/posko-bencana"
-          className="link"
-        >
+        <Grid item xs component={Link} to="/posko/data-posko" className="link">
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <HomeIcon />
               <Typography component="div">
-                <Box>Posko Bencana</Box>
+                <Box>Data Posko</Box>
               </Typography>
             </CardContent>
           </Card>
@@ -54,14 +48,14 @@ function MenuPosko() {
           item
           xs
           component={Link}
-          to="/posko/posko-bencana"
+          to="/posko/fasilitas-posko"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <AssignmentIcon />
               <Typography component="div">
-                <Box>Data Bencana</Box>
+                <Box>Fasilitas Posko</Box>
               </Typography>
             </CardContent>
           </Card>

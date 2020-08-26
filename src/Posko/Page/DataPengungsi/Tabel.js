@@ -42,7 +42,7 @@ export default function SimpleTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.Pengungsi.map((data, index) => (
+            {props.dataPengungsi.map((data, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
                   {data.namaPengungsi}
@@ -56,7 +56,7 @@ export default function SimpleTable(props) {
                     variant="contained"
                     color="secondary"
                     size="small"
-                    // onClick={() => props.deleteItem(index)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
+                    onClick={() => props.deleteItem(index)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
                   >
                     <DeleteIcon fontSize="small" />
                   </Button>

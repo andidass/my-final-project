@@ -8,6 +8,7 @@ import MainPosko from "./Posko/Page/MainPosko";
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
 import PoskoBencana from "./Posko/Page/PoskoBencana/PoskoBencana";
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
+import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
 import Login from "./Posko/Page/Login";
 
 import "./App.css";
@@ -25,7 +26,12 @@ function App() {
             exact
             component={BantuanMasukPosko}
           />
-          <Route path="/posko/posko-bencana" exact component={PoskoBencana} />
+          <Route path="/posko/data-posko" exact component={PoskoBencana} />
+          <Route
+            path="/posko/fasilitas-posko"
+            exact
+            component={FasilitasPosko}
+          />
           <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
           <Route path="/posko-login" exact component={Login} />
         </Switch>

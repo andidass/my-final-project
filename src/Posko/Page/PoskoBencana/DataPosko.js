@@ -29,6 +29,28 @@ const DataPosko = () => {
         multiline
         // value=""
       />
+
+      <TextField
+        id="desaPosko"
+        label="Desa"
+        style={{ margin: 8, maxWidth: 500 }}
+        margin="normal"
+        variant="outlined"
+        size="small"
+        fullWidth
+        multiline
+        // value=""
+      />
+      <TextField
+        id="dusunPosko"
+        label="Dusun"
+        style={{ margin: 8, maxWidth: 500 }}
+        margin="normal"
+        variant="outlined"
+        size="small"
+        fullWidth
+        // value=""
+      />
       <TextField
         id="lokasiPosko"
         label="Lokasi Posko"
@@ -37,7 +59,6 @@ const DataPosko = () => {
         variant="outlined"
         size="small"
         fullWidth
-        multiline
         // value=""
       />
     </form>
