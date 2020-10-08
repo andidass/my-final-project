@@ -29,7 +29,9 @@ router.post(
   "/",
   [
     check("email", "email wajib diisi").isEmail(),
-    check("password", "password harus berisi minimal 6 karakter").exists(),
+    check("password", "password harus berisi minimal 6 karakter").isLength({
+      min: 6,
+    }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -68,7 +70,7 @@ router.post(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 360000 }, // expiresIn set ke 3600 second / 1 jam expired.
+        { expiresIn: 3600 }, // expiresIn set ke 3600 second / 1 jam expired.
         (err, token) => {
           if (err) throw err;
           // tampilkan token

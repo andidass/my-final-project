@@ -12,6 +12,8 @@ app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("API Running"));
 
 // define router
+app.use("/petugas-registrasi", require("./Routes/api/user"));
+app.use("/petugas-login", require("./Routes/api/auth"));
 app.use("/api/users", require("./Routes/api/user"));
 app.use("/api/auth", require("./Routes/api/auth"));
 app.use("/api/profile", require("./Routes/api/profile"));

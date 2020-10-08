@@ -1,15 +1,12 @@
-import React from "react";
-
-import MenuBar from "../Components/MenuBar";
+import React, { Fragment } from "react";
 import MenuPosko from "../Components/MenuPosko";
 
 import { Typography, Box } from "@material-ui/core";
 
-function MainPosko() {
+const MainPosko = () => {
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="main-container">
-        <MenuBar />
         <Typography component="div">
           <Box
             textAlign="center"
@@ -23,8 +20,8 @@ function MainPosko() {
         </Typography>
         <MenuPosko />
       </div>
-    </React.Fragment>
+    </Fragment>
   );
-}
+};
 
 export default MainPosko;

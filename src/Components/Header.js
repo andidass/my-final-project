@@ -9,7 +9,7 @@ function Header() {
     <Grid container alignItems="center" className="header">
       <Grid xs={2} item align="left">
         <img
-          src="https://bpbd.ntbprov.go.id/sites/default/files/styles/medium/public/field/image/logo%20bulet_22_4.png?itok=ARUavpii"
+          src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
           alt="logo bpbd"
         />
       </Grid>
@@ -33,7 +33,7 @@ function Header() {
       </Grid>
       <Grid xs={2} item align="right">
         <img
-          src="https://i0.wp.com/mipa.unram.ac.id/wp-content/uploads/2019/11/Logo-Unram-Universitas-Mataram-PNG-e1574302527353.png?fit=393%2C394&ssl=1"
+          src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
           alt="logo unram"
         />
       </Grid>

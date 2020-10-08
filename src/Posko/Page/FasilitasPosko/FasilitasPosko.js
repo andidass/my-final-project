@@ -46,7 +46,7 @@ const FasilitasPosko = () => {
               </Button>
             </div>
           </Grid>
-          <Grid item xs={12} sm={6} item>
+          <Grid xs={12} sm={6} item>
             <h1>2</h1>
           </Grid>
         </Grid>
