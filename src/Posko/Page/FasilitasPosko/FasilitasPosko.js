@@ -1,5 +1,4 @@
 import React from "react";
-import MenuBar from "../../Components/MenuBar";
 import Count from "./Count";
 
 import { Button, Typography, Box, Paper, Grid } from "@material-ui/core";
@@ -12,7 +11,6 @@ const FasilitasPosko = () => {
 
   return (
     <React.Fragment>
-      <MenuBar />
       <Typography component="div">
         <Box
           fontSize={18}

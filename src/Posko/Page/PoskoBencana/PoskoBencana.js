@@ -1,5 +1,4 @@
 import React from "react";
-import MenuBar from "../../Components/MenuBar";
 import DataPosko from "./DataPosko";
 import DataPetugas from "./DataPetugas";
 
@@ -9,7 +8,6 @@ import "./PoskoBencana.css";
 const PoskoBencana = () => {
   return (
     <React.Fragment>
-      <MenuBar />
       <Typography component="div">
         <Box
           fontSize={18}

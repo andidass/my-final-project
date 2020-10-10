@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import MenuBar from "../../Components/MenuBar";
 import Tabel from "./Tabel";
 
 import {
@@ -72,7 +71,6 @@ const DataPengungsi = () => {
 
   return (
     <React.Fragment>
-      <MenuBar />
       <Typography component="div">
         <Box
           fontSize={18}

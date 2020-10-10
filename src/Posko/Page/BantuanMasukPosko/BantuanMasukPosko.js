@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import _uniqueId from "lodash/uniqueId";
-
-import MenuBar from "../../Components/MenuBar";
 import Table from "./Table";
 import ItemData from "./ItemData";
 import InitData from "./InitData";
@@ -72,7 +70,6 @@ function BantuanMasukPosko() {
 
   return (
     <React.Fragment className="main-container">
-      <MenuBar />
       <div className="isi">
         <Typography component="div">
           <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>

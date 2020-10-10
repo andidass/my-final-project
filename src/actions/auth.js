@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_PROFILE,
 } from "./types";
 import setAuthToken from "../utils/setTokenAuth";
 
@@ -18,7 +19,7 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get("/api/auth");
+    const res = await axios.get("/posko/login");
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -42,7 +43,7 @@ export const register = ({ name, email, password, position }) => async (
   const body = JSON.stringify({ name, email, password, position });
 
   try {
-    const res = await axios.post("/petugas-registrasi", body, config);
+    const res = await axios.post("/posko/registrasi", body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -71,7 +72,7 @@ export const login = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post("/petugas-login", body, config);
+    const res = await axios.post("/posko/login", body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -92,5 +93,6 @@ export const login = (email, password) => async (dispatch) => {
 
 // LOGOUT (clear profile)
 export const logout = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };

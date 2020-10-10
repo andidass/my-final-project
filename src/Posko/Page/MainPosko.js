@@ -1,9 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import MenuPosko from "../Components/MenuPosko";
+import { getCurrentProfile } from "../../actions/profile";
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { Typography, Box } from "@material-ui/core";
 
-const MainPosko = () => {
+const MainPosko = ({ getCurrentProfile, auth, profile }) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, []);
   return (
     <Fragment>
       <div className="main-container">
@@ -24,4 +31,15 @@ const MainPosko = () => {
   );
 };
 
-export default MainPosko;
+MainPosko.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, { getCurrentProfile })(MainPosko);

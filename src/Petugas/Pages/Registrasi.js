@@ -164,7 +164,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
           </Button>
           <Grid container>
             <Grid item>
-              <Link to="./petugas-login">
+              <Link to="./login">
                 <Linkes variant="body2">{"Sudah memiliki akun? login"}</Linkes>
               </Link>
             </Grid>
