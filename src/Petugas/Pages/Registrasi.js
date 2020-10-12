@@ -71,7 +71,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
   const { name, position, email, password, password2 } = formRegister;
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className="full-height">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

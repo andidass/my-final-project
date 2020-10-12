@@ -71,94 +71,96 @@ const DataPengungsi = () => {
 
   return (
     <React.Fragment>
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          marginTop={3}
-        >
-          Data Pengungsi Posko
-        </Box>
-      </Typography>
-      <Paper variant="outlined" className="body-posko-bencana">
-        <Grid container>
-          <Grid xs={1} sm={3} item />
-          <Grid xs={10} sm={6} item>
-            <form>
-              <TextField
-                id="namaPengungsi"
-                label="Nama Pengungsi"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={changeHandler}
-                value={Pengungsi.namaPengungsi}
-              />
-              <TextField
-                id="jenisKelamin"
-                label="Jenis Kelamin"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={changeHandler}
-                value={Pengungsi.jenisKelamin}
-              />
-              <TextField
-                id="umur"
-                label="Umur"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={changeHandler}
-                value={Pengungsi.umur}
-              />
-              <TextField
-                id="keadaan"
-                label="Keadaan"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={changeHandler}
-                value={Pengungsi.keadaan}
-              />
-              <TextField
-                id="alamat"
-                label="Alamat"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={changeHandler}
-                value={Pengungsi.alamat}
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                href="#contained-buttons"
-                style={{ margin: 8 }}
-                onClick={submitHandler}
-              >
-                Tambah
-              </Button>
-            </form>
+      <div className="isi full-height">
+        <Typography component="div">
+          <Box
+            fontSize={18}
+            fontWeight="fontWeightBold"
+            textAlign="center"
+            marginTop={3}
+          >
+            Data Pengungsi Posko
+          </Box>
+        </Typography>
+        <Paper variant="outlined" className="body-posko-bencana">
+          <Grid container>
+            <Grid xs={1} sm={3} item />
+            <Grid xs={10} sm={6} item>
+              <form>
+                <TextField
+                  id="namaPengungsi"
+                  label="Nama Pengungsi"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={changeHandler}
+                  value={Pengungsi.namaPengungsi}
+                />
+                <TextField
+                  id="jenisKelamin"
+                  label="Jenis Kelamin"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={changeHandler}
+                  value={Pengungsi.jenisKelamin}
+                />
+                <TextField
+                  id="umur"
+                  label="Umur"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={changeHandler}
+                  value={Pengungsi.umur}
+                />
+                <TextField
+                  id="keadaan"
+                  label="Keadaan"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={changeHandler}
+                  value={Pengungsi.keadaan}
+                />
+                <TextField
+                  id="alamat"
+                  label="Alamat"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={changeHandler}
+                  value={Pengungsi.alamat}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  href="#contained-buttons"
+                  style={{ margin: 8 }}
+                  onClick={submitHandler}
+                >
+                  Tambah
+                </Button>
+              </form>
+            </Grid>
+            <Grid xs={1} sm={3} item />
           </Grid>
-          <Grid xs={1} sm={3} item />
-        </Grid>
-      </Paper>
-      <Tabel deleteItem={deleteItem} dataPengungsi={dataPengungsi} />
-      <Button variant="contained" color="primary" startIcon={<SaveIcon />}>
-        Save
-      </Button>
+        </Paper>
+        <Tabel deleteItem={deleteItem} dataPengungsi={dataPengungsi} />
+        <Button variant="contained" color="primary" startIcon={<SaveIcon />}>
+          Save
+        </Button>
+      </div>
     </React.Fragment>
   );
 };

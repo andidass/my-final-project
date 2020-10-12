@@ -11,6 +11,8 @@ import AccessibleIcon from "@material-ui/icons/Accessible";
 import HomeIcon from "@material-ui/icons/Home";
 import PanToolIcon from "@material-ui/icons/PanTool";
 
+import "./MenuPosko.css";
+
 const useStyles = makeStyles({
   root: {
     minWidth: 160,
@@ -33,7 +35,15 @@ function MenuPosko() {
   return (
     <React.Fragment>
       <Grid container className={classes.padding}>
-        <Grid item xs component={Link} to="/posko/data-posko" className="link">
+        <Grid
+          item
+          xs={6}
+          sm={4}
+          lg={2}
+          component={Link}
+          to="/posko/data-posko"
+          className="link"
+        >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <HomeIcon />
@@ -46,7 +56,9 @@ function MenuPosko() {
 
         <Grid
           item
-          xs
+          xs={6}
+          sm={4}
+          lg={2}
           component={Link}
           to="/posko/fasilitas-posko"
           className="link"
@@ -63,7 +75,9 @@ function MenuPosko() {
 
         <Grid
           item
-          xs
+          xs={6}
+          sm={4}
+          lg={2}
           component={Link}
           to="/posko/data-pengungsi"
           className="link"
@@ -80,7 +94,9 @@ function MenuPosko() {
 
         <Grid
           item
-          xs
+          xs={6}
+          sm={4}
+          lg={2}
           component={Link}
           to="/posko/bantuan-masuk"
           className="link"
@@ -97,9 +113,11 @@ function MenuPosko() {
 
         <Grid
           item
-          xs
+          xs={6}
+          sm={4}
+          lg={2}
           component={Link}
-          to="/posko/posko-bencana"
+          to="/posko/bantuan-keluar"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
@@ -114,9 +132,11 @@ function MenuPosko() {
 
         <Grid
           item
-          xs
+          xs={6}
+          sm={4}
+          lg={2}
           component={Link}
-          to="/posko/posko-bencana"
+          to="/posko/permintaan-bantuan"
           className="link"
         >
           <Card className={classes.root} variant="outlined">

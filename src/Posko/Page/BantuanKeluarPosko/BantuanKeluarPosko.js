@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function BantuanKeluarPosko(){
-    return(
-        <h1>Bantuan Keluar Posko</h1>
-    )
+function BantuanKeluarPosko() {
+  return <h1 className="full-height">Bantuan Keluar Posko</h1>;
 }
 
 export default BantuanKeluarPosko;

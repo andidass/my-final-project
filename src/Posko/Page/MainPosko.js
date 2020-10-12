@@ -23,7 +23,7 @@ const MainPosko = ({
     <Spinner />
   ) : (
     <Fragment>
-      <div className="main-container">
+      <div className="full-height">
         <Typography component="div">
           <Box
             textAlign="center"

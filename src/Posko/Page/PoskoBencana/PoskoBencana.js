@@ -8,26 +8,28 @@ import "./PoskoBencana.css";
 const PoskoBencana = () => {
   return (
     <React.Fragment>
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          marginTop={3}
-        >
-          Posko Bencana
-        </Box>
-      </Typography>
-      <Paper variant="outlined" className="body-posko-bencana">
-        <Grid container>
-          <Grid xs={12} sm={6} item>
-            <DataPosko />
+      <div className="full-height">
+        <Typography component="div">
+          <Box
+            fontSize={18}
+            fontWeight="fontWeightBold"
+            textAlign="center"
+            marginTop={3}
+          >
+            Posko Bencana
+          </Box>
+        </Typography>
+        <Paper variant="outlined" className="body-posko-bencana">
+          <Grid container>
+            <Grid xs={12} sm={6} item>
+              <DataPosko />
+            </Grid>
+            <Grid xs={12} sm={6} item>
+              <DataPetugas />
+            </Grid>
           </Grid>
-          <Grid xs={12} sm={6} item>
-            <DataPetugas />
-          </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </div>
     </React.Fragment>
   );
 };

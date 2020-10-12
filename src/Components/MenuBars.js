@@ -48,13 +48,23 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <Grid container alignItems="center">
       <Grid item>
-        <InputBase
+        {/* <InputBase
           placeholder="Search topics"
           className={classes.searchInput}
           startAdornment={<SearchIcon fontSize="small" />}
-        />
+        /> */}
+        <div className={classes.root2}>
+          <Avatar
+            alt="BPBD NTB"
+            src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
+          />
+          <Avatar
+            alt="Universitas Mataram"
+            src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+          />
+        </div>
       </Grid>
-      <Grid item sm></Grid>
+      <Grid item xs></Grid>
       <Grid item>
         <IconButton>
           <Badge badgeContent={4} color="secondary">
@@ -75,7 +85,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const guestLinks = (
     <Grid container alignItems="center">
-      <Grid item component={Link} to="/">
+      <Grid item to="/">
         <div className={classes.root2}>
           <Avatar
             alt="BPBD NTB"
@@ -87,13 +97,16 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
           />
         </div>
       </Grid>
-      <Grid item sm={1}></Grid>
       <Grid item>
-        <Typography gutterBottom variant="subtitle1" style={{ color: "black" }}>
+        <Typography
+          variant="subtitle1"
+          style={{ color: "black", possition: "center" }}
+        >
           Sistem Informasi Pendataan Bencana dan Pendistribusian Bantuan Bencana
           BPBD NTB
         </Typography>
       </Grid>
+      <Grid item sm></Grid>
     </Grid>
   );
 

@@ -70,40 +70,38 @@ function BantuanMasukPosko() {
 
   return (
     <React.Fragment className="main-container">
-      <div className="isi">
-        <Typography component="div">
-          <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
-            Bantuan Masuk
-          </Box>
-        </Typography>
-        <Grid container className="isi-body">
-          <Grid xs={12} sm={6} item>
-            {/* ------------------------ InitData.js -----------------------*/}
-            <InitData
-              dataInit={dataInit}
-              submitHandler={submitHandler}
-              changeHandlerInit={changeHandlerInit}
-            />
-          </Grid>
-          <Grid xs={12} sm={6} item>
-            {/* ------------------------ ItemData.js -----------------------*/}
-            <ItemData addItem={addItem} />
-          </Grid>
-          <Grid xs={12} item>
-            {/* ---------------------- TABLE.JS -------------------------- */}
-            <Table rows={rows} deleteItem={deleteItem} />
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ margin: 8 }}
-              startIcon={<SaveIcon />}
-              onClick={submitHandler}
-            >
-              Simpan
-            </Button>
-          </Grid>
+      <Typography component="div">
+        <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
+          Bantuan Masuk
+        </Box>
+      </Typography>
+      <Grid container className="isi-body">
+        <Grid xs={12} sm={6} item>
+          {/* ------------------------ InitData.js -----------------------*/}
+          <InitData
+            dataInit={dataInit}
+            submitHandler={submitHandler}
+            changeHandlerInit={changeHandlerInit}
+          />
         </Grid>
-      </div>
+        <Grid xs={12} sm={6} item>
+          {/* ------------------------ ItemData.js -----------------------*/}
+          <ItemData addItem={addItem} />
+        </Grid>
+        <Grid xs={12} item>
+          {/* ---------------------- TABLE.JS -------------------------- */}
+          <Table rows={rows} deleteItem={deleteItem} />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ margin: 8 }}
+            startIcon={<SaveIcon />}
+            onClick={submitHandler}
+          >
+            Simpan
+          </Button>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }
