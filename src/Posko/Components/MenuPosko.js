@@ -34,10 +34,11 @@ function MenuPosko() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Grid container className={classes.padding}>
+      <Grid container justify="center" className={classes.padding}>
         <Grid
           item
-          xs={6}
+          xs={16}
+          xl={6}
           sm={4}
           lg={2}
           component={Link}
@@ -56,7 +57,8 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={6}
+          xs={16}
+          xl={6}
           sm={4}
           lg={2}
           component={Link}
@@ -75,7 +77,8 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={6}
+          xs={16}
+          xl={6}
           sm={4}
           lg={2}
           component={Link}
@@ -91,10 +94,10 @@ function MenuPosko() {
             </CardContent>
           </Card>
         </Grid>
-
         <Grid
           item
-          xs={6}
+          xs={16}
+          xl={6}
           sm={4}
           lg={2}
           component={Link}
@@ -113,7 +116,8 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={6}
+          xs={16}
+          xl={6}
           sm={4}
           lg={2}
           component={Link}
@@ -132,7 +136,8 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={6}
+          xs={16}
+          xl={6}
           sm={4}
           lg={2}
           component={Link}

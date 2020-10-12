@@ -14,9 +14,10 @@ const MainPosko = ({
   auth: { user },
   profile: { profile, loading },
 }) => {
-  // this should be executed after loading from user_loaded === false
   useEffect(() => {
-    getCurrentProfile();
+    setTimeout(() => {
+      getCurrentProfile();
+    }, 1000);
   }, []);
 
   return loading && profile === null ? (
