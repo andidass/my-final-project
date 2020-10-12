@@ -1,17 +1,27 @@
 import React, { Fragment, useEffect } from "react";
 import MenuPosko from "../Components/MenuPosko";
+
 import { getCurrentProfile } from "../../actions/profile";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import Spinner from "../../Components/Spinner";
 import { Typography, Box } from "@material-ui/core";
 
-const MainPosko = ({ getCurrentProfile, auth, profile }) => {
+const MainPosko = ({
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile, loading },
+}) => {
+  // this should be executed after loading from user_loaded === false
   useEffect(() => {
     getCurrentProfile();
   }, []);
-  return (
+
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <div className="main-container">
         <Typography component="div">
@@ -22,9 +32,15 @@ const MainPosko = ({ getCurrentProfile, auth, profile }) => {
             marginTop={4}
             color="red"
           >
-            Posko 1 Desa A
+            welcome {user && user.name}
+            {/* Posko 1 Desa A */}
           </Box>
         </Typography>
+        {profile !== null ? (
+          <Fragment>Profile ada</Fragment>
+        ) : (
+          <Fragment> profile tidak ada </Fragment>
+        )}
         <MenuPosko />
       </div>
     </Fragment>

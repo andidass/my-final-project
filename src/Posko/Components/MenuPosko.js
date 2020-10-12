@@ -82,7 +82,7 @@ function MenuPosko() {
           item
           xs
           component={Link}
-          to="posko/bantuan-masuk"
+          to="/posko/bantuan-masuk"
           className="link"
         >
           <Card className={classes.root} variant="outlined">

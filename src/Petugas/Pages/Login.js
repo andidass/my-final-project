@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
 import Alert from "../../layout/Alert";
 
-// @materialui
 import {
   Avatar,
   Button,

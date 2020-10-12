@@ -1,15 +1,19 @@
-import React from "react";
-import { Typography, Box } from "@material-ui/core";
+import React, { Fragment } from "react";
+import { Typography, Box, Avatar } from "@material-ui/core";
+import "./footer.css";
 
 function Footer() {
   return (
-    <React.Fragment>
-      <Typography component="div">
-        <Box textAlign="center" fontSize={12}>
-          Created by Andi Ardhian (F1B015009)
-        </Box>
-      </Typography>
-    </React.Fragment>
+    <Fragment>
+      <div className="footer">
+        <Typography component="div" display="inline">
+          <Box>Developer : Andi Ardhian (F1B015009)</Box>
+        </Typography>
+        <Typography component="div" display="inline">
+          <Box>Github : github.com/andidass</Box>
+        </Typography>
+      </div>
+    </Fragment>
   );
 }
 

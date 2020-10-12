@@ -9,13 +9,16 @@ import PrivateRoute from "./routing/PrivateRoute";
 
 // main component
 import Error from "./Error";
-import Header from "./Components/Header";
+// import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import MenuBar from "./Components/MenuBar";
+import MenuBars from "./Components/MenuBars";
+// import MenuBar from "./Components/MenuBar";
+import Spinner from "./Components/Spinner";
 
 // component page
 import MainPosko from "./Posko/Page/MainPosko";
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
+import Profile from "./Posko/Page/Profile/Profile";
 import PoskoBencana from "./Posko/Page/PoskoBencana/PoskoBencana";
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
 import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
@@ -39,26 +42,40 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Header />
-        <MenuBar />
+        {/* <Header /> */}
+        {/* <MenuBar /> */}
+        <MenuBars />
         <Switch>
           <Route path="/error" exact component={Error} />
+          <Route path="/spinner" exact component={Spinner} />
           <Route path="/" exact component={LoginPosko} />
+
+          {/* POSKO */}
           <Route path="/posko/login" exact component={LoginPosko} />
           <Route path="/posko/registrasi" exact component={RegistrasiPetugas} />
           <PrivateRoute path="/posko/dashboard" exact component={MainPosko} />
-          <Route
+          {/* ubah menjadi privateroute kalo udah fix */}
+          <Route path="/posko/profile" exact component={Profile} />
+          <PrivateRoute
             path="/posko/bantuan-masuk"
             exact
             component={BantuanMasukPosko}
           />
-          <Route path="/posko/data-posko" exact component={PoskoBencana} />
-          <Route
+          <PrivateRoute
+            path="/posko/data-posko"
+            exact
+            component={PoskoBencana}
+          />
+          <PrivateRoute
             path="/posko/fasilitas-posko"
             exact
             component={FasilitasPosko}
           />
-          <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
+          <PrivateRoute
+            path="/posko/data-pengungsi"
+            exact
+            component={DataPengungsi}
+          />
           {/* <Route path="/posko-login" exact component={Login} /> */}
         </Switch>
         <Footer />
