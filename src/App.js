@@ -17,7 +17,7 @@ import Spinner from "./Components/Spinner";
 
 // component page
 import MainPosko from "./Posko/Page/MainPosko";
-import Profile from "./Posko/Page/Profile/Profile";
+// import Profile from "./Posko/Page/Profile/Profile";
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
 import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
 import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
@@ -63,7 +63,7 @@ const App = () => {
             />
             <PrivateRoute path="/posko/dashboard" exact component={MainPosko} />
             {/* ubah menjadi privateroute kalo udah fix */}
-            <Route path="/posko/profile" exact component={Profile} />
+            {/* <Route path="/posko/profile" exact component={Profile} /> */}
             <PrivateRoute
               path="/posko/bantuan-masuk"
               exact

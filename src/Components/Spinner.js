@@ -3,15 +3,17 @@ import spinner from "./spinner.gif";
 
 export default () => (
   <Fragment>
-    <img
-      src={spinner}
-      style={{
-        width: "100px",
-        height: "100px",
-        margin: "auto",
-        display: "block",
-      }}
-      alt="loading..."
-    />
+    <div className="full-height">
+      <img
+        src={spinner}
+        style={{
+          width: "100px",
+          height: "100px",
+          margin: "auto",
+          display: "block",
+        }}
+        alt="loading..."
+      />
+    </div>
   </Fragment>
 );

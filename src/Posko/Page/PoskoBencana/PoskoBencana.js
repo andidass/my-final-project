@@ -1,13 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import DataPosko from "./DataPosko";
 import DataPetugas from "./DataPetugas";
 
 import { Grid, Paper, Typography, Box } from "@material-ui/core";
 
 import "./PoskoBencana.css";
-const PoskoBencana = () => {
-  return (
-    <React.Fragment>
+const PoskoBencana = ({ auth: { user }, profile: { profile } }) => {
+  return profile !== null ? (
+    <Fragment>
       <div className="full-height">
         <Typography component="div">
           <Box
@@ -30,8 +32,22 @@ const PoskoBencana = () => {
           </Grid>
         </Paper>
       </div>
-    </React.Fragment>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <div className="full-height">Profile tidak ada</div>
+    </Fragment>
   );
 };
 
-export default PoskoBencana;
+PoskoBencana.propTypes = {
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps)(PoskoBencana);

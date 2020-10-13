@@ -69,7 +69,7 @@ function BantuanMasukPosko() {
   }
 
   return (
-    <React.Fragment className="main-container">
+    <div className="isi">
       <Typography component="div">
         <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
           Bantuan Masuk
@@ -102,7 +102,7 @@ function BantuanMasukPosko() {
           </Button>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }
 
