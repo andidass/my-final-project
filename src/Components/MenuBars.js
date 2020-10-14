@@ -17,7 +17,7 @@ import {
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   root2: {
@@ -53,7 +53,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
           className={classes.searchInput}
           startAdornment={<SearchIcon fontSize="small" />}
         /> */}
-        <div className={classes.root2}>
+        <Link className={classes.root2} to="/">
           <Avatar
             alt="BPBD NTB"
             src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
@@ -62,7 +62,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
             alt="Universitas Mataram"
             src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
           />
-        </div>
+        </Link>
       </Grid>
       <Grid item xs></Grid>
       <Grid item>
@@ -86,7 +86,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <Grid container alignItems="center">
       <Grid item to="/">
-        <div className={classes.root2}>
+        <Link className={classes.root2} to="/">
           <Avatar
             alt="BPBD NTB"
             src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
@@ -95,7 +95,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
             alt="Universitas Mataram"
             src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
           />
-        </div>
+        </Link>
       </Grid>
       <Grid item>
         <Typography

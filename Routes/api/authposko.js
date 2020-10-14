@@ -1,22 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
+const auth = require("../../Middleware/auth");
 
-const User = require("../../Model/User");
+const UserPosko = require("../../Model/UserPosko");
 
-// @route       POST api/users
-// @desc        Register PetugasPosko
-// @access      Public
+// @route   Get api/auth
+// #desc    Test route
+// @access  Auth
+
+router.get("/", auth, async (req, res) => {
+  try {
+    const user = await UserPosko.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "server error" });
+  }
+});
+
+// @route       POST api/auth
+// @desc        Login user with username posko & password
+// @access      Authenticated
 router.post(
   "/",
   [
-    check("name", "nama lengkap wajib diisi").not().isEmpty(),
-    check("position", "jabatan wajib diisi").not().isEmpty(),
-    check("email", "email wajib diisi").isEmail(),
+    check("usernameposko", "Username posko wajib diisi").not().isEmpty(),
     check("password", "password harus berisi minimal 6 karakter").isLength({
       min: 6,
     }),
@@ -28,39 +40,25 @@ router.post(
       return res.status(400).json({ errors: errors.array() }); // bad request 400, dengan errors.array utk menampilkan error yg terjadi
     }
 
-    const { name, email, password, position } = req.body;
+    const { usernameposko, password } = req.body;
 
     try {
-      // apakah email exist?
-      let user = await User.findOne({ email });
-      if (user) {
+      // apakah username posko benar?
+      let user = await UserPosko.findOne({ usernameposko });
+      if (!user) {
         return res.status(400).json({
-          errors: [{ msg: "email sudah terdaftar, silahkan lakukan login" }],
+          errors: [{ msg: "usernameposko / password salah" }],
         });
       }
 
-      // get gravatar
-      const avatar = gravatar.url(email, {
-        s: "200",
-        r: "pg",
-        d: "mm",
-      });
+      //   apakah password benar?
+      const isMatch = await bcrypt.compare(password, user.password);
 
-      user = new User({
-        name,
-        position,
-        email,
-        avatar,
-        password,
-      });
-
-      // encrypt password
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(password, salt);
-
-      // save to db
-      await user.save();
-
+      if (!isMatch) {
+        return res.status(400).json({
+          errors: [{ msg: "usernameposko / password salah" }],
+        });
+      }
       // return jsonwebtoken for access protected route
       // res.send("User berhasil terdaftar");
       const payload = {

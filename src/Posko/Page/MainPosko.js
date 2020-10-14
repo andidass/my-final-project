@@ -23,28 +23,21 @@ const MainPosko = ({
   return loading && profile === null ? (
     <Spinner />
   ) : (
-    <Fragment>
-      <div className="full-height">
-        <Typography component="div">
-          <Box
-            textAlign="center"
-            fontSize={20}
-            fontWeight="fontWeightBold"
-            marginTop={4}
-            color="red"
-          >
-            welcome {user && user.name}
-            {/* Posko 1 Desa A */}
-          </Box>
-        </Typography>
-        {profile !== null ? (
-          <Fragment>Profile ada</Fragment>
-        ) : (
-          <Fragment> profile tidak ada </Fragment>
-        )}
-        <MenuPosko />
-      </div>
-    </Fragment>
+    <div className="full-height">
+      <Typography component="div">
+        <Box
+          textAlign="center"
+          fontSize={20}
+          fontWeight="fontWeightBold"
+          marginTop={4}
+          color="red"
+        >
+          welcome {user && user.name}
+          {/* Posko 1 Desa A */}
+        </Box>
+      </Typography>
+      <MenuPosko />
+    </div>
   );
 };
 

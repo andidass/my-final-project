@@ -1,25 +1,47 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 
 import { Typography, TextField, Box } from "@material-ui/core";
 
 const DataPosko = () => {
+  const [profileData, setProfileData] = useState({
+    namaPosko: "",
+    alamatPosko: "",
+    dusunPosko: "",
+    desaPosko: "",
+    kecPosko: "",
+    kabPosko: "",
+  });
+
+  const {
+    namaPosko,
+    alamatPosko,
+    dusunPosko,
+    desaPosko,
+    kecPosko,
+    kabPosko,
+  } = profileData;
+
+  const onChange = (e) =>
+    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+
   return (
     <form className="body-posko-bencana">
       <Typography component="div">
         <Box fontSize={17}>Data Posko</Box>
       </Typography>
       <TextField
-        id="namaPosko"
+        name="namaPosko"
         label="Nama Posko"
         style={{ margin: 8, maxWidth: 500 }}
         margin="normal"
         variant="outlined"
         size="small"
         fullWidth
-        // value=""
+        onChange={(e) => onChange(e)}
+        value={namaPosko}
       />
       <TextField
-        id="alamatPosko"
+        name="alamatPosko"
         label="Alamat Posko"
         style={{ margin: 8, maxWidth: 500 }}
         margin="normal"
@@ -27,39 +49,53 @@ const DataPosko = () => {
         size="small"
         fullWidth
         multiline
-        // value=""
+        onChange={(e) => onChange(e)}
+        value={alamatPosko}
       />
 
       <TextField
-        id="desaPosko"
-        label="Desa"
-        style={{ margin: 8, maxWidth: 500 }}
-        margin="normal"
-        variant="outlined"
-        size="small"
-        fullWidth
-        multiline
-        // value=""
-      />
-      <TextField
-        id="dusunPosko"
+        name="dusunPosko"
         label="Dusun"
         style={{ margin: 8, maxWidth: 500 }}
         margin="normal"
         variant="outlined"
         size="small"
         fullWidth
-        // value=""
+        onChange={(e) => onChange(e)}
+        value={dusunPosko}
       />
       <TextField
-        id="lokasiPosko"
-        label="Lokasi Posko"
+        name="desaPosko"
+        label="Desa"
         style={{ margin: 8, maxWidth: 500 }}
         margin="normal"
         variant="outlined"
         size="small"
         fullWidth
-        // value=""
+        onChange={(e) => onChange(e)}
+        value={desaPosko}
+      />
+      <TextField
+        name="kecPosko"
+        label="Kecamatan"
+        style={{ margin: 8, maxWidth: 500 }}
+        margin="normal"
+        variant="outlined"
+        size="small"
+        fullWidth
+        onChange={(e) => onChange(e)}
+        value={kecPosko}
+      />
+      <TextField
+        name="kabPosko"
+        label="Kabupaten"
+        style={{ margin: 8, maxWidth: 500 }}
+        margin="normal"
+        variant="outlined"
+        size="small"
+        fullWidth
+        onChange={(e) => onChange(e)}
+        value={kabPosko}
       />
     </form>
   );

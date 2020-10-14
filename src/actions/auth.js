@@ -31,16 +31,26 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-// Register User
-export const register = ({ name, email, password, position }) => async (
-  dispatch
-) => {
+// Register Posko
+export const register = ({
+  name,
+  usernameposko,
+  petugas,
+  password,
+  position,
+}) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ name, email, password, position });
+  const body = JSON.stringify({
+    name,
+    password,
+    usernameposko,
+    petugas,
+    position,
+  });
 
   try {
     const res = await axios.post("/posko/registrasi", body, config);
@@ -63,13 +73,13 @@ export const register = ({ name, email, password, position }) => async (
 };
 
 // LOGIN USER
-export const login = (email, password) => async (dispatch) => {
+export const login = (usernameposko, password) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ usernameposko, password });
 
   try {
     const res = await axios.post("/posko/login", body, config);

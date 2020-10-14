@@ -1,23 +1,28 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Typography, Box } from "@material-ui/core";
+import PersonIcon from "@material-ui/icons/Person";
 
 const NoProfile = () => {
   return (
-    <Fragment>
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          marginTop={3}
-        >
-          Profile posko belum ada, silahkan buat/update profile posko
+    <div className="full-height isi">
+      <Typography variant="h5">
+        <Box fontSize={12} textAlign="left" marginTop={3}>
+          Profile posko belum memiliki profile
         </Box>
       </Typography>
-      <Button variant="contained" color="primary">
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        disableRipple
+        component={Link}
+        to="/posko/data-posko/form-profile"
+        startIcon={<PersonIcon />}
+      >
         Buat Profile
       </Button>
-    </Fragment>
+    </div>
   );
 };
 

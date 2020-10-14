@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 
-const User = require("../../Model/User");
+const UserPosko = require("../../Model/UserPosko");
 
 // @route       POST api/users
 // @desc        Register PetugasPosko
@@ -14,9 +13,12 @@ const User = require("../../Model/User");
 router.post(
   "/",
   [
-    check("name", "nama lengkap wajib diisi").not().isEmpty(),
+    check("name", "nama posko wajib diisi").not().isEmpty(),
+    check("usernameposko", "username posko wajib diisi").not().isEmpty(),
+    check("petugas", "nama petugas penanggung jawab wajib diisi")
+      .not()
+      .isEmpty(),
     check("position", "jabatan wajib diisi").not().isEmpty(),
-    check("email", "email wajib diisi").isEmail(),
     check("password", "password harus berisi minimal 6 karakter").isLength({
       min: 6,
     }),
@@ -28,29 +30,27 @@ router.post(
       return res.status(400).json({ errors: errors.array() }); // bad request 400, dengan errors.array utk menampilkan error yg terjadi
     }
 
-    const { name, email, password, position } = req.body;
+    const { name, usernameposko, password, petugas, position } = req.body;
 
     try {
       // apakah email exist?
-      let user = await User.findOne({ email });
+      let user = await UserPosko.findOne({ usernameposko });
       if (user) {
         return res.status(400).json({
-          errors: [{ msg: "email sudah terdaftar, silahkan lakukan login" }],
+          errors: [
+            {
+              msg:
+                "username ini sudah terdaftar, silahkan gunakan username lain",
+            },
+          ],
         });
       }
 
-      // get gravatar
-      const avatar = gravatar.url(email, {
-        s: "200",
-        r: "pg",
-        d: "mm",
-      });
-
-      user = new User({
+      user = new UserPosko({
         name,
+        usernameposko,
+        petugas,
         position,
-        email,
-        avatar,
         password,
       });
 

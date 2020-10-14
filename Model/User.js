@@ -5,21 +5,21 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  usernameposko: {
-    type: String,
-    required: true,
-  },
-  petugas: {
-    type: String,
-    required: true,
-  },
   position: {
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   password: {
     type: String,
     required: true,
+  },
+  avatar: {
+    type: String,
   },
   date: {
     type: Date,
@@ -27,4 +27,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = UserPosko = mongoose.model("account", UserSchema);
+module.exports = UserPosko = mongoose.model("petugas", UserSchema);

@@ -15,21 +15,25 @@ import MenuBars from "./Components/MenuBars";
 // import MenuBar from "./Components/MenuBar";
 import Spinner from "./Components/Spinner";
 
-// component page
-import MainPosko from "./Posko/Page/MainPosko";
 // import Profile from "./Posko/Page/Profile/Profile";
+import MainPosko from "./Posko/Page/MainPosko";
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
 import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
 import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
 import PoskoBencana from "./Posko/Page/PoskoBencana/PoskoBencana";
+import FormProfile from "./Posko/Page/PoskoBencana/FormPorfile";
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
 import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
-// import Login from "./Posko/Page/Login";
 
-import RegistrasiPetugas from "./Petugas/Pages/Registrasi";
-import LoginPosko from "./Petugas/Pages/Login";
+import SignIn from "./Posko/Page/Login";
+import RegistrasiPetugas from "./Posko/Page/Registrasi";
+// import SignIn from "./Petugas/Pages/Login";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
+
+// test component
+import DataPosko from "./Posko/Page/PoskoBencana/DataPosko";
+// import Map from "./Posko/Page/Map";
 
 import "./App.css";
 
@@ -49,13 +53,15 @@ const App = () => {
         <div className="asd">
           <MenuBars />
           <Switch>
+            <Route path="/data-posko" exact component={DataPosko} />
+            {/* <Route path="/map" exact component={Map} /> */}
             <Route path="/menu-posko" exact component={MainPosko} />
             <Route path="/error" exact component={Error} />
             <Route path="/spinner" exact component={Spinner} />
-            <Route path="/" exact component={LoginPosko} />
+            <Route path="/" exact component={SignIn} />
 
             {/* POSKO */}
-            <Route path="/posko/login" exact component={LoginPosko} />
+            <Route path="/posko/login" exact component={SignIn} />
             <Route
               path="/posko/registrasi"
               exact
@@ -80,6 +86,11 @@ const App = () => {
               component={PoskoBencana}
             />
             <PrivateRoute
+              path="/posko/data-posko/form-profile"
+              exact
+              component={FormProfile}
+            />
+            <PrivateRoute
               path="/posko/fasilitas-posko"
               exact
               component={FasilitasPosko}
@@ -94,7 +105,6 @@ const App = () => {
               exact
               component={PermintaanBantuan}
             />
-            {/* <Route path="/posko-login" exact component={Login} /> */}
           </Switch>
         </div>
         <Footer />
