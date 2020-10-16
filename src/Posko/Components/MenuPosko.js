@@ -37,7 +37,7 @@ function MenuPosko() {
       <Grid container justify="center" className={classes.padding}>
         <Grid
           item
-          xs={16}
+          xs={12}
           xl={6}
           sm={4}
           lg={2}
@@ -57,7 +57,7 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={16}
+          xs={12}
           xl={6}
           sm={4}
           lg={2}
@@ -77,7 +77,7 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={16}
+          xs={12}
           xl={6}
           sm={4}
           lg={2}
@@ -96,7 +96,7 @@ function MenuPosko() {
         </Grid>
         <Grid
           item
-          xs={16}
+          xs={12}
           xl={6}
           sm={4}
           lg={2}
@@ -116,7 +116,7 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={16}
+          xs={12}
           xl={6}
           sm={4}
           lg={2}
@@ -136,7 +136,7 @@ function MenuPosko() {
 
         <Grid
           item
-          xs={16}
+          xs={12}
           xl={6}
           sm={4}
           lg={2}

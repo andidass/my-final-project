@@ -33,6 +33,7 @@ import setAuthToken from "./utils/setTokenAuth";
 
 // test component
 import DataPosko from "./Posko/Page/PoskoBencana/DataPosko";
+import CustomizedSnackbars from "./Posko/CustomizedSnackbars";
 // import Map from "./Posko/Page/Map";
 
 import "./App.css";
@@ -104,6 +105,11 @@ const App = () => {
               path="/posko/permintaan-bantuan"
               exact
               component={PermintaanBantuan}
+            />
+            <PrivateRoute
+              path="/snackbars"
+              exact
+              component={CustomizedSnackbars}
             />
           </Switch>
         </div>

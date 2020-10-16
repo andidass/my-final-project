@@ -6,23 +6,25 @@ const ProfilePoskoSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: UserPosko,
   },
-  nohp: {
+  namaPosko: {
     type: String,
   },
-  porvinsi: {
+  alamatPosko: {
     type: String,
   },
-  kabupaten: {
+  kecPosko: {
     type: String,
   },
-  kecamatan: {
+  kabPosko: {
     type: String,
   },
-  kelurahan: {
-    type: String,
-  },
-  alamatposko: {
-    type: String,
+  petugas: {
+    namaPetugas: {
+      type: String,
+    },
+    jabatan: {
+      type: String,
+    },
   },
   date: {
     type: Date,
