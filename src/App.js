@@ -22,6 +22,7 @@ import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPos
 import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
 import PoskoBencana from "./Posko/Page/PoskoBencana/PoskoBencana";
 import FormProfile from "./Posko/Page/PoskoBencana/FormPorfile";
+import EditProfile from "./Posko/Page/PoskoBencana/EditProfile";
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
 import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
 
@@ -91,6 +92,12 @@ const App = () => {
               exact
               component={FormProfile}
             />
+            <PrivateRoute
+              path="/posko/data-posko/edit-profile"
+              exact
+              component={EditProfile}
+            />
+
             <PrivateRoute
               path="/posko/fasilitas-posko"
               exact

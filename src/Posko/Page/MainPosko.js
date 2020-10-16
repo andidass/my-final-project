@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import MenuPosko from "../Components/MenuPosko";
 
 import { getCurrentProfile } from "../../actions/profile";
+import Alert from "../../layout/Alert";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -24,6 +25,7 @@ const MainPosko = ({
     <Spinner />
   ) : (
     <div className="full-height">
+      <Alert />
       <Typography component="div">
         <Box
           textAlign="center"
@@ -32,7 +34,8 @@ const MainPosko = ({
           marginTop={4}
           color="red"
         >
-          welcome {user && user.name}
+          {/* welcome {!profile ? user.name : profile.namaPosko} */}
+          welcome{user && user.name}
           {/* Posko 1 Desa A */}
         </Box>
       </Typography>

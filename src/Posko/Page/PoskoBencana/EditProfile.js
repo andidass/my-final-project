@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createProfile } from "../../../actions/profile";
+import { createProfile, getCurrentProfile } from "../../../actions/profile";
 import Alert from "../../../layout/Alert";
 
 import {
@@ -14,20 +14,18 @@ import {
   Button,
 } from "@material-ui/core";
 
-import SaveIcon from "@material-ui/icons/Save";
-
-const FormProfile = ({
+const EditProfile = ({
   profile: { profile, loading },
   createProfile,
+  getCurrentProfile,
   history,
-  auth: { user },
 }) => {
   // posko
   const [profileData, setProfileData] = useState({
-    namaPosko: user.name,
+    namaPosko: "",
     alamatPosko: "",
-    dusunPosko: "",
-    desaPosko: "",
+    // dusunPosko: "",
+    // desaPosko: "",
     kecPosko: "",
     kabPosko: "",
     namaPetugas: "",
@@ -37,26 +35,37 @@ const FormProfile = ({
   const {
     namaPosko,
     alamatPosko,
-    dusunPosko,
-    desaPosko,
+    // dusunPosko,
+    // desaPosko,
     kecPosko,
     kabPosko,
     namaPetugas,
     jabatan,
   } = profileData;
 
+  useEffect(() => {
+    getCurrentProfile();
+    setProfileData({
+      namaPosko: loading || !profile.namaPosko ? "" : profile.namaPosko,
+      alamatPosko: loading || !profile.alamatPosko ? "" : profile.alamatPosko,
+      dusunPosko: loading || !profile.dusunPosko ? "" : profile.dusunPosko,
+      //   desaPosko: loading || !profile.desaPosko ? "" : profile.desaPosko,
+      //   dusunPosko: loading || !profile.dusunPosko ? "" : profile.dusunPosko,
+      kecPosko: loading || !profile.kecPosko ? "" : profile.kecPosko,
+      kabPosko: loading || !profile.kabPosko ? "" : profile.kabPosko,
+      namaPetugas:
+        loading || !profile.petugas ? "" : profile.petugas.namaPetugas,
+      jabatan: loading || !profile.petugas ? "" : profile.petugas.jabatan,
+    });
+  }, [loading]);
+
   const onChange = (e) =>
     setProfileData({ ...profileData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(profileData, history);
-    console.log("klik");
+    createProfile(profileData, history, true);
   };
-
-  if (profile !== null) {
-    return <Redirect to="/posko/data-posko/edit-profile" />;
-  }
 
   return (
     <div className="full-height">
@@ -102,7 +111,7 @@ const FormProfile = ({
                 value={alamatPosko}
               />
 
-              <TextField
+              {/* <TextField
                 name="dusunPosko"
                 label="Dusun"
                 style={{ margin: 8, maxWidth: 500 }}
@@ -123,7 +132,7 @@ const FormProfile = ({
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={desaPosko}
-              />
+              /> */}
               <TextField
                 name="kecPosko"
                 label="Kecamatan"
@@ -182,9 +191,8 @@ const FormProfile = ({
                 color="primary"
                 size="small"
                 style={{ margin: 8, maxWidth: 500 }}
-                startIcon={<SaveIcon />}
               >
-                Simpan Profile
+                Update Profile
               </Button>
               {/* <Button
                 type="submit"
@@ -204,17 +212,16 @@ const FormProfile = ({
   );
 };
 
-FormProfile.propTypes = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { createProfile })(
-  withRouter(FormProfile)
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfile)
 );

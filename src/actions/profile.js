@@ -40,8 +40,9 @@ export const createProfile = (profileData, history, edit = false) => async (
       setAlert(edit ? "Profile diupdate" : "Profile berhasil dibuat", "success")
     );
 
+    // jika profile baru dibuat, redirect
     if (!edit) {
-      history.push("/dashboard");
+      history.push("/posko/dashboard");
     }
   } catch (err) {
     const errors = err.response.data.errors;
