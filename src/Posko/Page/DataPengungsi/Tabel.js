@@ -35,22 +35,22 @@ export default function SimpleTable(props) {
           <TableHead>
             <TableRow>
               <TableCell>Nama</TableCell>
-              <TableCell align="right">Jenis Kelamin</TableCell>
+              <TableCell align="right">Nama Pengungsi</TableCell>
               <TableCell align="right">Umur</TableCell>
-              <TableCell align="right">Alamat</TableCell>
               <TableCell align="right">Keadaan</TableCell>
+              <TableCell align="right">Alamat</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {props.dataPengungsi.map((data, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
-                  {data.namaPengungsi}
+                  {data.semuaPengungsi}
                 </TableCell>
-                <TableCell align="right">{data.jenisKelamin}</TableCell>
+                <TableCell align="right">{data.namaPengungsi}</TableCell>
                 <TableCell align="right">{data.umur}</TableCell>
-                <TableCell align="right">{data.alamat}</TableCell>
                 <TableCell align="right">{data.keadaan}</TableCell>
+                <TableCell align="right">{data.alamat}</TableCell>
                 <TableCell align="right">
                   <Button
                     variant="contained"

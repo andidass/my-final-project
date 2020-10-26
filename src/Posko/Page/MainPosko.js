@@ -15,11 +15,13 @@ const MainPosko = ({
   auth: { user },
   profile: { profile, loading },
 }) => {
+  //   setTimeout(() => {
+  //     getCurrentProfile();
+  //   }, 1000);}
+
   useEffect(() => {
-    setTimeout(() => {
-      getCurrentProfile();
-    }, 1000);
-  }, []);
+    getCurrentProfile();
+  }, [getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
@@ -34,9 +36,7 @@ const MainPosko = ({
           marginTop={4}
           color="red"
         >
-          {/* welcome {!profile ? user.name : profile.namaPosko} */}
-          welcome{user && user.name}
-          {/* Posko 1 Desa A */}
+          welcome {user && user.name}
         </Box>
       </Typography>
       <MenuPosko />

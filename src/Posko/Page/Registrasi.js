@@ -189,7 +189,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
           </Button>
           <Grid container>
             <Grid item>
-              <Link to="./login">
+              <Link to="/posko/login">
                 <Linkes variant="body2">{"Sudah memiliki akun? login"}</Linkes>
               </Link>
             </Grid>

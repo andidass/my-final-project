@@ -1,5 +1,6 @@
 {
     // Global variabel
+    // "mongoURI": "mongodb+srv://andy:andy@cluster0.d0rgw.mongodb.net/sipendi",
     "mongoURI": "mongodb://127.0.0.1:27017/sipendi",
     "jwtSecret": "mytoken"
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createProfile, getCurrentProfile } from "../../../actions/profile";
+import { getCurrentProfile } from "../../../actions/profile";
 import Alert from "../../../layout/Alert";
 
 import {
@@ -14,9 +14,8 @@ import {
   Button,
 } from "@material-ui/core";
 
-const EditProfile = ({
+const ProfilePosko = ({
   profile: { profile, loading },
-  createProfile,
   getCurrentProfile,
   history,
 }) => {
@@ -24,8 +23,6 @@ const EditProfile = ({
   const [profileData, setProfileData] = useState({
     namaPosko: "",
     alamatPosko: "",
-    // dusunPosko: "",
-    // desaPosko: "",
     kecPosko: "",
     kabPosko: "",
     namaPetugas: "",
@@ -35,8 +32,6 @@ const EditProfile = ({
   const {
     namaPosko,
     alamatPosko,
-    // dusunPosko,
-    // desaPosko,
     kecPosko,
     kabPosko,
     namaPetugas,
@@ -49,8 +44,6 @@ const EditProfile = ({
       namaPosko: loading || !profile.namaPosko ? "" : profile.namaPosko,
       alamatPosko: loading || !profile.alamatPosko ? "" : profile.alamatPosko,
       dusunPosko: loading || !profile.dusunPosko ? "" : profile.dusunPosko,
-      //   desaPosko: loading || !profile.desaPosko ? "" : profile.desaPosko,
-      //   dusunPosko: loading || !profile.dusunPosko ? "" : profile.dusunPosko,
       kecPosko: loading || !profile.kecPosko ? "" : profile.kecPosko,
       kabPosko: loading || !profile.kabPosko ? "" : profile.kabPosko,
       namaPetugas:
@@ -58,14 +51,6 @@ const EditProfile = ({
       jabatan: loading || !profile.petugas ? "" : profile.petugas.jabatan,
     });
   }, []);
-
-  const onChange = (e) =>
-    setProfileData({ ...profileData, [e.target.name]: e.target.value });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    createProfile(profileData, history, true);
-  };
 
   return (
     <div className="full-height">
@@ -80,11 +65,10 @@ const EditProfile = ({
         </Box>
       </Typography>
       <Paper variant="outlined" className="body-posko-bencana">
-        <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
+        <form className="body-posko-bencana">
           <Grid container>
-            <Grid xs={1} sm={3} item />
-            <Grid xs={10} sm={6} item>
-              {/* <DataPosko /> */}
+            <Grid xs={1} sm={2} item />
+            <Grid xs={5} sm={4} item>
               <Typography
                 component="div"
                 style={{ marginBottom: 10, textAlign: "center" }}
@@ -99,7 +83,7 @@ const EditProfile = ({
                 variant="outlined"
                 size="small"
                 fullWidth
-                onChange={(e) => onChange(e)}
+                disabled
                 value={namaPosko}
               />
               <TextField
@@ -111,32 +95,9 @@ const EditProfile = ({
                 size="small"
                 fullWidth
                 multiline
-                onChange={(e) => onChange(e)}
+                disabled
                 value={alamatPosko}
               />
-
-              {/* <TextField
-                name="dusunPosko"
-                label="Dusun"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={dusunPosko}
-              />
-              <TextField
-                name="desaPosko"
-                label="Desa"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={desaPosko}
-              /> */}
               <TextField
                 name="kecPosko"
                 label="Kecamatan"
@@ -145,7 +106,7 @@ const EditProfile = ({
                 variant="outlined"
                 size="small"
                 fullWidth
-                onChange={(e) => onChange(e)}
+                disabled
                 value={kecPosko}
               />
               <TextField
@@ -156,11 +117,11 @@ const EditProfile = ({
                 variant="outlined"
                 size="small"
                 fullWidth
-                onChange={(e) => onChange(e)}
+                disabled
                 value={kabPosko}
               />
-
-              {/* <DataPetugas /> */}
+            </Grid>
+            <Grid xs={5} sm={4} item>
               <Typography
                 component="div"
                 style={{ marginTop: 20, marginBottom: 10, textAlign: "center" }}
@@ -175,7 +136,7 @@ const EditProfile = ({
                 variant="outlined"
                 size="small"
                 fullWidth
-                onChange={(e) => onChange(e)}
+                disabled
                 value={namaPetugas}
               />
               <TextField
@@ -186,7 +147,7 @@ const EditProfile = ({
                 variant="outlined"
                 size="small"
                 fullWidth
-                onChange={(e) => onChange(e)}
+                disabled
                 value={jabatan}
               />
               <Alert />
@@ -197,7 +158,7 @@ const EditProfile = ({
                 size="small"
                 style={{ margin: 8, maxWidth: 500 }}
               >
-                Update Profile
+                <Link to="/posko/data-posko/edit-profile">Edit Profile</Link>
               </Button>
               <Button
                 variant="contained"
@@ -207,7 +168,7 @@ const EditProfile = ({
                 <Link to="/posko/dashboard">Kembali</Link>
               </Button>
             </Grid>
-            <Grid xs={1} sm={3} item />
+            <Grid xs={1} sm={2} item />
           </Grid>
         </form>
       </Paper>
@@ -215,8 +176,7 @@ const EditProfile = ({
   );
 };
 
-EditProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
+ProfilePosko.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -225,6 +185,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
-  withRouter(EditProfile)
+export default connect(mapStateToProps, { getCurrentProfile })(
+  withRouter(ProfilePosko)
 );

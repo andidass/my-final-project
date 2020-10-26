@@ -122,9 +122,9 @@ const SignIn = ({ login, isAuthenticated }) => {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="./registrasi">
+              <Link to="/posko/registrasi">
                 <Linkes variant="body2">
-                  {"Belum memiliki akun? Registrasi"}
+                  {"Belum memiliki akun kah? Registrasi"}
                 </Linkes>
               </Link>
             </Grid>

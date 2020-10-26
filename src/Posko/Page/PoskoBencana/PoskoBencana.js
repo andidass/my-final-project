@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import NoProfile from "./NoProfile";
 import FormProfile from "./FormPorfile";
+import ProfilePosko from "./ProfilePosko";
 
 import "./PoskoBencana.css";
 const PoskoBencana = ({ auth: { user }, profile: { profile } }) => {
-  return profile !== null ? <FormProfile /> : <NoProfile />;
+  return profile !== null ? <ProfilePosko /> : <NoProfile />;
 };
 
 PoskoBencana.propTypes = {

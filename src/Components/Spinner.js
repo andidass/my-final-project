@@ -3,15 +3,15 @@ import spinner from "./spinner.gif";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default () => (
-  <div className="full-height">
+  <div style={{ display: "grid", height: `95vh` }}>
     {/* <CircularProgress /> */}
     <img
       src={spinner}
       style={{
-        width: "100px",
-        height: "100px",
+        width: "120px",
+        height: "120px",
         margin: "auto",
-        display: "block",
+        display: "grid",
       }}
       alt="loading..."
     />

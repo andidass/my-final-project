@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createProfile } from "../../../actions/profile";
 import Alert from "../../../layout/Alert";
+import Spinner from "../../../Components/Spinner";
 
 import {
   Grid,
@@ -58,7 +59,9 @@ const FormProfile = ({
     return <Redirect to="/posko/data-posko/edit-profile" />;
   }
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <div className="full-height">
       <Typography component="div">
         <Box

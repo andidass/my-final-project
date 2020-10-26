@@ -10,3 +10,7 @@ export const LOGOUT = "LOGOUT";
 export const GET_PROFILE = "GET_PROFILE";
 export const PROFILE_ERROR = "PROFILE_ERROR";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
+
+export const GET_PENGUNGSI = "GET_PENGUNGSI";
+export const CLEAR_PENGUNGSI = "CLEAR_PENGUNGSI";
+export const PENGUNGSI_ERROR = "PENGUNGSI_ERROR";

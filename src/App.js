@@ -9,31 +9,28 @@ import PrivateRoute from "./routing/PrivateRoute";
 
 // main component
 import Error from "./Error";
-// import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import MenuBars from "./Components/MenuBars";
-// import MenuBar from "./Components/MenuBar";
 import Spinner from "./Components/Spinner";
-
-// import Profile from "./Posko/Page/Profile/Profile";
+import SignInPosko from "./Posko/Page/Login";
+import RegistrasiPosko from "./Posko/Page/Registrasi";
 import MainPosko from "./Posko/Page/MainPosko";
-import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
-import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
-import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
+//profile
 import PoskoBencana from "./Posko/Page/PoskoBencana/PoskoBencana";
 import FormProfile from "./Posko/Page/PoskoBencana/FormPorfile";
 import EditProfile from "./Posko/Page/PoskoBencana/EditProfile";
+import ProfilePosko from "./Posko/Page/PoskoBencana/ProfilePosko";
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
 import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
+import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
+import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
+import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
 
-import SignIn from "./Posko/Page/Login";
-import RegistrasiPetugas from "./Posko/Page/Registrasi";
-// import SignIn from "./Petugas/Pages/Login";
+// import SignInPetugas from "./Petugas/Pages/Login";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
 
 // test component
-import DataPosko from "./Posko/Page/PoskoBencana/DataPosko";
 import CustomizedSnackbars from "./Posko/CustomizedSnackbars";
 // import Map from "./Posko/Page/Map";
 
@@ -50,76 +47,61 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        {/* <Header /> */}
-        {/* <MenuBar /> */}
-        <div className="asd">
-          <MenuBars />
-          <Switch>
-            <Route path="/data-posko" exact component={DataPosko} />
-            {/* <Route path="/map" exact component={Map} /> */}
-            <Route path="/menu-posko" exact component={MainPosko} />
-            <Route path="/error" exact component={Error} />
-            <Route path="/spinner" exact component={Spinner} />
-            <Route path="/" exact component={SignIn} />
+        <MenuBars />
+        <Switch>
+          {/* POSKO */}
+          <Route path="/" exact component={SignInPosko} />
+          <Route path="/posko/login" exact component={SignInPosko} />
+          <Route path="/posko/registrasi" exact component={RegistrasiPosko} />
+          <Route path="/posko/dashboard" exact component={MainPosko} />
+          {/* --------- PROFILE POSKO --------- */}
+          <Route path="/posko/data-posko" exact component={PoskoBencana} />
+          <Route
+            path="/posko/data-posko/form-profile"
+            exact
+            component={FormProfile}
+          />
+          <Route
+            path="/posko/data-posko/edit-profile"
+            exact
+            component={EditProfile}
+          />
+          <Route
+            path="/posko/data-posko/profile"
+            exact
+            component={ProfilePosko}
+          />
+          {/* ---------------------------------- */}
+          {/* --------- PENGUNGSI POSKO --------- */}
+          <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
+          {/* ----------------------------------- */}
+          <Route
+            path="/posko/bantuan-masuk"
+            exact
+            component={BantuanMasukPosko}
+          />
+          <Route
+            path="/posko/bantuan-keluar"
+            exact
+            component={BantuanKeluarPosko}
+          />
 
-            {/* POSKO */}
-            <Route path="/posko/login" exact component={SignIn} />
-            <Route
-              path="/posko/registrasi"
-              exact
-              component={RegistrasiPetugas}
-            />
-            <PrivateRoute path="/posko/dashboard" exact component={MainPosko} />
-            {/* ubah menjadi privateroute kalo udah fix */}
-            {/* <Route path="/posko/profile" exact component={Profile} /> */}
-            <PrivateRoute
-              path="/posko/bantuan-masuk"
-              exact
-              component={BantuanMasukPosko}
-            />
-            <PrivateRoute
-              path="/posko/bantuan-keluar"
-              exact
-              component={BantuanKeluarPosko}
-            />
-            <PrivateRoute
-              path="/posko/data-posko"
-              exact
-              component={PoskoBencana}
-            />
-            <PrivateRoute
-              path="/posko/data-posko/form-profile"
-              exact
-              component={FormProfile}
-            />
-            <PrivateRoute
-              path="/posko/data-posko/edit-profile"
-              exact
-              component={EditProfile}
-            />
-
-            <PrivateRoute
-              path="/posko/fasilitas-posko"
-              exact
-              component={FasilitasPosko}
-            />
-            <PrivateRoute
-              path="/posko/data-pengungsi"
-              exact
-              component={DataPengungsi}
-            />
-            <PrivateRoute
-              path="/posko/permintaan-bantuan"
-              exact
-              component={PermintaanBantuan}
-            />
-            <PrivateRoute
-              path="/snackbars"
-              exact
-              component={CustomizedSnackbars}
-            />
-          </Switch>
-        </div>
+          <Route
+            path="/posko/fasilitas-posko"
+            exact
+            component={FasilitasPosko}
+          />
+          <Route
+            path="/posko/permintaan-bantuan"
+            exact
+            component={PermintaanBantuan}
+          />
+          {/* COMPONEN COBA-COBA */}
+          {/* <Route path="/map" exact component={Map} /> */}
+          <Route path="/error" exact component={Error} />
+          <Route path="/spinner" exact component={Spinner} />
+          <Route path="/snackbars" exact component={CustomizedSnackbars} />
+        </Switch>
         <Footer />
       </Router>
     </Provider>
