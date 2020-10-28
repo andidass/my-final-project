@@ -84,7 +84,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   const guestLinks = (
-    <Grid container alignItems="center">
+    <Grid container alignItems="center" justify="space-around" spacing={3}>
       <Grid item to="/">
         <Link className={classes.root2} to="/">
           <Avatar

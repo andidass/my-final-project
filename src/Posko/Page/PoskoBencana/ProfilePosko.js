@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getCurrentProfile } from "../../../actions/profile";
+import { getCurrentProfile, deletePetugas } from "../../../actions/profile";
+import TabelPetugas from "./TabelPetugas";
 import Alert from "../../../layout/Alert";
 
 import {
@@ -17,7 +18,7 @@ import {
 const ProfilePosko = ({
   profile: { profile, loading },
   getCurrentProfile,
-  history,
+  deletePetugas,
 }) => {
   // posko
   const [profileData, setProfileData] = useState({
@@ -52,8 +53,12 @@ const ProfilePosko = ({
     });
   }, []);
 
+  function onDelete(index) {
+    deletePetugas(index);
+  }
+
   return (
-    <div className="full-height">
+    <div>
       <Typography component="div">
         <Box
           fontSize={18}
@@ -66,12 +71,14 @@ const ProfilePosko = ({
       </Typography>
       <Paper variant="outlined" className="body-posko-bencana">
         <form className="body-posko-bencana">
-          <Grid container>
-            <Grid xs={1} sm={2} item />
-            <Grid xs={5} sm={4} item>
+          <Grid container justify="space-around">
+            {/* <Grid xs={1} sm={2} item /> */}
+            <Grid xs={10} sm={4} item>
               <Typography
+                // variant="h1"
                 component="div"
-                style={{ marginBottom: 10, textAlign: "center" }}
+                align="center"
+                style={{ marginBottom: 10 }}
               >
                 <Box fontSize={17}>Data Posko</Box>
               </Typography>
@@ -121,16 +128,17 @@ const ProfilePosko = ({
                 value={kabPosko}
               />
             </Grid>
-            <Grid xs={5} sm={4} item>
+            <Grid xs={10} sm={4} item>
               <Typography
                 component="div"
-                style={{ marginTop: 20, marginBottom: 10, textAlign: "center" }}
+                align="center"
+                style={{ marginBottom: 10 }}
               >
                 <Box fontSize={17}>Data Petugas Posko</Box>
               </Typography>
               <TextField
                 name="namaPetugas"
-                label="Nama Petugas / Relawan"
+                label="Petugas Penanggung Jawab Posko"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -141,7 +149,7 @@ const ProfilePosko = ({
               />
               <TextField
                 name="jabatan"
-                label="Jabatan Petugas / Tugas Relawan"
+                label="Jabatan Petugas"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -150,7 +158,7 @@ const ProfilePosko = ({
                 disabled
                 value={jabatan}
               />
-              <Alert />
+
               <Button
                 type="submit"
                 variant="contained"
@@ -158,7 +166,12 @@ const ProfilePosko = ({
                 size="small"
                 style={{ margin: 8, maxWidth: 500 }}
               >
-                <Link to="/posko/data-posko/edit-profile">Edit Profile</Link>
+                <Link
+                  style={{ color: "white" }}
+                  to="/posko/data-posko/edit-profile"
+                >
+                  Edit Profile
+                </Link>
               </Button>
               <Button
                 variant="contained"
@@ -167,10 +180,26 @@ const ProfilePosko = ({
               >
                 <Link to="/posko/dashboard">Kembali</Link>
               </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="small"
+                style={{ margin: 8, maxWidth: 500 }}
+              >
+                <Link
+                  style={{ color: "white" }}
+                  to="/posko/data-posko/data-petugas"
+                >
+                  Tambah Petugas / Volunteer
+                </Link>
+              </Button>
             </Grid>
-            <Grid xs={1} sm={2} item />
+            {/* <Grid xs={1} sm={2} item /> */}
           </Grid>
+          <Alert />
         </form>
+        <TabelPetugas allPetugas={profile.allPetugas} onDelete={onDelete} />
       </Paper>
     </div>
   );
@@ -178,6 +207,7 @@ const ProfilePosko = ({
 
 ProfilePosko.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+  deletePetugas: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
 
@@ -185,6 +215,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(
+export default connect(mapStateToProps, { getCurrentProfile, deletePetugas })(
   withRouter(ProfilePosko)
 );

@@ -15,11 +15,13 @@ import Spinner from "./Components/Spinner";
 import SignInPosko from "./Posko/Page/Login";
 import RegistrasiPosko from "./Posko/Page/Registrasi";
 import MainPosko from "./Posko/Page/MainPosko";
-//profile
+//profile posko
 import PoskoBencana from "./Posko/Page/PoskoBencana/PoskoBencana";
 import FormProfile from "./Posko/Page/PoskoBencana/FormPorfile";
 import EditProfile from "./Posko/Page/PoskoBencana/EditProfile";
 import ProfilePosko from "./Posko/Page/PoskoBencana/ProfilePosko";
+import DataPetugas from "./Posko/Page/PoskoBencana/DataPetugas";
+// pengungsi
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
 import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
@@ -70,6 +72,11 @@ const App = () => {
             path="/posko/data-posko/profile"
             exact
             component={ProfilePosko}
+          />
+          <Route
+            path="/posko/data-posko/data-petugas"
+            exact
+            component={DataPetugas}
           />
           {/* ---------------------------------- */}
           {/* --------- PENGUNGSI POSKO --------- */}

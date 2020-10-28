@@ -6,7 +6,12 @@ import { Typography, Grid, Box } from "@material-ui/core";
 
 function Header() {
   return (
-    <Grid container alignItems="center" className="header">
+    <Grid
+      container
+      alignItems="center"
+      className="header"
+      justify="space-between"
+    >
       <Grid xs={2} item align="left">
         <img
           src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"

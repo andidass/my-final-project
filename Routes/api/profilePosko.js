@@ -6,7 +6,7 @@ const auth = require("../../Middleware/auth");
 const ProfilePosko = require("../../Model/ProfilePosko");
 const UserPosko = require("../../Model/UserPosko");
 
-// @route   Get api/profile/me
+// @route   Get posko/data-posko/me
 // #desc    Test route
 // @access  Private
 
@@ -25,7 +25,7 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
-// @route   POST api/profile
+// @route   POST posko/data-posko
 // #desc    Create or update user profile
 // @access  Private
 
@@ -94,7 +94,7 @@ router.post(
   }
 );
 
-// @route   Get api/profile
+// @route   Get posko/profile
 // #desc    Get all users profile
 // @access  Public
 
@@ -108,7 +108,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route   Get api/profile/user/:user_id
+// @route   Get posko/profile/:user_id
 // #desc    Get profile by user_id
 // @access  Public
 
@@ -131,7 +131,7 @@ router.get("/user/:user_id", async (req, res) => {
   }
 });
 
-// @route   Delete api/profile
+// @route   Delete posko/profile
 // #desc    delete user and profile
 // @access  Private
 
@@ -149,18 +149,21 @@ router.delete("/", auth, async (req, res) => {
   }
 });
 
-// @route   Put api/profile/experience
-// #desc    add experience profile
+// @route   Put posko/profile/petugas-volunteer
+// #desc    add petugas/volunteer
 // @access  Private
 
 router.put(
-  "/experience",
+  "/petugas-volunteer",
   [
     auth,
     [
-      check("title", "title harus diisi").not().isEmpty(),
-      check("company", "company harus diisi").not().isEmpty(),
-      // check("from", "from harus diisi").not().isEmpty(),
+      check("tambahanPetugas", "nama petugas / volunteer harus diisi")
+        .not()
+        .isEmpty(),
+      check("jabatan2", "jabatan petugas / tugas relawan harus diisi")
+        .not()
+        .isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -169,12 +172,12 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, company, location, from, to } = req.body;
-    const newExp = { title, company, location, from, to };
+    const { tambahanPetugas, jabatan2 } = req.body;
+    const newPetugas = { tambahanPetugas, jabatan2 };
 
     try {
       const profilePosko = await ProfilePosko.findOne({ user: req.user.id });
-      profilePosko.experience.unshift(newExp);
+      profilePosko.allPetugas.unshift(newPetugas);
 
       await profilePosko.save();
       res.json(profilePosko);
@@ -185,20 +188,20 @@ router.put(
   }
 );
 
-// @route   DELETE api/profile/experience/:exp_id
+// @route   DELETE posko/profile/petugas-volunteer/:petugas_id
 // #desc    delete experience profile
 // @access  Private
 
-router.delete("/experience/:exp_id", auth, async (req, res) => {
+router.delete("/petugas-volunteer/:petugas_id", auth, async (req, res) => {
   try {
     const profilePosko = await ProfilePosko.findOne({ user: req.user.id });
 
     // get removed index
-    const removeIndex = profilePosko.experience
+    const removeIndex = profilePosko.allPetugas
       .map((item) => item.id)
-      .indexOf(req.params.exp_id);
+      .indexOf(req.params.petugas_id);
 
-    profilePosko.experience.splice(removeIndex, 1);
+    profilePosko.allPetugas.splice(removeIndex, 1);
 
     await profilePosko.save();
 

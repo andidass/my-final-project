@@ -8,7 +8,7 @@ const auth = require("../../Middleware/auth");
 
 const UserPosko = require("../../Model/UserPosko");
 
-// @route   Get api/auth
+// @route   Get posko/login
 // #desc    Test route
 // @access  Auth
 
@@ -22,7 +22,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// @route       POST api/auth
+// @route       POST posko/login
 // @desc        Login user with username posko & password
 // @access      Authenticated
 router.post(

@@ -15,12 +15,14 @@ const MainPosko = ({
   auth: { user },
   profile: { profile, loading },
 }) => {
-  //   setTimeout(() => {
-  //     getCurrentProfile();
-  //   }, 1000);}
+  // setTimeout(() => {
+  //   getCurrentProfile();
+  // }, 1000);}
 
   useEffect(() => {
-    getCurrentProfile();
+    setTimeout(() => {
+      getCurrentProfile();
+    }, 500);
   }, [getCurrentProfile]);
 
   return loading && profile === null ? (

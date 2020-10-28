@@ -169,7 +169,7 @@ const EditProfile = ({
               </Typography>
               <TextField
                 name="namaPetugas"
-                label="Nama Petugas / Relawan"
+                label="Petugas Penanggung Jawab Posko"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -180,7 +180,7 @@ const EditProfile = ({
               />
               <TextField
                 name="jabatan"
-                label="Jabatan Petugas / Tugas Relawan"
+                label="Jabatan Petugas"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -204,7 +204,7 @@ const EditProfile = ({
                 size="small"
                 style={{ margin: 8, maxWidth: 500 }}
               >
-                <Link to="/posko/dashboard">Kembali</Link>
+                <Link to="/posko/data-posko">Kembali</Link>
               </Button>
             </Grid>
             <Grid xs={1} sm={3} item />

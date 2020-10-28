@@ -26,6 +26,16 @@ const ProfilePoskoSchema = new mongoose.Schema({
       type: String,
     },
   },
+  allPetugas: [
+    {
+      tambahanPetugas: {
+        type: String,
+      },
+      jabatan2: {
+        type: String,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

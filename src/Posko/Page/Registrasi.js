@@ -125,7 +125,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
             required
             fullWidth
             id="petugas"
-            label="Nama Petugas"
+            label="Nama Petugas Penanggung Jawab Posko"
             name="petugas"
             type="text"
             autoComplete="petugas"
