@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { insertPengungsi, getPengungsi } from "../../../actions/pengungsi";
+import {
+  insertPengungsi,
+  getPengungsi,
+  deletePengungsi,
+} from "../../../actions/pengungsi";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
 
@@ -30,19 +34,17 @@ import SaveIcon from "@material-ui/icons/Save";
 // ];
 
 const DataPengungsi = ({
-  // pengungsi: { semuaPengungsi, loading },
-  pengungsi,
-  semuaPengungsi,
+  pengungsi: { pengungsi, loading },
   history,
   insertPengungsi,
+  deletePengungsi,
   getPengungsi,
   auth: { user },
 }) => {
+  // get pengungsi
   useEffect(() => {
     getPengungsi();
-    // console.log(pengungsi.pengungsi);
   }, [getPengungsi]);
-  // const [dataPengungsi, setDataPengungsi] = useState([]);
 
   const [dataPengungsi, setDataPengungsi] = useState({
     namaPengungsi: "",
@@ -52,26 +54,11 @@ const DataPengungsi = ({
     alamat: "",
   });
 
-  function changeHandler(event) {
-    const { id, value } = event.target;
-    setDataPengungsi((prevData) => {
-      return {
-        ...prevData,
-        [id]: value,
-      };
-    });
-  }
+  const changeHandler = (e) =>
+    setDataPengungsi({ ...dataPengungsi, [e.target.id]: e.target.value });
 
-  // sumbit data dan data dimasukkan ke tabel
   function submitHandler(event) {
     insertPengungsi(dataPengungsi, history);
-    // console.log(semuaPengungsi);
-    console.log(pengungsi);
-    // console.log(pengungsi.pengungsi);
-    // console.log("submit2", pengungsi.allPengungsi);
-    // setDataPengungsi((prevPengungsi) => {
-    //   return [...prevPengungsi, dataPengungsi];
-    // });
 
     // setDataPengungsi({
     //   namaPengungsi: "",
@@ -82,24 +69,25 @@ const DataPengungsi = ({
     // });
     event.preventDefault();
   }
-  function sumbitDataHandler(event) {
-    console.log(pengungsi);
-    console.log("klik");
-    event.preventDefault();
-  }
-  // hapus data pada tabel
-  // function deleteItem(id) {
-  //   setDataPengungsi((prevPengungsi) => {
-  //     return prevPengungsi.filter((item, index) => {
-  //       return index !== id;
-  //     });
-  //   });
-  // }
 
-  // return loading ? <Spinner /> : ()
-  return (
-    <React.Fragment>
-      <div className="isi full-height">
+  // hapus data pada tabel
+  function deleteItem(id) {
+    deletePengungsi(id);
+    // console.log("delete!");
+    // console.log(id);
+    // setDataPengungsi((prevPengungsi) => {
+    //   return prevPengungsi.filter((item, index) => {
+    //     return index !== id;
+    //   });
+    // });
+  }
+
+  // return (
+  return loading ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <div className="isi">
         <Typography component="div">
           <Box
             fontSize={18}
@@ -123,7 +111,7 @@ const DataPengungsi = ({
                   variant="outlined"
                   size="small"
                   fullWidth
-                  onChange={changeHandler}
+                  onChange={(e) => changeHandler(e)}
                   value={dataPengungsi.namaPengungsi}
                 />
                 <TextField
@@ -134,7 +122,7 @@ const DataPengungsi = ({
                   variant="outlined"
                   size="small"
                   fullWidth
-                  onChange={changeHandler}
+                  onChange={(e) => changeHandler(e)}
                   value={dataPengungsi.jenisKelamin}
                 />
                 <TextField
@@ -145,7 +133,7 @@ const DataPengungsi = ({
                   variant="outlined"
                   size="small"
                   fullWidth
-                  onChange={changeHandler}
+                  onChange={(e) => changeHandler(e)}
                   value={dataPengungsi.umur}
                 />
                 <TextField
@@ -156,7 +144,7 @@ const DataPengungsi = ({
                   variant="outlined"
                   size="small"
                   fullWidth
-                  onChange={changeHandler}
+                  onChange={(e) => changeHandler(e)}
                   value={dataPengungsi.keadaan}
                 />
                 <TextField
@@ -167,7 +155,7 @@ const DataPengungsi = ({
                   variant="outlined"
                   size="small"
                   fullWidth
-                  onChange={changeHandler}
+                  onChange={(e) => changeHandler(e)}
                   value={dataPengungsi.alamat}
                 />
                 <Alert />
@@ -185,18 +173,9 @@ const DataPengungsi = ({
             <Grid xs={1} sm={3} item />
           </Grid>
         </Paper>
-        {/* <Tabel semuaPengungsi={pengungsi.pengungsi} /> */}
-        {/* deleteItem={deleteItem} */}
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<SaveIcon />}
-          onClick={sumbitDataHandler}
-        >
-          Save
-        </Button>
+        <Tabel allPengungsi={pengungsi.allPengungsi} deleteItem={deleteItem} />
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
@@ -205,12 +184,15 @@ DataPengungsi.propTypes = {
   auth: PropTypes.object.isRequired,
   pengungsi: PropTypes.object.isRequired,
   getPengungsi: PropTypes.func.isRequired,
+  deletePengungsi: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
   pengungsi: state.pengungsi,
 });
 
-export default connect(mapStateToProps, { insertPengungsi, getPengungsi })(
-  withRouter(DataPengungsi)
-);
+export default connect(mapStateToProps, {
+  insertPengungsi,
+  getPengungsi,
+  deletePengungsi,
+})(withRouter(DataPengungsi));

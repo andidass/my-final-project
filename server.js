@@ -17,7 +17,7 @@ app.get("/", (req, res) => res.send("API Running"));
 app.use("/posko/registrasi", require("./Routes/api/poskoUser"));
 app.use("/posko/login", require("./Routes/api/authposko"));
 app.use("/posko/profile", require("./Routes/api/profilePosko"));
-app.use("/posko/data-pengungsi", require("./Routes/api/pengungsi"));
+app.use("/posko/pengungsi", require("./Routes/api/pengungsi"));
 
 // petugas
 app.use("/petugas/registrasi", require("./Routes/api/user"));

@@ -6,7 +6,7 @@ const auth = require("../../Middleware/auth");
 const ProfilePosko = require("../../Model/ProfilePosko");
 const UserPosko = require("../../Model/UserPosko");
 
-// @route   Get posko/data-posko/me
+// @route   Get posko/profile/me
 // #desc    Test route
 // @access  Private
 
@@ -25,7 +25,7 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
-// @route   POST posko/data-posko
+// @route   POST posko/profile
 // #desc    Create or update user profile
 // @access  Private
 

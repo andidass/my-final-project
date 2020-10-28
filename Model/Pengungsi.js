@@ -15,7 +15,7 @@ const PengungsiSchema = new mongoose.Schema({
         type: String,
       },
       umur: {
-        type: String,
+        type: Number,
       },
       keadaan: {
         type: String,

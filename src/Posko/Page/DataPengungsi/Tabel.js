@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleTable(props) {
+export default function SimpleTable({ allPengungsi, deleteItem }) {
   const classes = useStyles();
   return (
     <form>
@@ -42,12 +42,12 @@ export default function SimpleTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.dataPengungsi.map((data, index) => (
+            {allPengungsi.map((data, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
-                  {data.semuaPengungsi}
+                  {data.namaPengungsi}
                 </TableCell>
-                <TableCell align="right">{data.namaPengungsi}</TableCell>
+                <TableCell align="right">{data.jenisKelamin}</TableCell>
                 <TableCell align="right">{data.umur}</TableCell>
                 <TableCell align="right">{data.keadaan}</TableCell>
                 <TableCell align="right">{data.alamat}</TableCell>
@@ -56,7 +56,7 @@ export default function SimpleTable(props) {
                     variant="contained"
                     color="secondary"
                     size="small"
-                    onClick={() => props.deleteItem(index)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
+                    onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
                   >
                     <DeleteIcon fontSize="small" />
                   </Button>

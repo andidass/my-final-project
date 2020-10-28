@@ -2,6 +2,7 @@ import {
   GET_PENGUNGSI,
   PENGUNGSI_ERROR,
   CLEAR_PENGUNGSI,
+  UPDATE_PENGUNGSI,
 } from "../actions/types";
 
 const initialState = {
@@ -16,9 +17,10 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case GET_PENGUNGSI:
+    case UPDATE_PENGUNGSI:
       return {
         ...state,
-        semuaPengungsi: payload,
+        pengungsi: payload,
         loading: false,
       };
     case PENGUNGSI_ERROR:
