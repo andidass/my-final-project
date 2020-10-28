@@ -30,3 +30,5 @@ Runs both frontend and backend app in the development mode.<br />
 
 for final project study in Mataram University, Indonesia.<br />
 The app made for Regional Natural Disaster Management Agency West Nusa Tenggara.
+
+check out my UI/UX design in firgma : https://www.figma.com/proto/r2riA5wpDUNIWItplNInb1/SI-TA?node-id=5%3A2&scaling=min-zoom
