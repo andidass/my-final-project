@@ -6,8 +6,8 @@ const auth = require("../../Middleware/auth");
 const Pengungsi = require("../../Model/Pengungsi");
 
 // @route   Get posko/pengungsi/me
-// #desc    Get all refugees
-// @access  Public
+// #desc    Get refugees
+// @access  Private
 
 router.get("/me", auth, async (req, res) => {
   try {
@@ -97,7 +97,7 @@ router.put(
     auth,
     [
       check("namaPengungsi", "nama pengungsi harus diisi").not().isEmpty(),
-      check("umur", "umur harus diisi").not().isEmpty(),
+      check("umur", "umur harus diisi menggunakan angka").isNumeric(),
       check("jenisKelamin", "Jenis kelamin pengungsi harus diisi")
         .not()
         .isEmpty(),

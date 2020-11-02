@@ -100,7 +100,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
       <Grid item>
         <Typography
           variant="subtitle1"
-          style={{ color: "black", possition: "center" }}
+          style={{ color: "black", possition: "center", textAlign: "center" }}
         >
           Sistem Informasi Pendataan Bencana dan Pendistribusian Bantuan Bencana
           BPBD NTB

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createPengungsi, getPengungsi } from "../../../actions/pengungsi";
 import { Button, Typography, Box } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
+import Spinner from "../../../Components/Spinner";
 
-const NoPengungsi = ({ pengungsi, auth: { user } }) => {
+const NoPengungsi = ({
+  pengungsi: { pengungsi, loading },
+  auth: { user },
+  getPengungsi,
+  createPengungsi,
+}) => {
   const onSubmit = (e) => {
     createPengungsi();
     e.preventDefault();
@@ -15,7 +21,13 @@ const NoPengungsi = ({ pengungsi, auth: { user } }) => {
     getPengungsi();
   }, [getPengungsi]);
 
-  return (
+  if (pengungsi) {
+    return <Redirect to="/posko/data-pengungsi" />;
+  }
+
+  return loading ? (
+    <Spinner />
+  ) : (
     <div className="full-height isi">
       <Typography variant="h5">
         <Box fontSize={12} textAlign="left" marginTop={3}>

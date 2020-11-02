@@ -20,7 +20,6 @@ import {
   Paper,
   Button,
 } from "@material-ui/core";
-import SaveIcon from "@material-ui/icons/Save";
 
 // const jenisKelamin = [
 //   {
@@ -34,7 +33,7 @@ import SaveIcon from "@material-ui/icons/Save";
 // ];
 
 const DataPengungsi = ({
-  pengungsi: { pengungsi, loading },
+  pengungsi: { pengungsi, loading, error },
   history,
   insertPengungsi,
   deletePengungsi,
@@ -57,32 +56,33 @@ const DataPengungsi = ({
   const changeHandler = (e) =>
     setDataPengungsi({ ...dataPengungsi, [e.target.id]: e.target.value });
 
+  function isEmpty(obj) {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) return false;
+    }
+    return true;
+  }
   function submitHandler(event) {
-    insertPengungsi(dataPengungsi, history);
-
-    // setDataPengungsi({
-    //   namaPengungsi: "",
-    //   jenisKelamin: "",
-    //   umur: "",
-    //   keadaan: "",
-    //   alamat: "",
-    // });
     event.preventDefault();
+    insertPengungsi(dataPengungsi, history);
+    !loading &&
+      isEmpty(error) &&
+      // ? console.log("tidak ada error")
+      // : console.log("ada error");
+      setDataPengungsi({
+        namaPengungsi: "",
+        jenisKelamin: "",
+        umur: "",
+        keadaan: "",
+        alamat: "",
+      });
   }
 
   // hapus data pada tabel
   function deleteItem(id) {
     deletePengungsi(id);
-    // console.log("delete!");
-    // console.log(id);
-    // setDataPengungsi((prevPengungsi) => {
-    //   return prevPengungsi.filter((item, index) => {
-    //     return index !== id;
-    //   });
-    // });
   }
 
-  // return (
   return loading ? (
     <Spinner />
   ) : (

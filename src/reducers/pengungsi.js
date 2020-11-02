@@ -22,6 +22,7 @@ export default function (state = initialState, action) {
         ...state,
         pengungsi: payload,
         loading: false,
+        error: {},
       };
     case PENGUNGSI_ERROR:
       return {

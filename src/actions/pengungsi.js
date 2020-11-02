@@ -35,7 +35,8 @@ export const createPengungsi = (user, history) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Pengungsi berhasil ditambahkan", "success"));
+    dispatch(setAlert("Data pengungsi posko berhasil dibuat", "success"));
+    history.push("/posko/data-pengungsi");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -68,6 +69,7 @@ export const insertPengungsi = (dataPengungsi, history) => async (dispatch) => {
       type: UPDATE_PENGUNGSI,
       payload: res.data,
     });
+    dispatch(setAlert("Data pengungsi berhasil ditambahkan", "success"));
   } catch (err) {
     const errors = err.response.data.errors;
 
