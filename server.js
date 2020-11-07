@@ -18,6 +18,7 @@ app.use("/posko/registrasi", require("./Routes/api/poskoUser"));
 app.use("/posko/login", require("./Routes/api/authposko"));
 app.use("/posko/profile", require("./Routes/api/profilePosko"));
 app.use("/posko/pengungsi", require("./Routes/api/pengungsi"));
+app.use("/posko/bantuan-masuk", require("./Routes/api/BantuanMasukPosko"));
 
 // petugas
 app.use("/petugas/registrasi", require("./Routes/api/user"));

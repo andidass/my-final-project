@@ -1,4 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import {
+  getBantuanMasuk,
+  insertBantuanMasuk,
+} from "../../../actions/bantuanMasuk";
+import Alert from "../../../layout/Alert";
+import Spinner from "../../../Components/Spinner";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import _uniqueId from "lodash/uniqueId";
@@ -8,9 +16,13 @@ import InitData from "./InitData";
 
 import "./BantuanMasukPosko.css";
 
-function BantuanMasukPosko() {
+const BantuanMasukPosko = ({ getBantuanMasuk, insertBantuanMasuk }) => {
+  // useEffect(() => {
+  //   getBantuanMasuk();
+  // }, [getBantuanMasuk]);
+
   // variabel penyimpanan data tetap
-  var date = new Date().toLocaleDateString(); // set tanggal local sekarang
+  // var date = new Date().toLocaleDateString(); // set tanggal local sekarang
   const [id] = useState(_uniqueId("bpbd-ntb-"));
   const [rows, setRows] = useState([]);
   const [allData, setAllData] = useState([]); // semua data disimpan pada var ini.
@@ -19,7 +31,7 @@ function BantuanMasukPosko() {
   const [dataInit, setDataInit] = useState({
     //penyimpanan inputan onChange pada initData.js
     kodeTransaksi: id,
-    tanggalTransaksi: date,
+    // tanggalTransaksi: date,
     namaDonatur: "",
     sumberDana: "",
     alamatDonatur: "",
@@ -31,6 +43,11 @@ function BantuanMasukPosko() {
       return [...prevRows, newItem];
     });
   }
+  const cekState = (e) => {
+    e.preventDefault();
+    console.log("rows: ", rows);
+    console.log("allData: ", allData);
+  };
 
   function deleteItem(id) {
     //menghapus item pada tabel di Tabel.js
@@ -57,15 +74,16 @@ function BantuanMasukPosko() {
     setAllData((prevAllData) => {
       return [...prevAllData, dataInit, rows];
     });
-    setDataInit({
-      kodeTransaksi: id,
-      tanggalTransaksi: date,
-      namaDonatur: "",
-      sumberDana: "",
-      alamatDonatur: "",
-    });
-    setRows([]);
-    console.log(allData);
+    // insertBantuanMasuk(allData);
+
+    // setDataInit({
+    //   kodeTransaksi: id,
+    //   // tanggalTransaksi: date,
+    //   namaDonatur: "",
+    //   sumberDana: "",
+    //   alamatDonatur: "",
+    // });
+    // setRows([]);
   }
 
   return (
@@ -80,13 +98,14 @@ function BantuanMasukPosko() {
           {/* ------------------------ InitData.js -----------------------*/}
           <InitData
             dataInit={dataInit}
-            submitHandler={submitHandler}
+            // submitHandler={submitHandler}
             changeHandlerInit={changeHandlerInit}
           />
         </Grid>
         <Grid xs={12} sm={6} item>
           {/* ------------------------ ItemData.js -----------------------*/}
           <ItemData addItem={addItem} />
+          <Alert />
         </Grid>
         <Grid xs={12} item>
           {/* ---------------------- TABLE.JS -------------------------- */}
@@ -100,10 +119,32 @@ function BantuanMasukPosko() {
           >
             Simpan
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ margin: 8 }}
+            onClick={cekState}
+          >
+            print state
+          </Button>
         </Grid>
       </Grid>
     </div>
   );
-}
+};
+BantuanMasukPosko.propTypes = {
+  getBantuanMasuk: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  bantuanMasuk: PropTypes.object.isRequired,
+  insertBantuanMasuk: PropTypes.object.isRequired,
+};
 
-export default BantuanMasukPosko;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  bantuanMasuk: state.bantuanMasuk,
+});
+
+export default connect(mapStateToProps, {
+  getBantuanMasuk,
+  insertBantuanMasuk,
+})(BantuanMasukPosko);

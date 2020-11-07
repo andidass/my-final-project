@@ -33,18 +33,16 @@ function ItemData(props) {
     jenisBantuan: "Utama",
   });
 
-  function changeHandler(event) {
+  const changeHandler = (event) => {
     // mengisi data pada state {data}
     const { id, value } = event.target;
-    setData((prevData) => {
-      return {
-        ...prevData,
-        [id]: value,
-      };
+    setData({
+      ...data,
+      [id]: value,
     });
-  }
+  };
 
-  function submitHandler(event) {
+  const submitHandler = (event) => {
     // utk menyimpan state sementara pada state permanent.
     props.addItem(data); // memanggil fungsi pada BantuanMasukPosko.js
     setData({
@@ -55,7 +53,7 @@ function ItemData(props) {
       jenisBantuan: "Utama",
     });
     event.preventDefault();
-  }
+  };
 
   return (
     <form>

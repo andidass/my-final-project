@@ -12,7 +12,8 @@ const BantuanMasukSchema = new mongoose.Schema({
         type: String,
       },
       tanggal: {
-        type: String,
+        type: Date,
+        default: Date.now,
       },
       namaDonatur: {
         type: String,
@@ -32,13 +33,13 @@ const BantuanMasukSchema = new mongoose.Schema({
             type: String,
           },
           satuan: {
-            type: Number,
+            type: String,
           },
           banyaknya: {
-            type: String,
+            type: Number,
           },
           nilainya: {
-            type: String,
+            type: Number,
           },
         },
       ],
