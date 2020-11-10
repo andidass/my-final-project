@@ -25,7 +25,9 @@ import DataPetugas from "./Posko/Page/PoskoBencana/DataPetugas";
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
 import NoPengungsi from "./Posko/Page/DataPengungsi/NoPengungsi";
 import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
+// bantuan masuk
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
+import DataBantuanMasuk from "./Posko/Page/BantuanMasukPosko/DataBantuanMasuk";
 import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
 import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
 
@@ -84,11 +86,20 @@ const App = () => {
           <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
           <Route path="/posko/create-pengungsi" exact component={NoPengungsi} />
           {/* ----------------------------------- */}
+
+          {/* ----------------------------------- */}
+          {/* --------- BANTUAN MASUK POSKO --------- */}
           <Route
             path="/posko/bantuan-masuk"
             exact
             component={BantuanMasukPosko}
           />
+          <Route
+            path="/posko/bantuan-masuk/data"
+            exact
+            component={DataBantuanMasuk}
+          />
+          {/* ----------------------------------- */}
           <Route
             path="/posko/bantuan-keluar"
             exact

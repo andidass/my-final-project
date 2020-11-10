@@ -6,7 +6,7 @@ const auth = require("../../Middleware/auth");
 const Profile = require("../../Model/Profile");
 const UserPosko = require("../../Model/UserPosko");
 
-// @route   Get api/profile/me
+// @route   Get posko/profile/me
 // #desc    Test route
 // @access  Private
 
@@ -26,7 +26,7 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
-// @route   POST api/profile
+// @route   POST posko/profile
 // #desc    Create or update user profile
 // @access  Private
 
@@ -83,7 +83,7 @@ router.post(
   }
 );
 
-// @route   Get api/profile
+// @route   Get posko/profile
 // #desc    Get all users profile
 // @access  Public
 
@@ -97,7 +97,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route   Get api/profile/user/:user_id
+// @route   Get posko/profile/user/:user_id
 // #desc    Get profile by user_id
 // @access  Public
 
@@ -119,7 +119,7 @@ router.get("/user/:user_id", async (req, res) => {
   }
 });
 
-// @route   Delete api/profile
+// @route   Delete posko/profile
 // #desc    delete user and profile
 // @access  Private
 
@@ -137,7 +137,7 @@ router.delete("/", auth, async (req, res) => {
   }
 });
 
-// @route   Put api/profile/experience
+// @route   Put posko/profile/experience
 // #desc    add experience profile
 // @access  Private
 
@@ -173,7 +173,7 @@ router.put(
   }
 );
 
-// @route   DELETE api/profile/experience/:exp_id
+// @route   DELETE posko/profile/experience/:exp_id
 // #desc    delete experience profile
 // @access  Private
 

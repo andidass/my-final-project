@@ -113,6 +113,11 @@ router.put(
     if (satuan) newBantuanMasuk.dataItemBantuan.satuan = satuan;
     if (banyaknya) newBantuanMasuk.dataItemBantuan.banyaknya = banyaknya;
     if (nilainya) newBantuanMasuk.dataItemBantuan.nilainya = nilainya;
+    // newBantuanMasuk.dataItemBantuan.jenisBantuan = jenisBantuan;
+    // newBantuanMasuk.dataItemBantuan.namaBarang = namaBarang;
+    // newBantuanMasuk.dataItemBantuan.satuan = satuan;
+    // newBantuanMasuk.dataItemBantuan.banyaknya = banyaknya;
+    // newBantuanMasuk.dataItemBantuan.nilainya = nilainya;
 
     try {
       const bantuanMasuk = await BantuanMasuk.findOne({ user: req.user.id });

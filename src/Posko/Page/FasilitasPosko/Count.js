@@ -22,12 +22,6 @@ const Count = (props) => {
         size="small"
       />
     </MyButton>
-    // {/* <MyButton
-    //             decreaseValue={decreaseValue2}
-    //             increaseValue={increaseValue2}
-    //           >
-    //             MCK : {count2}
-    //           </MyButton> */}
   );
 };
 

@@ -17,25 +17,24 @@ import InitData from "./InitData";
 import "./BantuanMasukPosko.css";
 
 const BantuanMasukPosko = ({ getBantuanMasuk, insertBantuanMasuk }) => {
-  // useEffect(() => {
-  //   getBantuanMasuk();
-  // }, [getBantuanMasuk]);
+  useEffect(() => {
+    getBantuanMasuk();
+  }, [getBantuanMasuk]);
 
   // variabel penyimpanan data tetap
   // var date = new Date().toLocaleDateString(); // set tanggal local sekarang
   const [id] = useState(_uniqueId("bpbd-ntb-"));
-  const [rows, setRows] = useState([]);
-  const [allData, setAllData] = useState([]); // semua data disimpan pada var ini.
 
-  // variabel penyimpanan data sementara (onChange textField)
+  const [rows, setRows] = useState([]); // data item
   const [dataInit, setDataInit] = useState({
-    //penyimpanan inputan onChange pada initData.js
+    // data initData.js
     kodeTransaksi: id,
     // tanggalTransaksi: date,
     namaDonatur: "",
     sumberDana: "",
     alamatDonatur: "",
   });
+  const [allData, setAllData] = useState([]); // semua data disimpan pada var ini.
 
   function addItem(newItem) {
     // memasukkan data yg terisi pada form itemData.js, data akan digunakan utk ditampilkan pada Tabel.js
@@ -47,6 +46,11 @@ const BantuanMasukPosko = ({ getBantuanMasuk, insertBantuanMasuk }) => {
     e.preventDefault();
     console.log("rows: ", rows);
     console.log("allData: ", allData);
+  };
+  const cekAllState = (e) => {
+    e.preventDefault();
+    console.log("rows: ", rows);
+    console.log("dataInit: ", dataInit);
   };
 
   function deleteItem(id) {
@@ -69,13 +73,17 @@ const BantuanMasukPosko = ({ getBantuanMasuk, insertBantuanMasuk }) => {
     });
   }
 
+  // ! LET'S FIX THIS
   function submitHandler() {
     // menyimpan secara permanen initData dan itemData
+    const itemData = dataInit;
     setAllData((prevAllData) => {
-      return [...prevAllData, dataInit, rows];
+      return { ...prevAllData, dataInit, rows };
     });
-    // insertBantuanMasuk(allData);
-
+    const allDatas = allData.dataInit;
+    console.log(allData);
+    console.log(allData.dataInit);
+    insertBantuanMasuk(allDatas);
     // setDataInit({
     //   kodeTransaksi: id,
     //   // tanggalTransaksi: date,
@@ -126,6 +134,14 @@ const BantuanMasukPosko = ({ getBantuanMasuk, insertBantuanMasuk }) => {
             onClick={cekState}
           >
             print state
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ margin: 8 }}
+            onClick={cekAllState}
+          >
+            print all state
           </Button>
         </Grid>
       </Grid>

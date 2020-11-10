@@ -4,6 +4,7 @@ import auth from "./auth";
 import profile from "./profile";
 import pengungsi from "./pengungsi";
 import bantuanMasuk from "./bantuanMasukPosko";
+import fasilitasPosko from "./fasilitasPosko";
 
 export default combineReducers({
   alert,
@@ -11,4 +12,5 @@ export default combineReducers({
   profile,
   pengungsi,
   bantuanMasuk,
+  fasilitasPosko,
 });

@@ -57,7 +57,7 @@ const EditProfile = ({
         loading || !profile.petugas ? "" : profile.petugas.namaPetugas,
       jabatan: loading || !profile.petugas ? "" : profile.petugas.jabatan,
     });
-  }, []);
+  }, [getCurrentProfile]);
 
   const onChange = (e) =>
     setProfileData({ ...profileData, [e.target.name]: e.target.value });

@@ -1,16 +1,58 @@
-import React, { Fragment } from "react";
-import Count from "./Count";
+import React, { Fragment, useState, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import {
+  getDataFasilitasPosko,
+  createFasilitasPosko,
+} from "../../../actions/fasilitasPosko";
+import Alert from "../../../layout/Alert";
+import Spinner from "../../../Components/Spinner";
 
-import { Button, Typography, Box, Paper, Grid } from "@material-ui/core";
+// import Count from "./Count";
+
+import {
+  Button,
+  Typography,
+  Box,
+  Paper,
+  Grid,
+  TextField,
+} from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
+import { setAlert } from "../../../actions/alert";
 
-const FasilitasPosko = () => {
-  const [count, setCount] = React.useState(0);
-  const [count2, setCount2] = React.useState(0);
-  const [count3, setCount3] = React.useState(0);
-
+const FasilitasPosko = ({
+  getDataFasilitasPosko,
+  createFasilitasPosko,
+  fasilitasPosko: { fasilitasPosko, loading },
+  history,
+}) => {
+  // get data fasilitas posko
+  useEffect(() => {
+    getDataFasilitasPosko();
+    console.log("get fasilitas posko");
+  }, [getDataFasilitasPosko]);
+  const [dataFasilitas, setDataFasilitas] = useState({
+    fkes: "",
+    fpend: "",
+    mck: "",
+    musholah: "",
+    dapurUmum: "",
+    tendaUtama: "",
+  });
+  const changeHandler = (e) => {
+    return setDataFasilitas({
+      ...dataFasilitas,
+      [e.target.id]: e.target.value,
+    });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createFasilitasPosko(dataFasilitas);
+  };
   return (
-    <Fragment>
+    <form onSubmit={(e) => onSubmit(e)}>
       <div className="isi full-height">
         <Typography component="div">
           <Box
@@ -23,36 +65,99 @@ const FasilitasPosko = () => {
           </Box>
         </Typography>
         <Paper variant="outlined" className="body-posko-bencana">
-          <Grid container>
-            <Grid item xs={12} sm={6}>
-              <div className="body-posko-bencana" style={{ display: "block" }}>
-                <Count count={count} setCount={setCount}>
-                  Rumah Sakit :
-                </Count>
-                <Count count={count2} setCount={setCount2}>
-                  MCK :
-                </Count>
-                <Count count={count3} setCount={setCount3}>
-                  Dapur Umum :
-                </Count>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  startIcon={<SaveIcon />}
-                >
-                  Simpan
-                </Button>
-              </div>
-            </Grid>
-            <Grid xs={12} sm={6} item>
-              <h1>2</h1>
-            </Grid>
-          </Grid>
+          <div className="body-posko-bencana" style={{ display: "block" }}>
+            {/* fasilitas : MCK, Kesehatan, Ibadah, Pendidikan */}
+            <TextField
+              id="fkes"
+              label="Fasilitas Kesehatan"
+              style={{ margin: 8 }}
+              margin="normal"
+              variant="outlined"
+              size="small"
+              onChange={(e) => changeHandler(e)}
+              value={dataFasilitas.fkes}
+            />
+            <TextField
+              id="fpend"
+              label="Fasilitas Pendidikan"
+              style={{ margin: 8 }}
+              margin="normal"
+              variant="outlined"
+              size="small"
+              onChange={(e) => changeHandler(e)}
+              value={dataFasilitas.fpend}
+            />
+            <TextField
+              id="mck"
+              label="MCK"
+              style={{ margin: 8 }}
+              margin="normal"
+              variant="outlined"
+              size="small"
+              onChange={(e) => changeHandler(e)}
+              value={dataFasilitas.mck}
+            />
+            <TextField
+              id="musholah"
+              label="musholah"
+              style={{ margin: 8 }}
+              margin="normal"
+              variant="outlined"
+              size="small"
+              onChange={(e) => changeHandler(e)}
+              value={dataFasilitas.musholah}
+            />
+            <TextField
+              id="dapurUmum"
+              label="Dapur Umum"
+              style={{ margin: 8 }}
+              margin="normal"
+              variant="outlined"
+              size="small"
+              onChange={(e) => changeHandler(e)}
+              value={dataFasilitas.dapurUmum}
+            />
+            <TextField
+              id="tendaUtama"
+              label="Tenda Utama"
+              style={{ margin: 8 }}
+              margin="normal"
+              variant="outlined"
+              size="small"
+              onChange={(e) => changeHandler(e)}
+              value={dataFasilitas.tendaUtama}
+            />
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                startIcon={<SaveIcon />}
+                style={{ margin: 8 }}
+              >
+                Simpan
+              </Button>
+            </div>
+          </div>
         </Paper>
       </div>
-    </Fragment>
+    </form>
   );
 };
 
-export default FasilitasPosko;
+FasilitasPosko.propTypes = {
+  getDataFasilitasPosko: PropTypes.func.isRequired,
+  createFasilitasPosko: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  fasilitasPosko: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  fasilitasPosko: state.fasilitasPosko,
+});
+
+export default connect(mapStateToProps, {
+  getDataFasilitasPosko,
+  createFasilitasPosko,
+})(withRouter(FasilitasPosko));

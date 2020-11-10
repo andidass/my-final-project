@@ -19,6 +19,7 @@ app.use("/posko/login", require("./Routes/api/authposko"));
 app.use("/posko/profile", require("./Routes/api/profilePosko"));
 app.use("/posko/pengungsi", require("./Routes/api/pengungsi"));
 app.use("/posko/bantuan-masuk", require("./Routes/api/BantuanMasukPosko"));
+app.use("/posko/fasilitas-posko", require("./Routes/api/fasilitasPosko"));
 
 // petugas
 app.use("/petugas/registrasi", require("./Routes/api/user"));
