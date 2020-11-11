@@ -31,7 +31,17 @@ const FasilitasPosko = ({
   // get data fasilitas posko
   useEffect(() => {
     getDataFasilitasPosko();
-    console.log("get fasilitas posko");
+    setDataFasilitas({
+      fkes: loading || !fasilitasPosko.fkes ? "0" : fasilitasPosko.fkes,
+      fpend: loading || !fasilitasPosko.fpend ? "0" : fasilitasPosko.fpend,
+      mck: loading || !fasilitasPosko.mck ? "0" : fasilitasPosko.mck,
+      musholah:
+        loading || !fasilitasPosko.musholah ? "0" : fasilitasPosko.musholah,
+      dapurUmum:
+        loading || !fasilitasPosko.dapurUmum ? "0" : fasilitasPosko.dapurUmum,
+      tendaUmum:
+        loading || !fasilitasPosko.tendaUmum ? "0" : fasilitasPosko.tendaUmum,
+    });
   }, [getDataFasilitasPosko]);
   const [dataFasilitas, setDataFasilitas] = useState({
     fkes: "",
@@ -39,7 +49,7 @@ const FasilitasPosko = ({
     mck: "",
     musholah: "",
     dapurUmum: "",
-    tendaUtama: "",
+    tendaUmum: "",
   });
   const changeHandler = (e) => {
     return setDataFasilitas({
@@ -51,7 +61,9 @@ const FasilitasPosko = ({
     e.preventDefault();
     createFasilitasPosko(dataFasilitas);
   };
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <form onSubmit={(e) => onSubmit(e)}>
       <div className="isi full-height">
         <Typography component="div">
@@ -118,18 +130,20 @@ const FasilitasPosko = ({
               value={dataFasilitas.dapurUmum}
             />
             <TextField
-              id="tendaUtama"
+              id="tendaUmum"
               label="Tenda Utama"
               style={{ margin: 8 }}
               margin="normal"
               variant="outlined"
               size="small"
               onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.tendaUtama}
+              value={dataFasilitas.tendaUmum}
             />
             <div>
+              <Alert />
               <Button
                 variant="contained"
+                type="submit"
                 color="primary"
                 size="small"
                 startIcon={<SaveIcon />}
