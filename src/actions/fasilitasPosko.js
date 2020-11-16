@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { GET_FASILITASPOSKO, FASILITASPOSKO_ERROR } from "./types";
+import { GET_FASILITAS_POSKO, FASILITAS_POSKO_ERROR } from "./types";
 
 // get data fasilitas posko
 export const getDataFasilitasPosko = () => async (dispatch) => {
@@ -8,12 +8,12 @@ export const getDataFasilitasPosko = () => async (dispatch) => {
     const res = await axios.get("/posko/fasilitas-posko/me");
 
     dispatch({
-      type: GET_FASILITASPOSKO,
+      type: GET_FASILITAS_POSKO,
       payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: FASILITASPOSKO_ERROR,
+      type: FASILITAS_POSKO_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
@@ -39,7 +39,7 @@ export const createFasilitasPosko = (
     );
 
     dispatch({
-      type: GET_FASILITASPOSKO,
+      type: GET_FASILITAS_POSKO,
       payload: res.data,
     });
 
@@ -52,10 +52,10 @@ export const createFasilitasPosko = (
       )
     );
 
-    // jika profile baru dibuat, redirect
-    //   if (!edit) {
-    //     history.push("/posko/data-posko");
-    //   }
+    // jika data baru dibuat, redirect
+    if (!edit) {
+      history.push("/posko/fasilitas-posko");
+    }
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -63,7 +63,7 @@ export const createFasilitasPosko = (
       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
     }
     dispatch({
-      type: FASILITASPOSKO_ERROR,
+      type: FASILITAS_POSKO_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

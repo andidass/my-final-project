@@ -24,6 +24,7 @@ import DataPetugas from "./Posko/Page/PoskoBencana/DataPetugas";
 // pengungsi
 import DataPengungsi from "./Posko/Page/DataPengungsi/DataPengungsi";
 import NoPengungsi from "./Posko/Page/DataPengungsi/NoPengungsi";
+// Fasilitas Posko
 import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
 // bantuan masuk
 import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
@@ -106,11 +107,14 @@ const App = () => {
             component={BantuanKeluarPosko}
           />
 
+          {/* ----------------------------------- */}
+          {/* --------- FASILITAS POSKO --------- */}
           <Route
             path="/posko/fasilitas-posko"
             exact
             component={FasilitasPosko}
           />
+          {/* ----------------------------------- */}
           <Route
             path="/posko/permintaan-bantuan"
             exact

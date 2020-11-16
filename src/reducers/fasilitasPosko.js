@@ -1,8 +1,8 @@
 import {
-  GET_FASILITASPOSKO,
-  UPDATE_FASILITASPOSKO,
-  FASILITASPOSKO_ERROR,
-  CLEAR_FASILITASPOSKO,
+  GET_FASILITAS_POSKO,
+  UPDATE_FASILITAS_POSKO,
+  FASILITAS_POSKO_ERROR,
+  CLEAR_FASILITAS_POSKO,
 } from "../actions/types";
 
 const initialState = {
@@ -16,8 +16,8 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_FASILITASPOSKO:
-    case UPDATE_FASILITASPOSKO:
+    case GET_FASILITAS_POSKO:
+    case UPDATE_FASILITAS_POSKO:
       return {
         ...state,
         fasilitasPosko: payload,
@@ -25,13 +25,13 @@ export default function (state = initialState, action) {
         error: {},
       };
 
-    case FASILITASPOSKO_ERROR:
+    case FASILITAS_POSKO_ERROR:
       return {
         ...state,
         error: payload,
-        error: {},
+        loading: false,
       };
-    case CLEAR_FASILITASPOSKO:
+    case CLEAR_FASILITAS_POSKO:
       return {
         ...state,
         fasilitasPosko: null,

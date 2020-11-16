@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import MenuPosko from "../Components/MenuPosko";
 
 import { getCurrentProfile } from "../../actions/profile";
+import { getDataFasilitasPosko } from "../../actions/fasilitasPosko";
 import Alert from "../../layout/Alert";
 
 import PropTypes from "prop-types";
@@ -12,6 +13,7 @@ import { Typography, Box } from "@material-ui/core";
 
 const MainPosko = ({
   getCurrentProfile,
+  getDataFasilitasPosko,
   auth: { user },
   profile: { profile, loading },
 }) => {
@@ -22,8 +24,9 @@ const MainPosko = ({
   useEffect(() => {
     setTimeout(() => {
       getCurrentProfile();
+      getDataFasilitasPosko();
     }, 500);
-  }, [getCurrentProfile]);
+  }, [getCurrentProfile, getDataFasilitasPosko]);
 
   return loading && profile === null ? (
     <Spinner />
@@ -48,6 +51,7 @@ const MainPosko = ({
 
 MainPosko.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+  getDataFasilitasPosko: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -57,4 +61,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(MainPosko);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  getDataFasilitasPosko,
+})(MainPosko);
