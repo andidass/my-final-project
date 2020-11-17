@@ -3,6 +3,8 @@ import MenuPosko from "../Components/MenuPosko";
 
 import { getCurrentProfile } from "../../actions/profile";
 import { getDataFasilitasPosko } from "../../actions/fasilitasPosko";
+import { getPengungsi } from "../../actions/pengungsi";
+import { getPermintaanBantuan } from "../../actions/permintaanBantuan";
 import Alert from "../../layout/Alert";
 
 import PropTypes from "prop-types";
@@ -13,7 +15,9 @@ import { Typography, Box } from "@material-ui/core";
 
 const MainPosko = ({
   getCurrentProfile,
+  getPengungsi,
   getDataFasilitasPosko,
+  getPermintaanBantuan,
   auth: { user },
   profile: { profile, loading },
 }) => {
@@ -25,6 +29,8 @@ const MainPosko = ({
     setTimeout(() => {
       getCurrentProfile();
       getDataFasilitasPosko();
+      getPengungsi();
+      getPermintaanBantuan();
     }, 500);
   }, [getCurrentProfile, getDataFasilitasPosko]);
 
@@ -64,4 +70,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getCurrentProfile,
   getDataFasilitasPosko,
+  getPengungsi,
+  getPermintaanBantuan,
 })(MainPosko);

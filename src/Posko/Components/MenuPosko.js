@@ -82,7 +82,7 @@ function MenuPosko() {
           sm={4}
           lg={2}
           component={Link}
-          to="/posko/create-pengungsi"
+          to="/posko/data-pengungsi"
           className="link"
         >
           <Card className={classes.root} variant="outlined">

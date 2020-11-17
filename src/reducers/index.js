@@ -5,6 +5,7 @@ import profile from "./profile";
 import pengungsi from "./pengungsi";
 import bantuanMasuk from "./bantuanMasukPosko";
 import fasilitasPosko from "./fasilitasPosko";
+import permintaanBantuan from "./permintaanBantuan";
 
 export default combineReducers({
   alert,
@@ -13,4 +14,5 @@ export default combineReducers({
   pengungsi,
   bantuanMasuk,
   fasilitasPosko,
+  permintaanBantuan,
 });

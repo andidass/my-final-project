@@ -2,25 +2,20 @@ import React from "react";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createPengungsi, getPengungsi } from "../../../actions/pengungsi";
+import { createPermintaanBantuan } from "../../../actions/permintaanBantuan";
 import { Button, Typography, Box } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import Spinner from "../../../Components/Spinner";
 
-const NoPengungsi = ({
-  pengungsi: { pengungsi, loading },
+const NoDataPermintaanBantuan = ({
+  permintaanBantuan: { permintaanBantuan, loading },
   auth: { user },
-  getPengungsi,
-  createPengungsi,
+  createPermintaanBantuan,
 }) => {
   const onSubmit = (e) => {
-    createPengungsi();
+    createPermintaanBantuan();
     e.preventDefault();
   };
-
-  if (pengungsi) {
-    return <Redirect to="/posko/data-pengungsi" />;
-  }
 
   return loading ? (
     <Spinner />
@@ -28,7 +23,7 @@ const NoPengungsi = ({
     <div className="full-height isi">
       <Typography variant="h5">
         <Box fontSize={12} textAlign="left" marginTop={3}>
-          Data pengungsi posko ini belum ada.
+          Data permintaan bantuan posko ini belum ada.
         </Box>
       </Typography>
       <Button
@@ -38,26 +33,25 @@ const NoPengungsi = ({
         size="small"
         disableRipple
         component={Link}
-        to="/posko/data-pengungsi/"
+        // to="/posko/permintaan-bantuan"
         startIcon={<PersonIcon />}
       >
-        Buat Data Pengungsi
+        Buat Data Permintaan Bantuan
       </Button>
     </div>
   );
 };
 
-NoPengungsi.propTypes = {
+NoDataPermintaanBantuan.propTypes = {
   auth: PropTypes.object.isRequired,
-  createPengungsi: PropTypes.func.isRequired,
-  getPengungsi: PropTypes.func.isRequired,
-  pengungsi: PropTypes.object.isRequired,
+  createPermintaanBantuan: PropTypes.func.isRequired,
+  permintaanBantuan: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  pengungsi: state.pengungsi,
+  permintaanBantuan: state.permintaanBantuan,
 });
 
-export default connect(mapStateToProps, { createPengungsi, getPengungsi })(
-  withRouter(NoPengungsi)
-);
+export default connect(mapStateToProps, {
+  createPermintaanBantuan,
+})(withRouter(NoDataPermintaanBantuan));
