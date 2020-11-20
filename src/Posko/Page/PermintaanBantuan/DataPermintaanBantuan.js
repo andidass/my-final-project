@@ -34,6 +34,8 @@ const DataPermintaanBantuan = ({
     banyaknya: "",
   });
 
+  const { jenisBantuan, namaBarang, satuan, banyaknya } = dataPermintaan;
+
   const changeHandler = (e) =>
     setDataPermintaan({ ...dataPermintaan, [e.target.id]: e.target.value });
 
@@ -45,15 +47,17 @@ const DataPermintaanBantuan = ({
   }
   function submitHandler(event) {
     event.preventDefault();
-    insertPermintaanBantuan(dataPermintaan, history);
+    if (jenisBantuan && namaBarang && satuan && banyaknya !== null) {
+      insertPermintaanBantuan(dataPermintaan, history);
+      setDataPermintaan({
+        jenisBantuan: "",
+        namaBarang: "",
+        satuan: "",
+        banyaknya: "",
+      });
+    }
     // !loading && // ! tinggal sinkronkan saja, buat ini berjalan setelah function inserPengungsi selesai dipanggil
     // isEmpty(error) &&
-    setDataPermintaan({
-      jenisBantuan: "",
-      namaBarang: "",
-      satuan: "",
-      banyaknya: "",
-    });
   }
 
   // hapus data pada tabel
@@ -80,7 +84,7 @@ const DataPermintaanBantuan = ({
           <Grid container>
             <Grid xs={1} sm={3} item />
             <Grid xs={10} sm={6} item>
-              <form type="submit">
+              <form type="submit" onSubmit={submitHandler}>
                 <TextField
                   id="jenisBantuan"
                   label="Jenis Barang"
@@ -88,9 +92,10 @@ const DataPermintaanBantuan = ({
                   margin="normal"
                   variant="outlined"
                   size="small"
+                  required
                   fullWidth
                   onChange={(e) => changeHandler(e)}
-                  value={dataPermintaan.jenisBantuan}
+                  value={jenisBantuan}
                 />
                 <TextField
                   id="namaBarang"
@@ -101,7 +106,7 @@ const DataPermintaanBantuan = ({
                   size="small"
                   fullWidth
                   onChange={(e) => changeHandler(e)}
-                  value={dataPermintaan.namaBarang}
+                  value={namaBarang}
                 />
                 <TextField
                   id="satuan"
@@ -112,7 +117,7 @@ const DataPermintaanBantuan = ({
                   size="small"
                   fullWidth
                   onChange={(e) => changeHandler(e)}
-                  value={dataPermintaan.satuan}
+                  value={satuan}
                 />
                 <TextField
                   id="banyaknya"
@@ -123,7 +128,7 @@ const DataPermintaanBantuan = ({
                   size="small"
                   fullWidth
                   onChange={(e) => changeHandler(e)}
-                  value={dataPermintaan.banyaknya}
+                  value={banyaknya}
                 />
                 <Alert />
                 <Button
@@ -131,7 +136,7 @@ const DataPermintaanBantuan = ({
                   color="primary"
                   href="#contained-buttons"
                   style={{ margin: 8 }}
-                  onClick={submitHandler}
+                  // onClick={submitHandler}
                 >
                   Tambah
                 </Button>

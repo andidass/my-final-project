@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import Alert from "../../layout/Alert";
+import Alert from "../../../layout/Alert";
 
-import { setAlert } from "../../actions/alert";
-import { register } from "../../actions/auth";
+import { setAlert } from "../../../actions/alert";
+import { register } from "../../../actions/auth";
 
-// @materialui
 import {
   Avatar,
   Button,
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Registrasi({ setAlert, register, isAuthenticated }) {
+function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
   const classes = useStyles();
   const [formRegister, setFormRegister] = useState({
     name: "",
@@ -65,7 +64,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
 
   // Redirect jika login success
   if (isAuthenticated) {
-    return <Redirect to="/posko/dashboard" />;
+    return <Redirect to="/petugas/dashboard" />;
   }
 
   const { name, position, email, password, password2 } = formRegister;
@@ -78,7 +77,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registrasi Posko Pengungsian
+          Registrasi Petugas Lapangan
         </Typography>
         <form className={classes.form} noValidate onSubmit={(e) => onSubmit(e)}>
           <TextField
@@ -175,7 +174,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
   );
 }
 
-Registrasi.propTypes = {
+RegistrasiPetugas.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
@@ -185,4 +184,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { setAlert, register })(Registrasi);
+export default connect(mapStateToProps, { setAlert, register })(
+  RegistrasiPetugas
+);

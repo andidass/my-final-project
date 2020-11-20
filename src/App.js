@@ -32,7 +32,10 @@ import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko"
 import DataBantuanMasuk from "./Posko/Page/BantuanMasukPosko/DataBantuanMasuk";
 import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
 
-// import SignInPetugas from "./Petugas/Pages/Login";
+// PETUGAS LAPANGAN
+import LoginPetugas from "./PetugasLapangan/Pages/Pages/LoginPetugas";
+import RegistrasiPetugas from "./PetugasLapangan/Pages/Pages/RegistrasiPetugas";
+
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
 
@@ -55,7 +58,7 @@ const App = () => {
       <Router>
         <MenuBars />
         <Switch>
-          {/* POSKO */}
+          {/* --------- POSKO --------- */}
           <Route path="/" exact component={SignInPosko} />
           <Route path="/posko/login" exact component={SignInPosko} />
           <Route path="/posko/registrasi" exact component={RegistrasiPosko} />
@@ -63,31 +66,39 @@ const App = () => {
           {/* --------- PROFILE POSKO --------- */}
           <Route path="/posko/data-posko" exact component={PoskoBencana} />
           <Route
-            path="/posko/data-posko/form-profile"
+            path="/posko/data-posko/form-profile" //create profile
             exact
             component={FormProfile}
           />
           <Route
-            path="/posko/data-posko/edit-profile"
+            path="/posko/data-posko/edit-profile" //edit profile
             exact
             component={EditProfile}
           />
           <Route
-            path="/posko/data-posko/profile"
+            path="/posko/data-posko/profile" /// show data profile
             exact
             component={ProfilePosko}
           />
           <Route
-            path="/posko/data-posko/data-petugas"
+            path="/posko/data-posko/data-petugas" // add data petugas
             exact
             component={DataPetugas}
           />
-          {/* ---------------------------------- */}
+          {/* --------- FASILITAS POSKO --------- */}
+          <Route
+            path="/posko/fasilitas-posko"
+            exact
+            component={FasilitasPosko}
+          />
+          {/* --------- PERMINTAAN BANTUAN POSKO --------- */}
+          <Route
+            path="/posko/permintaan-bantuan"
+            exact
+            component={PermintaanBantuan}
+          />
           {/* --------- PENGUNGSI POSKO --------- */}
           <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
-          {/* ----------------------------------- */}
-
-          {/* ----------------------------------- */}
           {/* --------- BANTUAN MASUK POSKO --------- */}
           <Route
             path="/posko/bantuan-masuk"
@@ -99,26 +110,17 @@ const App = () => {
             exact
             component={DataBantuanMasuk}
           />
-          {/* ----------------------------------- */}
           <Route
             path="/posko/bantuan-keluar"
             exact
             component={BantuanKeluarPosko}
           />
-
           {/* ----------------------------------- */}
-          {/* --------- FASILITAS POSKO --------- */}
+          <Route path="/petugas/login" exact component={LoginPetugas} />
           <Route
-            path="/posko/fasilitas-posko"
+            path="/petugas/registrasi"
             exact
-            component={FasilitasPosko}
-          />
-          {/* ----------------------------------- */}
-          {/* --------- PERMINTAAN BANTUAN POSKO --------- */}
-          <Route
-            path="/posko/permintaan-bantuan"
-            exact
-            component={PermintaanBantuan}
+            component={RegistrasiPetugas}
           />
           {/* COMPONEN COBA-COBA */}
           {/* <Route path="/map" exact component={Map} /> */}

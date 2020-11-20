@@ -23,9 +23,9 @@ app.use("/posko/fasilitas-posko", require("./Routes/api/fasilitasPosko"));
 app.use("/posko/permintaan-bantuan", require("./Routes/api/permintaanBantuan"));
 
 // petugas
-app.use("/petugas/registrasi", require("./Routes/api/user"));
-app.use("/petugas/login", require("./Routes/api/auth"));
-app.use("/posko/profile", require("./Routes/api/profile"));
+app.use("/petugas/login", require("./Routes/api/authPetugas"));
+app.use("/petugas/registrasi", require("./Routes/api/petugas"));
+app.use("/petugas/profile", require("./Routes/api/profilePetugas"));
 
 // app.use("/api/users", require("./Routes/api/user"));
 // app.use("/api/auth", require("./Routes/api/auth"));
