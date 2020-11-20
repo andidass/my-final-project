@@ -1,3 +1,4 @@
+const { AddAlarmOutlined } = require("@material-ui/icons");
 const mongoose = require("mongoose");
 
 const PetugasSchema = new mongoose.Schema({
@@ -19,6 +20,10 @@ const PetugasSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  session: {
+    type: String,
+    default: "petugas",
   },
   date: {
     type: Date,

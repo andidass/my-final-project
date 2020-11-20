@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  session: {
+    type: String,
+    default: "posko",
+  },
   date: {
     type: Date,
     default: Date.now,

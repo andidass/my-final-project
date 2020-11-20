@@ -33,8 +33,10 @@ import DataBantuanMasuk from "./Posko/Page/BantuanMasukPosko/DataBantuanMasuk";
 import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
 
 // PETUGAS LAPANGAN
-import LoginPetugas from "./PetugasLapangan/Pages/Pages/LoginPetugas";
-import RegistrasiPetugas from "./PetugasLapangan/Pages/Pages/RegistrasiPetugas";
+import LoginPetugas from "./Petugas/Pages/LoginPetugas";
+import RegistrasiPetugas from "./Petugas/Pages/RegistrasiPetugas";
+import MainPetugas from "./Petugas/Pages/MainPetugas";
+import ProfilePetugas from "./Petugas/Pages/ProfilePetugas";
 
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
@@ -59,7 +61,7 @@ const App = () => {
         <MenuBars />
         <Switch>
           {/* --------- POSKO --------- */}
-          <Route path="/" exact component={SignInPosko} />
+          <Route path="/" exact component={LoginPetugas} />
           <Route path="/posko/login" exact component={SignInPosko} />
           <Route path="/posko/registrasi" exact component={RegistrasiPosko} />
           <Route path="/posko/dashboard" exact component={MainPosko} />
@@ -122,6 +124,8 @@ const App = () => {
             exact
             component={RegistrasiPetugas}
           />
+          <Route path="/petugas/dashboard" exact component={MainPetugas} />
+          <Route path="/petugas/profile" exact component={ProfilePetugas} />
           {/* COMPONEN COBA-COBA */}
           {/* <Route path="/map" exact component={Map} /> */}
           <Route path="/error" exact component={Error} />

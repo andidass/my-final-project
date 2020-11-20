@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Alert from "../../../layout/Alert";
-
-import { setAlert } from "../../../actions/alert";
-import { register } from "../../../actions/auth";
+import { login } from "../../actions/authPetugas";
+import Alert from "../../layout/Alert";
 
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
+  FormControlLabel,
+  Checkbox,
   Link as Linkes,
   Grid,
   Typography,
@@ -40,34 +40,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
+const LoginPetugas = ({ login, isAuthenticated }) => {
   const classes = useStyles();
-  const [formRegister, setFormRegister] = useState({
-    name: "",
-    position: "",
+
+  const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
-    password2: "",
   });
+
+  const { email, password } = formLogin;
+
+  const onChange = (e) =>
+    setFormLogin({ ...formLogin, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (password !== password2) {
-      setAlert("Password harus sama", "error");
-    } else {
-      register({ name, email, password, position });
-    }
+    login(email, password);
   };
-
-  const onChange = (e) =>
-    setFormRegister({ ...formRegister, [e.target.name]: e.target.value });
 
   // Redirect jika login success
   if (isAuthenticated) {
     return <Redirect to="/petugas/dashboard" />;
   }
-
-  const { name, position, email, password, password2 } = formRegister;
 
   return (
     <Container component="main" maxWidth="xs" className="full-height">
@@ -77,7 +71,7 @@ function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registrasi Petugas Lapangan
+          Sign in
         </Typography>
         <form className={classes.form} noValidate onSubmit={(e) => onSubmit(e)}>
           <TextField
@@ -85,39 +79,9 @@ function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
             margin="normal"
             required
             fullWidth
-            id="name"
-            label="Nama Lengkap"
-            name="name"
-            value={name}
-            onChange={(e) => onChange(e)}
-            type="text"
-            autoComplete="namappengguna"
-            autoFocus
-          />
-
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="position"
-            label="Jabatan"
-            name="position"
-            type="text"
-            autoComplete="position"
-            value={position}
-            onChange={(e) => onChange(e)}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
             id="email"
-            label="Alamat Email"
+            label="Email Address"
             name="email"
-            type="email"
             autoComplete="email"
             value={email}
             onChange={(e) => onChange(e)}
@@ -129,42 +93,38 @@ function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
             required
             fullWidth
             name="password"
-            label="Kata Sandi"
+            label="Password"
             type="password"
             id="password"
             value={password}
             onChange={(e) => onChange(e)}
             autoComplete="current-password"
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password2"
-            label="Ulangi Kata Sandi"
-            type="password"
-            id="password2"
-            value={password2}
-            onChange={(e) => onChange(e)}
-            autoComplete="current-password"
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Ingatkan saya"
           />
           <Alert />
-
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onSubmit={(e) => onSubmit(e)}
           >
-            Daftar
+            Sign In
           </Button>
           <Grid container>
+            <Grid item xs>
+              <Link to="#">
+                <Linkes variant="body2">{"Lupa Kata Sandi"}</Linkes>
+              </Link>
+            </Grid>
             <Grid item>
-              <Link to="./login">
-                <Linkes variant="body2">{"Sudah memiliki akun? login"}</Linkes>
+              <Link to="./registrasi">
+                <Linkes variant="body2">
+                  {"Belum memiliki akun? Registrasi"}
+                </Linkes>
               </Link>
             </Grid>
           </Grid>
@@ -172,11 +132,10 @@ function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
       </div>
     </Container>
   );
-}
+};
 
-RegistrasiPetugas.propTypes = {
-  setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired,
+LoginPetugas.propTypes = {
+  login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 
@@ -184,6 +143,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { setAlert, register })(
-  RegistrasiPetugas
-);
+export default connect(mapStateToProps, { login })(LoginPetugas);

@@ -116,16 +116,16 @@ router.get("/:petugas_id", async (req, res) => {
   }
 });
 
-// @route   Delete posko/profile
-// #desc    delete user and profile
+// @route   Delete petugas/profile
+// #desc    delete petugas and profile petugas
 // @access  Private
 
 router.delete("/", auth, async (req, res) => {
   try {
     // remove profile
-    await Profile.findOneAndDelete({ user: req.user.id });
+    await ProfilePetugas.findOneAndDelete({ petugas: req.user.id });
     // remove user
-    await UserPosko.findOneAndDelete({ _id: req.user.id });
+    await Petugas.findOneAndDelete({ _id: req.user.id });
 
     res.json({ msg: "user deleted" });
   } catch (err) {

@@ -58,6 +58,7 @@ const MainPosko = ({
 MainPosko.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   getDataFasilitasPosko: PropTypes.func.isRequired,
+  getPengungsi: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
