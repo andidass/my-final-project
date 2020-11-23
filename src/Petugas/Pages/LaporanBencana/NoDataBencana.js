@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { withRouter, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createProfile } from "../../../actions/profilePetugas";
+import { createDataBencana } from "../../../actions/dataBencana";
 import Alert from "../../../layout/Alert";
-import Spinner from "../../../Components/Spinner";
 
 import {
   Grid,
@@ -15,60 +14,51 @@ import {
   Button,
 } from "@material-ui/core";
 
-import SaveIcon from "@material-ui/icons/Save";
-
-const FormProfile = ({
-  //   porfilePetugas: { profilePosko, loading },
-  createProfile,
-  history,
-  auth: { user },
-}) => {
+const DataBencana = ({ createDataBencana, auth: { user }, history }) => {
   // posko
-  const [profileData, setProfileData] = useState({
-    name: user.name,
-    position: user.position,
-    nohp: "",
-    jobdesc: "",
-    dusun: "",
-    desa: "",
-    kabupaten: "",
-    regdesc: "",
+  const [data, setData] = useState({
+    rumahrb: "",
+    rumahrs: "",
+    rumahrr: "",
+    fasum: "",
+    faskes: "",
+    faspen: "",
+    peribadatan: "",
+    terdampak: "",
+    luka: "",
+    md: "",
   });
 
   const {
-    name,
-    position,
-    nohp,
-    jobdesc,
-    dusun,
-    desa,
-    kabupaten,
-    regdesc,
-  } = profileData;
+    rumahrb,
+    rumahrs,
+    rumahrr,
+    fasum,
+    faskes,
+    faspen,
+    peribadatan,
+    terdampak,
+    luka,
+    md,
+  } = data;
 
-  const onChange = (e) =>
-    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+  const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(profileData, history);
-    console.log("klik");
+    createDataBencana(data, history, true);
   };
 
-  //   if (porfilePetugas !== null) {
-  //     return <Redirect to="/posko/data-posko/edit-profile" />;
-  //   }
-
   return (
-    <div className="full-height">
+    <div>
       <Typography component="div">
         <Box
           fontSize={18}
           fontWeight="fontWeightBold"
-          textAlign="center"
           marginTop={3}
+          textAlign="center"
         >
-          Posko Bencana
+          Laporan Bencana
         </Box>
       </Typography>
       <Paper variant="outlined" className="body-posko-bencana">
@@ -77,22 +67,22 @@ const FormProfile = ({
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
               <Typography component="div">
-                <Box fontSize={17}>Data Posko</Box>
+                <Box fontSize={17}>Data Fasilitas</Box>
               </Typography>
               <TextField
-                name="name"
-                label="Nama Petugas"
+                name="rumahrb"
+                label="Rumah Rusak Berat"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={name}
+                value={rumahrb}
               />
               <TextField
-                name="position"
-                label="Jabatan Petugas"
+                name="rumahrs"
+                label="Rumah Rusak Sedang"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -100,23 +90,85 @@ const FormProfile = ({
                 fullWidth
                 multiline
                 onChange={(e) => onChange(e)}
-                value={position}
+                value={rumahrs}
               />
 
               <TextField
-                name="nohp"
-                label="No HP Petugas"
+                name="rumahrr"
+                label="Rumah Rusak Ringan"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={nohp}
+                value={rumahrr}
               />
               <TextField
-                name="jobdesc"
-                label="Deskripsi Tugas"
+                name="fasum"
+                label="Fasilitas Umum"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={fasum}
+              />
+              <TextField
+                name="faskes"
+                label="Fasilitas Kesehatan"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={faskes}
+              />
+              <TextField
+                name="faspen"
+                label="Fasilitas Pendidikan"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={faspen}
+              />
+              <TextField
+                name="peribadatan"
+                label="Tempat Ibadah"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={peribadatan}
+              />
+            </Grid>
+
+            <Grid xs={12} sm={6} item>
+              {/* <DataPosko /> */}
+              <Typography component="div">
+                <Box fontSize={17}>Data Korban Jiwa</Box>
+              </Typography>
+              <TextField
+                name="terdampak"
+                label="Korban Terdampak"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={terdampak}
+              />
+              <TextField
+                name="luka"
+                label="Korban Luka"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -124,9 +176,20 @@ const FormProfile = ({
                 fullWidth
                 multiline
                 onChange={(e) => onChange(e)}
-                value={jobdesc}
+                value={luka}
               />
 
+              <TextField
+                name="md"
+                label="Korban Meninggal Dunia"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={md}
+              />
               <Button
                 variant="contained"
                 size="small"
@@ -144,59 +207,7 @@ const FormProfile = ({
                 Simpan
               </Button>
             </Grid>
-            <Grid xs={12} sm={6} item>
-              {/* <DataPosko /> */}
-              <Typography component="div">
-                <Box fontSize={17}>Lingkup Wilayah Tugas</Box>
-              </Typography>
-              <TextField
-                name="dusun"
-                label="Dusun"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={dusun}
-              />
-              <TextField
-                name="desa"
-                label="Desa"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                multiline
-                onChange={(e) => onChange(e)}
-                value={desa}
-              />
-
-              <TextField
-                name="kabupaten"
-                label="Kabupaten"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={kabupaten}
-              />
-              <TextField
-                name="regdesc"
-                label="Deskripsi Wilayah"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                multiline
-                onChange={(e) => onChange(e)}
-                value={regdesc}
-              />
-            </Grid>
+            <Alert />
           </Grid>
         </form>
       </Paper>
@@ -204,17 +215,15 @@ const FormProfile = ({
   );
 };
 
-FormProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
-  //   porfilePetugas: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+DataBencana.propTypes = {
+  user: PropTypes.object.isRequired,
+  createDataBencana: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  //   porfilePetugas: state.porfilePetugas,
 });
 
-export default connect(mapStateToProps, { createProfile })(
-  withRouter(FormProfile)
+export default connect(mapStateToProps, { createDataBencana })(
+  withRouter(DataBencana)
 );

@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 
 import MenuPetugas from "../Components/MenuPetugas";
 import { getCurrentProfile } from "../../actions/profilePetugas";
+import { getCurrentDataBencana } from "../../actions/dataBencana";
+import { loadUser } from "../../actions/authPetugas";
 import Alert from "../../layout/Alert";
 
 import PropTypes from "prop-types";
@@ -11,18 +13,21 @@ import { connect } from "react-redux";
 import Spinner from "../../Components/Spinner";
 import { Typography, Box, Button } from "@material-ui/core";
 
-const MainPetugas = ({ auth: { user }, getCurrentProfile }) => {
+const MainPetugas = ({
+  auth: { user },
+  loadUser,
+  getCurrentProfile,
+  getCurrentDataBencana,
+}) => {
   useEffect(() => {
+    loadUser();
     getCurrentProfile();
-  });
-  const Click = (e) => {
-    e.preventDefault();
-    console.log(user.session);
-    if (user.session) {
-      return <Redirect to="/error" />;
-      // console.log("salah");
-    }
-  };
+    getCurrentDataBencana();
+  }, []);
+
+  // if (user.session === null) {
+  //   return <Redirect to="/error" />;
+  // }
   return (
     <div className="full-height">
       <Alert />
@@ -37,7 +42,6 @@ const MainPetugas = ({ auth: { user }, getCurrentProfile }) => {
           welcome {user && user.name}
         </Box>
       </Typography>
-      <Button onClick={Click}>Show state</Button>
       <MenuPetugas />
     </div>
   );
@@ -46,10 +50,16 @@ const MainPetugas = ({ auth: { user }, getCurrentProfile }) => {
 MainPetugas.propTypes = {
   auth: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
+  getCurrentDataBencana: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(MainPetugas);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  getCurrentDataBencana,
+  loadUser,
+})(MainPetugas);

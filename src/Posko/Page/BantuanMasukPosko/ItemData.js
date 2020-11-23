@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Typography, Box, Button, TextField } from "@material-ui/core";
 
 const jenisBantuan = [
@@ -30,6 +30,7 @@ function ItemData(props) {
     namaBarang: "",
     satuan: "",
     banyaknya: "",
+    nilainya: "",
     jenisBantuan: "Utama",
   });
 
@@ -56,7 +57,7 @@ function ItemData(props) {
   };
 
   return (
-    <form>
+    <Fragment>
       <Typography component="div">
         <Box fontSize={17}>Item Data</Box>
       </Typography>
@@ -114,6 +115,17 @@ function ItemData(props) {
           value={data.banyaknya}
           onChange={changeHandler}
         />
+        <TextField
+          id="nilainya"
+          label="Nilai Barang"
+          style={{ margin: 8 }}
+          fullWidth
+          margin="normal"
+          variant="outlined"
+          size="small"
+          value={data.nilainya}
+          onChange={changeHandler}
+        />
         <Button
           variant="contained"
           onClick={submitHandler}
@@ -124,7 +136,7 @@ function ItemData(props) {
           Tambah
         </Button>
       </div>
-    </form>
+    </Fragment>
   );
 }
 export default ItemData;

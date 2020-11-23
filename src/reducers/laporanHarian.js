@@ -1,13 +1,13 @@
 import {
-  GET_BANTUAN_MASUK,
-  BANTUAN_MASUK_ERROR,
-  CLEAR_BANTUAN_MASUK,
-  UPDATE_BANTUAN_MASUK,
+  GET_LAPORAN_HARIAN,
+  UPDATE_LAPORAN_HARIAN,
+  LAPORAN_HARIAN_ERROR,
+  CLEAR_LAPORAN_HARIAN,
 } from "../actions/types";
 
 const initialState = {
-  dataBantuanMasuk: null,
-  semuaDataBantuanMasuk: [],
+  laporanHarian: null,
+  allLaporanHarian: [],
   loading: true,
   error: {},
 };
@@ -16,24 +16,25 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_BANTUAN_MASUK:
-    case UPDATE_BANTUAN_MASUK:
+    case GET_LAPORAN_HARIAN:
+    case UPDATE_LAPORAN_HARIAN:
       return {
         ...state,
-        dataBantuanMasuk: payload,
+        laporanHarian: payload,
         loading: false,
         error: {},
       };
-    case BANTUAN_MASUK_ERROR:
+
+    case LAPORAN_HARIAN_ERROR:
       return {
         ...state,
         error: payload,
         loading: false,
       };
-    case CLEAR_BANTUAN_MASUK:
+    case CLEAR_LAPORAN_HARIAN:
       return {
         ...state,
-        dataBantuanMasuk: null,
+        laporanHarian: null,
         loading: false,
       };
     default:

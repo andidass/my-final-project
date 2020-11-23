@@ -1,34 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Box, Typography, TextField } from "@material-ui/core";
 
 function InitData(props) {
-  // initial data bantuan masuk
-  // var date = new Date().toLocaleDateString();
-  // const [id] = useState(_uniqueId("bpbd-ntb-"));
-  // const [dataInit, setDataInit] = useState({
-  //   kodeTransaksi: id,
-  //   tanggalTransaksi: date,
-  //   namaDonatur: "",
-  //   sumberDana: "",
-  //   alamatDonatur: "",
-  // });
-
-  // function changeHandler(event) {
-  //   const { id, value } = event.target;
-  //   setDataInit((prevData) => {
-  //     return {
-  //       ...prevData,
-  //       [id]: value,
-  //     };
-  //   });
-  // }
-
   function changeHandler(event) {
     props.changeHandlerInit(event); //memanggil fungsi pada BantuanMasukPosko.js
   }
 
   return (
-    <form>
+    <Fragment>
       <Typography component="div">
         <Box fontSize={17}>Data Transaksi</Box>
       </Typography>
@@ -103,7 +82,7 @@ function InitData(props) {
           onChange={changeHandler}
         />
       </div>
-    </form>
+    </Fragment>
   );
 }
 

@@ -1,6 +1,10 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { GET_FASILITAS_POSKO, FASILITAS_POSKO_ERROR } from "./types";
+import {
+  GET_FASILITAS_POSKO,
+  FASILITAS_POSKO_ERROR,
+  UPDATE_FASILITAS_POSKO,
+} from "./types";
 
 // get data fasilitas posko
 export const getDataFasilitasPosko = () => async (dispatch) => {
@@ -39,7 +43,7 @@ export const createFasilitasPosko = (
     );
 
     dispatch({
-      type: GET_FASILITAS_POSKO,
+      type: UPDATE_FASILITAS_POSKO,
       payload: res.data,
     });
 

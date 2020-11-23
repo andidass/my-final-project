@@ -34,8 +34,12 @@ router.post(
   [
     auth,
     [
-      check("nohp", "No Hp Harus diisi").not().isEmpty(),
+      check("nohp", "No Hp Harus diisi").isNumeric(),
       check("jobdesc", "Job Deskripsi harus diisi").not().isEmpty(),
+      check("dusun", "Dusun harus diisi").not().isEmpty(),
+      check("desa", "Desa harus diisi").not().isEmpty(),
+      check("kabupaten", "Kabupaten harus diisi").not().isEmpty(),
+      check("regdesc", "Deskripsi wilayah harus diisi").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -44,13 +48,17 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { nohp, jobdesc } = req.body;
+    const { nohp, jobdesc, dusun, desa, kabupaten, regdesc } = req.body;
 
     // build profile obj
     const profileFields = {};
     profileFields.petugas = req.user.id;
     if (nohp) profileFields.nohp = nohp;
     if (jobdesc) profileFields.jobdesc = jobdesc;
+    if (dusun) profileFields.dusun = dusun;
+    if (desa) profileFields.desa = desa;
+    if (kabupaten) profileFields.kabupaten = kabupaten;
+    if (regdesc) profileFields.regdesc = regdesc;
 
     try {
       let profile = await ProfilePetugas.findOne({ petugas: req.user.id });
