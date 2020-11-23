@@ -83,34 +83,34 @@ export const createBantuanMasuk = (dataInit) => async (dispatch) => {
 // };
 
 // put data bantuan masuk
-// export const insertBantuanMasuk = (allData, history) => async (dispatch) => {
-//   try {
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     };
+export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
-//     const res = await axios.put(
-//       "/posko/bantuan-masuk/input-bantuan-masuk",
-//       allData,
-//       config
-//     );
+    const res = await axios.put(
+      "/posko/bantuan-masuk/input-bantuan-masuk",
+      dataInit,
+      config
+    );
 
-//     dispatch({
-//       type: UPDATE_BANTUAN_MASUK,
-//       payload: res.data,
-//     });
-//     dispatch(setAlert("Data bantuan masuk berhasil ditambahkan", "success"));
-//   } catch (err) {
-//     const errors = err.response.data.errors;
+    dispatch({
+      type: UPDATE_BANTUAN_MASUK,
+      payload: res.data,
+    });
+    dispatch(setAlert("Data bantuan masuk berhasil ditambahkan", "success"));
+  } catch (err) {
+    const errors = err.response.data.errors;
 
-//     if (errors) {
-//       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
-//     }
-//     dispatch({
-//       type: BANTUAN_MASUK_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status },
-//     });
-//   }
-// };
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
+    }
+    dispatch({
+      type: BANTUAN_MASUK_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

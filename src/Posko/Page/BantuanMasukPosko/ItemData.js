@@ -52,6 +52,7 @@ function ItemData(props) {
       satuan: "",
       banyaknya: "",
       jenisBantuan: "Utama",
+      nilainya: "",
     });
     event.preventDefault();
   };

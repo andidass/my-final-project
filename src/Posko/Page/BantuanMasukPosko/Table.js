@@ -37,6 +37,7 @@ export default function SimpleTable(props) {
               <TableCell>Nama Barang</TableCell>
               <TableCell align="right">Satuan</TableCell>
               <TableCell align="right">Banyaknya</TableCell>
+              <TableCell align="right">Nilainya</TableCell>
               <TableCell align="right">Jenis Bantuan</TableCell>
             </TableRow>
           </TableHead>
@@ -48,6 +49,7 @@ export default function SimpleTable(props) {
                 </TableCell>
                 <TableCell align="right">{item.satuan}</TableCell>
                 <TableCell align="right">{item.banyaknya}</TableCell>
+                <TableCell align="right">{item.nilainya}</TableCell>
                 <TableCell align="right">{item.jenisBantuan}</TableCell>
                 <TableCell align="right">
                   <Button

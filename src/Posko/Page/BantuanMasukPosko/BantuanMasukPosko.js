@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  getBantuanMasuk,
   createBantuanMasuk,
+  insertBantuanMasuk,
 } from "../../../actions/bantuanMasuk";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
@@ -16,11 +16,12 @@ import InitData from "./InitData";
 
 import "./BantuanMasukPosko.css";
 
-const BantuanMasukPosko = ({ getBantuanMasuk, createBantuanMasuk }) => {
-  useEffect(() => {
-    getBantuanMasuk();
-  }, [getBantuanMasuk]);
-
+const BantuanMasukPosko = ({
+  createBantuanMasuk,
+  insertBantuanMasuk,
+  auth,
+  bantuanMasuk,
+}) => {
   const [id] = useState(_uniqueId("bpbd-ntb-"));
   const [rows, setRows] = useState([]); // data item
   const [dataInit, setDataInit] = useState({
@@ -71,7 +72,8 @@ const BantuanMasukPosko = ({ getBantuanMasuk, createBantuanMasuk }) => {
     e.preventDefault();
     console.log("submit");
     setDataInit({ ...dataInit, dataItemBantuan: rows });
-    createBantuanMasuk(dataInit);
+    insertBantuanMasuk(dataInit);
+    // createBantuanMasuk(dataInit);
     // setDataInit({
     //   kodeTransaksi: id,
     //   // tanggalTransaksi: date,
@@ -129,10 +131,10 @@ const BantuanMasukPosko = ({ getBantuanMasuk, createBantuanMasuk }) => {
   );
 };
 BantuanMasukPosko.propTypes = {
-  getBantuanMasuk: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   bantuanMasuk: PropTypes.object.isRequired,
   createBantuanMasuk: PropTypes.object.isRequired,
+  insertBantuanMasuk: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -141,6 +143,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getBantuanMasuk,
   createBantuanMasuk,
+  insertBantuanMasuk,
 })(BantuanMasukPosko);

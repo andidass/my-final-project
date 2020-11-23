@@ -5,6 +5,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import { getDataFasilitasPosko } from "../../actions/fasilitasPosko";
 import { getPengungsi } from "../../actions/pengungsi";
 import { getPermintaanBantuan } from "../../actions/permintaanBantuan";
+import { getBantuanMasuk } from "../../actions/bantuanMasuk";
 import Alert from "../../layout/Alert";
 
 import PropTypes from "prop-types";
@@ -18,6 +19,7 @@ const MainPosko = ({
   getPengungsi,
   getDataFasilitasPosko,
   getPermintaanBantuan,
+  getBantuanMasuk,
   auth: { user },
   profile: { profile, loading },
 }) => {
@@ -31,6 +33,7 @@ const MainPosko = ({
       getDataFasilitasPosko();
       getPengungsi();
       getPermintaanBantuan();
+      getBantuanMasuk();
     }, 500);
   }, [getCurrentProfile, getDataFasilitasPosko]);
 
@@ -59,6 +62,7 @@ MainPosko.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   getDataFasilitasPosko: PropTypes.func.isRequired,
   getPengungsi: PropTypes.func.isRequired,
+  getBantuanMasuk: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -73,4 +77,5 @@ export default connect(mapStateToProps, {
   getDataFasilitasPosko,
   getPengungsi,
   getPermintaanBantuan,
+  getBantuanMasuk,
 })(MainPosko);
