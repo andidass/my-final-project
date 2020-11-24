@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createDataBencana } from "../../../actions/dataBencana";
 import Alert from "../../../layout/Alert";
-
+import SaveIcon from "@material-ui/icons/Save";
 import {
   Grid,
   Paper,
@@ -69,6 +69,7 @@ const DataBencana = ({
       luka: loading || !dataBencana.luka ? "0" : dataBencana.luka,
       md: loading || !dataBencana.md ? "0" : dataBencana.md,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -219,6 +220,7 @@ const DataBencana = ({
             variant="contained"
             color="primary"
             size="small"
+            startIcon={<SaveIcon />}
             style={{ margin: 8, maxWidth: 500 }}
           >
             Simpan

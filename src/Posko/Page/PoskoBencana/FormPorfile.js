@@ -33,6 +33,8 @@ const FormProfile = ({
     kabPosko: "",
     namaPetugas: "",
     jabatan: "",
+    lat: "",
+    lng: "",
   });
 
   const {
@@ -44,6 +46,8 @@ const FormProfile = ({
     kabPosko,
     namaPetugas,
     jabatan,
+    lat,
+    lng,
   } = profileData;
 
   const onChange = (e) =>
@@ -62,7 +66,7 @@ const FormProfile = ({
   return loading ? (
     <Spinner />
   ) : (
-    <div className="full-height">
+    <div className="isi">
       <Typography component="div">
         <Box
           fontSize={18}
@@ -74,8 +78,8 @@ const FormProfile = ({
         </Box>
       </Typography>
       <Paper variant="outlined" className="body-posko-bencana">
-        <Grid container>
-          <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
+        <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
+          <Grid container>
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
               <Typography component="div">
@@ -88,6 +92,7 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={namaPosko}
@@ -99,6 +104,7 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 multiline
                 onChange={(e) => onChange(e)}
@@ -112,6 +118,7 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={dusunPosko}
@@ -123,6 +130,7 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={desaPosko}
@@ -134,6 +142,7 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={kecPosko}
@@ -145,9 +154,32 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={kabPosko}
+              />
+              <TextField
+                name="lat"
+                label="Latitude"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={lat}
+              />
+              <TextField
+                name="lng"
+                label="Longitude"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={lng}
               />
             </Grid>
             <Grid xs={12} sm={6} item>
@@ -162,6 +194,7 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={namaPetugas}
@@ -173,35 +206,26 @@ const FormProfile = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={jabatan}
               />
               <Alert />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 8, maxWidth: 500 }}
-                startIcon={<SaveIcon />}
-              >
-                Simpan Profile
-              </Button>
-              {/* <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                size="small"
-                startIcon={<AddIcon />}
-              >
-                Tambahkan
-              </Button> */}
             </Grid>
-          </form>
-        </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              size="small"
+              style={{ margin: 8, maxWidth: 500 }}
+              startIcon={<SaveIcon />}
+            >
+              Simpan Profile
+            </Button>
+          </Grid>
+        </form>
       </Paper>
     </div>
   );

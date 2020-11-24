@@ -51,37 +51,6 @@ export const createBantuanMasuk = (dataInit) => async (dispatch) => {
   }
 };
 
-// create data bantuan-masuk
-// export const createBantuanMasuk = (user, history) => async (dispatch) => {
-//   try {
-//     const config = {
-//       header: {
-//         "Content-Type": "application/json",
-//       },
-//     };
-
-//     const res = await axios.post("posko/bantuan-masuk", config);
-
-//     dispatch({
-//       type: GET_BANTUAN_MASUK,
-//       payload: res.data,
-//     });
-
-//     dispatch(setAlert("Data bantuan masuk posko berhasil dibuat", "success"));
-//     history.push("/posko/data-bantuan-masuk");
-//   } catch (err) {
-//     const errors = err.response.data.errors;
-
-//     if (errors) {
-//       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
-//     }
-//     dispatch({
-//       type: BANTUAN_MASUK_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status },
-//     });
-//   }
-// };
-
 // put data bantuan masuk
 export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
   try {
@@ -114,3 +83,34 @@ export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
     });
   }
 };
+
+// create data bantuan-masuk
+// export const createBantuanMasuk = (user, history) => async (dispatch) => {
+//   try {
+//     const config = {
+//       header: {
+//         "Content-Type": "application/json",
+//       },
+//     };
+
+//     const res = await axios.post("posko/bantuan-masuk", config);
+
+//     dispatch({
+//       type: GET_BANTUAN_MASUK,
+//       payload: res.data,
+//     });
+
+//     dispatch(setAlert("Data bantuan masuk posko berhasil dibuat", "success"));
+//     history.push("/posko/data-bantuan-masuk");
+//   } catch (err) {
+//     const errors = err.response.data.errors;
+
+//     if (errors) {
+//       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
+//     }
+//     dispatch({
+//       type: BANTUAN_MASUK_ERROR,
+//       payload: { msg: err.response.statusText, status: err.response.status },
+//     });
+//   }
+// };

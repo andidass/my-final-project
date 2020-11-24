@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Typography, Box, Avatar } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import "./footer.css";
 
 function Footer() {

@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  getBantuanMasuk,
-  insertBantuanMasuk,
-} from "../../../actions/bantuanMasuk";
-import Alert from "../../../layout/Alert";
+import { getBantuanMasuk } from "../../../actions/bantuanMasuk";
+// import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,7 +24,7 @@ const useStyles = makeStyles({
 
 const DataBantuanMasuk = ({
   getBantuanMasuk,
-  bantuanMasuk: { bantuanMasuk },
+  bantuanMasuk: { bantuanMasuk, loading },
 }) => {
   const classes = useStyles();
   useEffect(() => {
@@ -38,7 +35,9 @@ const DataBantuanMasuk = ({
     e.preventDefault();
     console.log(bantuanMasuk);
   }
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <form>
       <Typography component="div">
         <Box
@@ -100,7 +99,6 @@ DataBantuanMasuk.propTypes = {
   getBantuanMasuk: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   bantuanMasuk: PropTypes.object.isRequired,
-  getBantuanMasuk: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   getBantuanMasuk: state.bantuanMasuk,

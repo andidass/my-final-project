@@ -55,6 +55,8 @@ router.post(
       kabPosko,
       namaPetugas,
       jabatan,
+      lat,
+      lng,
     } = req.body;
 
     // build profile obj
@@ -68,6 +70,10 @@ router.post(
     profilePoskoFields.petugas = {};
     if (namaPetugas) profilePoskoFields.petugas.namaPetugas = namaPetugas;
     if (jabatan) profilePoskoFields.petugas.jabatan = jabatan;
+
+    profilePoskoFields.location = {};
+    if (lat) profilePoskoFields.location.lat = lat;
+    if (lng) profilePoskoFields.location.lng = lng;
 
     try {
       let profilePosko = await ProfilePosko.findOne({ user: req.user.id });

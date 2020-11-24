@@ -7,7 +7,6 @@ import {
   AppBar,
   Toolbar,
   Grid,
-  InputBase,
   IconButton,
   Badge,
   makeStyles,

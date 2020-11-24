@@ -19,6 +19,7 @@ function InitData(props) {
           margin="normal"
           variant="outlined"
           size="small"
+          required
           value={props.dataInit.kodeTransaksi}
           onChange={changeHandler}
         />
@@ -34,6 +35,7 @@ function InitData(props) {
           }}
           margin="normal"
           size="small"
+          required
           value={props.dataInit.tanggalTransaksi}
           onChange={changeHandler}
         />
@@ -53,6 +55,7 @@ function InitData(props) {
           margin="normal"
           variant="outlined"
           size="small"
+          required
           value={props.dataInit.namaDonatur}
           onChange={changeHandler}
         />
@@ -65,6 +68,7 @@ function InitData(props) {
           margin="normal"
           variant="outlined"
           size="small"
+          required
           value={props.dataInit.sumberDana}
           onChange={changeHandler}
         />
@@ -78,6 +82,7 @@ function InitData(props) {
           margin="normal"
           variant="outlined"
           size="small"
+          required
           value={props.dataInit.alamatDonatur}
           onChange={changeHandler}
         />

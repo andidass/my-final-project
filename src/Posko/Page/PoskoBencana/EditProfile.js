@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createProfile, getCurrentProfile } from "../../../actions/profile";
+import { createProfile } from "../../../actions/profile";
 import Alert from "../../../layout/Alert";
 
 import {
@@ -17,7 +17,6 @@ import {
 const EditProfile = ({
   profile: { profile, loading },
   createProfile,
-  getCurrentProfile,
   history,
 }) => {
   // posko
@@ -28,6 +27,8 @@ const EditProfile = ({
     // desaPosko: "",
     kecPosko: "",
     kabPosko: "",
+    lat: "",
+    lng: "",
     namaPetugas: "",
     jabatan: "",
   });
@@ -39,12 +40,13 @@ const EditProfile = ({
     // desaPosko,
     kecPosko,
     kabPosko,
+    lat,
+    lng,
     namaPetugas,
     jabatan,
   } = profileData;
 
   useEffect(() => {
-    getCurrentProfile();
     setProfileData({
       namaPosko: loading || !profile.namaPosko ? "" : profile.namaPosko,
       alamatPosko: loading || !profile.alamatPosko ? "" : profile.alamatPosko,
@@ -53,11 +55,14 @@ const EditProfile = ({
       //   dusunPosko: loading || !profile.dusunPosko ? "" : profile.dusunPosko,
       kecPosko: loading || !profile.kecPosko ? "" : profile.kecPosko,
       kabPosko: loading || !profile.kabPosko ? "" : profile.kabPosko,
+      lat: loading || !profile.location ? "" : profile.location.lat,
+      lng: loading || !profile.location ? "" : profile.location.lng,
       namaPetugas:
         loading || !profile.petugas ? "" : profile.petugas.namaPetugas,
       jabatan: loading || !profile.petugas ? "" : profile.petugas.jabatan,
     });
-  }, [getCurrentProfile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onChange = (e) =>
     setProfileData({ ...profileData, [e.target.name]: e.target.value });
@@ -68,7 +73,7 @@ const EditProfile = ({
   };
 
   return (
-    <div className="full-height">
+    <div className="isi">
       <Typography component="div">
         <Box
           fontSize={18}
@@ -160,6 +165,30 @@ const EditProfile = ({
                 value={kabPosko}
               />
 
+              <TextField
+                name="lat"
+                label="Latitude"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={lat}
+              />
+
+              <TextField
+                name="lng"
+                label="Longitude"
+                style={{ margin: 8, maxWidth: 500 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => onChange(e)}
+                value={lng}
+              />
+
               {/* <DataPetugas /> */}
               <Typography
                 component="div"
@@ -217,7 +246,6 @@ const EditProfile = ({
 
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
 
@@ -225,6 +253,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+export default connect(mapStateToProps, { createProfile })(
   withRouter(EditProfile)
 );

@@ -35,7 +35,8 @@ const MainPosko = ({
       getPermintaanBantuan();
       getBantuanMasuk();
     }, 500);
-  }, [getCurrentProfile, getDataFasilitasPosko]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return loading && profile === null ? (
     <Spinner />

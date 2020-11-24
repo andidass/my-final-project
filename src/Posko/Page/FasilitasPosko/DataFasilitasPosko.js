@@ -1,34 +1,29 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import {
-  getDataFasilitasPosko,
-  createFasilitasPosko,
-} from "../../../actions/fasilitasPosko";
+import { createFasilitasPosko } from "../../../actions/fasilitasPosko";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
-import {
-  Button,
-  Typography,
-  Box,
-  Paper,
-  Grid,
-  TextField,
-} from "@material-ui/core";
+import { Button, Typography, Box, Paper, TextField } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
-import { setAlert } from "../../../actions/alert";
 // import Count from "./Count";
 
 const DataFasilitasPosko = ({
-  getDataFasilitasPosko,
   createFasilitasPosko,
   fasilitasPosko: { fasilitasPosko, loading },
   history,
 }) => {
+  const [dataFasilitas, setDataFasilitas] = useState({
+    fkes: "",
+    fpend: "",
+    mck: "",
+    musholah: "",
+    dapurUmum: "",
+    tendaUmum: "",
+  });
   // get data fasilitas posko
   useEffect(() => {
-    // getDataFasilitasPosko();
     setDataFasilitas({
       fkes: loading || !fasilitasPosko.fkes ? "0" : fasilitasPosko.fkes,
       fpend: loading || !fasilitasPosko.fpend ? "0" : fasilitasPosko.fpend,
@@ -40,16 +35,9 @@ const DataFasilitasPosko = ({
       tendaUmum:
         loading || !fasilitasPosko.tendaUmum ? "0" : fasilitasPosko.tendaUmum,
     });
-  }, [getDataFasilitasPosko]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const [dataFasilitas, setDataFasilitas] = useState({
-    fkes: "",
-    fpend: "",
-    mck: "",
-    musholah: "",
-    dapurUmum: "",
-    tendaUmum: "",
-  });
   const changeHandler = (e) => {
     return setDataFasilitas({
       ...dataFasilitas,
@@ -159,7 +147,6 @@ const DataFasilitasPosko = ({
 };
 
 DataFasilitasPosko.propTypes = {
-  getDataFasilitasPosko: PropTypes.func.isRequired,
   createFasilitasPosko: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   fasilitasPosko: PropTypes.object.isRequired,
@@ -171,6 +158,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getDataFasilitasPosko,
   createFasilitasPosko,
 })(withRouter(DataFasilitasPosko));

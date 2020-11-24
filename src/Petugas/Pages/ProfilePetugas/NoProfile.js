@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createProfile } from "../../../actions/profilePetugas";
 import Alert from "../../../layout/Alert";
-import Spinner from "../../../Components/Spinner";
 
 import {
   Grid,
@@ -126,23 +125,6 @@ const FormProfile = ({
                 onChange={(e) => onChange(e)}
                 value={jobdesc}
               />
-
-              <Button
-                variant="contained"
-                size="small"
-                style={{ margin: 8, maxWidth: 500 }}
-              >
-                <Link to="/petugas/dashboard">Kembali</Link>
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 8, maxWidth: 500 }}
-              >
-                Simpan
-              </Button>
             </Grid>
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
@@ -198,6 +180,24 @@ const FormProfile = ({
               />
             </Grid>
           </Grid>
+          <Alert />
+          <Button
+            variant="contained"
+            size="small"
+            style={{ margin: 8, maxWidth: 500 }}
+          >
+            <Link to="/petugas/dashboard">Kembali</Link>
+          </Button>
+          <Button
+            startIcon={<SaveIcon />}
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="small"
+            style={{ margin: 8, maxWidth: 500 }}
+          >
+            Simpan
+          </Button>
         </form>
       </Paper>
     </div>

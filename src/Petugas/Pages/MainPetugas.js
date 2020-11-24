@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 import MenuPetugas from "../Components/MenuPetugas";
 import { getCurrentProfile } from "../../actions/profilePetugas";
@@ -11,10 +11,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import Spinner from "../../Components/Spinner";
-import { Typography, Box, Button } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 
 const MainPetugas = ({
-  auth: { user },
+  auth: { user, loading },
   loadUser,
   getCurrentProfile,
   getCurrentDataBencana,
@@ -23,12 +23,15 @@ const MainPetugas = ({
     loadUser();
     getCurrentProfile();
     getCurrentDataBencana();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // if (user.session === null) {
   //   return <Redirect to="/error" />;
   // }
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <div className="full-height">
       <Alert />
       <Typography component="div">

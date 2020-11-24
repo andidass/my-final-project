@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import spinner from "./spinner.gif";
-import CircularProgress from "@material-ui/core/CircularProgress";
+// import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default () => (
   <div style={{ display: "grid", height: `95vh` }}>

@@ -10,6 +10,8 @@ const DataPosko = () => {
     desaPosko: "",
     kecPosko: "",
     kabPosko: "",
+    lat: "",
+    lng: "",
   });
 
   const {
@@ -19,6 +21,8 @@ const DataPosko = () => {
     desaPosko,
     kecPosko,
     kabPosko,
+    lat,
+    lng,
   } = profileData;
 
   const onChange = (e) =>
@@ -96,6 +100,28 @@ const DataPosko = () => {
         fullWidth
         onChange={(e) => onChange(e)}
         value={kabPosko}
+      />
+      <TextField
+        name="lat"
+        label="Latitude"
+        style={{ margin: 8, maxWidth: 500 }}
+        margin="normal"
+        variant="outlined"
+        size="small"
+        fullWidth
+        onChange={(e) => onChange(e)}
+        value={lat}
+      />
+      <TextField
+        name="lng"
+        label="Longitude"
+        style={{ margin: 8, maxWidth: 500 }}
+        margin="normal"
+        variant="outlined"
+        size="small"
+        fullWidth
+        onChange={(e) => onChange(e)}
+        value={lng}
       />
     </form>
   );

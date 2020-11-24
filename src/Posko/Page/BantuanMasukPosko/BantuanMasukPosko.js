@@ -6,7 +6,7 @@ import {
   insertBantuanMasuk,
 } from "../../../actions/bantuanMasuk";
 import Alert from "../../../layout/Alert";
-import Spinner from "../../../Components/Spinner";
+// import Spinner from "../../../Components/Spinner";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import _uniqueId from "lodash/uniqueId";
@@ -74,14 +74,13 @@ const BantuanMasukPosko = ({
     setDataInit({ ...dataInit, dataItemBantuan: rows });
     insertBantuanMasuk(dataInit);
     // createBantuanMasuk(dataInit);
-    // setDataInit({
-    //   kodeTransaksi: id,
-    //   // tanggalTransaksi: date,
-    //   namaDonatur: "",
-    //   sumberDana: "",
-    //   alamatDonatur: "",
-    // });
-    // setRows([]);
+    setDataInit({
+      kodeTransaksi: id,
+      // tanggalTransaksi: date,
+      namaDonatur: "",
+      sumberDana: "",
+      alamatDonatur: "",
+    });
   }
 
   return (
@@ -133,8 +132,8 @@ const BantuanMasukPosko = ({
 BantuanMasukPosko.propTypes = {
   auth: PropTypes.object.isRequired,
   bantuanMasuk: PropTypes.object.isRequired,
-  createBantuanMasuk: PropTypes.object.isRequired,
-  insertBantuanMasuk: PropTypes.object.isRequired,
+  createBantuanMasuk: PropTypes.func.isRequired,
+  insertBantuanMasuk: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -34,8 +34,8 @@ export default function SimpleTable({ allPengungsi, deleteItem }) {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Nama</TableCell>
-              <TableCell align="right">Nama Pengungsi</TableCell>
+              <TableCell>Nama Pengungsi</TableCell>
+              <TableCell align="right">Jenis Kelamin</TableCell>
               <TableCell align="right">Umur</TableCell>
               <TableCell align="right">Keadaan</TableCell>
               <TableCell align="right">Alamat</TableCell>

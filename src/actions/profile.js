@@ -122,7 +122,7 @@ export const deletePetugas = (id) => async (dispatch) => {
 export const deleteAccount = (id) => async (dispatch) => {
   if (window.confirm("Apakan anda yakin?")) {
     try {
-      const res = await axios.delete("/posko/porfile");
+      // const res = await axios.delete("/posko/porfile");
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });

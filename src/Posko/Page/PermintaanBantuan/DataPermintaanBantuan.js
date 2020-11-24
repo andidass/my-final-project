@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -20,15 +20,38 @@ import {
   Button,
 } from "@material-ui/core";
 
+const jenisBantuan2 = [
+  {
+    value: "Utama",
+    label: "Utama",
+  },
+  {
+    value: "Sandang",
+    label: "Sandang",
+  },
+  {
+    value: "Pangan",
+    label: "Pangan",
+  },
+  {
+    value: "Papan",
+    label: "Papan",
+  },
+  {
+    value: "Uang",
+    label: "Uang",
+  },
+];
+
 const DataPermintaanBantuan = ({
-  permintaanBantuan: { permintaanBantuan, loading, error },
+  permintaanBantuan: { permintaanBantuan, loading },
   history,
   insertPermintaanBantuan,
   deletePermintaanBantuan,
   auth: { user },
 }) => {
   const [dataPermintaan, setDataPermintaan] = useState({
-    jenisBantuan: "",
+    jenisBantuan: "Utama",
     namaBarang: "",
     satuan: "",
     banyaknya: "",
@@ -39,25 +62,15 @@ const DataPermintaanBantuan = ({
   const changeHandler = (e) =>
     setDataPermintaan({ ...dataPermintaan, [e.target.id]: e.target.value });
 
-  function isEmpty(obj) {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) return false;
-    }
-    return true;
-  }
   function submitHandler(event) {
     event.preventDefault();
-    if (jenisBantuan && namaBarang && satuan && banyaknya !== null) {
-      insertPermintaanBantuan(dataPermintaan, history);
-      setDataPermintaan({
-        jenisBantuan: "",
-        namaBarang: "",
-        satuan: "",
-        banyaknya: "",
-      });
-    }
-    // !loading && // ! tinggal sinkronkan saja, buat ini berjalan setelah function inserPengungsi selesai dipanggil
-    // isEmpty(error) &&
+    insertPermintaanBantuan(dataPermintaan, history);
+    setDataPermintaan({
+      jenisBantuan: "Utama",
+      namaBarang: "",
+      satuan: "",
+      banyaknya: "",
+    });
   }
 
   // hapus data pada tabel
@@ -93,10 +106,20 @@ const DataPermintaanBantuan = ({
                   variant="outlined"
                   size="small"
                   required
+                  select
+                  SelectProps={{
+                    native: true,
+                  }}
                   fullWidth
                   onChange={(e) => changeHandler(e)}
                   value={jenisBantuan}
-                />
+                >
+                  {jenisBantuan2.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </TextField>
                 <TextField
                   id="namaBarang"
                   label="Nama Barang"
@@ -104,6 +127,7 @@ const DataPermintaanBantuan = ({
                   margin="normal"
                   variant="outlined"
                   size="small"
+                  required
                   fullWidth
                   onChange={(e) => changeHandler(e)}
                   value={namaBarang}
@@ -115,6 +139,7 @@ const DataPermintaanBantuan = ({
                   margin="normal"
                   variant="outlined"
                   size="small"
+                  required
                   fullWidth
                   onChange={(e) => changeHandler(e)}
                   value={satuan}
@@ -126,6 +151,7 @@ const DataPermintaanBantuan = ({
                   margin="normal"
                   variant="outlined"
                   size="small"
+                  required
                   fullWidth
                   onChange={(e) => changeHandler(e)}
                   value={banyaknya}
@@ -133,8 +159,8 @@ const DataPermintaanBantuan = ({
                 <Alert />
                 <Button
                   variant="contained"
+                  type="submit"
                   color="primary"
-                  href="#contained-buttons"
                   style={{ margin: 8 }}
                   // onClick={submitHandler}
                 >

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createPermintaanBantuan } from "../../../actions/permintaanBantuan";
@@ -17,10 +17,14 @@ const NoDataPermintaanBantuan = ({
     e.preventDefault();
   };
 
+  if (permintaanBantuan) {
+    return <Redirect to="/posko/permintaan-bantuan" />;
+  }
+
   return loading ? (
     <Spinner />
   ) : (
-    <div className="full-height isi">
+    <form className="full-height isi" onSubmit={(e) => onSubmit(e)}>
       <Typography variant="h5">
         <Box fontSize={12} textAlign="left" marginTop={3}>
           Data permintaan bantuan posko ini belum ada.
@@ -28,17 +32,15 @@ const NoDataPermintaanBantuan = ({
       </Typography>
       <Button
         variant="contained"
-        onClick={(e) => onSubmit(e)}
+        type="submit"
         color="primary"
         size="small"
         disableRipple
-        component={Link}
-        // to="/posko/permintaan-bantuan"
         startIcon={<PersonIcon />}
       >
         Buat Data Permintaan Bantuan
       </Button>
-    </div>
+    </form>
   );
 };
 

@@ -24,7 +24,7 @@ export const getPermintaanBantuan = () => async (dispatch) => {
 };
 
 // create data permintaan bantuan
-export const createPermintaanBantuan = (user, history) => async (dispatch) => {
+export const createPermintaanBantuan = (history) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -57,7 +57,7 @@ export const createPermintaanBantuan = (user, history) => async (dispatch) => {
 };
 
 // put data permintaan bantuan
-export const insertPermintaanBantuan = (dataPengungsi, history) => async (
+export const insertPermintaanBantuan = (dataPermintaan, history) => async (
   dispatch
 ) => {
   //! change it
@@ -70,7 +70,7 @@ export const insertPermintaanBantuan = (dataPengungsi, history) => async (
 
     const res = await axios.put(
       "/posko/permintaan-bantuan",
-      dataPengungsi,
+      dataPermintaan,
       config
     );
 

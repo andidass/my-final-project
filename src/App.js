@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 //route
-import PrivateRoute from "./routing/PrivateRoute";
+// import PrivateRoute from "./routing/PrivateRoute";
 
 // main component
 import Error from "./Error";

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createProfile } from "../../../actions/profilePetugas";
 import Alert from "../../../layout/Alert";
 
+import SaveIcon from "@material-ui/icons/Save";
 import {
   Grid,
   Paper,
@@ -17,7 +18,7 @@ import {
 const DataProfilePosko = ({
   createProfile,
   profile: { profile, loading },
-  auth: { user, isAuthenticated },
+  auth: { user },
   history,
 }) => {
   // posko
@@ -62,6 +63,7 @@ const DataProfilePosko = ({
       kabupaten: loading || !profile.kabupaten ? "" : profile.kabupaten,
       regdesc: loading || !profile.regdesc ? "" : profile.regdesc,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -192,6 +194,7 @@ const DataProfilePosko = ({
             variant="contained"
             color="primary"
             size="small"
+            startIcon={<SaveIcon />}
             style={{ margin: 8, maxWidth: 500 }}
           >
             Simpan
