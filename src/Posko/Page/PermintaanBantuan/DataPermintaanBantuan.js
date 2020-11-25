@@ -127,6 +127,7 @@ const DataPermintaanBantuan = ({
                   margin="normal"
                   variant="outlined"
                   size="small"
+                  autoFocus
                   required
                   fullWidth
                   onChange={(e) => changeHandler(e)}
@@ -147,10 +148,12 @@ const DataPermintaanBantuan = ({
                 <TextField
                   id="banyaknya"
                   label="Banyaknya"
+                  type="number"
                   style={{ margin: 8 }}
                   margin="normal"
                   variant="outlined"
                   size="small"
+                  placeholder="banyaknya barang isi dengan angka"
                   required
                   fullWidth
                   onChange={(e) => changeHandler(e)}

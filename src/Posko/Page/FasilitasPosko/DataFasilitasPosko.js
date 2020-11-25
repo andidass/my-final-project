@@ -73,6 +73,7 @@ const DataFasilitasPosko = ({
               margin="normal"
               variant="outlined"
               size="small"
+              type="number"
               onChange={(e) => changeHandler(e)}
               value={dataFasilitas.fkes}
             />
@@ -83,6 +84,7 @@ const DataFasilitasPosko = ({
               margin="normal"
               variant="outlined"
               size="small"
+              type="number"
               onChange={(e) => changeHandler(e)}
               value={dataFasilitas.fpend}
             />
@@ -93,6 +95,7 @@ const DataFasilitasPosko = ({
               margin="normal"
               variant="outlined"
               size="small"
+              type="number"
               onChange={(e) => changeHandler(e)}
               value={dataFasilitas.mck}
             />
@@ -103,6 +106,7 @@ const DataFasilitasPosko = ({
               margin="normal"
               variant="outlined"
               size="small"
+              type="number"
               onChange={(e) => changeHandler(e)}
               value={dataFasilitas.musholah}
             />
@@ -113,6 +117,7 @@ const DataFasilitasPosko = ({
               margin="normal"
               variant="outlined"
               size="small"
+              type="number"
               onChange={(e) => changeHandler(e)}
               value={dataFasilitas.dapurUmum}
             />
@@ -123,6 +128,7 @@ const DataFasilitasPosko = ({
               margin="normal"
               variant="outlined"
               size="small"
+              type="number"
               onChange={(e) => changeHandler(e)}
               value={dataFasilitas.tendaUmum}
             />

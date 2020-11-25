@@ -111,6 +111,7 @@ function ItemData(props) {
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
+          type="number"
           variant="outlined"
           size="small"
           value={data.banyaknya}
@@ -122,6 +123,7 @@ function ItemData(props) {
           style={{ margin: 8 }}
           fullWidth
           margin="normal"
+          type="number"
           variant="outlined"
           size="small"
           value={data.nilainya}

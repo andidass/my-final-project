@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const UserPosko = require("./UserPosko");
+const uniqid = require("uniqid");
 
 const BantuanMasukSchema = new mongoose.Schema({
   user: {
@@ -10,6 +11,7 @@ const BantuanMasukSchema = new mongoose.Schema({
     {
       kodeTransaksi: {
         type: String,
+        default: uniqid("bpbd-ntb-"),
       },
       tanggal: {
         type: Date,

@@ -116,6 +116,7 @@ const EditProfile = ({
                 size="small"
                 fullWidth
                 multiline
+                rows={2}
                 onChange={(e) => onChange(e)}
                 value={alamatPosko}
               />

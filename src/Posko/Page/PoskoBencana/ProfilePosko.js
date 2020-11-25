@@ -104,6 +104,7 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
                 size="small"
                 fullWidth
                 multiline
+                rows={2}
                 disabled
                 value={alamatPosko}
               />

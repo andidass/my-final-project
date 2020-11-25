@@ -159,6 +159,7 @@ const DataDataPengungsi = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                type="number"
                 required
                 fullWidth
                 onChange={(e) => changeHandler(e)}

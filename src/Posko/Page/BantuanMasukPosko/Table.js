@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Box, Typography } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 export default function SimpleTable(props) {
   const classes = useStyles();
   return (
-    <form>
+    <Fragment>
       <Typography component="div">
         <Box
           fontWeight="fontWeightBold"
@@ -66,6 +66,6 @@ export default function SimpleTable(props) {
           </TableBody>
         </Table>
       </TableContainer>
-    </form>
+    </Fragment>
   );
 }
