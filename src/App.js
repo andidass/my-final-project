@@ -40,6 +40,11 @@ import ProfilePetugas from "./Petugas/Pages/ProfilePetugas";
 import LaporanBencana from "./Petugas/Pages/LaporanBencana";
 import LaporanHarian from "./Petugas/Pages/LaporanHarian";
 
+// ADMIN
+import LoginAdmin from "./Admin/Pages/LoginAdmin";
+import MainAdmin from "./Admin/Pages/MainAdmin";
+import BantuanUtama from "./Admin/Pages/BantuanUtama";
+
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
 
@@ -63,7 +68,7 @@ const App = () => {
         <MenuBars />
         <Switch>
           {/* --------- POSKO --------- */}
-          <Route path="/" exact component={SignInPosko} />
+          {/* <Route path="/" exact component={SignInPosko} /> */}
           <Route path="/posko/login" exact component={SignInPosko} />
           <Route path="/posko/registrasi" exact component={RegistrasiPosko} />
           <Route path="/posko/dashboard" exact component={MainPosko} />
@@ -119,7 +124,7 @@ const App = () => {
             exact
             component={BantuanKeluarPosko}
           />
-          {/* ----------------------------------- */}
+          {/* ---------------- PETUGAS ------------------- */}
           <Route path="/petugas/login" exact component={LoginPetugas} />
           <Route
             path="/petugas/registrasi"
@@ -138,6 +143,12 @@ const App = () => {
             exact
             component={LaporanBencana}
           />
+
+          {/* ---------------- ADMIN ------------------- */}
+          <Route path="/" exact component={LoginAdmin} />
+          <Route path="/admin/login" exact component={LoginAdmin} />
+          <Route path="/admin/dashboard" exact component={MainAdmin} />
+          <Route path="/admin/bantuan-utama" exact component={BantuanUtama} />
           {/* COMPONEN COBA-COBA */}
           {/* <Route path="/map" exact component={Map} /> */}
           <Route path="/error" exact component={Error} />

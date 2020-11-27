@@ -32,6 +32,7 @@ app.use("/petugas/data-bencana", require("./Routes/api/dataBencana"));
 // admin
 app.use("/admin/login", require("./Routes/api/authAdmin"));
 app.use("/admin/registrasi", require("./Routes/api/admin"));
+app.use("/admin/bantuan-utama", require("./Routes/api/setBantuanUtama"));
 // app.use("/api/users", require("./Routes/api/user"));
 // app.use("/api/auth", require("./Routes/api/auth"));
 // app.use("/api/profile", require("./Routes/api/profile"));
