@@ -44,6 +44,9 @@ import LaporanHarian from "./Petugas/Pages/LaporanHarian";
 import LoginAdmin from "./Admin/Pages/LoginAdmin";
 import MainAdmin from "./Admin/Pages/MainAdmin";
 import BantuanUtama from "./Admin/Pages/BantuanUtama";
+import AdminPermintaanBantuan from "./Admin/Pages/PermintaanBantuan.js";
+import DataPosko from "./Admin/Pages/DataPosko";
+import AllDataPengungsi from "./Admin/Pages/DataPengungsi";
 
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
@@ -149,6 +152,17 @@ const App = () => {
           <Route path="/admin/login" exact component={LoginAdmin} />
           <Route path="/admin/dashboard" exact component={MainAdmin} />
           <Route path="/admin/bantuan-utama" exact component={BantuanUtama} />
+          <Route path="/admin/data-posko" exact component={DataPosko} />
+          <Route
+            path="/admin/data-pengungsi"
+            exact
+            component={AllDataPengungsi}
+          />
+          <Route
+            path="/admin/permintaan-bantuan"
+            exact
+            component={AdminPermintaanBantuan}
+          />
           {/* COMPONEN COBA-COBA */}
           {/* <Route path="/map" exact component={Map} /> */}
           <Route path="/error" exact component={Error} />

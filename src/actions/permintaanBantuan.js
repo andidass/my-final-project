@@ -23,6 +23,23 @@ export const getPermintaanBantuan = () => async (dispatch) => {
   }
 };
 
+//get data permintaan bantuan
+export const getAllPermintaanBantuan = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/posko/permintaan-bantuan");
+
+    dispatch({
+      type: GET_PERMINTAAN_BANTUAN,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PERMINTAAN_BANTUAN_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // create data permintaan bantuan
 export const createPermintaanBantuan = (history) => async (dispatch) => {
   try {

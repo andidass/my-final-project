@@ -19,6 +19,23 @@ export const getPengungsi = () => async (dispatch) => {
   }
 };
 
+//get all pengungsi data
+export const getAllDataPengungsi = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/posko/pengungsi");
+
+    dispatch({
+      type: GET_PENGUNGSI,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PENGUNGSI_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // create data pengungsi
 export const createPengungsi = (user, history) => async (dispatch) => {
   try {
