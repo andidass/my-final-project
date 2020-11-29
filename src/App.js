@@ -46,6 +46,7 @@ import MainAdmin from "./Admin/Pages/MainAdmin";
 import BantuanUtama from "./Admin/Pages/BantuanUtama";
 import AdminPermintaanBantuan from "./Admin/Pages/PermintaanBantuan.js";
 import DataPosko from "./Admin/Pages/DataPosko";
+import DataPoskoById from "./Admin/Pages/DataPosko/DataPoskoById";
 import AllDataPengungsi from "./Admin/Pages/DataPengungsi";
 
 import { loadUser } from "./actions/auth";
@@ -153,6 +154,7 @@ const App = () => {
           <Route path="/admin/dashboard" exact component={MainAdmin} />
           <Route path="/admin/bantuan-utama" exact component={BantuanUtama} />
           <Route path="/admin/data-posko" exact component={DataPosko} />
+          <Route path="/admin/data-posko/:id" exact component={DataPoskoById} />
           <Route
             path="/admin/data-pengungsi"
             exact

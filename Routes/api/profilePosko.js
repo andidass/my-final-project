@@ -118,10 +118,10 @@ router.get("/", async (req, res) => {
 // #desc    Get profile by user_id
 // @access  Public
 
-router.get("/user/:user_id", async (req, res) => {
+router.get("/user/:userId", async (req, res) => {
   try {
     let profilePosko = await ProfilePosko.findOne({
-      user: req.params.user_id,
+      user: req.params.userId,
     }).populate("user", ["name"]);
 
     if (!profilePosko)

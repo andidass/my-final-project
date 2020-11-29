@@ -1,6 +1,11 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { GET_PENGUNGSI, PENGUNGSI_ERROR, UPDATE_PENGUNGSI } from "./types";
+import {
+  GET_ALL_PENGUNGSI,
+  GET_PENGUNGSI,
+  PENGUNGSI_ERROR,
+  UPDATE_PENGUNGSI,
+} from "./types";
 
 //get pengungsi data
 export const getPengungsi = () => async (dispatch) => {
@@ -25,7 +30,7 @@ export const getAllDataPengungsi = () => async (dispatch) => {
     const res = await axios.get("/posko/pengungsi");
 
     dispatch({
-      type: GET_PENGUNGSI,
+      type: GET_ALL_PENGUNGSI,
       payload: res.data,
     });
   } catch (err) {

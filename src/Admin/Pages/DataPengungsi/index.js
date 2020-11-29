@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAllDataPengungsi } from "../../../actions/pengungsi";
+import DataPengungsi from "./DataPengungsi";
 
 const AllDataPengungsi = ({ getAllDataPengungsi }) => {
   useEffect(() => {
@@ -9,7 +10,7 @@ const AllDataPengungsi = ({ getAllDataPengungsi }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div>semua data Posko</div>;
+  return <DataPengungsi />;
 };
 
 AllDataPengungsi.propTypes = {

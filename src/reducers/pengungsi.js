@@ -3,6 +3,7 @@ import {
   PENGUNGSI_ERROR,
   CLEAR_PENGUNGSI,
   UPDATE_PENGUNGSI,
+  GET_ALL_PENGUNGSI,
 } from "../actions/types";
 
 const initialState = {
@@ -21,6 +22,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         pengungsi: payload,
+        loading: false,
+        error: {},
+      };
+    case GET_ALL_PENGUNGSI:
+      return {
+        ...state,
+        semuaPengungsi: payload,
         loading: false,
         error: {},
       };
