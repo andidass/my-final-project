@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -8,8 +9,10 @@ import {
 } from "../../../actions/setBantuanUtama";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import Tabel from "./Tabel";
+import "./DataBantuan.css";
 
 import {
   Grid,
@@ -22,10 +25,6 @@ import {
 
 const jenisBantuan2 = [
   {
-    value: "Utama",
-    label: "Utama",
-  },
-  {
     value: "Sandang",
     label: "Sandang",
   },
@@ -34,12 +33,16 @@ const jenisBantuan2 = [
     label: "Pangan",
   },
   {
-    value: "Papan",
-    label: "Papan",
+    value: "Pakaian",
+    label: "Pakaian",
   },
   {
-    value: "Uang",
-    label: "Uang",
+    value: "Sanitasi",
+    label: "Sanitasi",
+  },
+  {
+    value: "Peralatan",
+    label: "Peralatan",
   },
 ];
 
@@ -51,11 +54,12 @@ const DataBantuanUtama = ({
   deleteBantuanUtama,
 }) => {
   const [dataBantuanUtama, setDataBantuanUtama] = useState({
-    jenisBantuan: "Utama",
+    jenisBantuan: "Pangan",
     namaBarang: "",
   });
 
   const { jenisBantuan, namaBarang } = dataBantuanUtama;
+  const [show, setShow] = useState(false);
 
   const changeHandler = (e) =>
     setDataBantuanUtama({ ...dataBantuanUtama, [e.target.id]: e.target.value });
@@ -64,7 +68,7 @@ const DataBantuanUtama = ({
     event.preventDefault();
     insertBantuanUtama(dataBantuanUtama, history);
     setDataBantuanUtama({
-      jenisBantuan: "Utama",
+      jenisBantuan: "Pangan",
       namaBarang: "",
     });
   }
@@ -74,81 +78,101 @@ const DataBantuanUtama = ({
     deleteBantuanUtama(id);
   }
 
+  const handleClick = () => {
+    setShow(!show);
+  };
+
   return loading ? (
     <Spinner />
   ) : (
     <Fragment>
-      <div className="isi">
-        <Typography component="div">
-          <Box
-            fontSize={18}
-            fontWeight="fontWeightBold"
-            textAlign="center"
-            marginTop={3}
-          >
-            Set Bantuan Utama
-          </Box>
+      <div className="sub-heading">
+        <Typography variant="h5">Set Bantuan Utama</Typography>
+        <Typography variant="subtitle2">
+          Penentu Bantuan Utama Untuk Tiap Posko Pengungsian
         </Typography>
-        <Paper variant="outlined" className="body-posko-bencana">
-          <Grid container>
-            <Grid xs={1} sm={3} item />
-            <Grid xs={10} sm={6} item>
-              <form type="submit" onSubmit={submitHandler}>
-                <TextField
-                  id="jenisBantuan"
-                  label="Jenis Barang"
-                  style={{ margin: 8 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  required
-                  select
-                  SelectProps={{
-                    native: true,
-                  }}
-                  fullWidth
-                  onChange={(e) => changeHandler(e)}
-                  value={jenisBantuan}
-                >
-                  {jenisBantuan2.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  id="namaBarang"
-                  label="Nama Barang"
-                  style={{ margin: 8 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  autoFocus
-                  required
-                  fullWidth
-                  onChange={(e) => changeHandler(e)}
-                  value={namaBarang}
-                />
-                <Alert />
-                <Button
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                  style={{ margin: 8 }}
-                  // onClick={submitHandler}
-                >
-                  Tambah
-                </Button>
-              </form>
-            </Grid>
-            <Grid xs={1} sm={3} item />
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/admin/dashboard">Kembali</Link>
+      </Button>
+      <Paper variant="outlined" className="body-posko-bencana">
+        <Grid container justify="center">
+          <Grid item>
+            <form
+              type="submit"
+              onSubmit={submitHandler}
+              className="form-bantuan"
+            >
+              {show ? (
+                <Fragment>
+                  <div className="item-bantuan">
+                    <TextField
+                      id="jenisBantuan"
+                      label="Jenis Barang"
+                      style={{ minWidth: 300 }}
+                      margin="normal"
+                      variant="outlined"
+                      size="small"
+                      required
+                      select
+                      SelectProps={{
+                        native: true,
+                      }}
+                      onChange={(e) => changeHandler(e)}
+                      value={jenisBantuan}
+                    >
+                      {jenisBantuan2.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </TextField>
+                    <TextField
+                      id="namaBarang"
+                      label="Nama Barang"
+                      style={{ maxWidth: 300 }}
+                      margin="normal"
+                      variant="outlined"
+                      size="small"
+                      autoFocus
+                      required
+                      fullWidth
+                      onChange={(e) => changeHandler(e)}
+                      value={namaBarang}
+                    />
+                  </div>
+                  <Alert />
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    color="primary"
+                    style={{ margin: 8 }}
+                  >
+                    Tambah
+                  </Button>
+                </Fragment>
+              ) : null}
+              <Button
+                variant="contained"
+                color="secondary"
+                style={{ margin: 8 }}
+                onClick={handleClick}
+              >
+                {show ? "Sembunyikan" : "Tambah Data"}
+              </Button>
+            </form>
           </Grid>
-        </Paper>
+        </Grid>
         <Tabel
           dataBantuanUtama={bantuanUtama.dataBantuanUtama}
           deleteItem={deleteItem}
         />
-      </div>
+      </Paper>
     </Fragment>
   );
 };

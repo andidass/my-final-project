@@ -1,18 +1,21 @@
 import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import Tabel from "./Tabel";
+import "./DataPengungsi.css";
 
 import {
   Grid,
   Typography,
-  Box,
   TextField,
   Paper,
   Button,
+  Box,
 } from "@material-ui/core";
 
 const DataBantuanUtama = ({
@@ -39,55 +42,58 @@ const DataBantuanUtama = ({
     <Spinner />
   ) : (
     <Fragment>
-      <div className="isi">
-        <Typography component="div">
-          <Box
-            fontSize={18}
-            fontWeight="fontWeightBold"
-            textAlign="center"
-            marginTop={3}
-          >
-            Data Pengungsi
-          </Box>
+      <div className="sub-heading">
+        <Typography variant="h5">Data pengungsi</Typography>
+        <Typography variant="subtitle2">
+          Data semua pengungsi di seluruh posko pengungsian
         </Typography>
-        <Paper variant="outlined" className="body-posko-bencana">
-          <Grid container>
-            <Grid xs={1} sm={3} item />
-            <Grid xs={10} sm={6} item>
-              <form type="submit" onSubmit={submitHandler}>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/admin/dashboard">Kembali</Link>
+      </Button>
+
+      <Paper variant="outlined" className="body-posko-bencana">
+        <Grid container justify="center">
+          <Grid item>
+            <form type="submit" onSubmit={submitHandler}>
+              <div className="search">
                 <TextField
                   id="kataPencarian"
                   placeholder="cari pengungsi"
-                  style={{ margin: 8 }}
+                  style={{ minWidth: 300 }}
                   margin="normal"
                   variant="outlined"
                   size="small"
                   autoFocus
-                  required
                   onChange={(e) => changeHandler(e)}
                   value={kataPencarian}
                 />
-                <Button
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                  style={{ margin: 8 }}
-                  // onClick={submitHandler}
-                >
-                  Cari
-                </Button>
-                <Alert />
-              </form>
-            </Grid>
-            <Grid xs={1} sm={3} item />
+              </div>
+              <Alert />
+            </form>
           </Grid>
-          {semuaPengungsi.map((data) => (
-            <Tabel pengungsi={data.allPengungsi} user={data.user} />
-          ))}
-        </Paper>
-        {/* <Tabel pengungsi={pengungsi[0].allPengungsi} user={user} /> */}
-        {/* <Tabel pengungsi={pengungsi} /> */}
-      </div>
+        </Grid>
+        <Typography component="div">
+          <Box
+            fontWeight="fontWeightBold"
+            textAlign="center"
+            fontSize={18}
+            marginTop={5}
+          >
+            Daftar Pengungsi
+          </Box>
+        </Typography>
+        {semuaPengungsi.map((data) => (
+          <Tabel pengungsi={data.allPengungsi} user={data.user} />
+        ))}
+      </Paper>
+      {/* <Tabel pengungsi={pengungsi[0].allPengungsi} user={user} /> */}
+      {/* <Tabel pengungsi={pengungsi} /> */}
     </Fragment>
   );
 };

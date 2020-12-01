@@ -3,6 +3,7 @@ import {
   PERMINTAAN_BANTUAN_ERROR,
   CLEAR_PERMINTAAN_BANTUAN,
   UPDATE_PERMINTAAN_BANTUAN,
+  GET_ALL_PERMINTAAN_BANTUAN,
 } from "../actions/types";
 
 const initialState = {
@@ -21,6 +22,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         permintaanBantuan: payload,
+        loading: false,
+        error: {},
+      };
+    case GET_ALL_PERMINTAAN_BANTUAN:
+      return {
+        ...state,
+        semuaPermintaanBantuan: payload,
         loading: false,
         error: {},
       };

@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Box, Typography } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -8,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import "./DataPengungsi.css";
 
 const useStyles = makeStyles({
   table: {
@@ -18,17 +18,7 @@ const useStyles = makeStyles({
 export default function SimpleTable({ pengungsi, user }) {
   const classes = useStyles();
   return (
-    <form>
-      <Typography component="div">
-        <Box
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          fontSize={18}
-          marginTop={5}
-        >
-          Daftar Pengungsi
-        </Box>
-      </Typography>
+    <div className="table">
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -42,21 +32,22 @@ export default function SimpleTable({ pengungsi, user }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pengungsi.map((data, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {data.namaPengungsi}
-                </TableCell>
-                <TableCell align="right">{data.jenisKelamin}</TableCell>
-                <TableCell align="right">{data.umur}</TableCell>
-                <TableCell align="right">{data.keadaan}</TableCell>
-                <TableCell align="right">{data.alamat}</TableCell>
-                <TableCell align="right">{user.name}</TableCell>
-              </TableRow>
-            ))}
+            {pengungsi &&
+              pengungsi.map((data, index) => (
+                <TableRow key={index}>
+                  <TableCell component="th" scope="row">
+                    {data.namaPengungsi}
+                  </TableCell>
+                  <TableCell align="right">{data.jenisKelamin}</TableCell>
+                  <TableCell align="right">{data.umur}</TableCell>
+                  <TableCell align="right">{data.keadaan}</TableCell>
+                  <TableCell align="right">{data.alamat}</TableCell>
+                  <TableCell align="right">{user.name}</TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </form>
+    </div>
   );
 }

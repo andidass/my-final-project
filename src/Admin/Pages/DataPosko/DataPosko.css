@@ -1,0 +1,34 @@
+.link {
+    color: white;
+}
+
+.root {
+    min-width: 160px;
+    text-align: center;
+    border-radius: 100;
+    font-size: 15px;
+    margin: 5px;
+}
+
+.search{
+    text-align: center;
+}
+
+.grid-container{
+    padding-top: 2rem;
+}
+
+.card{
+    background-color: #3f51b5;
+    color: white;
+}
+.sub-heading{
+    padding: 2rem;
+    text-transform: uppercase;
+    color:#85929E;
+    background-color: #F4F6F6;
+}
+.data-posko{
+    text-transform: capitalize;
+    padding: 2rem;
+}

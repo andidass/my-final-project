@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Button, Box, Typography } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,29 +8,18 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
+import "./DataBantuan.css";
 
 export default function SimpleTable({ dataBantuanUtama, deleteItem }) {
-  const classes = useStyles();
   return (
-    <form>
+    <div className="tabel">
       <Typography component="div">
-        <Box
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          fontSize={18}
-          marginTop={5}
-        >
+        <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
           Daftar Data Bantuan Utama
         </Box>
       </Typography>
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Nama Barang</TableCell>
@@ -39,27 +27,28 @@ export default function SimpleTable({ dataBantuanUtama, deleteItem }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {dataBantuanUtama.map((data, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {data.namaBarang}
-                </TableCell>
-                <TableCell align="right">{data.jenisBantuan}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {dataBantuanUtama &&
+              dataBantuanUtama.map((data, index) => (
+                <TableRow key={index}>
+                  <TableCell component="th" scope="row">
+                    {data.namaBarang}
+                  </TableCell>
+                  <TableCell align="right">{data.jenisBantuan}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="small"
+                      onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </form>
+    </div>
   );
 }

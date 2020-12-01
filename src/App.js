@@ -9,7 +9,7 @@ import store from "./store";
 
 // main component
 import Error from "./Error";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 import MenuBars from "./Components/MenuBars";
 import Spinner from "./Components/Spinner";
 import SignInPosko from "./Posko/Page/Login";
@@ -171,7 +171,7 @@ const App = () => {
           <Route path="/spinner" exact component={Spinner} />
           <Route path="/snackbars" exact component={CustomizedSnackbars} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </Provider>
   );

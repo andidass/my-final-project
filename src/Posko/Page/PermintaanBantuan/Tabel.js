@@ -41,26 +41,27 @@ export default function SimpleTable({ allPengungsi, deleteItem }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allPengungsi.map((data, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {data.namaBarang}
-                </TableCell>
-                <TableCell align="right">{data.jenisBantuan}</TableCell>
-                <TableCell align="right">{data.satuan}</TableCell>
-                <TableCell align="right">{data.banyaknya}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {allPengungsi &&
+              allPengungsi.map((data, index) => (
+                <TableRow key={index}>
+                  <TableCell component="th" scope="row">
+                    {data.namaBarang}
+                  </TableCell>
+                  <TableCell align="right">{data.jenisBantuan}</TableCell>
+                  <TableCell align="right">{data.satuan}</TableCell>
+                  <TableCell align="right">{data.banyaknya}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="small"
+                      onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

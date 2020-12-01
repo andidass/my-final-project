@@ -4,6 +4,7 @@ import {
   GET_PERMINTAAN_BANTUAN,
   PERMINTAAN_BANTUAN_ERROR,
   UPDATE_PERMINTAAN_BANTUAN,
+  GET_ALL_PERMINTAAN_BANTUAN,
 } from "./types";
 
 //get data permintaan bantuan
@@ -29,7 +30,7 @@ export const getAllPermintaanBantuan = () => async (dispatch) => {
     const res = await axios.get("/posko/permintaan-bantuan");
 
     dispatch({
-      type: GET_PERMINTAAN_BANTUAN,
+      type: GET_ALL_PERMINTAAN_BANTUAN,
       payload: res.data,
     });
   } catch (err) {
