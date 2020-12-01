@@ -58,6 +58,7 @@ const DataPermintaanBantuan = ({
   });
 
   const { jenisBantuan, namaBarang, satuan, banyaknya } = dataPermintaan;
+  const [show, setShow] = useState(false);
 
   const changeHandler = (e) =>
     setDataPermintaan({ ...dataPermintaan, [e.target.id]: e.target.value });
@@ -78,6 +79,10 @@ const DataPermintaanBantuan = ({
     deletePermintaanBantuan(id);
   }
 
+  const handleClick = () => {
+    setShow(!show);
+  };
+
   return loading ? (
     <Spinner />
   ) : (
@@ -90,94 +95,119 @@ const DataPermintaanBantuan = ({
             textAlign="center"
             marginTop={3}
           >
-            Permintaan Bantuan {user.name}
+            Permintaan Bantuan {user && user.name}
           </Box>
         </Typography>
         <Paper variant="outlined" className="body-posko-bencana">
-          <Grid container>
-            <Grid xs={1} sm={3} item />
-            <Grid xs={10} sm={6} item>
-              <form type="submit" onSubmit={submitHandler}>
-                <TextField
-                  id="jenisBantuan"
-                  label="Jenis Barang"
-                  style={{ margin: 8 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  required
-                  select
-                  SelectProps={{
-                    native: true,
-                  }}
-                  fullWidth
-                  onChange={(e) => changeHandler(e)}
-                  value={jenisBantuan}
-                >
-                  {jenisBantuan2.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  id="namaBarang"
-                  label="Nama Barang"
-                  style={{ margin: 8 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  autoFocus
-                  required
-                  fullWidth
-                  onChange={(e) => changeHandler(e)}
-                  value={namaBarang}
-                />
-                <TextField
-                  id="satuan"
-                  label="Satuan"
-                  style={{ margin: 8 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  required
-                  fullWidth
-                  onChange={(e) => changeHandler(e)}
-                  value={satuan}
-                />
-                <TextField
-                  id="banyaknya"
-                  label="Banyaknya"
-                  type="number"
-                  style={{ margin: 8 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  placeholder="banyaknya barang isi dengan angka"
-                  required
-                  fullWidth
-                  onChange={(e) => changeHandler(e)}
-                  value={banyaknya}
-                />
-                <Alert />
+          <Grid container justify="center">
+            <Grid item>
+              <form
+                type="submit"
+                onSubmit={submitHandler}
+                className="form-bantuan"
+              >
+                {show ? (
+                  <Fragment>
+                    <div className="item-bantuan">
+                      <div>
+                        <TextField
+                          id="jenisBantuan"
+                          label="Jenis Barang"
+                          style={{ maxWidth: 300 }}
+                          margin="normal"
+                          variant="outlined"
+                          size="small"
+                          fullWidth
+                          required
+                          select
+                          SelectProps={{
+                            native: true,
+                          }}
+                          onChange={(e) => changeHandler(e)}
+                          value={jenisBantuan}
+                        >
+                          {jenisBantuan2.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </TextField>
+                      </div>
+                      <TextField
+                        id="namaBarang"
+                        label="Nama Barang"
+                        style={{ maxWidth: 300 }}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        size="small"
+                        autoFocus
+                        required
+                        onChange={(e) => changeHandler(e)}
+                        value={namaBarang}
+                      />
+                      <TextField
+                        id="satuan"
+                        label="Satuan"
+                        style={{ maxWidth: 300 }}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        size="small"
+                        required
+                        onChange={(e) => changeHandler(e)}
+                        value={satuan}
+                      />
+                      <TextField
+                        id="banyaknya"
+                        label="Banyaknya"
+                        type="number"
+                        style={{ maxWidth: 300 }}
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        size="small"
+                        placeholder="banyaknya barang isi dengan angka"
+                        required
+                        onChange={(e) => changeHandler(e)}
+                        value={banyaknya}
+                      />
+                    </div>
+                    <Alert />
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      color="primary"
+                      style={{ margin: 8 }}
+                    >
+                      Tambah
+                    </Button>
+                  </Fragment>
+                ) : null}
                 <Button
                   variant="contained"
-                  type="submit"
-                  color="primary"
+                  color="secondary"
                   style={{ margin: 8 }}
-                  // onClick={submitHandler}
+                  onClick={handleClick}
                 >
-                  Tambah
+                  {show ? "Sembunyikan" : "Tambah Data"}
                 </Button>
               </form>
             </Grid>
-            <Grid xs={1} sm={3} item />
           </Grid>
+          {permintaanBantuan.dataPermintaanBantuan.length > 0 ? (
+            <Tabel
+              allPengungsi={permintaanBantuan.dataPermintaanBantuan}
+              deleteItem={deleteItem}
+            />
+          ) : (
+            <div className="no-data">
+              <Typography variant="subtitle1">
+                Data Bantuan Utama Kosong
+              </Typography>
+            </div>
+          )}
         </Paper>
-        <Tabel
-          allPengungsi={permintaanBantuan.dataPermintaanBantuan}
-          deleteItem={deleteItem}
-        />
       </div>
     </Fragment>
   );

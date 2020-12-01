@@ -21,18 +21,10 @@ const MainAdmin = ({
   auth: { user, isAuthenticated, loading },
   loadUser,
   getBantuanUtama,
-  // profile: { profile, loading },
-  //   getCurrentProfile,
-  //   getPengungsi,
-  //   getDataFasilitasPosko,
-  //   getPermintaanBantuan,
-  //   getBantuanMasuk,
 }) => {
   useEffect(() => {
     loadUser();
     getBantuanUtama();
-    // getCurrentProfile();
-    // getCurrentDataBencana();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

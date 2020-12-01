@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 
 const DataPengungsi = ({ auth: { user }, pengungsi: { pengungsi } }) => {
   if (!user) {
-    return <Redirect to="/posko/login" />;
+    return <Redirect to="/posko/dashboard" />;
   }
   return pengungsi !== null ? <DataDataPengungsi /> : <NoPengungsi />;
 };

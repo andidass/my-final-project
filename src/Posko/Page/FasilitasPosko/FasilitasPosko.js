@@ -10,7 +10,7 @@ const FasilitasPosko = ({
   fasilitasPosko: { fasilitasPosko },
 }) => {
   if (!user) {
-    return <Redirect to="/posko/login" />;
+    return <Redirect to="/posko/dashboard" />;
   }
   return fasilitasPosko !== null ? (
     <DataFasilitasPosko />

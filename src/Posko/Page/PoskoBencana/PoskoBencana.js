@@ -8,7 +8,7 @@ import ProfilePosko from "./ProfilePosko";
 import "./PoskoBencana.css";
 const PoskoBencana = ({ auth: { user }, profile: { profile } }) => {
   if (!user) {
-    return <Redirect to="/posko/login" />;
+    return <Redirect to="/posko/dashboard" />;
   }
   return profile !== null ? <ProfilePosko /> : <NoProfile />;
 };

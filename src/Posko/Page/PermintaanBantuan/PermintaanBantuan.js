@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { getPermintaanBantuan } from "../../../actions/permintaanBantuan";
 import DataPermintaanBantuan from "./DataPermintaanBantuan";
 import NoDataPermintaanBantuan from "./NoDataPermintaanBantuan";
 import { Redirect } from "react-router-dom";
@@ -8,10 +9,14 @@ import { Redirect } from "react-router-dom";
 const PermintaanBantuan = ({
   auth: { user },
   permintaanBantuan: { permintaanBantuan },
+  getPermintaanBantuan,
 }) => {
-  if (!user) {
-    return <Redirect to="/posko/login" />;
-  }
+  useEffect(() => {
+    getPermintaanBantuan();
+  }, []);
+  // if (!user) {
+  //   return <Redirect to="/posko/dashboard" />;
+  // }
   return permintaanBantuan !== null ? (
     <DataPermintaanBantuan />
   ) : (
@@ -21,10 +26,13 @@ const PermintaanBantuan = ({
 
 PermintaanBantuan.propTypes = {
   permintaanBantuan: PropTypes.object.isRequired,
+  getPermintaanBantuan: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
   permintaanBantuan: state.permintaanBantuan,
 });
 
-export default connect(mapStateToProps)(PermintaanBantuan);
+export default connect(mapStateToProps, { getPermintaanBantuan })(
+  PermintaanBantuan
+);

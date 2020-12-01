@@ -2,22 +2,20 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import DataPosko from "./DataPosko";
+import DataPermintaan from "./DataPermintaan";
 
-import { getAllDataPosko } from "../../../actions/profile.js";
+import { getAllPermintaanBantuan } from "../../../actions/permintaanBantuan";
 import { Grid, Typography, Button, TextField } from "@material-ui/core";
 import Spinner from "../../../Components/Spinner";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-import "./DataPosko.css";
-
-const AllDataPosko = ({
-  getAllDataPosko,
-  profile: { profiles, loading },
-  auth: { user },
+const AdminPermintaanBantuan = ({
+  getAllPermintaanBantuan,
+  permintaanBantuan: { semuaPermintaanBantuan, loading },
+  auth,
 }) => {
   useEffect(() => {
-    getAllDataPosko();
+    getAllPermintaanBantuan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -25,20 +23,21 @@ const AllDataPosko = ({
   const onChange = (e) => setKataPencarian(e.target.value);
 
   // filter data with search feature
-  const filteredPosko = profiles.filter((profile) => {
+  const filteredData = semuaPermintaanBantuan.filter((data) => {
     return (
-      profile.namaPosko.toLowerCase().indexOf(kataPencarian.toLowerCase()) !==
-      -1
+      data.user.name.toLowerCase().indexOf(kataPencarian.toLowerCase()) !== -1
     );
   });
 
-  return profiles && loading ? (
+  return semuaPermintaanBantuan.length > 0 && loading ? (
     <Spinner />
   ) : (
     <Fragment>
       <div className="sub-heading">
-        <Typography variant="h5">Posko Pengungsian</Typography>
-        <Typography variant="subtitle2">Data semua posko</Typography>
+        <Typography variant="h5">Permintaan Posko Pengungsian</Typography>
+        <Typography variant="subtitle2">
+          Data Permintaan Bantuan Tiap Posko Pengungsian
+        </Typography>
       </div>
       <Button
         variant="outlined"
@@ -51,7 +50,7 @@ const AllDataPosko = ({
       <div className="search">
         <TextField
           id="kataPencarian"
-          placeholder="cari posko pengungsian"
+          placeholder="cari posko"
           style={{ minWidth: 300 }}
           margin="normal"
           variant="outlined"
@@ -62,31 +61,33 @@ const AllDataPosko = ({
         />
       </div>
       <Grid container justify="center" className="grid-container">
-        {profiles.length > 0 ? (
-          filteredPosko.map((profile) => (
-            <DataPosko
-              key={profile._id}
-              profile={profile}
+        {semuaPermintaanBantuan.length > 0 ? (
+          filteredData.map((dataPermintaan) => (
+            <DataPermintaan
+              key={dataPermintaan._id}
+              dataPermintaan={dataPermintaan}
               kataPencarian={kataPencarian}
             />
           ))
         ) : (
-          <h4>Tidak Ada Profile Ditemukan...</h4>
+          <h4>Tidak Ada Data Permintaan Bantuan Ditemukan...</h4>
         )}
       </Grid>
     </Fragment>
   );
 };
 
-const mapStateToProps = (state) => ({
-  profile: state.profile,
-  auth: state.auth,
-});
-
-AllDataPosko.propTypes = {
-  getAllDataPosko: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+AdminPermintaanBantuan.propTypes = {
+  getAllPermintaanBantuan: PropTypes.func.isRequired,
+  permintaanBantuan: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, { getAllDataPosko })(AllDataPosko);
+const mapStateToProps = (state) => ({
+  permintaanBantuan: state.permintaanBantuan,
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { getAllPermintaanBantuan })(
+  AdminPermintaanBantuan
+);

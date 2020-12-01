@@ -1,10 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
+import TabelItem from "./TabelItem";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
+import Table from "@material-ui/core/Table";
+import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import "./DataPengungsi.css";
@@ -15,7 +16,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleTable({ pengungsi, user }) {
+const SimpleTable = ({
+  pengungsi: { semuaPengungsi, loading },
+  kataPencarian,
+}) => {
   const classes = useStyles();
   return (
     <div className="table">
@@ -31,23 +35,21 @@ export default function SimpleTable({ pengungsi, user }) {
               <TableCell align="right">Posko</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {pengungsi &&
-              pengungsi.map((data, index) => (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row">
-                    {data.namaPengungsi}
-                  </TableCell>
-                  <TableCell align="right">{data.jenisKelamin}</TableCell>
-                  <TableCell align="right">{data.umur}</TableCell>
-                  <TableCell align="right">{data.keadaan}</TableCell>
-                  <TableCell align="right">{data.alamat}</TableCell>
-                  <TableCell align="right">{user.name}</TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
+          {semuaPengungsi.map((data) => (
+            <TabelItem
+              pengungsi={data.allPengungsi}
+              user={data.user}
+              kataPencarian={kataPencarian}
+            />
+          ))}
         </Table>
       </TableContainer>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  pengungsi: state.pengungsi,
+});
+
+export default connect(mapStateToProps)(SimpleTable);

@@ -3,18 +3,32 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAllDataPengungsi } from "../../../actions/pengungsi";
 import DataPengungsi from "./DataPengungsi";
+import Spinner from "../../../Components/Spinner";
 
-const AllDataPengungsi = ({ getAllDataPengungsi }) => {
+const AllDataPengungsi = ({
+  getAllDataPengungsi,
+  pengungsi: { pengungsi, loading },
+  auth,
+}) => {
   useEffect(() => {
     getAllDataPengungsi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <DataPengungsi />;
+  return pengungsi !== null || loading ? <Spinner /> : <DataPengungsi />;
 };
 
 AllDataPengungsi.propTypes = {
   getAllDataPengungsi: PropTypes.func.isRequired,
+  pengungsi: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
-export default connect(null, { getAllDataPengungsi })(AllDataPengungsi);
+const mapStateToProps = (state) => ({
+  pengungsi: state.pengungsi,
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { getAllDataPengungsi })(
+  AllDataPengungsi
+);

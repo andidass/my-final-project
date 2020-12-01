@@ -5,6 +5,7 @@ import {
   PERMINTAAN_BANTUAN_ERROR,
   UPDATE_PERMINTAAN_BANTUAN,
   GET_ALL_PERMINTAAN_BANTUAN,
+  CLEAR_PERMINTAAN_BANTUAN,
 } from "./types";
 
 //get data permintaan bantuan
@@ -26,11 +27,29 @@ export const getPermintaanBantuan = () => async (dispatch) => {
 
 //get data permintaan bantuan
 export const getAllPermintaanBantuan = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PERMINTAAN_BANTUAN });
   try {
     const res = await axios.get("/posko/permintaan-bantuan");
 
     dispatch({
       type: GET_ALL_PERMINTAAN_BANTUAN,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PERMINTAAN_BANTUAN_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// get data permintaan bantuan by userID
+export const getDataPermintaanById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/posko/permintaan-bantuan/${userId}`);
+
+    dispatch({
+      type: GET_PERMINTAAN_BANTUAN,
       payload: res.data,
     });
   } catch (err) {

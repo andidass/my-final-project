@@ -2,8 +2,6 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Alert from "../../../layout/Alert";
-import Spinner from "../../../Components/Spinner";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import Tabel from "./Tabel";
@@ -18,29 +16,11 @@ import {
   Box,
 } from "@material-ui/core";
 
-const DataBantuanUtama = ({
-  pengungsi: { semuaPengungsi, loading },
-  auth: { user },
-}) => {
-  const [cariData, setCariData] = useState({
-    kataPencarian: "",
-  });
+const DataBantuanUtama = ({ auth: { user } }) => {
+  const [kataPencarian, setKataPencarian] = useState("");
+  const onChange = (e) => setKataPencarian(e.target.value);
 
-  const { kataPencarian } = cariData;
-
-  const changeHandler = (e) =>
-    setCariData({ ...cariData, [e.target.id]: e.target.value });
-
-  function submitHandler(event) {
-    event.preventDefault();
-    setCariData({
-      kataPencarian: "",
-    });
-  }
-
-  return loading ? (
-    <Spinner />
-  ) : (
+  return (
     <Fragment>
       <div className="sub-heading">
         <Typography variant="h5">Data pengungsi</Typography>
@@ -60,22 +40,19 @@ const DataBantuanUtama = ({
       <Paper variant="outlined" className="body-posko-bencana">
         <Grid container justify="center">
           <Grid item>
-            <form type="submit" onSubmit={submitHandler}>
-              <div className="search">
-                <TextField
-                  id="kataPencarian"
-                  placeholder="cari pengungsi"
-                  style={{ minWidth: 300 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  autoFocus
-                  onChange={(e) => changeHandler(e)}
-                  value={kataPencarian}
-                />
-              </div>
-              <Alert />
-            </form>
+            <div className="search">
+              <TextField
+                id="kataPencarian"
+                placeholder="cari pengungsi"
+                style={{ minWidth: 300 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                autoFocus
+                onChange={(e) => onChange(e)}
+                value={kataPencarian}
+              />
+            </div>
           </Grid>
         </Grid>
         <Typography component="div">
@@ -88,23 +65,17 @@ const DataBantuanUtama = ({
             Daftar Pengungsi
           </Box>
         </Typography>
-        {semuaPengungsi.map((data) => (
-          <Tabel pengungsi={data.allPengungsi} user={data.user} />
-        ))}
+        <Tabel kataPencarian={kataPencarian} />
       </Paper>
-      {/* <Tabel pengungsi={pengungsi[0].allPengungsi} user={user} /> */}
-      {/* <Tabel pengungsi={pengungsi} /> */}
     </Fragment>
   );
 };
 
 DataBantuanUtama.propTypes = {
   auth: PropTypes.object.isRequired,
-  pengungsi: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  pengungsi: state.pengungsi,
 });
 
 export default connect(mapStateToProps)(DataBantuanUtama);

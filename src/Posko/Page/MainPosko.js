@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import MenuPosko from "../Components/MenuPosko";
 
+import { loadUser } from "../../actions/auth";
 import { getCurrentProfile } from "../../actions/profile";
 import { getDataFasilitasPosko } from "../../actions/fasilitasPosko";
 import { getPengungsi } from "../../actions/pengungsi";
@@ -15,30 +17,29 @@ import Spinner from "../../Components/Spinner";
 import { Typography, Box } from "@material-ui/core";
 
 const MainPosko = ({
+  loadUser,
   getCurrentProfile,
   getPengungsi,
   getDataFasilitasPosko,
   getPermintaanBantuan,
   getBantuanMasuk,
-  auth: { user },
+  auth: { user, isAuthenticated },
   profile: { profile, loading },
 }) => {
-  // setTimeout(() => {
-  //   getCurrentProfile();
-  // }, 1000);}
-
   useEffect(() => {
-    setTimeout(() => {
-      getCurrentProfile();
-      getDataFasilitasPosko();
-      getPengungsi();
-      getPermintaanBantuan();
-      getBantuanMasuk();
-    }, 500);
+    loadUser();
+    getCurrentProfile();
+    getDataFasilitasPosko();
+    getPengungsi();
+    getPermintaanBantuan();
+    getBantuanMasuk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return loading && profile === null ? (
+  if (!isAuthenticated) {
+    return <Redirect to="/posko/login" />;
+  }
+  return loading || user === null ? (
     <Spinner />
   ) : (
     <div className="full-height">
@@ -60,6 +61,7 @@ const MainPosko = ({
 };
 
 MainPosko.propTypes = {
+  loadUser: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   getDataFasilitasPosko: PropTypes.func.isRequired,
   getPengungsi: PropTypes.func.isRequired,
@@ -74,6 +76,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+  loadUser,
   getCurrentProfile,
   getDataFasilitasPosko,
   getPengungsi,

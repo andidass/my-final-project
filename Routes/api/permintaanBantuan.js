@@ -42,6 +42,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+// @route   Get posko/permintaan-bantuan/:user_id
+// #desc    Get data permintaan bantuan by user id
+// @access  Public
+
+router.get("/:userId", async (req, res) => {
+  try {
+    let permintaanBantuan = await PermintaanBantuan.findOne({
+      user: req.params.userId,
+    }).populate("user", ["name"]);
+    if (!permintaanBantuan) {
+      return res.status(400).json({ msg: "user tidak ditemukan" });
+    }
+    res.json(permintaanBantuan);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(400).json({ msg: "user tidak ditemukan" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route   POST posko/permintaan-bantuan
 // #desc    Create data permintaan bantuan
 // @access  Private

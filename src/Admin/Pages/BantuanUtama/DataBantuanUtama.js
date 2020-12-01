@@ -14,14 +14,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Tabel from "./Tabel";
 import "./DataBantuan.css";
 
-import {
-  Grid,
-  Typography,
-  Box,
-  TextField,
-  Paper,
-  Button,
-} from "@material-ui/core";
+import { Grid, Typography, TextField, Paper, Button } from "@material-ui/core";
 
 const jenisBantuan2 = [
   {
@@ -168,10 +161,18 @@ const DataBantuanUtama = ({
             </form>
           </Grid>
         </Grid>
-        <Tabel
-          dataBantuanUtama={bantuanUtama.dataBantuanUtama}
-          deleteItem={deleteItem}
-        />
+        {bantuanUtama.dataBantuanUtama.length > 0 ? (
+          <Tabel
+            dataBantuanUtama={bantuanUtama.dataBantuanUtama}
+            deleteItem={deleteItem}
+          />
+        ) : (
+          <div className="no-data">
+            <Typography variant="subtitle1">
+              Data Bantuan Utama Kosong
+            </Typography>
+          </div>
+        )}
       </Paper>
     </Fragment>
   );

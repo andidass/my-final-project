@@ -44,12 +44,13 @@ import LaporanHarian from "./Petugas/Pages/LaporanHarian";
 import LoginAdmin from "./Admin/Pages/LoginAdmin";
 import MainAdmin from "./Admin/Pages/MainAdmin";
 import BantuanUtama from "./Admin/Pages/BantuanUtama";
-import AdminPermintaanBantuan from "./Admin/Pages/PermintaanBantuan.js";
+import AdminPermintaanBantuan from "./Admin/Pages/PermintaanBantuan";
 import DataPosko from "./Admin/Pages/DataPosko";
 import DataPoskoById from "./Admin/Pages/DataPosko/DataPoskoById";
 import AllDataPengungsi from "./Admin/Pages/DataPengungsi";
+import PermintaanBantuanById from "./Admin/Pages/PermintaanBantuan/PermintaanBantuanById";
 
-import { loadUser } from "./actions/auth";
+// import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
 
 // test component
@@ -63,9 +64,9 @@ if (localStorage.token) {
 }
 
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+  // useEffect(() => {
+  //   store.dispatch(loadUser());
+  // }, []);
   return (
     <Provider store={store}>
       <Router>
@@ -155,6 +156,11 @@ const App = () => {
           <Route path="/admin/bantuan-utama" exact component={BantuanUtama} />
           <Route path="/admin/data-posko" exact component={DataPosko} />
           <Route path="/admin/data-posko/:id" exact component={DataPoskoById} />
+          <Route
+            path="/admin/permintaan-bantuan/:id"
+            exact
+            component={PermintaanBantuanById}
+          />
           <Route
             path="/admin/data-pengungsi"
             exact
