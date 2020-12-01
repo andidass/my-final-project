@@ -1,6 +1,7 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import {
+  CLEAR_PENGUNGSI,
   GET_ALL_PENGUNGSI,
   GET_PENGUNGSI,
   PENGUNGSI_ERROR,
@@ -26,11 +27,29 @@ export const getPengungsi = () => async (dispatch) => {
 
 //get all pengungsi data
 export const getAllDataPengungsi = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PENGUNGSI });
   try {
     const res = await axios.get("/posko/pengungsi");
 
     dispatch({
       type: GET_ALL_PENGUNGSI,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PENGUNGSI_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//get data pengungsi by userId / posko
+export const getDataPengungsiById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/posko/pengungsi/${userId}`);
+
+    dispatch({
+      type: GET_PENGUNGSI,
       payload: res.data,
     });
   } catch (err) {

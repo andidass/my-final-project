@@ -5,4 +5,6 @@
 
 .table{
     padding: 2vh;
+    text-transform: capitalize;
 }
+

@@ -52,13 +52,17 @@ router.get("/:userId", async (req, res) => {
       user: req.params.userId,
     }).populate("user", ["name"]);
     if (!permintaanBantuan) {
-      return res.status(400).json({ msg: "user tidak ditemukan" });
+      return res
+        .status(400)
+        .json({ msg: "data permintaan bantuan tidak ditemukan" });
     }
     res.json(permintaanBantuan);
   } catch (err) {
     console.error(err.message);
     if (err.kind === "ObjectId") {
-      return res.status(400).json({ msg: "user tidak ditemukan" });
+      return res
+        .status(400)
+        .json({ msg: "data permintaan bantuan tidak ditemukan" });
     }
     res.status(500).send("Server Error");
   }

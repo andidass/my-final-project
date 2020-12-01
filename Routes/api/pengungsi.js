@@ -38,6 +38,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+// @route   Get posko/pengungsi/:userId
+// #desc    Get all refugees
+// @access  Public
+
+router.get("/:userId", async (req, res) => {
+  try {
+    let pengungsi = await Pengungsi.findOne({
+      user: req.params.userId,
+    }).populate("user", ["name"]);
+    if (!pengungsi) {
+      return res.status(400).json({ msg: "data pengungsi tidak ditemukan" });
+    }
+    res.json(pengungsi);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(400).json({ msg: "data pengungsi tidak ditemukan" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route   POST posko/pengungsi
 // #desc    Create refugee
 // @access  Private
