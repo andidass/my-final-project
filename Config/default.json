@@ -1,5 +1,6 @@
 {
     // Global variabel
     "mongoURI": "mongodb://127.0.0.1:27017/sipendi",
-    "jwtSecret": "mytoken"
+    "jwtSecret": "mytoken",
+    "google-map-API-key":"AIzaSyCKZEfHCeuefpKow9-keKYD4vTRB41cV5U"
 }

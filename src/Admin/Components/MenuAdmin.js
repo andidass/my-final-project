@@ -10,6 +10,8 @@ import InputIcon from "@material-ui/icons/Input";
 import AccessibleIcon from "@material-ui/icons/Accessible";
 import HomeIcon from "@material-ui/icons/Home";
 import PanToolIcon from "@material-ui/icons/PanTool";
+import MapIcon from "@material-ui/icons/Map";
+import BrokenImageIcon from "@material-ui/icons/BrokenImage";
 
 // import "./MenuPosko.css";
 
@@ -149,6 +151,46 @@ function MenuAdmin() {
               <PanToolIcon />
               <Typography component="div">
                 <Box>Request Bantuan</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          xl={6}
+          sm={4}
+          lg={2}
+          component={Link}
+          to="/admin/map"
+          className="link"
+        >
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <MapIcon />
+              <Typography component="div">
+                <Box>Map</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          xl={6}
+          sm={4}
+          lg={2}
+          component={Link}
+          to="/admin/data-bencana"
+          className="link"
+        >
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <BrokenImageIcon />
+              <Typography component="div">
+                <Box>Data Bencana</Box>
               </Typography>
             </CardContent>
           </Card>

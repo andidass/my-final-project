@@ -3,11 +3,12 @@ import {
   UPDATE_FASILITAS_POSKO,
   FASILITAS_POSKO_ERROR,
   CLEAR_FASILITAS_POSKO,
+  GET_ALL_FASILITAS_POSKO,
 } from "../actions/types";
 
 const initialState = {
   fasilitasPosko: null,
-  semuaFasilitasPosko: [],
+  allFasilitasPosko: [],
   loading: true,
   error: {},
 };
@@ -21,6 +22,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fasilitasPosko: payload,
+        loading: false,
+        error: {},
+      };
+
+    case GET_ALL_FASILITAS_POSKO:
+      return {
+        ...state,
+        allFasilitasPosko: payload,
         loading: false,
         error: {},
       };

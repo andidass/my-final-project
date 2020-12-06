@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { getPermintaanBantuan } from "../../../actions/permintaanBantuan";
 import DataPermintaanBantuan from "./DataPermintaanBantuan";
 import NoDataPermintaanBantuan from "./NoDataPermintaanBantuan";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 const PermintaanBantuan = ({
   auth: { user },
@@ -13,6 +13,7 @@ const PermintaanBantuan = ({
 }) => {
   useEffect(() => {
     getPermintaanBantuan();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // if (!user) {
   //   return <Redirect to="/posko/dashboard" />;

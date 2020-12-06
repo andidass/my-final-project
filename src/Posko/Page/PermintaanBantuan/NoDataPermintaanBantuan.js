@@ -49,6 +49,7 @@ NoDataPermintaanBantuan.propTypes = {
   createPermintaanBantuan: PropTypes.func.isRequired,
   permintaanBantuan: PropTypes.object.isRequired,
 };
+
 const mapStateToProps = (state) => ({
   auth: state.auth,
   permintaanBantuan: state.permintaanBantuan,

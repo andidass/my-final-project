@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  insertPengungsi,
-  getPengungsi,
-  deletePengungsi,
-} from "../../../actions/pengungsi";
+import { insertPengungsi, deletePengungsi } from "../../../actions/pengungsi";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
 
@@ -77,7 +73,7 @@ const DataDataPengungsi = ({
     deletePengungsi(id);
   }
 
-  return loading ? (
+  return pengungsi && loading ? (
     <Spinner />
   ) : (
     <div className="isi">
@@ -187,19 +183,21 @@ const DataDataPengungsi = ({
                 Tambah
               </Button>
               <Button
-                variant="contained"
-                color="primary"
-                href="#contained-buttons"
+                variant="outlined"
+                color="secondary"
                 style={{ margin: 8 }}
               >
-                Kembali
+                <Link to="/posko/dashboard">Kembali</Link>
               </Button>
             </form>
           </Grid>
           <Grid xs={1} sm={3} item />
         </Grid>
       </Paper>
-      <Tabel allPengungsi={pengungsi.allPengungsi} deleteItem={deleteItem} />
+      <Tabel
+        allPengungsi={pengungsi && pengungsi.allPengungsi}
+        deleteItem={deleteItem}
+      />
     </div>
   );
 };
@@ -208,7 +206,6 @@ DataDataPengungsi.propTypes = {
   insertPengungsi: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   pengungsi: PropTypes.object.isRequired,
-  getPengungsi: PropTypes.func.isRequired,
   deletePengungsi: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
@@ -218,6 +215,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   insertPengungsi,
-  getPengungsi,
   deletePengungsi,
 })(withRouter(DataDataPengungsi));

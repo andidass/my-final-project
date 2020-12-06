@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { deletePetugas } from "../../../actions/profile";
 import TabelPetugas from "./TabelPetugas";
 import Alert from "../../../layout/Alert";
+import MapPosko from "../../../layout/Map";
+import Spinner from "../../../Components/Spinner";
 
 import {
   Grid,
@@ -59,8 +61,10 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
     deletePetugas(index);
   }
 
-  return (
-    <div>
+  return profile && loading ? (
+    <Spinner />
+  ) : (
+    <Fragment>
       <Typography component="div">
         <Box
           fontSize={18}
@@ -152,6 +156,10 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
                 disabled
                 value={lng}
               />
+              <MapPosko
+                location={{ lat: lat, lng: lng }}
+                namaPosko={namaPosko}
+              />
             </Grid>
             <Grid xs={10} sm={4} item>
               <Typography
@@ -220,7 +228,7 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
         </form>
         <TabelPetugas allPetugas={profile.allPetugas} onDelete={onDelete} />
       </Paper>
-    </div>
+    </Fragment>
   );
 };
 

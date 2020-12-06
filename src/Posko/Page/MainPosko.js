@@ -4,10 +4,6 @@ import MenuPosko from "../Components/MenuPosko";
 
 import { loadUser } from "../../actions/auth";
 import { getCurrentProfile } from "../../actions/profile";
-import { getDataFasilitasPosko } from "../../actions/fasilitasPosko";
-import { getPengungsi } from "../../actions/pengungsi";
-import { getPermintaanBantuan } from "../../actions/permintaanBantuan";
-import { getBantuanMasuk } from "../../actions/bantuanMasuk";
 import Alert from "../../layout/Alert";
 
 import PropTypes from "prop-types";
@@ -19,20 +15,12 @@ import { Typography, Box } from "@material-ui/core";
 const MainPosko = ({
   loadUser,
   getCurrentProfile,
-  getPengungsi,
-  getDataFasilitasPosko,
-  getPermintaanBantuan,
-  getBantuanMasuk,
   auth: { user, isAuthenticated },
   profile: { profile, loading },
 }) => {
   useEffect(() => {
     loadUser();
     getCurrentProfile();
-    getDataFasilitasPosko();
-    getPengungsi();
-    getPermintaanBantuan();
-    getBantuanMasuk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,9 +51,6 @@ const MainPosko = ({
 MainPosko.propTypes = {
   loadUser: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  getDataFasilitasPosko: PropTypes.func.isRequired,
-  getPengungsi: PropTypes.func.isRequired,
-  getBantuanMasuk: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -78,8 +63,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   loadUser,
   getCurrentProfile,
-  getDataFasilitasPosko,
-  getPengungsi,
-  getPermintaanBantuan,
-  getBantuanMasuk,
 })(MainPosko);

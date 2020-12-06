@@ -1,5 +1,6 @@
 import {
   GET_LAPORAN_BENCANA,
+  GET_ALL_LAPORAN_BENCANA,
   UPDATE_LAPORAN_BENCANA,
   LAPORAN_BENCANA_ERROR,
   CLEAR_LAPORAN_BENCANA,
@@ -21,6 +22,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         dataBencana: payload,
+        loading: false,
+        error: {},
+      };
+
+    case GET_ALL_LAPORAN_BENCANA:
+      return {
+        ...state,
+        allDataBencana: payload,
         loading: false,
         error: {},
       };

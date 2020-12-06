@@ -19,7 +19,7 @@ function InitData(props) {
           margin="normal"
           variant="outlined"
           size="small"
-          required
+          disabled
           value={props.dataInit.kodeTransaksi}
           onChange={changeHandler}
         />
@@ -35,7 +35,7 @@ function InitData(props) {
           }}
           margin="normal"
           size="small"
-          required
+          // required
           value={props.dataInit.tanggalTransaksi}
           onChange={changeHandler}
         />

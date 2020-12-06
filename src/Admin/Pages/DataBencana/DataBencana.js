@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { Grid, Box, Typography, Card, CardContent } from "@material-ui/core";
-import HomeIcon from "@material-ui/icons/Home";
-import "./DataPosko.css";
+import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";
+import "./style.css";
 
-const DataPosko = ({
-  profile: {
-    user: { _id, name },
+const DataBencana = ({
+  dataBencana: {
+    petugas: { _id, name },
   },
 }) => {
   return (
@@ -15,12 +15,12 @@ const DataPosko = ({
       item
       lg={2}
       component={Link}
-      to={`/admin/data-posko/${_id}`}
+      to={`/admin/data-bencana/${_id}`}
       className="link"
     >
       <Card className="root" variant="outlined">
         <CardContent className="card">
-          <HomeIcon />
+          <RecordVoiceOverIcon />
           <Typography component="div">
             <Box>{name}</Box>
           </Typography>
@@ -30,4 +30,4 @@ const DataPosko = ({
   );
 };
 
-export default DataPosko;
+export default DataBencana;

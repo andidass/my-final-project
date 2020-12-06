@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import DataPermintaan from "./DataPermintaan";
 
 import { getAllPermintaanBantuan } from "../../../actions/permintaanBantuan";
-import { Grid, Typography, Button, TextField } from "@material-ui/core";
+import DataPermintaan from "./DataPermintaan";
 import Spinner from "../../../Components/Spinner";
+import { Grid, Typography, Button, TextField } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import "./style.css";
 
 const AdminPermintaanBantuan = ({
   getAllPermintaanBantuan,
@@ -29,7 +30,7 @@ const AdminPermintaanBantuan = ({
     );
   });
 
-  return semuaPermintaanBantuan.length > 0 && loading ? (
+  return semuaPermintaanBantuan.length === 0 || loading ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -50,7 +51,7 @@ const AdminPermintaanBantuan = ({
       <div className="search">
         <TextField
           id="kataPencarian"
-          placeholder="cari posko"
+          placeholder="Cari Posko Pengungsian"
           style={{ minWidth: 300 }}
           margin="normal"
           variant="outlined"
@@ -60,7 +61,7 @@ const AdminPermintaanBantuan = ({
           value={kataPencarian}
         />
       </div>
-      <Grid container justify="center" className="grid-container">
+      <Grid container justify="center" className="grid-container text">
         {semuaPermintaanBantuan.length > 0 ? (
           filteredData.map((dataPermintaan) => (
             <DataPermintaan

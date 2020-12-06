@@ -116,14 +116,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route   Get posko/profile/user/:user_id
+// @route   Get posko/profile/:user_id
 // #desc    Get profile by user_id
 // @access  Public
 
-router.get("/posko/:posko_id", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
     let fasilitasPosko = await FasilitasPosko.findOne({
-      user: req.params.posko_id,
+      user: req.params.userId,
     }).populate("user", ["name"]);
 
     if (!fasilitasPosko)

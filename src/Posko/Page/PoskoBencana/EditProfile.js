@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createProfile } from "../../../actions/profile";
 import Alert from "../../../layout/Alert";
+import MapPosko from "../../../layout/Map";
 
 import {
   Grid,
@@ -72,56 +73,77 @@ const EditProfile = ({
     createProfile(profileData, history, true);
   };
 
-  return (
-    <div className="isi">
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          marginTop={3}
-          textAlign="center"
-        >
-          Posko Bencana
-        </Box>
-      </Typography>
-      <Paper variant="outlined" className="body-posko-bencana">
-        <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
-          <Grid container>
-            <Grid xs={1} sm={3} item />
-            <Grid xs={10} sm={6} item>
-              {/* <DataPosko /> */}
-              <Typography
-                component="div"
-                style={{ marginBottom: 10, textAlign: "center" }}
-              >
-                <Box fontSize={17}>Data Posko</Box>
-              </Typography>
-              <TextField
-                name="namaPosko"
-                label="Nama Posko"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={namaPosko}
-              />
-              <TextField
-                name="alamatPosko"
-                label="Alamat Posko"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                multiline
-                rows={2}
-                onChange={(e) => onChange(e)}
-                value={alamatPosko}
-              />
+  const setCurrentLocation = (e) => {
+    e.preventDefault();
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+    navigator.geolocation.getCurrentPosition(callback, error, options);
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    function callback(position) {
+      setProfileData({
+        ...profileData,
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    }
+  };
 
-              {/* <TextField
+  return (
+    <Fragment>
+      <div className="isi">
+        <Typography component="div">
+          <Box
+            fontSize={18}
+            fontWeight="fontWeightBold"
+            marginTop={3}
+            textAlign="center"
+          >
+            Posko Bencana
+          </Box>
+        </Typography>
+        <Paper variant="outlined" className="body-posko-bencana">
+          <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
+            <Grid container>
+              <Grid xs={1} sm={3} item />
+              <Grid xs={10} sm={6} item>
+                {/* <DataPosko /> */}
+                <Typography
+                  component="div"
+                  style={{ marginBottom: 10, textAlign: "center" }}
+                >
+                  <Box fontSize={17}>Data Posko</Box>
+                </Typography>
+                <TextField
+                  name="namaPosko"
+                  label="Nama Posko"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={namaPosko}
+                />
+                <TextField
+                  name="alamatPosko"
+                  label="Alamat Posko"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  multiline
+                  rows={2}
+                  onChange={(e) => onChange(e)}
+                  value={alamatPosko}
+                />
+
+                {/* <TextField
                 name="dusunPosko"
                 label="Dusun"
                 style={{ margin: 8, maxWidth: 500 }}
@@ -143,105 +165,125 @@ const EditProfile = ({
                 onChange={(e) => onChange(e)}
                 value={desaPosko}
               /> */}
-              <TextField
-                name="kecPosko"
-                label="Kecamatan"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={kecPosko}
-              />
-              <TextField
-                name="kabPosko"
-                label="Kabupaten"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={kabPosko}
-              />
+                <TextField
+                  name="kecPosko"
+                  label="Kecamatan"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={kecPosko}
+                />
+                <TextField
+                  name="kabPosko"
+                  label="Kabupaten"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={kabPosko}
+                />
 
-              <TextField
-                name="lat"
-                label="Latitude"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={lat}
-              />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  onClick={(e) => setCurrentLocation(e)}
+                >
+                  Set Lokasi Posko
+                </Button>
 
-              <TextField
-                name="lng"
-                label="Longitude"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={lng}
-              />
+                <TextField
+                  name="lat"
+                  label="Latitude"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={lat}
+                />
 
-              {/* <DataPetugas /> */}
-              <Typography
-                component="div"
-                style={{ marginTop: 20, marginBottom: 10, textAlign: "center" }}
-              >
-                <Box fontSize={17}>Data Petugas Posko</Box>
-              </Typography>
-              <TextField
-                name="namaPetugas"
-                label="Petugas Penanggung Jawab Posko"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={namaPetugas}
-              />
-              <TextField
-                name="jabatan"
-                label="Jabatan Petugas"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={jabatan}
-              />
-              <Alert />
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 8, maxWidth: 500 }}
-              >
-                Update Profile
-              </Button>
-              <Button
-                variant="contained"
-                size="small"
-                style={{ margin: 8, maxWidth: 500 }}
-              >
-                <Link to="/posko/data-posko">Kembali</Link>
-              </Button>
+                <TextField
+                  name="lng"
+                  label="Longitude"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={lng}
+                />
+
+                <MapPosko
+                  location={{ lat: lat, lng: lng }}
+                  namaPosko={namaPosko}
+                />
+
+                {/* <DataPetugas /> */}
+                <Typography
+                  component="div"
+                  style={{
+                    marginTop: 20,
+                    marginBottom: 10,
+                    textAlign: "center",
+                  }}
+                >
+                  <Box fontSize={17}>Data Petugas Posko</Box>
+                </Typography>
+                <TextField
+                  name="namaPetugas"
+                  label="Petugas Koord. Posko"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={namaPetugas}
+                />
+                <TextField
+                  name="jabatan"
+                  label="Jabatan Petugas"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={jabatan}
+                />
+                <Alert />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  style={{ margin: 8, maxWidth: 500 }}
+                >
+                  Update Profile
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  style={{ margin: 8, maxWidth: 500 }}
+                >
+                  <Link to="/posko/data-posko">Kembali</Link>
+                </Button>
+              </Grid>
+              <Grid xs={1} sm={3} item />
             </Grid>
-            <Grid xs={1} sm={3} item />
-          </Grid>
-        </form>
-      </Paper>
-    </div>
+          </form>
+        </Paper>
+      </div>
+    </Fragment>
   );
 };
 

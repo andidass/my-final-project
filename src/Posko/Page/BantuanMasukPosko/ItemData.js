@@ -43,7 +43,7 @@ function ItemData(props) {
     });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler2 = (event) => {
     // utk menyimpan state sementara pada state permanent.
     props.addItem(data); // memanggil fungsi pada BantuanMasukPosko.js
     setData({
@@ -70,6 +70,7 @@ function ItemData(props) {
           onChange={changeHandler}
           value={data.jenisBantuan}
           fullWidth
+          // required
           style={{ margin: 8 }}
           SelectProps={{
             native: true,
@@ -88,6 +89,7 @@ function ItemData(props) {
           label="Nama Barang"
           style={{ margin: 8 }}
           fullWidth
+          // required
           margin="normal"
           variant="outlined"
           size="small"
@@ -99,6 +101,7 @@ function ItemData(props) {
           label="Satuan"
           style={{ margin: 8 }}
           fullWidth
+          // required
           margin="normal"
           variant="outlined"
           size="small"
@@ -110,6 +113,7 @@ function ItemData(props) {
           label="Banyaknya"
           style={{ margin: 8 }}
           fullWidth
+          // required
           margin="normal"
           type="number"
           variant="outlined"
@@ -122,6 +126,7 @@ function ItemData(props) {
           label="Nilai Barang"
           style={{ margin: 8 }}
           fullWidth
+          // required
           margin="normal"
           type="number"
           variant="outlined"
@@ -131,7 +136,8 @@ function ItemData(props) {
         />
         <Button
           variant="contained"
-          onClick={submitHandler}
+          // type="submit"
+          onClick={submitHandler2}
           color="primary"
           fullWidth
           style={{ margin: 8 }}

@@ -32,3 +32,13 @@
     text-transform: capitalize;
     padding: 2rem;
 }
+
+.map{
+    width: 50%;
+    height: 50%;
+    position: "relative"
+}
+
+.title-data-posko{
+    padding-top: 2rem;
+}

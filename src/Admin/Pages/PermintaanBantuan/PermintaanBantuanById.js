@@ -22,10 +22,6 @@ const PermintaanBantuanById = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const b = (props) => (
-    <Typography style={{ fontWeight: "bold" }}>{props.children}</Typography>
-  );
-
   return permintaanBantuan === null || loading ? (
     <Spinner />
   ) : (

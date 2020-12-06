@@ -2,11 +2,12 @@ import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
 import TabelPetugas from "./TabelPetugas";
 import TabelPengungsi from "./TabelPengungsi";
 import { getDataPoskoById } from "../../../actions/profile.js";
 import { getDataPengungsiById } from "../../../actions/pengungsi";
+import { getDataFasilitasPoskoByUserId } from "../../../actions/fasilitasPosko";
+import MapPosko from "../../../layout/Map";
 import Spinner from "../../../Components/Spinner";
 import { Button, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -17,20 +18,23 @@ const AllDataPosko = ({
   match,
   getDataPoskoById,
   getDataPengungsiById,
-  profile: { profile, loading },
+  getDataFasilitasPoskoByUserId,
+  profile: { profile },
   pengungsi: { pengungsi },
+  fasilitasPosko: { fasilitasPosko, loading },
   auth,
 }) => {
   useEffect(() => {
     getDataPoskoById(match.params.id);
     getDataPengungsiById(match.params.id);
+    getDataFasilitasPoskoByUserId(match.params.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const b = (props) => (
     <Typography style={{ fontWeight: "bold" }}>{props.children}</Typography>
   );
-  return profile === null || pengungsi === null || loading ? (
+  return profile === null || loading ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -49,36 +53,86 @@ const AllDataPosko = ({
         <Link to="/admin/data-posko">Kembali</Link>
       </Button>
       <div className="data-posko">
-        <Typography variant="subtitle1">
-          <b>Alamat :</b> {profile && profile.alamatPosko}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Kecamatan :</b> {profile && profile.kecPosko}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Kabupaten :</b> {profile && profile.kabPosko}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Koordinator Posko :</b> {profile && profile.petugas.namaPetugas}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Jabatan :</b> {profile && profile.petugas.jabatan}
-        </Typography>
-        <Typography variant="subtitle1" align="center">
-          <b>Petugas / Relawan Posko</b>
+        {profile && (
+          <Fragment>
+            <Typography variant="subtitle1">
+              <b>Alamat :</b> {profile.alamatPosko}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Kecamatan :</b> {profile.kecPosko}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Kabupaten :</b> {profile.kabPosko}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Koordinator Posko :</b> {profile.petugas.namaPetugas}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Jabatan :</b> {profile.petugas.jabatan}
+            </Typography>
+          </Fragment>
+        )}
+        <Typography
+          variant="subtitle1"
+          align="center"
+          className="title-data-posko"
+        >
+          <b>Petugas / Relawan {profile && profile.namaPosko}</b>
         </Typography>
         <TabelPetugas allPetugas={profile && profile.allPetugas} />
-        <Typography variant="subtitle1" align="center">
-          <b>Pengungsi Posko</b>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          className="title-data-posko"
+        >
+          <b>Pengungsi {profile && profile.namaPosko}</b>
         </Typography>
         <TabelPengungsi
           allPengungsi={pengungsi && pengungsi.allPengungsi}
-          user={pengungsi.user}
+          user={pengungsi && pengungsi.user}
         />
-        <Typography variant="subtitle1">
-          <b>Lokasi</b>{" "}
-          {profile && profile.location.lat + " , " + profile.location.lng}
+        <Typography
+          variant="subtitle1"
+          align="center"
+          className="title-data-posko"
+        >
+          <b>Fasilitas {profile && profile.namaPosko}</b>
         </Typography>
+        {fasilitasPosko && (
+          <Fragment>
+            <Typography variant="subtitle1">
+              <b>Fasilitas Kesehatan :</b> {fasilitasPosko.fkes}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Fasilitas Pendidikan :</b> {fasilitasPosko.fpend}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>MCK :</b> {fasilitasPosko.mck}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Mushollah :</b> {fasilitasPosko.musholah}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Dapur Umum :</b> {fasilitasPosko.dapurUmum}
+            </Typography>
+            <Typography variant="subtitle1">
+              <b>Tendan Umum :</b> {fasilitasPosko.tendaUmum}
+            </Typography>
+          </Fragment>
+        )}
+        <Typography
+          variant="subtitle1"
+          align="center"
+          className="title-data-posko"
+        >
+          <b>Lokasi {profile && profile.namaPosko}</b>
+        </Typography>
+        {profile && (
+          <MapPosko
+            location={profile && profile.location}
+            namaPosko={profile && profile.namaPosko}
+          />
+        )}
       </div>
     </Fragment>
   );
@@ -87,16 +141,20 @@ const AllDataPosko = ({
 const mapStateToProps = (state) => ({
   profile: state.profile,
   pengungsi: state.pengungsi,
+  fasilitasPosko: state.fasilitasPosko,
 });
 
 AllDataPosko.propTypes = {
   getDataPoskoById: PropTypes.func.isRequired,
   getDataPengungsiById: PropTypes.func.isRequired,
+  getDataFasilitasPoskoByUserId: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   pengungsi: PropTypes.object.isRequired,
+  fasilitasPosko: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, {
   getDataPoskoById,
   getDataPengungsiById,
+  getDataFasilitasPoskoByUserId,
 })(AllDataPosko);

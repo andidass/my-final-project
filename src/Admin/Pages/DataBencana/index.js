@@ -2,22 +2,22 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import DataPosko from "./DataPosko";
 
-import { getAllDataPosko } from "../../../actions/profile.js";
+import { getAllDataBencana } from "../../../actions/dataBencana";
 import { Grid, Typography, Button, TextField } from "@material-ui/core";
 import Spinner from "../../../Components/Spinner";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-import "./DataPosko.css";
+import "./style.css";
+import DataBencana from "./DataBencana";
 
-const AllDataPosko = ({
-  getAllDataPosko,
-  profile: { profiles, loading },
+const AllDataBencana = ({
+  getAllDataBencana,
+  dataBencana: { allDataBencana, loading },
   auth: { user },
 }) => {
   useEffect(() => {
-    getAllDataPosko();
+    getAllDataBencana();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -25,20 +25,21 @@ const AllDataPosko = ({
   const onChange = (e) => setKataPencarian(e.target.value);
 
   // filter data with search feature
-  const filteredPosko = profiles.filter((profile) => {
+  const filteredData = allDataBencana.filter((dataBencana) => {
     return (
-      profile.namaPosko.toLowerCase().indexOf(kataPencarian.toLowerCase()) !==
-      -1
+      dataBencana.petugas.name
+        .toLowerCase()
+        .indexOf(kataPencarian.toLowerCase()) !== -1
     );
   });
 
-  return profiles.length === 0 || loading ? (
+  return allDataBencana.length === 0 || loading ? (
     <Spinner />
   ) : (
     <Fragment>
       <div className="sub-heading">
-        <Typography variant="h5">Posko Pengungsian</Typography>
-        <Typography variant="subtitle2">Data semua posko</Typography>
+        <Typography variant="h5">Data Bencana</Typography>
+        <Typography variant="subtitle2">Semua Data</Typography>
       </div>
       <Button
         variant="outlined"
@@ -62,11 +63,11 @@ const AllDataPosko = ({
         />
       </div>
       <Grid container justify="center" className="grid-container">
-        {profiles.length > 0 ? (
-          filteredPosko.map((profile) => (
-            <DataPosko
-              key={profile._id}
-              profile={profile}
+        {allDataBencana.length > 0 ? (
+          filteredData.map((dataBencana) => (
+            <DataBencana
+              key={dataBencana._id}
+              dataBencana={dataBencana}
               kataPencarian={kataPencarian}
             />
           ))
@@ -79,14 +80,14 @@ const AllDataPosko = ({
 };
 
 const mapStateToProps = (state) => ({
-  profile: state.profile,
+  dataBencana: state.dataBencana,
   auth: state.auth,
 });
 
-AllDataPosko.propTypes = {
-  getAllDataPosko: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+AllDataBencana.propTypes = {
+  getAllDataBencana: PropTypes.func.isRequired,
+  dataBencana: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, { getAllDataPosko })(AllDataPosko);
+export default connect(mapStateToProps, { getAllDataBencana })(AllDataBencana);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Redux
 import { Provider } from "react-redux";
@@ -9,6 +9,7 @@ import store from "./store";
 
 // main component
 import Error from "./Error";
+import Coba from "./Coba";
 // import Footer from "./Components/Footer";
 import MenuBars from "./Components/MenuBars";
 import Spinner from "./Components/Spinner";
@@ -28,7 +29,7 @@ import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
 // permintaan bantuan posko
 import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
 // bantuan masuk
-import BantuanMasukPosko from "./Posko/Page/BantuanMasukPosko/BantuanMasukPosko";
+import BantuanMasuk from "./Posko/Page/BantuanMasukPosko";
 import DataBantuanMasuk from "./Posko/Page/BantuanMasukPosko/DataBantuanMasuk";
 import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
 
@@ -47,6 +48,8 @@ import BantuanUtama from "./Admin/Pages/BantuanUtama";
 import AdminPermintaanBantuan from "./Admin/Pages/PermintaanBantuan";
 import DataPosko from "./Admin/Pages/DataPosko";
 import DataPoskoById from "./Admin/Pages/DataPosko/DataPoskoById";
+import DataBencanaById from "./Admin/Pages/DataBencana/DataBencanaById";
+import AllDataBencana from "./Admin/Pages/DataBencana";
 import AllDataPengungsi from "./Admin/Pages/DataPengungsi";
 import PermintaanBantuanById from "./Admin/Pages/PermintaanBantuan/PermintaanBantuanById";
 
@@ -55,7 +58,7 @@ import setAuthToken from "./utils/setTokenAuth";
 
 // test component
 import CustomizedSnackbars from "./Posko/CustomizedSnackbars";
-// import Map from "./Posko/Page/Map";
+import MapPosko from "./Admin/Pages/MapPosko";
 
 import "./App.css";
 
@@ -114,11 +117,7 @@ const App = () => {
           {/* --------- PENGUNGSI POSKO --------- */}
           <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
           {/* --------- BANTUAN MASUK POSKO --------- */}
-          <Route
-            path="/posko/bantuan-masuk"
-            exact
-            component={BantuanMasukPosko}
-          />
+          <Route path="/posko/bantuan-masuk" exact component={BantuanMasuk} />
           <Route
             path="/posko/bantuan-masuk/data"
             exact
@@ -156,11 +155,19 @@ const App = () => {
           <Route path="/admin/bantuan-utama" exact component={BantuanUtama} />
           <Route path="/admin/data-posko" exact component={DataPosko} />
           <Route path="/admin/data-posko/:id" exact component={DataPoskoById} />
+          <Route path="/admin/map" exact component={MapPosko} />
+          <Route path="/admin/data-bencana" exact component={AllDataBencana} />
           <Route
             path="/admin/permintaan-bantuan/:id"
             exact
             component={PermintaanBantuanById}
           />
+          <Route
+            path="/admin/data-bencana/:id"
+            exact
+            component={DataBencanaById}
+          />
+
           <Route
             path="/admin/data-pengungsi"
             exact
@@ -173,6 +180,8 @@ const App = () => {
           />
           {/* COMPONEN COBA-COBA */}
           {/* <Route path="/map" exact component={Map} /> */}
+
+          <Route path="/coba" exact component={Coba} />
           <Route path="/error" exact component={Error} />
           <Route path="/spinner" exact component={Spinner} />
           <Route path="/snackbars" exact component={CustomizedSnackbars} />

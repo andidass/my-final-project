@@ -153,14 +153,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route   Get petugas/data-bencana/petugas_id
-// #desc    Get data bencana by petugas_id
+// @route   Get petugas/data-bencana/petugasId
+// #desc    Get data bencana by petugasId
 // @access  Public
 
-router.get("/:petugas_id", async (req, res) => {
+router.get("/:petugasId", async (req, res) => {
   try {
     let dataBencana = await DataBencana.findOne({
-      petugas: req.params.petugas_id,
+      petugas: req.params.petugasId,
     }).populate("petugas", ["name", "avatar"]);
 
     if (!dataBencana)

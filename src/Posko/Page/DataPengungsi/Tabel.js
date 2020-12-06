@@ -42,27 +42,28 @@ export default function SimpleTable({ allPengungsi, deleteItem }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allPengungsi.map((data, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {data.namaPengungsi}
-                </TableCell>
-                <TableCell align="right">{data.jenisKelamin}</TableCell>
-                <TableCell align="right">{data.umur}</TableCell>
-                <TableCell align="right">{data.keadaan}</TableCell>
-                <TableCell align="right">{data.alamat}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {allPengungsi &&
+              allPengungsi.map((data, index) => (
+                <TableRow key={index}>
+                  <TableCell component="th" scope="row">
+                    {data.namaPengungsi}
+                  </TableCell>
+                  <TableCell align="right">{data.jenisKelamin}</TableCell>
+                  <TableCell align="right">{data.umur}</TableCell>
+                  <TableCell align="right">{data.keadaan}</TableCell>
+                  <TableCell align="right">{data.alamat}</TableCell>
+                  <TableCell align="right">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="small"
+                      onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
