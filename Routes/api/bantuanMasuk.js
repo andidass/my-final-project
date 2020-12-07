@@ -5,7 +5,7 @@ const { check, validationResult } = require("express-validator");
 const auth = require("../../Middleware/auth");
 const BantuanMasuk = require("../../Model/BantuanMasuk");
 
-// @route   GET posko/bantuan-masuk/me
+// @route   GET admin/bantuan-masuk/me
 // #desc    GET data bantuan-masuk account
 // @access  Private
 
@@ -17,6 +17,25 @@ router.get("/me", auth, async (req, res) => {
     if (!bantuanMasuk) {
       return res.status(400).json({
         msg: "Posko tidak memiliki data bantuan masuk",
+      });
+    }
+    res.json(bantuanMasuk);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   GET admin/bantuan-masuk/me
+// #desc    GET data bantuan-masuk account
+// @access  Private
+
+router.get("/", async (req, res) => {
+  try {
+    let bantuanMasuk = await BantuanMasuk.find().populate("user", ["name"]);
+    if (!bantuanMasuk) {
+      return res.status(400).json({
+        msg: "Tidak ada data bantuan masuk",
       });
     }
     res.json(bantuanMasuk);
@@ -54,7 +73,7 @@ router.post(
   }
 );
 
-// @route   Put posko/bantuan-masuk/input-bantuan-masuk
+// @route   Put admin/bantuan-masuk/input-bantuan-masuk
 // #desc    insert data bantuan masuk
 // @access  Private
 
@@ -121,7 +140,7 @@ router.put(
   }
 );
 
-// @route   Get posko/bantuan-masuk
+// @route   Get admin/bantuan-masuk
 // #desc    Get all bantuan masuk data
 // @access  Public
 
@@ -135,7 +154,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route   Get posko/bantuan-masuk/:user_id
+// @route   Get admin/bantuan-masuk/:user_id
 // #desc    Get data bantuan masuk by user_id
 // @access  Public
 
@@ -158,98 +177,4 @@ router.get("/:user_id", async (req, res) => {
   }
 });
 
-// @route   POST posko/bantuan-masuk
-// #desc    Post data bantuan-masuk
-// @access  Private
-
-// router.post(
-//   "/",
-//   [
-//     auth,
-//     [
-//       check("namaDonatur", "Nama/Instansi donatur harus diisi").not().isEmpty(),
-//       check("sumberDana", "Sumber Dana harus diisi").not().isEmpty(),
-//       check("alamatDonatur", "Alamat Donatur harus diisi").not().isEmpty(),
-//   check("jenisBantuan", "Jenis Barang harus diisi").not().isEmpty(),
-//   check("namaBarang", "Nama Barang Bantuan harus diisi").not().isEmpty(),
-//   check("satuan", "Satuan Barang harus diisi").not().isEmpty(),
-//   check("banyaknya", "Banyaknya barang harus diisi").isNumeric(),
-//   check("nilainya", "Nilai barang harus diisi").isNumeric(),
-//     ],
-//   ],
-//   async (req, res) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(400).json({ errors: errors.array() });
-//     }
-
-//     const {
-//       namaDonatur,
-//       sumberDana,
-//       alamatDonatur,
-//       jenisBantuan,
-//       namaBarang,
-//       satuan,
-//       banyaknya,
-//       nilainya,
-//       dataItemBantuan,
-//     } = req.body;
-
-//     // dataItemBantuan=[
-//     //     {jenisBantuan:req.body.num1, jenisBantuan:req.body.sub1},
-//     // {
-//     //     jenisBantuan:req.body.num2, jenisBantuan:req.body.sub2
-//     // }]
-
-//     // build profile obj
-//     const bantuanMasukFields = {};
-//     bantuanMasukFields.user = req.user.id;
-//     bantuanMasukFields.dataBantuanMasuk = {};
-//     if (namaDonatur)
-//       bantuanMasukFields.dataBantuanMasuk.namaDonatur = namaDonatur;
-//     if (sumberDana) bantuanMasukFields.dataBantuanMasuk.sumberDana = sumberDana;
-//     if (alamatDonatur)
-//       bantuanMasukFields.dataBantuanMasuk.alamatDonatur = alamatDonatur;
-
-//     bantuanMasukFields.dataBantuanMasuk.dataItemBantuan = [
-//       {
-//         jenisBantuan,
-//         namaBarang,
-//         satuan,
-//         banyaknya,
-//         nilainya,
-//       },
-//       //   {
-//       //     jenisBantuan: req.body.num,
-//       //     namaBarang: req.body.sub,
-//       //     satuan: req.body.sat,
-//       //     banyaknya: req.body.bnyk,
-//       //     nilainya: req.body.nil,
-//       //   },
-//     ];
-//     bantuanMasukFields.dataBantuanMasuk.dataItemBantuan = dataItemBantuan;
-//     // if (jenisBantuan)
-//     //   bantuanMasukFields.dataBantuanMasuk.dataItemBantuan.jenisBantuan = jenisBantuan;
-//     // if (namaBarang)
-//     //   bantuanMasukFields.dataBantuanMasuk.dataItemBantuan.namaBarang = namaBarang;
-//     // if (satuan)
-//     //   bantuanMasukFields.dataBantuanMasuk.dataItemBantuan.satuan = satuan;
-//     // if (banyaknya)
-//     //   bantuanMasukFields.dataBantuanMasuk.dataItemBantuan.banyaknya = banyaknya;
-//     // if (nilainya)
-//     //   bantuanMasukFields.dataBantuanMasuk.dataItemBantuan.nilainya = nilainya;
-
-//     try {
-//       let bantuanMasuk = await BantuanMasuk.find({ user: req.user.id });
-
-//       //   create fasilitas Posko
-//       bantuanMasuk = new BantuanMasuk(bantuanMasukFields);
-//       await bantuanMasuk.save();
-//       res.json(bantuanMasuk);
-//     } catch (err) {
-//       console.error(err.message);
-//       res.status(400).send("Server Error");
-//     }
-//   }
-// );
 module.exports = router;

@@ -18,8 +18,7 @@ app.use("/posko/registrasi", require("./Routes/api/poskoUser"));
 app.use("/posko/login", require("./Routes/api/authposko"));
 app.use("/posko/profile", require("./Routes/api/profilePosko"));
 app.use("/posko/pengungsi", require("./Routes/api/pengungsi"));
-app.use("/posko/bantuan-masuk", require("./Routes/api/bantuanMasuk"));
-// app.use("/posko/bantuan-masuk", require("./Routes/api/BantuanMasukPosko"));
+// app.use("/posko/bantuan-masuk", require("./Routes/api/bantuanMasuk"));
 app.use("/posko/fasilitas-posko", require("./Routes/api/fasilitasPosko"));
 app.use("/posko/permintaan-bantuan", require("./Routes/api/permintaanBantuan"));
 
@@ -33,6 +32,7 @@ app.use("/petugas/data-bencana", require("./Routes/api/dataBencana"));
 app.use("/admin/login", require("./Routes/api/authAdmin"));
 app.use("/admin/registrasi", require("./Routes/api/admin"));
 app.use("/admin/bantuan-utama", require("./Routes/api/setBantuanUtama"));
+app.use("/admin/bantuan-masuk", require("./Routes/api/bantuanMasuk"));
 // app.use("/api/users", require("./Routes/api/user"));
 // app.use("/api/auth", require("./Routes/api/auth"));
 // app.use("/api/profile", require("./Routes/api/profile"));

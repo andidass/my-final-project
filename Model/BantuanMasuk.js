@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const UserPosko = require("./UserPosko");
+const Admin = require("./Admin");
 const uniqid = require("uniqid");
 
 const BantuanMasukSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: UserPosko,
+    ref: Admin,
   },
   dataBantuanMasuk: [
     {
@@ -50,6 +50,6 @@ const BantuanMasukSchema = new mongoose.Schema({
 });
 
 module.exports = BantuanMasuk = mongoose.model(
-  "BantuanMasukPosko",
+  "disasterrelief",
   BantuanMasukSchema
 );

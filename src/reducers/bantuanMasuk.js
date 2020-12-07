@@ -3,11 +3,12 @@ import {
   BANTUAN_MASUK_ERROR,
   CLEAR_BANTUAN_MASUK,
   UPDATE_BANTUAN_MASUK,
+  GET_ALL_BANTUAN_MASUK,
 } from "../actions/types";
 
 const initialState = {
-  dataBantuanMasuk: null,
-  semuaDataBantuanMasuk: [],
+  bantuanMasuk: null,
+  semuaBantuanMasuk: [],
   loading: true,
   error: {},
 };
@@ -20,7 +21,14 @@ export default function (state = initialState, action) {
     case UPDATE_BANTUAN_MASUK:
       return {
         ...state,
-        dataBantuanMasuk: payload,
+        bantuanMasuk: payload,
+        loading: false,
+        error: {},
+      };
+    case GET_ALL_BANTUAN_MASUK:
+      return {
+        ...state,
+        semuaBantuanMasuk: payload,
         loading: false,
         error: {},
       };
@@ -33,7 +41,7 @@ export default function (state = initialState, action) {
     case CLEAR_BANTUAN_MASUK:
       return {
         ...state,
-        dataBantuanMasuk: null,
+        bantuanMasuk: null,
         loading: false,
       };
     default:

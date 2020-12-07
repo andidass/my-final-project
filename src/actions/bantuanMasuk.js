@@ -2,17 +2,37 @@ import axios from "axios";
 import { setAlert } from "./alert";
 import {
   GET_BANTUAN_MASUK,
+  GET_ALL_BANTUAN_MASUK,
   BANTUAN_MASUK_ERROR,
   UPDATE_BANTUAN_MASUK,
+  CLEAR_BANTUAN_MASUK,
 } from "./types";
 
 //get data bantuan masuk
 export const getBantuanMasuk = () => async (dispatch) => {
   try {
-    const res = await axios.get("/posko/bantuan-masuk/me");
+    const res = await axios.get("/admin/bantuan-masuk/me");
 
     dispatch({
       type: GET_BANTUAN_MASUK,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: BANTUAN_MASUK_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getAllDataBantuanMasuk = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_BANTUAN_MASUK,
+  });
+  try {
+    const res = await axios.get("/admin/bantuan-masuk");
+    dispatch({
+      type: GET_ALL_BANTUAN_MASUK,
       payload: res.data,
     });
   } catch (err) {
@@ -32,7 +52,7 @@ export const createBantuanMasuk = (dataInit) => async (dispatch) => {
       },
     };
 
-    const res = await axios.post("/posko/bantuan-masuk", dataInit, config);
+    const res = await axios.post("/admin/bantuan-masuk", dataInit, config);
 
     dispatch({
       type: UPDATE_BANTUAN_MASUK,
@@ -61,7 +81,7 @@ export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
     };
 
     const res = await axios.put(
-      "/posko/bantuan-masuk/input-bantuan-masuk",
+      "/admin/bantuan-masuk/input-bantuan-masuk",
       dataInit,
       config
     );
@@ -71,6 +91,7 @@ export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(setAlert("Data bantuan masuk berhasil ditambahkan", "success"));
+    history.push("/admin/bantuan-masuk/data");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -83,34 +104,3 @@ export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
     });
   }
 };
-
-// create data bantuan-masuk
-// export const createBantuanMasuk = (user, history) => async (dispatch) => {
-//   try {
-//     const config = {
-//       header: {
-//         "Content-Type": "application/json",
-//       },
-//     };
-
-//     const res = await axios.post("posko/bantuan-masuk", config);
-
-//     dispatch({
-//       type: GET_BANTUAN_MASUK,
-//       payload: res.data,
-//     });
-
-//     dispatch(setAlert("Data bantuan masuk posko berhasil dibuat", "success"));
-//     history.push("/posko/data-bantuan-masuk");
-//   } catch (err) {
-//     const errors = err.response.data.errors;
-
-//     if (errors) {
-//       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
-//     }
-//     dispatch({
-//       type: BANTUAN_MASUK_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status },
-//     });
-//   }
-// };

@@ -29,8 +29,8 @@ import FasilitasPosko from "./Posko/Page/FasilitasPosko/FasilitasPosko";
 // permintaan bantuan posko
 import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan";
 // bantuan masuk
-import BantuanMasuk from "./Posko/Page/BantuanMasukPosko";
-import DataBantuanMasuk from "./Posko/Page/BantuanMasukPosko/DataBantuanMasuk";
+// import BantuanMasuk from "./Posko/Page/BantuanMasukPosko";
+// import DataBantuanMasuk from "./Posko/Page/BantuanMasukPosko/DataBantuanMasuk";
 import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
 
 // PETUGAS LAPANGAN
@@ -52,11 +52,14 @@ import DataBencanaById from "./Admin/Pages/DataBencana/DataBencanaById";
 import AllDataBencana from "./Admin/Pages/DataBencana";
 import AllDataPengungsi from "./Admin/Pages/DataPengungsi";
 import PermintaanBantuanById from "./Admin/Pages/PermintaanBantuan/PermintaanBantuanById";
+import BantuanMasuk from "./Admin/Pages/BantuanMasuk";
+import DataBantuanMasuk from "./Admin/Pages/BantuanMasuk/DataBantuanMasuk";
 
 // import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
 
 // test component
+import Confirmation from "./Admin/Pages/BantuanMasuk/Confirmation";
 import CustomizedSnackbars from "./Posko/CustomizedSnackbars";
 import MapPosko from "./Admin/Pages/MapPosko";
 
@@ -117,12 +120,12 @@ const App = () => {
           {/* --------- PENGUNGSI POSKO --------- */}
           <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
           {/* --------- BANTUAN MASUK POSKO --------- */}
-          <Route path="/posko/bantuan-masuk" exact component={BantuanMasuk} />
+          {/* <Route path="/posko/bantuan-masuk" exact component={BantuanMasuk} />
           <Route
             path="/posko/bantuan-masuk/data"
             exact
             component={DataBantuanMasuk}
-          />
+          /> */}
           <Route
             path="/posko/bantuan-keluar"
             exact
@@ -157,6 +160,12 @@ const App = () => {
           <Route path="/admin/data-posko/:id" exact component={DataPoskoById} />
           <Route path="/admin/map" exact component={MapPosko} />
           <Route path="/admin/data-bencana" exact component={AllDataBencana} />
+          <Route path="/admin/bantuan-masuk" exact component={BantuanMasuk} />
+          <Route
+            path="/admin/bantuan-masuk/data"
+            exact
+            component={DataBantuanMasuk}
+          />
           <Route
             path="/admin/permintaan-bantuan/:id"
             exact
@@ -185,6 +194,7 @@ const App = () => {
           <Route path="/error" exact component={Error} />
           <Route path="/spinner" exact component={Spinner} />
           <Route path="/snackbars" exact component={CustomizedSnackbars} />
+          <Route path="/confirmation" exact component={Confirmation} />
         </Switch>
         {/* <Footer /> */}
       </Router>

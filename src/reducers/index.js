@@ -3,7 +3,7 @@ import alert from "./alert";
 import auth from "./auth";
 import profile from "./profile";
 import pengungsi from "./pengungsi";
-import bantuanMasuk from "./bantuanMasukPosko";
+import bantuanMasuk from "./bantuanMasuk";
 import fasilitasPosko from "./fasilitasPosko";
 import permintaanBantuan from "./permintaanBantuan";
 import dataBencana from "./dataBencana";
