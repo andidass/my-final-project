@@ -1,67 +1,67 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import {
-  GET_BANTUAN_MASUK,
-  GET_ALL_BANTUAN_MASUK,
-  BANTUAN_MASUK_ERROR,
-  UPDATE_BANTUAN_MASUK,
-  CLEAR_BANTUAN_MASUK,
+  GET_BANTUAN_KELUAR,
+  GET_ALL_BANTUAN_KELUAR,
+  BANTUAN_KELUAR_ERROR,
+  UPDATE_BANTUAN_KELUAR,
+  CLEAR_BANTUAN_KELUAR,
 } from "./types";
 
-//get data bantuan masuk
-export const getBantuanMasuk = () => async (dispatch) => {
+//get data bantuan keluar
+export const getBantuanKeluar = () => async (dispatch) => {
   try {
-    const res = await axios.get("/admin/bantuan-masuk/me");
+    const res = await axios.get("/admin/bantuan-keluar/me");
 
     dispatch({
-      type: GET_BANTUAN_MASUK,
+      type: GET_BANTUAN_KELUAR,
       payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: BANTUAN_MASUK_ERROR,
+      type: BANTUAN_KELUAR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
 
-export const getAllDataBantuanMasuk = () => async (dispatch) => {
+export const getAllDataBantuanKeluar = () => async (dispatch) => {
   dispatch({
-    type: CLEAR_BANTUAN_MASUK,
+    type: CLEAR_BANTUAN_KELUAR,
   });
   try {
-    const res = await axios.get("/admin/bantuan-masuk");
+    const res = await axios.get("/admin/bantuan-keluar");
     dispatch({
-      type: GET_ALL_BANTUAN_MASUK,
+      type: GET_ALL_BANTUAN_KELUAR,
       payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: BANTUAN_MASUK_ERROR,
+      type: BANTUAN_KELUAR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
 
-// get data bantuan masuk by id
-export const getBantuanMasukById = (itemId) => async (dispatch) => {
+// get data bantuan keluar by id
+export const getBantuanKeluarById = (itemId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/admin/bantuan-masuk/${itemId}`);
+    const res = await axios.get(`/admin/bantuan-keluar/${itemId}`);
 
     dispatch({
-      type: GET_BANTUAN_MASUK,
+      type: GET_BANTUAN_KELUAR,
       payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: BANTUAN_MASUK_ERROR,
+      type: BANTUAN_KELUAR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
 
 // create data bantuan masuk
-export const createBantuanMasuk = (dataInit) => async (dispatch) => {
+export const createBantuanKeluar = (dataInit) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -69,10 +69,10 @@ export const createBantuanMasuk = (dataInit) => async (dispatch) => {
       },
     };
 
-    const res = await axios.post("/admin/bantuan-masuk", dataInit, config);
+    const res = await axios.post("/admin/bantuan-keluar", dataInit, config);
 
     dispatch({
-      type: UPDATE_BANTUAN_MASUK,
+      type: UPDATE_BANTUAN_KELUAR,
       payload: res.data,
     });
   } catch (err) {
@@ -82,14 +82,14 @@ export const createBantuanMasuk = (dataInit) => async (dispatch) => {
       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
     }
     dispatch({
-      type: BANTUAN_MASUK_ERROR,
+      type: BANTUAN_KELUAR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
 
 // put data bantuan masuk
-export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
+export const insertBantuanKeluar = (dataInit, history) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -98,17 +98,17 @@ export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
     };
 
     const res = await axios.put(
-      "/admin/bantuan-masuk/input-bantuan-masuk",
+      "/admin/bantuan-keluar/input-bantuan-keluar",
       dataInit,
       config
     );
 
     dispatch({
-      type: UPDATE_BANTUAN_MASUK,
+      type: UPDATE_BANTUAN_KELUAR,
       payload: res.data,
     });
-    dispatch(setAlert("Data bantuan masuk berhasil ditambahkan", "success"));
-    history.push("/admin/bantuan-masuk/data");
+    dispatch(setAlert("Data bantuan keluar berhasil ditambahkan", "success"));
+    history.push("/admin/bantuan-keluar/data");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -116,7 +116,7 @@ export const insertBantuanMasuk = (dataInit, history) => async (dispatch) => {
       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
     }
     dispatch({
-      type: BANTUAN_MASUK_ERROR,
+      type: BANTUAN_KELUAR_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

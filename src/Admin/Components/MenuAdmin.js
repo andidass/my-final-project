@@ -103,7 +103,7 @@ function MenuAdmin() {
           sm={4}
           lg={2}
           component={Link}
-          to="/admin/bantuan-masuk/data"
+          to="/admin/bantuan-masuk"
           className="link"
         >
           <Card className={classes.root} variant="outlined">

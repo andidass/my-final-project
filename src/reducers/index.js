@@ -8,6 +8,7 @@ import fasilitasPosko from "./fasilitasPosko";
 import permintaanBantuan from "./permintaanBantuan";
 import dataBencana from "./dataBencana";
 import bantuanUtama from "./bantuanUtama";
+import bantuanKeluar from "./bantuanKeluar";
 
 export default combineReducers({
   alert,
@@ -19,4 +20,5 @@ export default combineReducers({
   permintaanBantuan,
   dataBencana,
   bantuanUtama,
+  bantuanKeluar,
 });

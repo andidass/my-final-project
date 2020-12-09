@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Admin = require("./Admin");
 const uniqid = require("uniqid");
 
-const BantuanMasukSchema = new mongoose.Schema({
+const BantuanKeluarSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Admin,
   },
-  dataBantuanMasuk: [
+  dataBantuanKeluar: [
     {
       kodeTransaksi: {
         type: String,
@@ -17,13 +17,10 @@ const BantuanMasukSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
       },
-      namaDonatur: {
+      namaPenerima: {
         type: String,
       },
-      sumberDana: {
-        type: String,
-      },
-      alamatDonatur: {
+      jabatan: {
         type: String,
       },
       dataItemBantuan: [
@@ -49,7 +46,7 @@ const BantuanMasukSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = BantuanMasuk = mongoose.model(
-  "bantuanmasuk",
-  BantuanMasukSchema
+module.exports = BantuanKeluar = mongoose.model(
+  "bantuankeluar",
+  BantuanKeluarSchema
 );

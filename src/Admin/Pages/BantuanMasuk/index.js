@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import FormBantuanMasuk from "./FormBantuanMasuk";
+import DataBantuanMasuk from "./DataBantuanMasuk";
 import NoData from "./NoData";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -7,24 +7,24 @@ import { getBantuanMasuk } from "../../../actions/bantuanMasuk";
 import Spinner from "../../../Components/Spinner";
 
 const BantuanMasuk = ({
-  bantuanMasuk: { dataBantuanMasuk, loading },
+  bantuanMasuk: { bantuanMasuk, loading },
   getBantuanMasuk,
 }) => {
   useEffect(() => {
     getBantuanMasuk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  if (dataBantuanMasuk === null && loading) {
+  if (bantuanMasuk === null && loading) {
     return <Spinner />;
   }
-  return dataBantuanMasuk !== null ? <FormBantuanMasuk /> : <NoData />;
+  return bantuanMasuk !== null ? <DataBantuanMasuk /> : <NoData />;
 };
 
 const mapStateToProps = (state) => ({
   bantuanMasuk: state.bantuanMasuk,
 });
 
-NoData.propTypes = {
+BantuanMasuk.propTypes = {
   bantuanMasuk: PropTypes.object.isRequired,
   getBantuanMasuk: PropTypes.func.isRequired,
 };

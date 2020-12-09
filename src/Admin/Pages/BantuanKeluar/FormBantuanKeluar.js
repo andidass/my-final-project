@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Confirmation from "./Confirmation";
-import { insertBantuanMasuk } from "../../../actions/bantuanMasuk";
+import { insertBantuanKeluar } from "../../../actions/bantuanKeluar";
 import Alert from "../../../layout/Alert";
 // import Spinner from "../../../Components/Spinner";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
@@ -16,18 +16,22 @@ import InitData from "./InitData";
 import HistoryIcon from "@material-ui/icons/History";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-import "./BantuanMasuk.css";
+import "./BantuanKeluar.css";
 
-const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
+const BantuanKeluar = ({
+  insertBantuanKeluar,
+  auth,
+  bantuanKeluar,
+  history,
+}) => {
   const [id, setId] = useState(uniqid("bpbd-ntb-"));
   const [rows, setRows] = useState([]); // data item
   // const [open, setOpen] = React.useState(false);
   const [dataInit, setDataInit] = useState({
     kodeTransaksi: id,
     tanggalTransaksi: "",
-    namaDonatur: "",
-    sumberDana: "",
-    alamatDonatur: "",
+    namaPenerima: "",
+    jabatan: "",
     dataItemBantuan: rows,
   });
 
@@ -75,12 +79,11 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
 
   const sumbitConfirmation = () => {
     // e.preventDefault(e);
-    insertBantuanMasuk(dataInit, history);
+    insertBantuanKeluar(dataInit, history);
     setDataInit({
       kodeTransaksi: id,
-      namaDonatur: "",
-      sumberDana: "",
-      alamatDonatur: "",
+      namaPenerima: "",
+      jabatan: "",
     });
     setRows([]);
     // setId(uniqid("2123123"));
@@ -90,8 +93,8 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
   return (
     <Fragment>
       <div className="sub-heading">
-        <Typography variant="h5">Input Bantuan Masuk</Typography>
-        <Typography variant="subtitle2">Input data bantuan masuk</Typography>
+        <Typography variant="h5">Input Bantuan keluar</Typography>
+        <Typography variant="subtitle2">Input data bantuan keluar</Typography>
       </div>
       <Button
         variant="outlined"
@@ -99,7 +102,7 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/bantuan-masuk">Kembali</Link>
+        <Link to="/admin/bantuan-keluar">Kembali</Link>
       </Button>
       <Button
         variant="contained"
@@ -108,14 +111,14 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
         startIcon={<HistoryIcon />}
         style={{ margin: 8 }}
       >
-        <Link style={{ color: "white" }} to="/admin/bantuan-masuk">
-          History Bantuan Masuk
+        <Link style={{ color: "white" }} to="/admin/bantuan-keluar">
+          History Bantuan Keluar
         </Link>
       </Button>
       <form className="isi">
         <Typography component="div">
           <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
-            Bantuan Masuk
+            Bantuan Keluar
           </Box>
         </Typography>
         <Grid container className="isi-body">
@@ -134,15 +137,6 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
           <Grid xs={12} item>
             {/* ---------------------- TABLE.JS -------------------------- */}
             <Table rows={rows} deleteItem={deleteItem} />
-            {/* <Button
-            variant="contained"
-            color="primary"
-            style={{ margin: 8 }}
-            startIcon={<SaveIcon />}
-            type="submit"
-          >
-            Simpan
-          </Button> */}
             <Confirmation
               sumbitConfirmation={sumbitConfirmation}
               submitHandler={submitHandler}
@@ -162,17 +156,17 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
     </Fragment>
   );
 };
-BantuanMasuk.propTypes = {
+BantuanKeluar.propTypes = {
   auth: PropTypes.object.isRequired,
-  bantuanMasuk: PropTypes.object.isRequired,
-  insertBantuanMasuk: PropTypes.func.isRequired,
+  bantuanKeluar: PropTypes.object.isRequired,
+  insertBantuanKeluar: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  bantuanMasuk: state.bantuanMasuk,
+  bantuanKeluar: state.bantuanKeluar,
 });
 
 export default connect(mapStateToProps, {
-  insertBantuanMasuk,
-})(withRouter(BantuanMasuk));
+  insertBantuanKeluar,
+})(withRouter(BantuanKeluar));

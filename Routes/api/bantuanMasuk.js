@@ -95,7 +95,7 @@ router.put(
 
     const {
       kodeTransaksi,
-      tanggalTransaksi,
+      tanggal,
       namaDonatur,
       sumberDana,
       alamatDonatur,
@@ -110,7 +110,7 @@ router.put(
     // build profile obj
     const newBantuanMasuk = {};
     if (kodeTransaksi) newBantuanMasuk.kodeTransaksi = kodeTransaksi;
-    if (tanggalTransaksi) newBantuanMasuk.tanggalTransaksi = tanggalTransaksi;
+    if (tanggal) newBantuanMasuk.tanggal = tanggal;
     if (namaDonatur) newBantuanMasuk.namaDonatur = namaDonatur;
     if (sumberDana) newBantuanMasuk.sumberDana = sumberDana;
     if (alamatDonatur) newBantuanMasuk.alamatDonatur = alamatDonatur;

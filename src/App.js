@@ -53,7 +53,9 @@ import AllDataBencana from "./Admin/Pages/DataBencana";
 import AllDataPengungsi from "./Admin/Pages/DataPengungsi";
 import PermintaanBantuanById from "./Admin/Pages/PermintaanBantuan/PermintaanBantuanById";
 import BantuanMasuk from "./Admin/Pages/BantuanMasuk";
-import DataBantuanMasuk from "./Admin/Pages/BantuanMasuk/DataBantuanMasuk";
+import BantuanKeluar from "./Admin/Pages/BantuanKeluar";
+import FormBantuanMasuk from "./Admin/Pages/BantuanMasuk/FormBantuanMasuk";
+import FormBantuanKeluar from "./Admin/Pages/BantuanKeluar/FormBantuanKeluar";
 
 // import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
@@ -161,10 +163,16 @@ const App = () => {
           <Route path="/admin/map" exact component={MapPosko} />
           <Route path="/admin/data-bencana" exact component={AllDataBencana} />
           <Route path="/admin/bantuan-masuk" exact component={BantuanMasuk} />
+          <Route path="/admin/bantuan-keluar" exact component={BantuanKeluar} />
           <Route
-            path="/admin/bantuan-masuk/data"
+            path="/admin/bantuan-keluar/input"
             exact
-            component={DataBantuanMasuk}
+            component={FormBantuanKeluar}
+          />
+          <Route
+            path="/admin/bantuan-masuk/input"
+            exact
+            component={FormBantuanMasuk}
           />
           <Route
             path="/admin/permintaan-bantuan/:id"
