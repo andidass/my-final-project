@@ -1,9 +1,5 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { getBantuanKeluar } from "../../../actions/bantuanKeluar";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
@@ -87,14 +83,7 @@ function Row(props) {
   );
 }
 
-function TabelBantuanMasuk({
-  getBantuanKeluar,
-  bantuanKeluar: { bantuanKeluar, loading },
-}) {
-  useEffect(() => {
-    getBantuanKeluar();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+function TabelBantuanMasuk({ bantuanKeluar }) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -118,15 +107,4 @@ function TabelBantuanMasuk({
   );
 }
 
-TabelBantuanMasuk.propTypes = {
-  getBantuanKeluar: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  bantuanKeluar: PropTypes.object.isRequired,
-};
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  bantuanKeluar: state.bantuanKeluar,
-});
-export default connect(mapStateToProps, { getBantuanKeluar })(
-  TabelBantuanMasuk
-);
+export default TabelBantuanMasuk;
