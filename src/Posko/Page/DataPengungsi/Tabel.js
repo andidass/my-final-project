@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Box, Typography } from "@material-ui/core";
+import { Button, Box, Typography, TablePagination } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -16,8 +16,23 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleTable({ allPengungsi, deleteItem }) {
+export default function SimpleTable({ rows, deleteItem }) {
   const classes = useStyles();
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
   return (
     <form>
       <Typography component="div">
@@ -42,30 +57,49 @@ export default function SimpleTable({ allPengungsi, deleteItem }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allPengungsi &&
-              allPengungsi.map((data, index) => (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row">
-                    {data.namaPengungsi}
-                  </TableCell>
-                  <TableCell align="right">{data.jenisKelamin}</TableCell>
-                  <TableCell align="right">{data.umur}</TableCell>
-                  <TableCell align="right">{data.keadaan}</TableCell>
-                  <TableCell align="right">{data.alamat}</TableCell>
-                  <TableCell align="right">
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      size="small"
-                      onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
-                    >
-                      <DeleteIcon fontSize="small" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+            {/* {rows &&
+            rows */}
+            {rows &&
+              rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((data, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      {/* {data.namaPengungsi} */}
+                      {data.namaPengungsi}
+                    </TableCell>
+                    <TableCell align="right">{data.jenisKelamin}</TableCell>
+                    <TableCell align="right">{data.umur}</TableCell>
+                    <TableCell align="right">{data.keadaan}</TableCell>
+                    <TableCell align="right">{data.alamat}</TableCell>
+                    <TableCell align="right">
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        size="small"
+                        onClick={() => deleteItem(data._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
           </TableBody>
         </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       </TableContainer>
     </form>
   );

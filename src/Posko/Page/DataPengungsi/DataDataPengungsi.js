@@ -195,7 +195,7 @@ const DataDataPengungsi = ({
         </Grid>
       </Paper>
       <Tabel
-        allPengungsi={pengungsi && pengungsi.allPengungsi}
+        rows={pengungsi && pengungsi.allPengungsi}
         deleteItem={deleteItem}
       />
     </div>
