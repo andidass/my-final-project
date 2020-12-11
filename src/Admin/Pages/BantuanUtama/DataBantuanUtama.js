@@ -162,10 +162,7 @@ const DataBantuanUtama = ({
           </Grid>
         </Grid>
         {bantuanUtama.dataBantuanUtama.length > 0 ? (
-          <Tabel
-            dataBantuanUtama={bantuanUtama.dataBantuanUtama}
-            deleteItem={deleteItem}
-          />
+          <Tabel rows={bantuanUtama.dataBantuanUtama} deleteItem={deleteItem} />
         ) : (
           <div className="no-data">
             <Typography variant="subtitle1">

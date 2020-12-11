@@ -16,8 +16,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleTable(props) {
+export default function SimpleTable({ rows, deleteItem }) {
   const classes = useStyles();
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
   return (
     <Fragment>
       <Typography component="div">
@@ -42,29 +58,41 @@ export default function SimpleTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.rows.map((item, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {item.namaBarang}
-                </TableCell>
-                <TableCell align="right">{item.satuan}</TableCell>
-                <TableCell align="right">{item.banyaknya}</TableCell>
-                <TableCell align="right">{item.nilainya}</TableCell>
-                <TableCell align="right">{item.jenisBantuan}</TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    onClick={() => props.deleteItem(index)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {rows &&
+              rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      {item.namaBarang}
+                    </TableCell>
+                    <TableCell align="right">{item.satuan}</TableCell>
+                    <TableCell align="right">{item.banyaknya}</TableCell>
+                    <TableCell align="right">{item.nilainya}</TableCell>
+                    <TableCell align="right">{item.jenisBantuan}</TableCell>
+                    <TableCell align="right">
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        size="small"
+                        onClick={() => deleteItem(index)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
           </TableBody>
         </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       </TableContainer>
     </Fragment>
   );

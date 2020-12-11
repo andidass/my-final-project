@@ -197,7 +197,7 @@ const DataPermintaanBantuan = ({
           </Grid>
           {permintaanBantuan.dataPermintaanBantuan.length > 0 ? (
             <Tabel
-              allPengungsi={permintaanBantuan.dataPermintaanBantuan}
+              rows={permintaanBantuan.dataPermintaanBantuan}
               deleteItem={deleteItem}
             />
           ) : (

@@ -14,6 +14,15 @@ const BantuanUtamaSchema = new mongoose.Schema({
       namaBarang: {
         type: String,
       },
+      satuan: {
+        type: String,
+      },
+      banyaknya: {
+        type: Number,
+      },
+      nilainya: {
+        type: Number,
+      },
     },
   ],
 });

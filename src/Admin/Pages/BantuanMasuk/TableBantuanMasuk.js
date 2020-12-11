@@ -1,16 +1,19 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
+import {
+  Box,
+  Collapse,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  Paper,
+  TablePagination,
+} from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
@@ -22,8 +25,7 @@ const useRowStyles = makeStyles({
   },
 });
 
-function Row(props) {
-  const { row } = props;
+function Row({ rows2 }) {
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
 
@@ -40,11 +42,12 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.tanggal}
+          {rows2.tanggal}
         </TableCell>
-        <TableCell>{row.namaDonatur}</TableCell>
-        <TableCell align="right">{row.sumberDana}</TableCell>
-        <TableCell align="right">{row._id}</TableCell>
+        <TableCell>{rows2.namaDonatur}</TableCell>
+        <TableCell align="right">{rows2.sumberDana}</TableCell>
+        <TableCell align="right">{rows2.alamatDonatur}</TableCell>
+        <TableCell align="right">{rows2._id}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -63,14 +66,14 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.dataItemBantuan.map((dataRow) => (
-                    <TableRow key={dataRow.date}>
+                  {rows2.dataItemBantuan.map((row) => (
+                    <TableRow key={row.date}>
                       <TableCell component="th" scope="row">
-                        {dataRow.namaBarang}
+                        {row.namaBarang}
                       </TableCell>
-                      <TableCell>{dataRow.satuan}</TableCell>
-                      <TableCell align="right">{dataRow.banyaknya}</TableCell>
-                      <TableCell align="right">{dataRow.nilainya}</TableCell>
+                      <TableCell>{row.satuan}</TableCell>
+                      <TableCell align="right">{row.banyaknya}</TableCell>
+                      <TableCell align="right">{row.nilainya}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -83,7 +86,22 @@ function Row(props) {
   );
 }
 
-function TabelBantuanMasuk({ bantuanMasuk }) {
+function TabelBantuanMasuk({ rows }) {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -93,18 +111,32 @@ function TabelBantuanMasuk({ bantuanMasuk }) {
             <TableCell>Tanggal</TableCell>
             <TableCell>Nama Donatur</TableCell>
             <TableCell align="right">Sumber Dana</TableCell>
+            <TableCell align="right">AlamatDonatur</TableCell>
             <TableCell align="right">Kode Transaksi</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => ( */}
-          {/* <Row key={row.name} row={row} /> */}
-          {bantuanMasuk &&
-            bantuanMasuk.dataBantuanMasuk.map((row, index) => (
-              <Row key={index} row={row} />
+          {rows
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((rows2, index) => (
+              <Row key={index} rows2={rows2} />
             ))}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
+            </TableRow>
+          )}
         </TableBody>
       </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </TableContainer>
   );
 }

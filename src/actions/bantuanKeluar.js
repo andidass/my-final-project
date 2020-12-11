@@ -108,7 +108,7 @@ export const insertBantuanKeluar = (dataInit, history) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(setAlert("Data bantuan keluar berhasil ditambahkan", "success"));
-    history.push("/admin/bantuan-keluar/data");
+    history.push("/admin/bantuan-keluar");
   } catch (err) {
     const errors = err.response.data.errors;
 

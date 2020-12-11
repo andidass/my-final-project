@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 export default function SimpleTable({ rows, deleteItem }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -57,8 +57,6 @@ export default function SimpleTable({ rows, deleteItem }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* {rows &&
-            rows */}
             {rows &&
               rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

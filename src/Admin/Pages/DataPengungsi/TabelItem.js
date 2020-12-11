@@ -1,31 +1,43 @@
-import React from "react";
+import React, { Fragment } from "react";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { TableBody } from "@material-ui/core";
 
-const TabelItem = ({ pengungsi, user, kataPencarian }) => {
-  const filteredData = pengungsi.filter((data) => {
+const TabelItem = ({ rows, user, kataPencarian, page, rowsPerPage }) => {
+  // const emptyRows =
+  //   rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+  const filteredData = rows.filter((data) => {
     return (
       data.namaPengungsi.toLowerCase().indexOf(kataPencarian.toLowerCase()) !==
       -1
     );
   });
   return (
-    <TableBody>
-      {pengungsi &&
-        filteredData.map((data, index) => (
-          <TableRow key={index}>
-            <TableCell component="th" scope="row">
-              {data.namaPengungsi}
-            </TableCell>
-            <TableCell align="right">{data.jenisKelamin}</TableCell>
-            <TableCell align="right">{data.umur}</TableCell>
-            <TableCell align="right">{data.keadaan}</TableCell>
-            <TableCell align="right">{data.alamat}</TableCell>
-            <TableCell align="right">{user.name}</TableCell>
+    <Fragment>
+      <TableBody>
+        {rows &&
+          filteredData
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((row, index) => (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  {row.namaPengungsi}
+                </TableCell>
+                <TableCell align="right">{row.jenisKelamin}</TableCell>
+                <TableCell align="right">{row.umur}</TableCell>
+                <TableCell align="right">{row.keadaan}</TableCell>
+                <TableCell align="right">{row.alamat}</TableCell>
+                <TableCell align="right">{user.name}</TableCell>
+              </TableRow>
+            ))}
+        {/* {emptyRows > 0 && (
+          <TableRow style={{ height: 53 * emptyRows }}>
+            <TableCell colSpan={6} />
           </TableRow>
-        ))}
-    </TableBody>
+        )} */}
+      </TableBody>
+    </Fragment>
   );
 };
 

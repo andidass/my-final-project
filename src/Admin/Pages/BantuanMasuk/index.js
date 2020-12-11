@@ -4,6 +4,7 @@ import NoData from "./NoData";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getBantuanMasuk } from "../../../actions/bantuanMasuk";
+import FormBantuanMasuk from "./FormBantuanMasuk";
 import Spinner from "../../../Components/Spinner";
 
 const BantuanMasuk = ({
@@ -16,6 +17,9 @@ const BantuanMasuk = ({
   }, []);
   if (bantuanMasuk === null && loading) {
     return <Spinner />;
+  }
+  if (bantuanMasuk && bantuanMasuk.dataBantuanMasuk.length === 0) {
+    return <FormBantuanMasuk />;
   }
   return bantuanMasuk !== null ? <DataBantuanMasuk /> : <NoData />;
 };

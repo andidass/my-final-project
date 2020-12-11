@@ -55,30 +55,8 @@ const PermintaanBantuanById = ({
             Cek Profil Posko
           </Link>
         </Button>
-        {/* <Typography variant="subtitle1">
-          <b>Alamat :</b> {profile && profile.alamatPosko}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Kecamatan :</b> {profile && profile.kecPosko}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Kabupaten :</b> {profile && profile.kabPosko}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Koordinator Posko :</b> {profile && profile.petugas.namaPetugas}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Jabatan :</b> {profile && profile.petugas.jabatan}
-        </Typography>
-        <Typography variant="subtitle1" align="center">
-          <b>Petugas / Relawan Posko</b>
-        </Typography>
-        <Typography variant="subtitle1">
-        <b>Lokasi</b>{" "}
-        {profile && profile.location.lat + " , " + profile.location.lng}
-        </Typography>*/}
         <TabelData
-          allData={permintaanBantuan && permintaanBantuan.dataPermintaanBantuan}
+          rows={permintaanBantuan && permintaanBantuan.dataPermintaanBantuan}
         />
       </div>
     </Fragment>

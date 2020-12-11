@@ -93,25 +93,40 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
         <Typography variant="h5">Input Bantuan Masuk</Typography>
         <Typography variant="subtitle2">Input data bantuan masuk</Typography>
       </div>
-      <Button
-        variant="outlined"
-        size="small"
-        startIcon={<ArrowBackIosIcon />}
-        style={{ margin: 8 }}
-      >
-        <Link to="/admin/bantuan-masuk">Kembali</Link>
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        startIcon={<HistoryIcon />}
-        style={{ margin: 8 }}
-      >
-        <Link style={{ color: "white" }} to="/admin/bantuan-masuk">
-          History Bantuan Masuk
-        </Link>
-      </Button>
+      {bantuanMasuk &&
+      bantuanMasuk.bantuanMasuk.dataBantuanMasuk.length === 0 ? (
+        <Button
+          variant="outlined"
+          size="small"
+          startIcon={<ArrowBackIosIcon />}
+          style={{ margin: 8 }}
+        >
+          <Link to="/admin/dashboard">Kembali</Link>
+        </Button>
+      ) : (
+        <Button
+          variant="outlined"
+          size="small"
+          startIcon={<ArrowBackIosIcon />}
+          style={{ margin: 8 }}
+        >
+          <Link to="/admin/bantuan-masuk">Kembali</Link>
+        </Button>
+      )}
+      {bantuanMasuk &&
+      bantuanMasuk.bantuanMasuk.dataBantuanMasuk.length === 0 ? null : (
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          startIcon={<HistoryIcon />}
+          style={{ margin: 8 }}
+        >
+          <Link style={{ color: "white" }} to="/admin/bantuan-masuk">
+            History Bantuan Masuk
+          </Link>
+        </Button>
+      )}
       <form className="isi">
         <Typography component="div">
           <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>

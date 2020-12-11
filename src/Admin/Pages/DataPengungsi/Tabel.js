@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import TabelItem from "./TabelItem";
-import TableContainer from "@material-ui/core/TableContainer";
+import { TableContainer, TablePagination } from "@material-ui/core";
 import TableHead from "@material-ui/core/TableHead";
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
@@ -21,6 +21,19 @@ const SimpleTable = ({
   kataPencarian,
 }) => {
   const classes = useStyles();
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <div className="table">
       <TableContainer component={Paper}>
@@ -37,12 +50,25 @@ const SimpleTable = ({
           </TableHead>
           {semuaPengungsi.map((data) => (
             <TabelItem
-              pengungsi={data.allPengungsi}
+              rows={data.allPengungsi}
               user={data.user}
               kataPencarian={kataPencarian}
+              page={page}
+              rowsPerPage={rowsPerPage}
             />
           ))}
         </Table>
+
+        {/* {semuaPengungsi.map((data)=> var data1 = data.allPengungsi.length; var allData=allData + data1)} */}
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={2}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       </TableContainer>
     </div>
   );

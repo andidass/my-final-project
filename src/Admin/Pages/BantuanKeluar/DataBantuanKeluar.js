@@ -39,7 +39,9 @@ const DataBantuanKeluar = ({ bantuanKeluar: { bantuanKeluar, loading } }) => {
             Input Data Bantuan Keluar
           </Link>
         </Button>
-        <TableBantuanKeluar bantuanKeluar={bantuanKeluar} />
+        <TableBantuanKeluar
+          rows={bantuanKeluar && bantuanKeluar.dataBantuanKeluar}
+        />
       </div>
     </Fragment>
   );

@@ -226,7 +226,7 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
           </Grid>
           <Alert />
         </form>
-        <TabelPetugas allPetugas={profile.allPetugas} onDelete={onDelete} />
+        <TabelPetugas rows={profile.allPetugas} onDelete={onDelete} />
       </Paper>
     </Fragment>
   );

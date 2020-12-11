@@ -5,9 +5,24 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { Paper, TablePagination } from "@material-ui/core";
 
-export default function TabelData({ allData }) {
+export default function TabelData({ rows }) {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -20,19 +35,35 @@ export default function TabelData({ allData }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {allData &&
-            allData.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {row.namaBarang}
-                </TableCell>
-                <TableCell align="left">{row.satuan}</TableCell>
-                <TableCell align="left">{row.banyaknya}</TableCell>
-                <TableCell align="left">{row.jenisBantuan}</TableCell>
-              </TableRow>
-            ))}
+          {rows &&
+            rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell component="th" scope="row">
+                    {row.namaBarang}
+                  </TableCell>
+                  <TableCell align="left">{row.satuan}</TableCell>
+                  <TableCell align="left">{row.banyaknya}</TableCell>
+                  <TableCell align="left">{row.jenisBantuan}</TableCell>
+                </TableRow>
+              ))}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
+            </TableRow>
+          )}
         </TableBody>
       </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </TableContainer>
   );
 }

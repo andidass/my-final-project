@@ -25,6 +25,10 @@ const PetugasSchema = new mongoose.Schema({
     type: String,
     default: "petugas",
   },
+  verified: {
+    type: String,
+    default: "no",
+  },
   date: {
     type: Date,
     default: Date.now,

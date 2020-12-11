@@ -18,6 +18,9 @@ const ProfilePoskoSchema = new mongoose.Schema({
   kabPosko: {
     type: String,
   },
+  noHp: {
+    type: String,
+  },
   petugas: {
     namaPetugas: {
       type: String,
@@ -47,6 +50,10 @@ const ProfilePoskoSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
+  },
+  verified: {
+    type: String,
+    default: "no",
   },
 });
 

@@ -39,7 +39,9 @@ const DataBantuanMasuk = ({ bantuanMasuk: { bantuanMasuk, loading } }) => {
             Input Data Bantuan Masuk
           </Link>
         </Button>
-        <TabelBantuanMasuk bantuanMasuk={bantuanMasuk} />
+        <TabelBantuanMasuk
+          rows={bantuanMasuk && bantuanMasuk.dataBantuanMasuk}
+        />
       </div>
     </Fragment>
   );

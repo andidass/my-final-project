@@ -218,4 +218,41 @@ router.delete("/petugas-volunteer/:petugas_id", auth, async (req, res) => {
   }
 });
 
+// @route   update posko/profile/verified to set verified true
+// #desc    update user profile
+// @access  Private
+// ! this only happened with super admin account
+
+router.post("/verified", [auth], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { verified } = req.body;
+
+  // build profile obj
+  const profilePoskoFields = {};
+  // profilePoskoFields.user = req.user.id;
+  if (verified) profilePoskoFields.verified = verified;
+
+  try {
+    let profilePosko = await ProfilePosko.findOne({ user: req.user.id });
+
+    // jika profile existed, lakukan update profile
+    if (profilePosko) {
+      // update
+      profilePosko = await ProfilePosko.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profilePoskoFields },
+        { new: true }
+      );
+      return res.json(profilePosko);
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send("Server Error");
+  }
+});
+
 module.exports = router;
