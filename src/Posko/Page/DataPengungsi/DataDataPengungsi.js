@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { insertPengungsi, deletePengungsi } from "../../../actions/pengungsi";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import Tabel from "./Tabel";
 
@@ -34,8 +35,12 @@ const keadaan = [
     label: "Sehat",
   },
   {
-    value: "Luka-luka",
-    label: "Luka-luka",
+    value: "Luka Ringan",
+    label: "Luka Ringan",
+  },
+  {
+    value: "Luka Berat",
+    label: "Luka Berat",
   },
 ];
 
@@ -53,6 +58,7 @@ const DataDataPengungsi = ({
     keadaan: "Sehat",
     alamat: "",
   });
+  const [show, setShow] = useState(false);
 
   const changeHandler = (e) =>
     setDataPengungsi({ ...dataPengungsi, [e.target.id]: e.target.value });
@@ -73,132 +79,169 @@ const DataDataPengungsi = ({
     deletePengungsi(id);
   }
 
+  const handleClick = () => {
+    setShow(!show);
+  };
+
   return pengungsi && loading ? (
     <Spinner />
   ) : (
-    <div className="isi">
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          marginTop={3}
-        >
-          Data Pengungsi Posko
-        </Box>
-      </Typography>
-      <Paper variant="outlined" className="body-posko-bencana">
-        <Grid container>
-          <Grid xs={1} sm={3} item />
-          <Grid xs={10} sm={6} item>
-            <form type="submit" onSubmit={submitHandler}>
-              <TextField
-                id="namaPengungsi"
-                label="Nama Pengungsi"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                onChange={(e) => changeHandler(e)}
-                value={dataPengungsi.namaPengungsi}
-              />
-              <TextField
-                id="jenisKelamin"
-                label="Jenis Kelamin"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                select
-                SelectProps={{
-                  native: true,
-                }}
-                onChange={(e) => changeHandler(e)}
-                value={dataPengungsi.jenisKelamin}
-              >
-                {jenisKelamin.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-              <TextField
-                id="keadaan"
-                label="Keadaan"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                required
-                select
-                SelectProps={{
-                  native: true,
-                }}
-                onChange={(e) => changeHandler(e)}
-                value={dataPengungsi.keadaan}
-              >
-                {keadaan.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-              <TextField
-                id="umur"
-                label="Umur"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                type="number"
-                required
-                fullWidth
-                onChange={(e) => changeHandler(e)}
-                value={dataPengungsi.umur}
-              />
-              <TextField
-                id="alamat"
-                label="Alamat"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                onChange={(e) => changeHandler(e)}
-                value={dataPengungsi.alamat}
-              />
-              <Alert />
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ margin: 8 }}
+    <Fragment>
+      <div className="sub-heading">
+        <Typography variant="h5">Data Pengungsi Pos</Typography>
+        <Typography variant="subtitle2">
+          Data Pengungsi pos {user && user.name}
+        </Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/posko/dashboard">Kembali</Link>
+      </Button>
+
+      <div className="isi">
+        <Paper variant="outlined" className="body-posko-bencana">
+          <Grid container justify="center">
+            <Grid item>
+              <form
                 type="submit"
+                onSubmit={submitHandler}
+                className="form-bantuan"
               >
-                Tambah
-              </Button>
-              <Button
-                variant="outlined"
-                color="secondary"
-                style={{ margin: 8 }}
-              >
-                <Link to="/posko/dashboard">Kembali</Link>
-              </Button>
-            </form>
+                {show ? (
+                  <Fragment>
+                    <div className="item-bantuan">
+                      <div>
+                        <TextField
+                          id="namaPengungsi"
+                          label="Nama Pengungsi"
+                          style={{ maxWidth: 300 }}
+                          margin="normal"
+                          variant="outlined"
+                          size="small"
+                          required
+                          fullWidth
+                          onChange={(e) => changeHandler(e)}
+                          value={dataPengungsi.namaPengungsi}
+                        />
+                      </div>
+                      <div>
+                        <TextField
+                          id="jenisKelamin"
+                          label="Jenis Kelamin"
+                          style={{ maxWidth: 300 }}
+                          margin="normal"
+                          variant="outlined"
+                          size="small"
+                          required
+                          fullWidth
+                          select
+                          SelectProps={{
+                            native: true,
+                          }}
+                          onChange={(e) => changeHandler(e)}
+                          value={dataPengungsi.jenisKelamin}
+                        >
+                          {jenisKelamin.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </TextField>
+                      </div>
+                      <div>
+                        <TextField
+                          id="keadaan"
+                          label="Keadaan"
+                          style={{ maxWidth: 300 }}
+                          margin="normal"
+                          variant="outlined"
+                          size="small"
+                          fullWidth
+                          required
+                          select
+                          SelectProps={{
+                            native: true,
+                          }}
+                          onChange={(e) => changeHandler(e)}
+                          value={dataPengungsi.keadaan}
+                        >
+                          {keadaan.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </TextField>
+                      </div>
+                      <div>
+                        <TextField
+                          id="umur"
+                          label="Umur"
+                          style={{ maxWidth: 300 }}
+                          margin="normal"
+                          variant="outlined"
+                          size="small"
+                          type="number"
+                          required
+                          fullWidth
+                          onChange={(e) => changeHandler(e)}
+                          value={dataPengungsi.umur}
+                        />
+                      </div>
+                      <div>
+                        <TextField
+                          id="alamat"
+                          label="Alamat"
+                          style={{ maxWidth: 300 }}
+                          margin="normal"
+                          variant="outlined"
+                          size="small"
+                          required
+                          fullWidth
+                          onChange={(e) => changeHandler(e)}
+                          value={dataPengungsi.alamat}
+                        />
+                      </div>
+                    </div>
+                    <Alert />
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{ margin: 8 }}
+                      type="submit"
+                    >
+                      Tambah Pengungsi
+                    </Button>
+                  </Fragment>
+                ) : null}
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  style={{ margin: 8 }}
+                  onClick={handleClick}
+                >
+                  {show ? "Sembunyikan" : "Tambah Data"}
+                </Button>
+              </form>
+            </Grid>
           </Grid>
-          <Grid xs={1} sm={3} item />
-        </Grid>
-      </Paper>
-      <Tabel
-        rows={pengungsi && pengungsi.allPengungsi}
-        deleteItem={deleteItem}
-      />
-    </div>
+
+          {pengungsi.allPengungsi.length > 0 ? (
+            <Tabel
+              rows={pengungsi && pengungsi.allPengungsi}
+              deleteItem={deleteItem}
+            />
+          ) : (
+            <div className="no-data">
+              <Typography variant="subtitle1">Data Pengungsi Kosong</Typography>
+            </div>
+          )}
+        </Paper>
+      </div>
+    </Fragment>
   );
 };
 

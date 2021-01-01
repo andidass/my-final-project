@@ -6,39 +6,119 @@ const DataBencanaSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: Petugas,
   },
-  rumahrb: {
-    type: Number,
+  jenisBencana: {
+    type: String,
   },
-  rumahrs: {
-    type: Number,
+  tglKejadian: {
+    type: String,
   },
-  rumahrr: {
-    type: Number,
+  waktuKejadian: {
+    type: String,
+  },
+  penyebab: {
+    type: String,
+  },
+  desc: {
+    type: String,
+  },
+  cuaca: {
+    type: String,
+  },
+  lokasiBencana: {
+    provinsi: {
+      type: String,
+    },
+    kabupaten: {
+      type: String,
+    },
+    kelurahan: {
+      type: String,
+    },
+    kec: {
+      type: String,
+    },
+    cakupan: {
+      type: String,
+    },
+    lat: {
+      type: Number,
+    },
+    lng: {
+      type: Number,
+    },
+  },
+  dataKorban: {
+    namaPengungsi: {
+      type: String,
+    },
+    jenisKelamin: {
+      type: String,
+    },
+    umur: {
+      type: Number,
+    },
+    keadaan: {
+      type: String,
+    },
+    alamat: {
+      type: String,
+    },
+    ket: {
+      type: String,
+    },
+  },
+  dataKerusakan: {
+    jenisBidang: {
+      type: String,
+    },
+    bidang: {
+      type: String,
+    },
+    wilayah: {
+      type: String,
+    },
+    jenisKerusakan: {
+      type: String,
+    },
+    rusakBerat: {
+      type: Number,
+    },
+    rusakSedang: {
+      type: Number,
+    },
+    rusakRingan: {
+      type: Number,
+    },
+    total: {
+      type: Number,
+    },
+    satuan: {
+      type: String,
+    },
   },
   fasum: {
-    type: Number,
-  },
-  faskes: {
-    type: Number,
-  },
-  faspen: {
-    type: Number,
-  },
-  peribadatan: {
-    type: Number,
-  },
-  terdampak: {
-    type: Number,
-  },
-  luka: {
-    type: Number,
-  },
-  md: {
-    type: Number,
+    aksesKeLokasi: {
+      type: String,
+    },
+    saranaTransportasi: {
+      type: String,
+    },
+    jalurKomunikasi: {
+      type: String,
+    },
+    keadaanJaringanListrik: {
+      type: String,
+    },
+    keadaanJaringanAir: {
+      type: String,
+    },
+    fasKes: {
+      type: String,
+    },
+    upayaPenanganan: {
+      type: String,
+    },
   },
 });
 
-module.exports = DataBencana = mongoose.model(
-  "DisasterData",
-  DataBencanaSchema
-);
+module.exports = DataBencana = mongoose.model("DataBencana", DataBencanaSchema);

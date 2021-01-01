@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import React, { useState, Fragment } from "react";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createProfile } from "../../../actions/profile";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import {
   Grid,
@@ -35,6 +36,7 @@ const FormProfile = ({
     jabatan: "",
     lat: "",
     lng: "",
+    noHp: "",
   });
 
   const {
@@ -48,6 +50,7 @@ const FormProfile = ({
     jabatan,
     lat,
     lng,
+    noHp,
   } = profileData;
 
   const onChange = (e) =>
@@ -66,168 +69,186 @@ const FormProfile = ({
   return loading ? (
     <Spinner />
   ) : (
-    <div className="isi">
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          marginTop={3}
-        >
-          Posko Bencana
-        </Box>
-      </Typography>
-      <Paper variant="outlined" className="body-posko-bencana">
-        <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
-          <Grid container>
-            <Grid xs={12} sm={6} item>
-              {/* <DataPosko /> */}
-              <Typography component="div">
-                <Box fontSize={17}>Data Posko</Box>
-              </Typography>
-              <TextField
-                name="namaPosko"
-                label="Nama Posko"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={namaPosko}
-              />
-              <TextField
-                name="alamatPosko"
-                label="Alamat Posko"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                multiline
-                onChange={(e) => onChange(e)}
-                value={alamatPosko}
-              />
+    <Fragment>
+      <Alert />
+      <div className="sub-heading">
+        <Typography variant="h5">Form Profile Pos Bencana</Typography>
+        <Typography variant="subtitle2">
+          Profile Pos {user && user.name}
+        </Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/posko/dashboard">Kembali</Link>
+      </Button>
+      <div className="isi">
+        <Paper variant="outlined" className="body-posko-bencana">
+          <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
+            <Grid container>
+              <Grid xs={12} sm={6} item>
+                {/* <DataPosko /> */}
+                <Typography component="div">
+                  <Box fontSize={17}>Data Posko</Box>
+                </Typography>
+                <TextField
+                  name="namaPosko"
+                  label="Nama Posko"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={namaPosko}
+                />
+                <TextField
+                  name="alamatPosko"
+                  label="Alamat Posko"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  multiline
+                  onChange={(e) => onChange(e)}
+                  value={alamatPosko}
+                />
 
-              <TextField
-                name="dusunPosko"
-                label="Dusun"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
+                <TextField
+                  name="dusunPosko"
+                  label="Dusun"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={dusunPosko}
+                />
+                <TextField
+                  name="desaPosko"
+                  label="Desa"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={desaPosko}
+                />
+                <TextField
+                  name="kecPosko"
+                  label="Kecamatan"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={kecPosko}
+                />
+                <TextField
+                  name="kabPosko"
+                  label="Kabupaten"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={kabPosko}
+                />
+                <TextField
+                  name="lat"
+                  label="Latitude"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={lat}
+                />
+                <TextField
+                  name="lng"
+                  label="Longitude"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={lng}
+                />
+              </Grid>
+              <Grid xs={12} sm={6} item>
+                {/* <DataPetugas /> */}
+                <Typography component="div">
+                  <Box fontSize={17}>Data Petugas Posko</Box>
+                </Typography>
+                <TextField
+                  name="namaPetugas"
+                  label="Petugas Koord. Posko"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={namaPetugas}
+                />
+                <TextField
+                  name="jabatan"
+                  label="Jabatan Petugas / Tugas Relawan"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={jabatan}
+                />
+                <TextField
+                  name="noHp"
+                  label="No Hp Petugas"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  required
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={noHp}
+                />
+              </Grid>
+              <Button
+                type="submit"
                 fullWidth
-                onChange={(e) => onChange(e)}
-                value={dusunPosko}
-              />
-              <TextField
-                name="desaPosko"
-                label="Desa"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
+                variant="contained"
+                color="primary"
                 size="small"
-                required
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={desaPosko}
-              />
-              <TextField
-                name="kecPosko"
-                label="Kecamatan"
                 style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={kecPosko}
-              />
-              <TextField
-                name="kabPosko"
-                label="Kabupaten"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={kabPosko}
-              />
-              <TextField
-                name="lat"
-                label="Latitude"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={lat}
-              />
-              <TextField
-                name="lng"
-                label="Longitude"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={lng}
-              />
+                startIcon={<SaveIcon />}
+              >
+                Simpan Profile
+              </Button>
             </Grid>
-            <Grid xs={12} sm={6} item>
-              {/* <DataPetugas /> */}
-              <Typography component="div">
-                <Box fontSize={17}>Data Petugas Posko</Box>
-              </Typography>
-              <TextField
-                name="namaPetugas"
-                label="Nama Petugas / Relawan"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={namaPetugas}
-              />
-              <TextField
-                name="jabatan"
-                label="Jabatan Petugas / Tugas Relawan"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={jabatan}
-              />
-              <Alert />
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              size="small"
-              style={{ margin: 8, maxWidth: 500 }}
-              startIcon={<SaveIcon />}
-            >
-              Simpan Profile
-            </Button>
-          </Grid>
-        </form>
-      </Paper>
-    </div>
+          </form>
+        </Paper>
+      </div>
+    </Fragment>
   );
 };
 

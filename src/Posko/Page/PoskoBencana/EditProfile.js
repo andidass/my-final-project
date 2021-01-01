@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { createProfile } from "../../../actions/profile";
 import Alert from "../../../layout/Alert";
 import MapPosko from "../../../layout/Map";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
 
 import {
   Grid,
@@ -19,6 +21,7 @@ const EditProfile = ({
   profile: { profile, loading },
   createProfile,
   history,
+  auth: { user },
 }) => {
   // posko
   const [profileData, setProfileData] = useState({
@@ -32,6 +35,7 @@ const EditProfile = ({
     lng: "",
     namaPetugas: "",
     jabatan: "",
+    noHp: "",
   });
 
   const {
@@ -45,6 +49,7 @@ const EditProfile = ({
     lng,
     namaPetugas,
     jabatan,
+    noHp,
   } = profileData;
 
   useEffect(() => {
@@ -56,11 +61,15 @@ const EditProfile = ({
       //   dusunPosko: loading || !profile.dusunPosko ? "" : profile.dusunPosko,
       kecPosko: loading || !profile.kecPosko ? "" : profile.kecPosko,
       kabPosko: loading || !profile.kabPosko ? "" : profile.kabPosko,
-      lat: loading || !profile.location ? "" : profile.location.lat,
-      lng: loading || !profile.location ? "" : profile.location.lng,
+      lat: loading || !profile.location.lat ? "" : profile.location.lat,
+      lng: loading || !profile.location.lng ? "" : profile.location.lng,
       namaPetugas:
-        loading || !profile.petugas ? "" : profile.petugas.namaPetugas,
-      jabatan: loading || !profile.petugas ? "" : profile.petugas.jabatan,
+        loading || !profile.petugas.namaPetugas
+          ? ""
+          : profile.petugas.namaPetugas,
+      jabatan:
+        loading || !profile.petugas.jabatan ? "" : profile.petugas.jabatan,
+      noHp: loading || !profile.petugas.noHp ? "" : profile.petugas.noHp,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -95,17 +104,21 @@ const EditProfile = ({
 
   return (
     <Fragment>
-      <div className="isi">
-        <Typography component="div">
-          <Box
-            fontSize={18}
-            fontWeight="fontWeightBold"
-            marginTop={3}
-            textAlign="center"
-          >
-            Posko Bencana
-          </Box>
+      <div className="sub-heading">
+        <Typography variant="h5">Edit Profile Pos Bencana</Typography>
+        <Typography variant="subtitle2">
+          Profile Pos {user && user.name}
         </Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/posko/data-posko">Kembali</Link>
+      </Button>
+      <div className="isi">
         <Paper variant="outlined" className="body-posko-bencana">
           <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
             <Grid container>
@@ -191,43 +204,16 @@ const EditProfile = ({
                 <Button
                   variant="contained"
                   color="primary"
-                  size="small"
                   style={{ margin: 8, maxWidth: 500 }}
                   onClick={(e) => setCurrentLocation(e)}
+                  startIcon={<LocationSearchingIcon />}
                 >
-                  Set Lokasi Posko
+                  Set Lokasi
                 </Button>
-
-                <TextField
-                  name="lat"
-                  label="Latitude"
-                  style={{ margin: 8, maxWidth: 500 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  onChange={(e) => onChange(e)}
-                  value={lat}
-                />
-
-                <TextField
-                  name="lng"
-                  label="Longitude"
-                  style={{ margin: 8, maxWidth: 500 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  onChange={(e) => onChange(e)}
-                  value={lng}
-                />
-
                 <MapPosko
                   location={{ lat: lat, lng: lng }}
                   namaPosko={namaPosko}
                 />
-
-                {/* <DataPetugas /> */}
                 <Typography
                   component="div"
                   style={{
@@ -260,23 +246,28 @@ const EditProfile = ({
                   onChange={(e) => onChange(e)}
                   value={jabatan}
                 />
-                <Alert />
+                <TextField
+                  name="noHp"
+                  label="No Hp"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={noHp}
+                />
                 <Button
                   type="submit"
                   variant="contained"
                   color="primary"
                   size="small"
+                  fullWidth
                   style={{ margin: 8, maxWidth: 500 }}
                 >
                   Update Profile
                 </Button>
-                <Button
-                  variant="contained"
-                  size="small"
-                  style={{ margin: 8, maxWidth: 500 }}
-                >
-                  <Link to="/posko/data-posko">Kembali</Link>
-                </Button>
+                <Alert />
               </Grid>
               <Grid xs={1} sm={3} item />
             </Grid>
@@ -290,10 +281,12 @@ const EditProfile = ({
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { createProfile })(

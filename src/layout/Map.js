@@ -25,7 +25,12 @@ function Map({ location, namaPosko }) {
             }}
           >
             <InfoWindow position={{ lat: location.lat, lng: location.lng }}>
-              <div>lokasi {namaPosko}</div>
+              <Fragment>
+                <h3 style={{ textAlign: "center" }}>lokasi {namaPosko}</h3>
+                <div>
+                  lat : {location.lat}, lng:{location.lng}
+                </div>
+              </Fragment>
             </InfoWindow>
           </Marker>
         </GoogleMap>

@@ -7,6 +7,8 @@ import TabelPetugas from "./TabelPetugas";
 import Alert from "../../../layout/Alert";
 import MapPosko from "../../../layout/Map";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import EditIcon from "@material-ui/icons/Edit";
 
 import {
   Grid,
@@ -17,7 +19,11 @@ import {
   Button,
 } from "@material-ui/core";
 
-const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
+const ProfilePosko = ({
+  profile: { profile, loading },
+  deletePetugas,
+  auth: { user },
+}) => {
   // posko
   const [profileData, setProfileData] = useState({
     namaPosko: "",
@@ -28,6 +34,7 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
     jabatan: "",
     lat: "",
     lng: "",
+    noHp: "",
   });
 
   const {
@@ -39,6 +46,7 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
     jabatan,
     lat,
     lng,
+    noHp,
   } = profileData;
 
   useEffect(() => {
@@ -51,8 +59,12 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
       lat: loading || !profile.location ? "" : profile.location.lat,
       lng: loading || !profile.location ? "" : profile.location.lng,
       namaPetugas:
-        loading || !profile.petugas ? "" : profile.petugas.namaPetugas,
-      jabatan: loading || !profile.petugas ? "" : profile.petugas.jabatan,
+        loading || !profile.petugas.namaPetugas
+          ? ""
+          : profile.petugas.namaPetugas,
+      jabatan:
+        loading || !profile.petugas.jabatan ? "" : profile.petugas.jabatan,
+      noHp: loading || !profile.petugas.noHp ? "" : profile.petugas.noHp,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -65,167 +77,86 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          marginTop={3}
-          textAlign="center"
-        >
-          Posko Bencana
-        </Box>
-      </Typography>
+      <Alert />
+      <div className="sub-heading">
+        <Typography variant="h5">Data Profile Pos Bencana</Typography>
+        <Typography variant="subtitle2">
+          Profile Pos {user && user.name}
+        </Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/posko/dashboard">Kembali</Link>
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        startIcon={<EditIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/posko/data-posko/edit-profile" style={{ color: "white" }}>
+          Edit Profile
+        </Link>
+      </Button>
       <Paper variant="outlined" className="body-posko-bencana">
-        <form className="body-posko-bencana">
-          <Grid container justify="space-around">
-            {/* <Grid xs={1} sm={2} item /> */}
-            <Grid xs={10} sm={4} item>
-              <Typography
-                // variant="h1"
-                component="div"
-                align="center"
-                style={{ marginBottom: 10 }}
-              >
-                <Box fontSize={17}>Data Posko</Box>
-              </Typography>
-              <TextField
-                name="namaPosko"
-                label="Nama Posko"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                disabled
-                value={namaPosko}
-              />
-              <TextField
-                name="alamatPosko"
-                label="Alamat Posko"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                multiline
-                rows={2}
-                disabled
-                value={alamatPosko}
-              />
-              <TextField
-                name="kecPosko"
-                label="Kecamatan"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                disabled
-                value={kecPosko}
-              />
-              <TextField
-                name="kabPosko"
-                label="Kabupaten"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                disabled
-                value={kabPosko}
-              />
-              <TextField
-                name="lat"
-                label="Latitude"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                disabled
-                value={lat}
-              />
-              <TextField
-                name="lng"
-                label="Longitude"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                disabled
-                value={lng}
-              />
-              <MapPosko
-                location={{ lat: lat, lng: lng }}
-                namaPosko={namaPosko}
-              />
-            </Grid>
-            <Grid xs={10} sm={4} item>
-              <Typography
-                component="div"
-                align="center"
-                style={{ marginBottom: 10 }}
-              >
-                <Box fontSize={17}>Data Petugas Posko</Box>
-              </Typography>
-              <TextField
-                name="namaPetugas"
-                label="Petugas Penanggung Jawab Posko"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                disabled
-                value={namaPetugas}
-              />
-              <TextField
-                name="jabatan"
-                label="Jabatan Petugas"
-                style={{ margin: 8 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                disabled
-                value={jabatan}
-              />
-
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 8 }}
-              >
-                <Link
-                  style={{ color: "white" }}
-                  to="/posko/data-posko/edit-profile"
+        {profile && (
+          <div className="body-posko-bencana">
+            <Grid container justify="space-around">
+              <Grid xs={10} sm={4} item>
+                <Typography
+                  component="div"
+                  align="center"
+                  style={{ marginBottom: 10, fontWeight: "bold" }}
                 >
-                  Edit Profile
-                </Link>
-              </Button>
-              <Button variant="contained" size="small" style={{ margin: 8 }}>
-                <Link to="/posko/dashboard">Kembali</Link>
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 8 }}
-              >
-                <Link
-                  style={{ color: "white" }}
-                  to="/posko/data-posko/data-petugas"
+                  <Box fontSize={17}>Data Pos</Box>
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Nama Pos :</b> {namaPosko}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Alamat Pos :</b> {alamatPosko}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Kecamatan Pos :</b> {kecPosko}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Kabupaten Pos :</b> {kabPosko}
+                </Typography>
+              </Grid>
+              <Grid xs={10} sm={4} item>
+                <Typography
+                  component="div"
+                  align="center"
+                  style={{ marginBottom: 10, fontWeight: "bold" }}
                 >
-                  Tambah Petugas / Volunteer
-                </Link>
-              </Button>
+                  <Box fontSize={17}>Data Petugas Pos</Box>
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Nama Koor Petugas Pos :</b> {namaPetugas}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Jabatan Petugas :</b> {jabatan}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>No Hp :</b> {noHp}
+                </Typography>
+              </Grid>
             </Grid>
-            {/* <Grid xs={1} sm={2} item /> */}
-          </Grid>
-          <Alert />
-        </form>
+            <Typography
+              component="div"
+              align="center"
+              style={{ marginBottom: 10, fontWeight: "bold" }}
+            >
+              <Box fontSize={17}>Lokasi Pos</Box>
+            </Typography>
+            <MapPosko location={{ lat: lat, lng: lng }} namaPosko={namaPosko} />
+          </div>
+        )}
         <TabelPetugas rows={profile.allPetugas} onDelete={onDelete} />
       </Paper>
     </Fragment>
@@ -235,10 +166,12 @@ const ProfilePosko = ({ profile: { profile, loading }, deletePetugas }) => {
 ProfilePosko.propTypes = {
   deletePetugas: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { deletePetugas })(

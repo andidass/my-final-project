@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Box, Typography, TablePagination } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
+import "./style.css";
 
 const useStyles = makeStyles({
   table: {
@@ -34,7 +35,7 @@ export default function SimpleTable({ rows, deleteItem }) {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <form>
+    <div className="table">
       <Typography component="div">
         <Box
           fontWeight="fontWeightBold"
@@ -99,6 +100,6 @@ export default function SimpleTable({ rows, deleteItem }) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </TableContainer>
-    </form>
+    </div>
   );
 }

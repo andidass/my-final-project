@@ -7,3 +7,9 @@
     max-width: 90%;
     margin: 0 30px 20px
 }
+.sub-heading{
+    padding: 2rem;
+    text-transform: uppercase;
+    color:#85929E;
+    background-color: #F4F6F6;
+}

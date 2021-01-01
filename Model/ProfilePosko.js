@@ -18,15 +18,15 @@ const ProfilePoskoSchema = new mongoose.Schema({
   kabPosko: {
     type: String,
   },
-  noHp: {
-    type: String,
-  },
   petugas: {
     namaPetugas: {
       type: String,
     },
     jabatan: {
       type: String,
+    },
+    noHp: {
+      type: Number,
     },
   },
   location: {

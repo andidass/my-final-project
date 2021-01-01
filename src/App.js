@@ -38,7 +38,12 @@ import LoginPetugas from "./Petugas/Pages/LoginPetugas";
 import RegistrasiPetugas from "./Petugas/Pages/RegistrasiPetugas";
 import MainPetugas from "./Petugas/Pages/MainPetugas";
 import ProfilePetugas from "./Petugas/Pages/ProfilePetugas";
-import LaporanBencana from "./Petugas/Pages/LaporanBencana";
+import MenuLaporanBencana from "./Petugas/Pages/LaporanBencana/MenuLaporanBencana";
+import KejadianBencana from "./Petugas/Pages/LaporanBencana/KejadianBencana";
+import KorbanJiwa from "./Petugas/Pages/LaporanBencana/KorbanJiwa";
+import LaporanKerusakan from "./Petugas/Pages/LaporanBencana/LaporanKerusakan";
+import FasumPenanganan from "./Petugas/Pages/LaporanBencana/FasumPenanganan";
+// import LaporanBencana from "./Petugas/Pages/LaporanBencana";
 import LaporanHarian from "./Petugas/Pages/LaporanHarian";
 
 // ADMIN
@@ -150,7 +155,27 @@ const App = () => {
           <Route
             path="/petugas/data-bencana"
             exact
-            component={LaporanBencana}
+            component={MenuLaporanBencana}
+          />
+          <Route
+            path="/petugas/data-bencana/kejadian-bencana"
+            exact
+            component={KejadianBencana}
+          />
+          <Route
+            path="/petugas/data-bencana/korban-jiwa"
+            exact
+            component={KorbanJiwa}
+          />
+          <Route
+            path="/petugas/data-bencana/kerusakan"
+            exact
+            component={LaporanKerusakan}
+          />
+          <Route
+            path="/petugas/data-bencana/fasum-penanganan"
+            exact
+            component={FasumPenanganan}
           />
 
           {/* ---------------- ADMIN ------------------- */}

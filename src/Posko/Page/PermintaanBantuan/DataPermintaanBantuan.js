@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -8,6 +8,7 @@ import {
 } from "../../../actions/permintaanBantuan";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import Tabel from "./Tabel";
 
@@ -87,17 +88,22 @@ const DataPermintaanBantuan = ({
     <Spinner />
   ) : (
     <Fragment>
-      <div className="isi">
-        <Typography component="div">
-          <Box
-            fontSize={18}
-            fontWeight="fontWeightBold"
-            textAlign="center"
-            marginTop={3}
-          >
-            Permintaan Bantuan {user && user.name}
-          </Box>
+      <div className="sub-heading">
+        <Typography variant="h5">Data Permintaan Bantuan Pos</Typography>
+        <Typography variant="subtitle2">
+          Data Permintaan Bantuan Pos {user && user.name}
         </Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/posko/dashboard">Kembali</Link>
+      </Button>
+
+      <div className="isi">
         <Paper variant="outlined" className="body-posko-bencana">
           <Grid container justify="center">
             <Grid item>
@@ -180,7 +186,7 @@ const DataPermintaanBantuan = ({
                       color="primary"
                       style={{ margin: 8 }}
                     >
-                      Tambah
+                      Tambah Data
                     </Button>
                   </Fragment>
                 ) : null}

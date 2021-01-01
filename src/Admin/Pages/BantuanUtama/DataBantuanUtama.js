@@ -26,8 +26,8 @@ const jenisBantuan2 = [
     label: "Pangan",
   },
   {
-    value: "Pakaian",
-    label: "Pakaian",
+    value: "Papan",
+    label: "Papan",
   },
   {
     value: "Sanitasi",
@@ -49,6 +49,7 @@ const DataBantuanUtama = ({
   const [dataBantuanUtama, setDataBantuanUtama] = useState({
     jenisBantuan: "Pangan",
     namaBarang: "",
+    jmlBarang: 0,
   });
 
   const { jenisBantuan, namaBarang } = dataBantuanUtama;

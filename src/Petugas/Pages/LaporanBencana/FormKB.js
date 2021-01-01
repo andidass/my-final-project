@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, Link } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { createDataBencana } from "../../../actions/dataBencana";
+// import { withRouter, Link } from "react-router-dom";
+// import { connect } from "react-redux";
+// import PropTypes from "prop-types";
+// import { createDataBencana } from "../../../actions/dataBencana";
 import Alert from "../../../layout/Alert";
 import SaveIcon from "@material-ui/icons/Save";
 import {
@@ -14,63 +14,52 @@ import {
   Button,
 } from "@material-ui/core";
 
-const DataBencana = ({
-  createDataBencana,
-  dataBencana: { dataBencana, loading },
-  auth: { user },
-  history,
-}) => {
+const formKB = () => {
   // posko
-  const [data, setData] = useState({
-    rumahrb: "",
-    rumahrs: "",
-    rumahrr: "",
-    fasum: "",
-    faskes: "",
-    faspen: "",
-    peribadatan: "",
-    terdampak: "",
-    luka: "",
-    md: "",
+  const [dataKejadian, setDataKejadian] = useState({
+    jenisBencana: "",
+    tglKejadian: "",
+    waktuKejadian: "",
+    penyebab: "",
+    desc: "",
+    cuaca: "",
+    provinsi: "",
+    kabupaten: "",
+    kelurahan: "",
+    kec: "",
+    cakupan: "",
+    lat: "",
+    lng: "",
   });
 
-  const {
-    rumahrb,
-    rumahrs,
-    rumahrr,
-    fasum,
-    faskes,
-    faspen,
-    peribadatan,
-    terdampak,
-    luka,
-    md,
-  } = data;
-
-  const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setDataKejadian({ ...dataKejadian, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createDataBencana(data, history, true);
+    // createDataBencana(dataKejadian, history, true);
   };
 
-  useEffect(() => {
-    setData({
-      rumahrb: loading || !dataBencana.rumahrb ? "0" : dataBencana.rumahrb,
-      rumahrs: loading || !dataBencana.rumahrs ? "0" : dataBencana.rumahrs,
-      rumahrr: loading || !dataBencana.rumahrr ? "0" : dataBencana.rumahrr,
-      fasum: loading || !dataBencana.fasum ? "0" : dataBencana.fasum,
-      faspen: loading || !dataBencana.faspen ? "0" : dataBencana.faspen,
-      faskes: loading || !dataBencana.faskes ? "0" : dataBencana.faskes,
-      peribadatan:
-        loading || !dataBencana.peribadatan ? "0" : dataBencana.peribadatan,
-      terdampak:
-        loading || !dataBencana.terdampak ? "0" : dataBencana.terdampak,
-      luka: loading || !dataBencana.luka ? "0" : dataBencana.luka,
-      md: loading || !dataBencana.md ? "0" : dataBencana.md,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   useEffect(() => {
+  //     setDataKejadian({
+  //       jenisBencana:
+  //         loading || !dataBencana.jenisBencana ? "0" : dataBencana.jenisBencana,
+  //       tglKejadian:
+  //         loading || !dataBencana.tglKejadian ? "0" : dataBencana.tglKejadian,
+  //       waktuKejadian:
+  //         loading || !dataBencana.waktuKejadian ? "0" : dataBencana.waktuKejadian,
+  //       penyebab: loading || !dataBencana.penyebab ? "0" : dataBencana.penyebab,
+  //       desc: loading || !dataBencana.desc ? "0" : dataBencana.desc,
+  //       cuaca: loading || !dataBencana.cuaca ? "0" : dataBencana.cuaca,
+  //       peribadatan:
+  //         loading || !dataBencana.peribadatan ? "0" : dataBencana.peribadatan,
+  //       terdampak:
+  //         loading || !dataBencana.terdampak ? "0" : dataBencana.terdampak,
+  //       luka: loading || !dataBencana.luka ? "0" : dataBencana.luka,
+  //       md: loading || !dataBencana.md ? "0" : dataBencana.md,
+  //     });
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, []);
 
   return (
     <div>
@@ -81,19 +70,19 @@ const DataBencana = ({
           marginTop={3}
           textAlign="center"
         >
-          Form Kejadian Bencana
+          {/* Form Kejadian Bencana (Form KB) */}
+          Kejadian Bencana
         </Box>
       </Typography>
       <Paper variant="outlined" className="body-posko-bencana">
         <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
           <Grid container justify="space-around">
             <Grid xs={12} sm={6} item>
-              {/* <DataPosko /> */}
               <Typography component="div">
                 <Box fontSize={17}>Data Fasilitas</Box>
               </Typography>
               <TextField
-                name="rumahrb"
+                name="jenisBencana"
                 label="Rumah Rusak Berat"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
@@ -101,10 +90,10 @@ const DataBencana = ({
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={rumahrb}
+                value={jenisBencana}
               />
               <TextField
-                name="rumahrs"
+                name="tglKejadian"
                 label="Rumah Rusak Sedang"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
@@ -113,11 +102,11 @@ const DataBencana = ({
                 fullWidth
                 multiline
                 onChange={(e) => onChange(e)}
-                value={rumahrs}
+                value={tglKejadian}
               />
 
               <TextField
-                name="rumahrr"
+                name="waktuKejadian"
                 label="Rumah Rusak Ringan"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
@@ -125,10 +114,10 @@ const DataBencana = ({
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={rumahrr}
+                value={waktuKejadian}
               />
               <TextField
-                name="fasum"
+                name="penyebab"
                 label="Fasilitas Umum"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
@@ -136,10 +125,10 @@ const DataBencana = ({
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={fasum}
+                value={penyebab}
               />
               <TextField
-                name="faskes"
+                name="cuaca"
                 label="Fasilitas Kesehatan"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
@@ -147,18 +136,19 @@ const DataBencana = ({
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={faskes}
+                value={cuaca}
               />
               <TextField
-                name="faspen"
+                name="desc"
                 label="Fasilitas Pendidikan"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
                 size="small"
                 fullWidth
+                multiline
                 onChange={(e) => onChange(e)}
-                value={faspen}
+                value={desc}
               />
               <TextField
                 name="peribadatan"
@@ -239,17 +229,4 @@ const DataBencana = ({
   );
 };
 
-DataBencana.propTypes = {
-  dataBencana: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
-  createDataBencana: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  dataBencana: state.dataBencana,
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, { createDataBencana })(
-  withRouter(DataBencana)
-);
+export default formKB;

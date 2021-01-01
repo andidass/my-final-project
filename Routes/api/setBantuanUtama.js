@@ -81,10 +81,11 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { jenisBantuan, namaBarang } = req.body;
+    const { jenisBantuan, namaBarang, jmlBarang } = req.body;
     const newBantuanUtama = {
       jenisBantuan,
       namaBarang,
+      jmlBarang,
     };
 
     try {

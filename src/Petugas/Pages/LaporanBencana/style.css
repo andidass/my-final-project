@@ -1,0 +1,10 @@
+.paper-form{
+    width: 80vw;
+    align-items: center;
+    text-align: center;
+    /* padding-left: 5rem; */
+}
+
+.button{
+    text-align: center;
+}

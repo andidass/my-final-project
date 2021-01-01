@@ -40,6 +40,7 @@ router.post(
       check("kabPosko", "Kabupaten posko harus diisi").not().isEmpty(),
       check("namaPetugas", "Nama petugas harus diisi").not().isEmpty(),
       check("jabatan", "Jabatan harus diisi").not().isEmpty(),
+      check("noHp", "Masukkan No Hp dengan format yang benar").isNumeric(),
     ],
   ],
   async (req, res) => {
@@ -57,6 +58,7 @@ router.post(
       jabatan,
       lat,
       lng,
+      noHp,
     } = req.body;
 
     // build profile obj
@@ -70,6 +72,7 @@ router.post(
     profilePoskoFields.petugas = {};
     if (namaPetugas) profilePoskoFields.petugas.namaPetugas = namaPetugas;
     if (jabatan) profilePoskoFields.petugas.jabatan = jabatan;
+    if (noHp) profilePoskoFields.petugas.noHp = noHp;
 
     profilePoskoFields.location = {};
     if (lat) profilePoskoFields.location.lat = lat;

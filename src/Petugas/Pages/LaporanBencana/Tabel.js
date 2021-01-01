@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Box, Typography, TablePagination } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
@@ -19,7 +19,6 @@ const useStyles = makeStyles({
 
 export default function SimpleTable({ rows, deleteItem }) {
   const classes = useStyles();
-
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -44,17 +43,19 @@ export default function SimpleTable({ rows, deleteItem }) {
           fontSize={18}
           marginTop={5}
         >
-          Daftar Permintaan Bantuan Posko
+          Daftar Pengungsi
         </Box>
       </Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Nama Barang</TableCell>
-              <TableCell align="right">Jenis Barang</TableCell>
-              <TableCell align="right">Satuan</TableCell>
-              <TableCell align="right">Banyaknya</TableCell>
+              <TableCell>Nama Pengungsi</TableCell>
+              <TableCell align="right">Jenis Kelamin</TableCell>
+              <TableCell align="right">Umur</TableCell>
+              <TableCell align="right">Keadaan</TableCell>
+              <TableCell align="right">Alamat</TableCell>
+              <TableCell align="right">Keterangan</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -64,11 +65,14 @@ export default function SimpleTable({ rows, deleteItem }) {
                 .map((data, index) => (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">
-                      {data.namaBarang}
+                      {/* {data.namaPengungsi} */}
+                      {data.namaPengungsi}
                     </TableCell>
-                    <TableCell align="right">{data.jenisBantuan}</TableCell>
-                    <TableCell align="right">{data.satuan}</TableCell>
-                    <TableCell align="right">{data.banyaknya}</TableCell>
+                    <TableCell align="right">{data.jenisKelamin}</TableCell>
+                    <TableCell align="right">{data.umur}</TableCell>
+                    <TableCell align="right">{data.keadaan}</TableCell>
+                    <TableCell align="right">{data.alamat}</TableCell>
+                    <TableCell align="right">{data.ket}</TableCell>
                     <TableCell align="right">
                       <Button
                         variant="contained"

@@ -1,3 +1,7 @@
+.table{
+    padding: 2vh;
+    text-transform: capitalize;
+}
 
 .no-data{
     padding: 2rem;
@@ -9,14 +13,11 @@
     text-align: center;
 }
 
+
 .item-bantuan{
     padding:2rem;
 }
 
-.table{
-    padding: 2vh;
-    text-transform: capitalize;
-}
 
 .sub-heading{
     padding: 2rem;
