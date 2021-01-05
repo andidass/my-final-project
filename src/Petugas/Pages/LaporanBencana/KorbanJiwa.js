@@ -1,6 +1,8 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Alert from "../../../layout/Alert";
+
+import { createDataBencana } from "../../../actions/dataBencana";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
@@ -55,6 +57,7 @@ const DataKorban = () => {
   const [rows, setRows] = useState([]); // data item
   function addItem(e) {
     e.preventDefault();
+    // createDataBencana(dataKorban); ==> ketika semua data siap
     setRows((prevRows) => {
       return [...prevRows, dataKorban];
     });

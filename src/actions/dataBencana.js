@@ -8,7 +8,7 @@ import {
   CLEAR_LAPORAN_BENCANA,
 } from "./types";
 
-// get current data bencana
+// get data bencana
 export const getCurrentDataBencana = () => async (dispatch) => {
   try {
     const res = await axios.get("/petugas/data-bencana/me");

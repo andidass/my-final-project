@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import MenuPetugas from "../Components/MenuPetugas";
 import { getCurrentProfile } from "../../actions/profilePetugas";
@@ -14,21 +14,21 @@ import Spinner from "../../Components/Spinner";
 import { Typography, Box } from "@material-ui/core";
 
 const MainPetugas = ({
-  auth: { user, loading },
+  auth: { user, isAuthenticated, loading },
+  profile: { profile },
   loadUser,
   getCurrentProfile,
-  getCurrentDataBencana,
 }) => {
   useEffect(() => {
     loadUser();
     getCurrentProfile();
-    getCurrentDataBencana();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // if (user.session === null) {
-  //   return <Redirect to="/error" />;
-  // }
+  if (!isAuthenticated) {
+    return <Redirect to="/petugas/login" />;
+  }
+
   return loading ? (
     <Spinner />
   ) : (
@@ -52,17 +52,17 @@ const MainPetugas = ({
 
 MainPetugas.propTypes = {
   auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  getCurrentDataBencana: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, {
   getCurrentProfile,
-  getCurrentDataBencana,
   loadUser,
 })(MainPetugas);

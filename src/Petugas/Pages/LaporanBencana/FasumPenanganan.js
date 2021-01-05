@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, Fragment } from "react";
+import { withRouter, Link } from "react-router-dom";
 import {
   Grid,
   Paper,
@@ -8,12 +8,100 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import Alert from "../../../layout/Alert";
+import Spinner from "../../../Components/Spinner";
+import { createDataBencana } from "../../../actions/dataBencana";
 import SaveIcon from "@material-ui/icons/Save";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import "./style.css";
 
-const FasumPenanganan = () => {
-  const [fasum, setFasum] = useState({
+const FasumPenanganan = ({
+  createDataBencana,
+  dataBencana: { dataBencana, loading },
+  history,
+}) => {
+  useEffect(() => {
+    setData({
+      jenisBencana:
+        loading || !dataBencana.jenisBencana ? "" : dataBencana.jenisBencana,
+      tglKejadian:
+        loading || !dataBencana.tglKejadian ? "" : dataBencana.tglKejadian,
+      waktuKejadian:
+        loading || !dataBencana.waktuKejadian ? "" : dataBencana.waktuKejadian,
+      penyebab: loading || !dataBencana.penyebab ? "" : dataBencana.penyebab,
+      desc: loading || !dataBencana.desc ? "" : dataBencana.desc,
+      cuaca: loading || !dataBencana.cuaca ? "" : dataBencana.cuaca,
+      provinsi:
+        loading || !dataBencana.lokasiBencana
+          ? ""
+          : dataBencana.lokasiBencana.provinsi,
+      kabupaten:
+        loading || !dataBencana.lokasiBencana
+          ? ""
+          : dataBencana.lokasiBencana.kabupaten,
+      kelurahan:
+        loading || !dataBencana.lokasiBencana
+          ? ""
+          : dataBencana.lokasiBencana.kelurahan,
+      kec:
+        loading || !dataBencana.lokasiBencana
+          ? ""
+          : dataBencana.lokasiBencana.kec,
+      cakupan:
+        loading || !dataBencana.lokasiBencana
+          ? ""
+          : dataBencana.lokasiBencana.cakupan,
+      lat:
+        loading || !dataBencana.lokasiBencana
+          ? ""
+          : dataBencana.lokasiBencana.lat,
+      lng:
+        loading || !dataBencana.lokasiBencana
+          ? ""
+          : dataBencana.lokasiBencana.lng,
+
+      aksesKeLokasi:
+        loading || !dataBencana.fasum ? "" : dataBencana.fasum.aksesKeLokasi,
+      saranaTransportasi:
+        loading || !dataBencana.fasum
+          ? ""
+          : dataBencana.fasum.saranaTransportasi,
+      jalurKomunikasi:
+        loading || !dataBencana.fasum ? "" : dataBencana.fasum.jalurKomunikasi,
+      keadaanJaringanAir:
+        loading || !dataBencana.fasum
+          ? ""
+          : dataBencana.fasum.keadaanJaringanAir,
+      keadaanJaringanListrik:
+        loading || !dataBencana.fasum
+          ? ""
+          : dataBencana.fasum.keadaanJaringanListrik,
+      fasKes: loading || !dataBencana.fasum ? "" : dataBencana.fasum.fasKes,
+      upayaPenanganan:
+        loading || !dataBencana.fasum ? "" : dataBencana.fasum.upayaPenanganan,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [data, setData] = useState({
+    //kejadian bencana
+    jenisBencana: "",
+    tglKejadian: "",
+    waktuKejadian: "",
+    penyebab: "",
+    desc: "",
+    cuaca: "",
+    provinsi: "",
+    kabupaten: "",
+    kelurahan: "",
+    kec: "",
+    cakupan: "",
+    lat: "",
+    lng: "",
+
+    // fasum dan penanganan
     aksesKeLokasi: "",
     saranaTransportasi: "",
     jalurKomunikasi: "",
@@ -31,14 +119,13 @@ const FasumPenanganan = () => {
     keadaanJaringanAir,
     fasKes,
     upayaPenanganan,
-  } = fasum;
+  } = data;
 
-  const onChange = (e) =>
-    setFasum({ ...fasum, [e.target.name]: e.target.value });
+  const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // createDataBencana(dataKejadian, history, true);
+    createDataBencana(data, history, true);
   };
 
   return (
@@ -47,6 +134,7 @@ const FasumPenanganan = () => {
         <Typography variant="h5">Kejadian Bencana</Typography>
         <Typography variant="subtitle2">Data Kejadian Bencana</Typography>
       </div>
+      <Alert />
       <Button
         variant="outlined"
         size="small"
@@ -175,4 +263,16 @@ const FasumPenanganan = () => {
   );
 };
 
-export default FasumPenanganan;
+FasumPenanganan.propTypes = {
+  createDataBencana: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  dataBencana: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  dataBencana: state.dataBencana,
+});
+
+export default connect(mapStateToProps, { createDataBencana })(
+  withRouter(FasumPenanganan)
+);

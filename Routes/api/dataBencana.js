@@ -16,9 +16,7 @@ router.get("/me", auth, async (req, res) => {
       petugas: req.user.id,
     }).populate("petugas", ["name", "avatar"]);
     if (!dataBencana) {
-      return res
-        .status(400)
-        .json({ msg: "petugas tidak memiliki data bencana" });
+      return res.status(400).json({ msg: "petugas tidak memiliki profile" });
     }
     res.json(dataBencana);
   } catch (err) {
