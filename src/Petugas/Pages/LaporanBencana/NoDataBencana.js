@@ -82,7 +82,7 @@ const NoDataBencana = ({
                   style={{ margin: 8, maxWidth: 500 }}
                   startIcon={<SaveIcon />}
                 >
-                  Simpan Data
+                  Buat Data Bencana
                 </Button>
               </div>
             </form>

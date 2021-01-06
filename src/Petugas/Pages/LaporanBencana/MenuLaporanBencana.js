@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Grid, Box, Typography, Card, CardContent } from "@material-ui/core";
+import {
+  Grid,
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 //icon material-ui
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import HomeIcon from "@material-ui/icons/Home";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const useStyles = makeStyles({
   root: {
@@ -30,16 +38,20 @@ function MenuLaporanBencana() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Typography component="div">
-        <Box
-          textAlign="center"
-          fontSize={20}
-          fontWeight="fontWeightBold"
-          marginTop={4}
-        >
-          Data Bencana
-        </Box>
-      </Typography>
+      <div className="sub-heading">
+        <Typography variant="h5">Menu Data Kejadian Bencana</Typography>
+        <Typography variant="subtitle2">
+          Catatan Data Kejadian Bencana (Berdasarkan Perka 89)
+        </Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/petugas/dashboard">Kembali</Link>
+      </Button>
       <Grid container justify="center" className={classes.padding}>
         <Grid
           item
@@ -56,6 +68,26 @@ function MenuLaporanBencana() {
               <HomeIcon />
               <Typography component="div">
                 <Box>Kejadian Bencana</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          xl={6}
+          sm={4}
+          lg={2}
+          component={Link}
+          to="/petugas/data-bencana/fasum-penanganan"
+          className="link"
+        >
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <AssignmentIcon />
+              <Typography component="div">
+                <Box>Fasilitas & Penanganan</Box>
               </Typography>
             </CardContent>
           </Card>
@@ -96,26 +128,6 @@ function MenuLaporanBencana() {
               <AssignmentIcon />
               <Typography component="div">
                 <Box>Data Kerusakan</Box>
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          xl={6}
-          sm={4}
-          lg={2}
-          component={Link}
-          to="/petugas/data-bencana/fasum-penanganan"
-          className="link"
-        >
-          <Card className={classes.root} variant="outlined">
-            <CardContent>
-              <AssignmentIcon />
-              <Typography component="div">
-                <Box>Fasilitas & Penanganan</Box>
               </Typography>
             </CardContent>
           </Card>

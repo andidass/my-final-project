@@ -35,10 +35,6 @@ const KejadianBencana = ({
       penyebab: loading || !dataBencana.penyebab ? "" : dataBencana.penyebab,
       desc: loading || !dataBencana.desc ? "" : dataBencana.desc,
       cuaca: loading || !dataBencana.cuaca ? "" : dataBencana.cuaca,
-      provinsi:
-        loading || !dataBencana.lokasiBencana
-          ? ""
-          : dataBencana.lokasiBencana.provinsi,
       kabupaten:
         loading || !dataBencana.lokasiBencana
           ? ""
@@ -94,7 +90,6 @@ const KejadianBencana = ({
     penyebab: "",
     desc: "",
     cuaca: "",
-    provinsi: "",
     kabupaten: "",
     kelurahan: "",
     kec: "",
@@ -118,7 +113,6 @@ const KejadianBencana = ({
     penyebab,
     desc,
     cuaca,
-    provinsi,
     kabupaten,
     kelurahan,
     kec,
@@ -218,17 +212,6 @@ const KejadianBencana = ({
                 <Typography component="div">
                   <Box fontSize={17}>Lokasi Bencana</Box>
                 </Typography>
-                <TextField
-                  name="provinsi"
-                  label="Provinsi"
-                  style={{ margin: 8, maxWidth: 500 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  onChange={(e) => onChange(e)}
-                  value={provinsi}
-                />
                 <TextField
                   name="kabupaten"
                   label="Kabupaten"

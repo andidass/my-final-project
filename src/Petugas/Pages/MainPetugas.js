@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 
 import MenuPetugas from "../Components/MenuPetugas";
 import { getCurrentProfile } from "../../actions/profilePetugas";
-import { getCurrentDataBencana } from "../../actions/dataBencana";
 import { loadUser } from "../../actions/authPetugas";
 import Alert from "../../layout/Alert";
 
@@ -42,7 +41,7 @@ const MainPetugas = ({
           marginTop={4}
           color="red"
         >
-          welcome {user && user.name}
+          Welcome {user && user.name}
         </Box>
       </Typography>
       <MenuPetugas />

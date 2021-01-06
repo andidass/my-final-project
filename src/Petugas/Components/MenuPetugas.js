@@ -57,26 +57,6 @@ function MenuPetugas() {
           sm={4}
           lg={2}
           component={Link}
-          to="/petugas/laporan-harian"
-          className="link"
-        >
-          <Card className={classes.root} variant="outlined">
-            <CardContent>
-              <AssignmentIcon />
-              <Typography component="div">
-                <Box>Laporan Harian</Box>
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          xl={6}
-          sm={4}
-          lg={2}
-          component={Link}
           to="/petugas/data-bencana"
           className="link"
         >

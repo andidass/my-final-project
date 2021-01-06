@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { getCurrentDataBencana } from "../../../actions/dataBencana";
 import { Redirect } from "react-router-dom";
 // import DataBencana from "./DataBencana";
-import Stepper from "./Stepper";
 import MenuLaporanBencana from "./MenuLaporanBencana";
 import NoDataBencana from "./NoDataBencana";
 
