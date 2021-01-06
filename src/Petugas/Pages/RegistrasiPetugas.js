@@ -107,7 +107,6 @@ function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
             autoComplete="position"
             value={position}
             onChange={(e) => onChange(e)}
-            autoFocus
           />
           <TextField
             variant="outlined"
@@ -121,7 +120,6 @@ function RegistrasiPetugas({ setAlert, register, isAuthenticated }) {
             autoComplete="email"
             value={email}
             onChange={(e) => onChange(e)}
-            autoFocus
           />
           <TextField
             variant="outlined"

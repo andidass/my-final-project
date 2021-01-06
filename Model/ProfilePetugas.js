@@ -12,13 +12,13 @@ const PetugasProfileSchema = new mongoose.Schema({
   jobdesc: {
     type: String,
   },
-  dusun: {
-    type: String,
-  },
-  desa: {
-    type: String,
-  },
   kabupaten: {
+    type: String,
+  },
+  kelurahan: {
+    type: String,
+  },
+  kecDesa: {
     type: String,
   },
   regdesc: {

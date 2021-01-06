@@ -92,25 +92,25 @@ router.post("/", auth, async (req, res) => {
   if (lat) dataBencanaFields.lokasiBencana.lat = lat;
   if (lng) dataBencanaFields.lokasiBencana.lng = lng;
 
-  dataBencanaFields.dataKorban = {};
-  if (namaPengungsi) dataBencanaFields.dataKorban.namaPengungsi = namaPengungsi;
-  if (jenisKelamin) dataBencanaFields.dataKorban.jenisKelamin = jenisKelamin;
-  if (umur) dataBencanaFields.dataKorban.umur = umur;
-  if (keadaan) dataBencanaFields.dataKorban.keadaan = keadaan;
-  if (alamat) dataBencanaFields.dataKorban.alamat = alamat;
-  if (ket) dataBencanaFields.dataKorban.ket = ket;
+  // dataBencanaFields.dataKorban = {};
+  // if (namaPengungsi) dataBencanaFields.dataKorban.namaPengungsi = namaPengungsi;
+  // if (jenisKelamin) dataBencanaFields.dataKorban.jenisKelamin = jenisKelamin;
+  // if (umur) dataBencanaFields.dataKorban.umur = umur;
+  // if (keadaan) dataBencanaFields.dataKorban.keadaan = keadaan;
+  // if (alamat) dataBencanaFields.dataKorban.alamat = alamat;
+  // if (ket) dataBencanaFields.dataKorban.ket = ket;
 
-  dataBencanaFields.dataKerusakan = {};
-  if (jenisBidang) dataBencanaFields.dataKerusakan.jenisBidang = jenisBidang;
-  if (bidang) dataBencanaFields.dataKerusakan.bidang = bidang;
-  if (wilayah) dataBencanaFields.dataKerusakan.wilayah = wilayah;
-  if (jenisKerusakan)
-    dataBencanaFields.dataKerusakan.jenisKerusakan = jenisKerusakan;
-  if (rusakBerat) dataBencanaFields.dataKerusakan.rusakBerat = rusakBerat;
-  if (rusakSedang) dataBencanaFields.dataKerusakan.rusakSedang = rusakSedang;
-  if (rusakRingan) dataBencanaFields.dataKerusakan.rusakRingan = rusakRingan;
-  if (total) dataBencanaFields.dataKerusakan.total = total;
-  if (satuan) dataBencanaFields.dataKerusakan.satuan = satuan;
+  // dataBencanaFields.dataKerusakan = {};
+  // if (jenisBidang) dataBencanaFields.dataKerusakan.jenisBidang = jenisBidang;
+  // if (bidang) dataBencanaFields.dataKerusakan.bidang = bidang;
+  // if (wilayah) dataBencanaFields.dataKerusakan.wilayah = wilayah;
+  // if (jenisKerusakan)
+  //   dataBencanaFields.dataKerusakan.jenisKerusakan = jenisKerusakan;
+  // if (rusakBerat) dataBencanaFields.dataKerusakan.rusakBerat = rusakBerat;
+  // if (rusakSedang) dataBencanaFields.dataKerusakan.rusakSedang = rusakSedang;
+  // if (rusakRingan) dataBencanaFields.dataKerusakan.rusakRingan = rusakRingan;
+  // if (total) dataBencanaFields.dataKerusakan.total = total;
+  // if (satuan) dataBencanaFields.dataKerusakan.satuan = satuan;
 
   dataBencanaFields.fasum = {};
   if (aksesKeLokasi) dataBencanaFields.fasum.aksesKeLokasi = aksesKeLokasi;
@@ -186,6 +186,177 @@ router.get("/:petugasId", async (req, res) => {
     if (err.kind === "ObjectId") {
       return res.status(400).json({ msg: "user tidak ditemukan" });
     }
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   Put petugas/data-bencana/korban-jiwa
+// #desc    add korban jiwa
+// @access  Private
+
+router.put(
+  "/korban-jiwa",
+  [
+    auth,
+    [
+      check("namaPengungsi", "nama pengungsi harus diisi").not().isEmpty(),
+      check("umur", "umur harus diisi menggunakan angka").isNumeric(),
+      check("jenisKelamin", "Jenis kelamin pengungsi harus diisi")
+        .not()
+        .isEmpty(),
+      check("keadaan", "keadaan pengungsi harus diisi").not().isEmpty(),
+      check("alamat", "alamat pengungsi harus diisi").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      namaPengungsi,
+      jenisKelamin,
+      umur,
+      keadaan,
+      alamat,
+      ket,
+    } = req.body;
+    const newKorbanJiwa = {
+      namaPengungsi,
+      jenisKelamin,
+      umur,
+      keadaan,
+      alamat,
+      ket,
+    };
+
+    try {
+      const dataBencana = await DataBencana.findOne({ petugas: req.user.id });
+      dataBencana.dataKorban.unshift(newKorbanJiwa);
+
+      await dataBencana.save();
+      res.json(dataBencana);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route   DELETE petugas/data-bencana/korban-jiwa/:korban_id
+// #desc    delete data korban jiwa
+// @access  Private
+
+router.delete("/korban-jiwa/:korban_id", auth, async (req, res) => {
+  try {
+    const dataBencana = await DataBencana.findOne({ petugas: req.user.id });
+
+    // get removed index
+    const removeIndex = dataBencana.dataKorban
+      .map((item) => item.id)
+      .indexOf(req.params.korban_id);
+
+    dataBencana.dataKorban.splice(removeIndex, 1);
+
+    await dataBencana.save();
+
+    res.json(dataBencana);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route   Put petugas/data-bencana/data-kerusakan
+// #desc    add korban jiwa
+// @access  Private
+
+router.put(
+  "/data-kerusakan",
+  [
+    auth,
+    [
+      check("bidang", "bidang harus diisi").not().isEmpty(),
+      check("wilayah", "wilayah harus diisi").not().isEmpty(),
+      check("jenisKerusakan", "jenis kerusakan harus diisi").not().isEmpty(),
+      check(
+        "rusakBerat",
+        "banyak kerusakan berat harus diisi menggunakan angka"
+      ).isNumeric(),
+      check(
+        "rusakRingan",
+        "banyak kerusakan ringan harus diisi menggunakan angka"
+      ).isNumeric(),
+      check(
+        "rusakSedang",
+        "banyak kerusakan sedang harus diisi menggunakan angka"
+      ).isNumeric(),
+      check("satuan", "satuan pengungsi harus diisi").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      jenisBidang,
+      bidang,
+      wilayah,
+      jenisKerusakan,
+      rusakBerat,
+      rusakSedang,
+      rusakRingan,
+      total,
+      satuan,
+    } = req.body;
+    const newDataKerusakan = {
+      jenisBidang,
+      bidang,
+      wilayah,
+      jenisKerusakan,
+      rusakBerat,
+      rusakSedang,
+      rusakRingan,
+      total,
+      satuan,
+    };
+
+    try {
+      const dataBencana = await DataBencana.findOne({ petugas: req.user.id });
+      dataBencana.dataKerusakan.unshift(newDataKerusakan);
+
+      await dataBencana.save();
+      res.json(dataBencana);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route   DELETE petugas/data-bencana/data-kerusakan/:korban_id
+// #desc    delete data korban
+// @access  Private
+
+router.delete("/data-kerusakan/:id", auth, async (req, res) => {
+  try {
+    const dataBencana = await DataBencana.findOne({ petugas: req.user.id });
+
+    // get removed index
+    const removeIndex = dataBencana.dataKorban
+      .map((item) => item.id)
+      .indexOf(req.params.id);
+
+    dataBencana.dataKerusakan.splice(removeIndex, 1);
+
+    await dataBencana.save();
+
+    res.json(dataBencana);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send("Server Error");
   }
 });

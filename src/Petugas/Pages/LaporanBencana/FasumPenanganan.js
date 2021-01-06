@@ -134,7 +134,6 @@ const FasumPenanganan = ({
         <Typography variant="h5">Kejadian Bencana</Typography>
         <Typography variant="subtitle2">Data Kejadian Bencana</Typography>
       </div>
-      <Alert />
       <Button
         variant="outlined"
         size="small"
@@ -243,6 +242,7 @@ const FasumPenanganan = ({
                 onChange={(e) => onChange(e)}
                 value={upayaPenanganan}
               />
+              <Alert />
               <div>
                 <Button
                   variant="contained"

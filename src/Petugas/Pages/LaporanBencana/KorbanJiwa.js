@@ -1,8 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
+import Spinner from "../../../Components/Spinner";
 
-import { createDataBencana } from "../../../actions/dataBencana";
+import { insertKorban, deleteDataKorban } from "../../../actions/dataBencana";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
@@ -19,7 +22,7 @@ import {
 } from "@material-ui/core";
 import "./style.css";
 
-const jenisKelamin = [
+const jenisKelamin2 = [
   {
     value: "Laki-laki",
     label: "Laki-laki",
@@ -30,7 +33,7 @@ const jenisKelamin = [
   },
 ];
 
-const keadaan = [
+const keadaan2 = [
   {
     value: "Sehat",
     label: "Sehat",
@@ -53,17 +56,16 @@ const keadaan = [
   },
 ];
 
-const DataKorban = () => {
-  const [rows, setRows] = useState([]); // data item
-  function addItem(e) {
-    e.preventDefault();
-    // createDataBencana(dataKorban); ==> ketika semua data siap
-    setRows((prevRows) => {
-      return [...prevRows, dataKorban];
-    });
-    // console.log(rows);
-  }
-  const [dataKorban, setDataKorban] = useState({
+const DataKorban = ({
+  dataBencana: {
+    dataBencana: { dataKorban },
+    loading,
+  },
+  insertKorban,
+  deleteDataKorban,
+  auth: { user },
+}) => {
+  const [korban, setKorban] = useState({
     namaPengungsi: "",
     jenisKelamin: "Laki-laki",
     umur: "",
@@ -71,15 +73,33 @@ const DataKorban = () => {
     alamat: "",
     ket: "",
   });
+
+  const { namaPengungsi, jenisKelamin, umur, keadaan, alamat, ket } = korban;
+
+  // const [dataKorbanNew, setDataKorbanNew] = useState([]); // data item
+  function addItem(e) {
+    e.preventDefault();
+    insertKorban(korban);
+    setKorban({
+      namaPengungsi: "",
+      jenisKelamin: "Laki-laki",
+      umur: "",
+      keadaan: "Sehat",
+      alamat: "",
+      ket: "",
+    });
+    console.log(korban);
+  }
+
   const [show, setShow] = useState(false);
 
   const changeHandler = (e) =>
-    setDataKorban({ ...dataKorban, [e.target.id]: e.target.value });
+    setKorban({ ...korban, [e.target.id]: e.target.value });
 
   // hapus data pada tabel
-  //   function deleteItem(id) {
-  //     deletePengungsi(id);
-  //   }
+  function deleteItem(id) {
+    deleteDataKorban(id);
+  }
 
   const handleClick = () => {
     setShow(!show);
@@ -125,7 +145,7 @@ const DataKorban = () => {
                       required
                       fullWidth
                       onChange={(e) => changeHandler(e)}
-                      value={dataKorban.namaPengungsi}
+                      value={namaPengungsi}
                     />
                   </div>
                   <div>
@@ -143,9 +163,9 @@ const DataKorban = () => {
                         native: true,
                       }}
                       onChange={(e) => changeHandler(e)}
-                      value={dataKorban.jenisKelamin}
+                      value={jenisKelamin}
                     >
-                      {jenisKelamin.map((option) => (
+                      {jenisKelamin2.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -167,9 +187,9 @@ const DataKorban = () => {
                         native: true,
                       }}
                       onChange={(e) => changeHandler(e)}
-                      value={dataKorban.keadaan}
+                      value={keadaan}
                     >
-                      {keadaan.map((option) => (
+                      {keadaan2.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -188,7 +208,7 @@ const DataKorban = () => {
                       required
                       fullWidth
                       onChange={(e) => changeHandler(e)}
-                      value={dataKorban.umur}
+                      value={umur}
                     />
                   </div>
                   <div>
@@ -202,7 +222,7 @@ const DataKorban = () => {
                       required
                       fullWidth
                       onChange={(e) => changeHandler(e)}
-                      value={dataKorban.alamat}
+                      value={alamat}
                     />
                   </div>
                   <div>
@@ -213,10 +233,9 @@ const DataKorban = () => {
                       margin="normal"
                       variant="outlined"
                       size="small"
-                      required
                       fullWidth
                       onChange={(e) => changeHandler(e)}
-                      value={dataKorban.ket}
+                      value={ket}
                     />
                   </div>
                   <Alert />
@@ -243,11 +262,8 @@ const DataKorban = () => {
             </form>
           </Grid>
 
-          {rows.length > 0 ? (
-            <Tabel
-              rows={rows}
-              // deleteItem={deleteItem}
-            />
+          {dataKorban.length > 0 ? (
+            <Tabel rows={dataKorban} deleteItem={deleteItem} />
           ) : (
             <div className="no-data">
               <Typography variant="subtitle1">
@@ -265,4 +281,17 @@ const DataKorban = () => {
   );
 };
 
-export default DataKorban;
+DataKorban.propTypes = {
+  insertKorban: PropTypes.func.isRequired,
+  deleteDataKorban: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  dataBencana: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  dataBencana: state.dataBencana,
+});
+
+export default connect(mapStateToProps, { insertKorban, deleteDataKorban })(
+  DataKorban
+);

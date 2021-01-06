@@ -47,55 +47,59 @@ const DataBencanaSchema = new mongoose.Schema({
       type: Number,
     },
   },
-  dataKorban: {
-    namaPengungsi: {
-      type: String,
+  dataKorban: [
+    {
+      namaPengungsi: {
+        type: String,
+      },
+      jenisKelamin: {
+        type: String,
+      },
+      umur: {
+        type: Number,
+      },
+      keadaan: {
+        type: String,
+      },
+      alamat: {
+        type: String,
+      },
+      ket: {
+        type: String,
+      },
     },
-    jenisKelamin: {
-      type: String,
+  ],
+  dataKerusakan: [
+    {
+      jenisBidang: {
+        type: String,
+      },
+      bidang: {
+        type: String,
+      },
+      wilayah: {
+        type: String,
+      },
+      jenisKerusakan: {
+        type: String,
+      },
+      rusakBerat: {
+        type: Number,
+      },
+      rusakSedang: {
+        type: Number,
+      },
+      rusakRingan: {
+        type: Number,
+      },
+      total: {
+        type: Number,
+      },
+      satuan: {
+        type: String,
+      },
     },
-    umur: {
-      type: Number,
-    },
-    keadaan: {
-      type: String,
-    },
-    alamat: {
-      type: String,
-    },
-    ket: {
-      type: String,
-    },
-  },
-  dataKerusakan: {
-    jenisBidang: {
-      type: String,
-    },
-    bidang: {
-      type: String,
-    },
-    wilayah: {
-      type: String,
-    },
-    jenisKerusakan: {
-      type: String,
-    },
-    rusakBerat: {
-      type: Number,
-    },
-    rusakSedang: {
-      type: Number,
-    },
-    rusakRingan: {
-      type: Number,
-    },
-    total: {
-      type: Number,
-    },
-    satuan: {
-      type: String,
-    },
-  },
+  ],
   fasum: {
     aksesKeLokasi: {
       type: String,

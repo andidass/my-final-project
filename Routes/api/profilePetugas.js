@@ -36,8 +36,8 @@ router.post(
     [
       check("nohp", "No Hp Harus diisi").isNumeric(),
       check("jobdesc", "Job Deskripsi harus diisi").not().isEmpty(),
-      check("dusun", "Dusun harus diisi").not().isEmpty(),
-      check("desa", "Desa harus diisi").not().isEmpty(),
+      check("kecDesa", "Kecamatan / Desa-Dusun harus diisi").not().isEmpty(),
+      check("kelurahan", "kelurahan harus diisi").not().isEmpty(),
       check("kabupaten", "Kabupaten harus diisi").not().isEmpty(),
       check("regdesc", "Deskripsi wilayah harus diisi").not().isEmpty(),
     ],
@@ -48,15 +48,15 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { nohp, jobdesc, dusun, desa, kabupaten, regdesc } = req.body;
+    const { nohp, jobdesc, kecDesa, kelurahan, kabupaten, regdesc } = req.body;
 
     // build profile obj
     const profileFields = {};
     profileFields.petugas = req.user.id;
     if (nohp) profileFields.nohp = nohp;
     if (jobdesc) profileFields.jobdesc = jobdesc;
-    if (dusun) profileFields.dusun = dusun;
-    if (desa) profileFields.desa = desa;
+    if (kecDesa) profileFields.kecDesa = kecDesa;
+    if (kelurahan) profileFields.kelurahan = kelurahan;
     if (kabupaten) profileFields.kabupaten = kabupaten;
     if (regdesc) profileFields.regdesc = regdesc;
 

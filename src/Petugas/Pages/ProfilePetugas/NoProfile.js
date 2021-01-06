@@ -13,7 +13,7 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
-
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import SaveIcon from "@material-ui/icons/Save";
 
 const FormProfile = ({
@@ -28,8 +28,8 @@ const FormProfile = ({
     position: user.position,
     nohp: "",
     jobdesc: "",
-    dusun: "",
-    desa: "",
+    kecDesa: "",
+    kelurahan: "",
     kabupaten: "",
     regdesc: "",
   });
@@ -39,8 +39,8 @@ const FormProfile = ({
     position,
     nohp,
     jobdesc,
-    dusun,
-    desa,
+    kecDesa,
+    kelurahan,
     kabupaten,
     regdesc,
   } = profileData;
@@ -59,24 +59,28 @@ const FormProfile = ({
   //   }
 
   return (
-    <div className="full-height">
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          marginTop={3}
-        >
-          Posko Bencana
-        </Box>
-      </Typography>
+    <div>
+      <div className="sub-heading">
+        <Typography variant="h5">Profile Petugas</Typography>
+        <Typography variant="subtitle2">Buat Profile Petugas</Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/petugas/dashboard">Kembali</Link>
+      </Button>
       <Paper variant="outlined" className="body-posko-bencana">
         <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
           <Grid container justify="space-around">
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
               <Typography component="div">
-                <Box fontSize={17}>Data Posko</Box>
+                <Box fontSize={17}>
+                  <b>Data Posko</b>
+                </Box>
               </Typography>
               <TextField
                 name="name"
@@ -126,25 +130,28 @@ const FormProfile = ({
                 value={jobdesc}
               />
             </Grid>
+
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
               <Typography component="div">
-                <Box fontSize={17}>Lingkup Wilayah Tugas</Box>
+                <Box fontSize={17}>
+                  <b>Lingkup Wilayah Tugas</b>
+                </Box>
               </Typography>
               <TextField
-                name="dusun"
-                label="Dusun"
+                name="kecDesa"
+                label="Kecamatan Desa-Dusun"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={dusun}
+                value={kecDesa}
               />
               <TextField
-                name="desa"
-                label="Desa"
+                name="kelurahan"
+                label="Kelurahan"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -152,7 +159,7 @@ const FormProfile = ({
                 fullWidth
                 multiline
                 onChange={(e) => onChange(e)}
-                value={desa}
+                value={kelurahan}
               />
 
               <TextField
@@ -180,24 +187,17 @@ const FormProfile = ({
               />
             </Grid>
           </Grid>
-          <Alert />
           <Button
-            variant="contained"
-            size="small"
-            style={{ margin: 8, maxWidth: 500 }}
-          >
-            <Link to="/petugas/dashboard">Kembali</Link>
-          </Button>
-          <Button
-            startIcon={<SaveIcon />}
             type="submit"
             variant="contained"
             color="primary"
             size="small"
+            startIcon={<SaveIcon />}
             style={{ margin: 8, maxWidth: 500 }}
           >
             Simpan
           </Button>
+          <Alert />
         </form>
       </Paper>
     </div>

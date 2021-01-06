@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createDataBencana } from "../../../actions/dataBencana";
 import Alert from "../../../layout/Alert";
+import Spinner from "../../../Components/Spinner";
 
+import { createDataBencana } from "../../../actions/dataBencana";
 import {
   Grid,
   Paper,
@@ -13,217 +14,95 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import SaveIcon from "@material-ui/icons/Save";
+import "./style.css";
 
-const DataBencana = ({ createDataBencana, auth: { user }, history }) => {
+const NoDataBencana = ({
+  createDataBencana,
+  history,
+  //   dataBencana: { dataBencana, loading },
+}) => {
   // posko
   const [data, setData] = useState({
-    rumahrb: "",
-    rumahrs: "",
-    rumahrr: "",
-    fasum: "",
-    faskes: "",
-    faspen: "",
-    peribadatan: "",
-    terdampak: "",
-    luka: "",
-    md: "",
+    jenisBencana: "",
   });
 
-  const {
-    rumahrb,
-    rumahrs,
-    rumahrr,
-    fasum,
-    faskes,
-    faspen,
-    peribadatan,
-    terdampak,
-    luka,
-    md,
-  } = data;
+  const { jenisBencana } = data;
 
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const submitHandler = (event) => {
+    event.preventDefault();
     createDataBencana(data, history, true);
   };
 
   return (
-    <div>
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          marginTop={3}
-          textAlign="center"
-        >
-          Laporan Bencana
-        </Box>
-      </Typography>
-      <Paper variant="outlined" className="body-posko-bencana">
-        <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
-          <Grid container justify="space-around">
-            <Grid xs={12} sm={6} item>
-              {/* <DataPosko /> */}
-              <Typography component="div">
-                <Box fontSize={17}>Data Fasilitas</Box>
-              </Typography>
-              <TextField
-                name="rumahrb"
-                label="Rumah Rusak Berat"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={rumahrb}
-              />
-              <TextField
-                name="rumahrs"
-                label="Rumah Rusak Sedang"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                multiline
-                onChange={(e) => onChange(e)}
-                value={rumahrs}
-              />
+    <Fragment>
+      <div className="sub-heading">
+        <Typography variant="h5">Kejadian Bencana</Typography>
+        <Typography variant="subtitle2">Data Kejadian Bencana</Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/petugas/data-bencana">Kembali</Link>
+      </Button>
 
+      <Grid container justify="center">
+        <Paper variant="outlined" className="paper-form">
+          <Grid item style={{ padding: `2rem` }}>
+            <Typography component="div">
+              <Box fontSize={17}>
+                <b>KEJADIAN BENCANA</b>
+              </Box>
+            </Typography>
+            <form type="submit" onSubmit={submitHandler}>
               <TextField
-                name="rumahrr"
-                label="Rumah Rusak Ringan"
+                name="jenisBencana"
+                label="Jenis Bencana"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={rumahrr}
+                value={jenisBencana}
               />
-              <TextField
-                name="fasum"
-                label="Fasilitas Umum"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={fasum}
-              />
-              <TextField
-                name="faskes"
-                label="Fasilitas Kesehatan"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={faskes}
-              />
-              <TextField
-                name="faspen"
-                label="Fasilitas Pendidikan"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={faspen}
-              />
-              <TextField
-                name="peribadatan"
-                label="Tempat Ibadah"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={peribadatan}
-              />
-            </Grid>
-
-            <Grid xs={12} sm={6} item>
-              {/* <DataPosko /> */}
-              <Typography component="div">
-                <Box fontSize={17}>Data Korban Jiwa</Box>
-              </Typography>
-              <TextField
-                name="terdampak"
-                label="Korban Terdampak"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={terdampak}
-              />
-              <TextField
-                name="luka"
-                label="Korban Luka"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                multiline
-                onChange={(e) => onChange(e)}
-                value={luka}
-              />
-
-              <TextField
-                name="md"
-                label="Korban Meninggal Dunia"
-                style={{ margin: 8, maxWidth: 500 }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                onChange={(e) => onChange(e)}
-                value={md}
-              />
-              <Button
-                variant="contained"
-                size="small"
-                style={{ margin: 8, maxWidth: 500 }}
-              >
-                <Link to="/petugas/dashboard">Kembali</Link>
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 8, maxWidth: 500 }}
-              >
-                Simpan
-              </Button>
-            </Grid>
-            <Alert />
+              <Alert />
+              <div>
+                <Button
+                  variant="contained"
+                  className="button"
+                  color="primary"
+                  type="submit"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  startIcon={<SaveIcon />}
+                >
+                  Simpan Data
+                </Button>
+              </div>
+            </form>
           </Grid>
-        </form>
-      </Paper>
-    </div>
+        </Paper>
+      </Grid>
+    </Fragment>
   );
 };
 
-DataBencana.propTypes = {
-  user: PropTypes.object.isRequired,
+NoDataBencana.propTypes = {
   createDataBencana: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  dataBencana: PropTypes.object.isRequired,
 };
-
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  dataBencana: state.dataBencana,
 });
 
 export default connect(mapStateToProps, { createDataBencana })(
-  withRouter(DataBencana)
+  withRouter(NoDataBencana)
 );

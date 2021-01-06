@@ -345,6 +345,7 @@ const KejadianBencana = ({
                   onChange={(e) => onChange(e)}
                   value={desc}
                 />
+                <Alert />
                 <div>
                   <Button
                     variant="contained"
@@ -357,7 +358,6 @@ const KejadianBencana = ({
                     Simpan Data
                   </Button>
                 </div>
-                <Alert />
               </form>
             </Grid>
           </Paper>

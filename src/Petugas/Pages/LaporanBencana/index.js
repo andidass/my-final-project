@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 // import DataBencana from "./DataBencana";
 import Stepper from "./Stepper";
 import MenuLaporanBencana from "./MenuLaporanBencana";
-// import NoDataBencana from "./NoDataBencana";
+import NoDataBencana from "./NoDataBencana";
 
 const LaporanBencana = ({
   auth: { user, isAuthenticated },
@@ -22,8 +22,7 @@ const LaporanBencana = ({
   if (!isAuthenticated) {
     return <Redirect to="/petugas/login" />;
   }
-  return <MenuLaporanBencana />;
-  // dataBencana !== null ? <MenuLaporanBencana /> : <MenuLaporanBencana />;
+  return dataBencana !== null ? <MenuLaporanBencana /> : <NoDataBencana />;
 };
 
 LaporanBencana.propTypes = {

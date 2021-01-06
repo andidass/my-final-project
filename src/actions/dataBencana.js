@@ -101,3 +101,107 @@ export const createDataBencana = (data, history, edit = false) => async (
     });
   }
 };
+
+// insert data korban
+export const insertKorban = (korban) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      "/petugas/data-bencana/korban-jiwa",
+      korban,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_LAPORAN_BENCANA,
+      payload: res.data,
+    });
+    dispatch(setAlert("Data korban jiwa berhasil ditambahkan", "success"));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
+    }
+    dispatch({
+      type: LAPORAN_BENCANA_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Delete pengungsi
+export const deleteDataKorban = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/petugas/data-bencana/korban-jiwa/${id}`);
+
+    dispatch({
+      type: UPDATE_LAPORAN_BENCANA,
+      payload: res.data,
+    });
+    dispatch(setAlert("Data korban jiwa berhasil dihapus", "success"));
+  } catch (err) {
+    dispatch({
+      type: LAPORAN_BENCANA_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// insert data kerusakan
+export const insertDataKerusakan = (data) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      "/petugas/data-bencana/data-kerusakan",
+      data,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_LAPORAN_BENCANA,
+      payload: res.data,
+    });
+    dispatch(setAlert("Data kerusakan berhasil ditambahkan", "success"));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
+    }
+    dispatch({
+      type: LAPORAN_BENCANA_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Delete pengungsi
+export const deleteDataKerusakan = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `/petugas/data-bencana/data-kerusakan/${id}`
+    );
+
+    dispatch({
+      type: UPDATE_LAPORAN_BENCANA,
+      payload: res.data,
+    });
+    dispatch(setAlert("Data kerusakan berhasil dihapus", "success"));
+  } catch (err) {
+    dispatch({
+      type: LAPORAN_BENCANA_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

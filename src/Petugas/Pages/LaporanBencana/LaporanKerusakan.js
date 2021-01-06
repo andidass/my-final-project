@@ -1,5 +1,13 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import Alert from "../../../layout/Alert";
+import Spinner from "../../../Components/Spinner";
+import {
+  insertDataKerusakan,
+  deleteDataKerusakan,
+} from "../../../actions/dataBencana";
 import {
   Grid,
   Paper,
@@ -38,10 +46,17 @@ const jenisBidangKat = [
   },
 ];
 
-const LaporanKerusakan = () => {
-  const [rows, setRows] = useState([]);
+const LaporanKerusakan = ({
+  dataBencana: {
+    dataBencana: { dataKerusakan },
+    loading,
+  },
+  insertDataKerusakan,
+  deleteDataKerusakan,
+  auth: { user },
+}) => {
   const [show, setShow] = useState(false);
-  const [dataKerusakan, setDataKerusakan] = useState({
+  const [data, setData] = useState({
     jenisBidang: "Permukiman",
     bidang: "",
     wilayah: "",
@@ -63,14 +78,15 @@ const LaporanKerusakan = () => {
     rusakRingan,
     total,
     satuan,
-  } = dataKerusakan;
+  } = data;
 
   function addItem(e) {
     e.preventDefault();
-    setRows((prevRows) => {
-      return [...prevRows, dataKerusakan];
-    });
-    setDataKerusakan({
+    insertDataKerusakan(data);
+    // setRows((prevRows) => {
+    //   return [...prevRows, data];
+    // });
+    setData({
       jenisBidang: "Permukiman",
       bidang: "",
       wilayah: "",
@@ -84,13 +100,12 @@ const LaporanKerusakan = () => {
     // console.log(rows);
   }
 
-  const onChange = (e) =>
-    setDataKerusakan({ ...dataKerusakan, [e.target.name]: e.target.value });
+  // hapus data pada tabel
+  function deleteItem(id) {
+    deleteDataKerusakan(id);
+  }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // createDataBencana(dataKejadian, history, true);
-  };
+  const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
   const handleShow = () => {
     setShow(!show);
@@ -256,6 +271,7 @@ const LaporanKerusakan = () => {
                     value={satuan}
                   />
                   <br />
+                  <Alert />
                   <Button
                     variant="contained"
                     className="button"
@@ -280,11 +296,8 @@ const LaporanKerusakan = () => {
               </Button>
             </form>
           </Grid>
-          {rows.length > 0 ? (
-            <TabelKerusakan
-              rows={rows}
-              // deleteItem={deleteItem}
-            />
+          {dataKerusakan.length > 0 ? (
+            <TabelKerusakan rows={dataKerusakan} deleteItem={deleteItem} />
           ) : (
             <div className="no-data">
               <Typography variant="subtitle1">
@@ -302,4 +315,18 @@ const LaporanKerusakan = () => {
   );
 };
 
-export default LaporanKerusakan;
+LaporanKerusakan.propTypes = {
+  insertDataKerusakan: PropTypes.func.isRequired,
+  deleteDataKerusakan: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  dataBencana: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  dataBencana: state.dataBencana,
+});
+
+export default connect(mapStateToProps, {
+  insertDataKerusakan,
+  deleteDataKerusakan,
+})(LaporanKerusakan);

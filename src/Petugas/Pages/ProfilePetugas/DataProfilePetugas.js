@@ -6,6 +6,7 @@ import { createProfile } from "../../../actions/profilePetugas";
 import Alert from "../../../layout/Alert";
 
 import SaveIcon from "@material-ui/icons/Save";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import {
   Grid,
   Paper,
@@ -27,8 +28,8 @@ const DataProfilePosko = ({
     position: "",
     nphp: "",
     jobdesc: "",
-    dusun: "",
-    desa: "",
+    kecDesa: "",
+    kelurahan: "",
     kabupaten: "",
     regdesc: "",
   });
@@ -38,8 +39,8 @@ const DataProfilePosko = ({
     position,
     nohp,
     jobdesc,
-    dusun,
-    desa,
+    kecDesa,
+    kelurahan,
     kabupaten,
     regdesc,
   } = profileData;
@@ -58,8 +59,8 @@ const DataProfilePosko = ({
       position: loading || !user.position ? "" : user.position,
       nohp: loading || !profile.nohp ? "" : profile.nohp,
       jobdesc: loading || !profile.jobdesc ? "" : profile.jobdesc,
-      desa: loading || !profile.desa ? "" : profile.desa,
-      dusun: loading || !profile.dusun ? "" : profile.dusun,
+      kelurahan: loading || !profile.kelurahan ? "" : profile.kelurahan,
+      kecDesa: loading || !profile.kecDesa ? "" : profile.kecDesa,
       kabupaten: loading || !profile.kabupaten ? "" : profile.kabupaten,
       regdesc: loading || !profile.regdesc ? "" : profile.regdesc,
     });
@@ -68,23 +69,27 @@ const DataProfilePosko = ({
 
   return (
     <div>
-      <Typography component="div">
-        <Box
-          fontSize={18}
-          fontWeight="fontWeightBold"
-          marginTop={3}
-          textAlign="center"
-        >
-          Profile Petugas
-        </Box>
-      </Typography>
+      <div className="sub-heading">
+        <Typography variant="h5">Profile Petugas</Typography>
+        <Typography variant="subtitle2">Update Profile Petugas</Typography>
+      </div>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/petugas/dashboard">Kembali</Link>
+      </Button>
       <Paper variant="outlined" className="body-posko-bencana">
         <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
           <Grid container justify="space-around">
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
               <Typography component="div">
-                <Box fontSize={17}>Data Posko</Box>
+                <Box fontSize={17}>
+                  <b>Data Posko</b>
+                </Box>
               </Typography>
               <TextField
                 name="name"
@@ -138,22 +143,24 @@ const DataProfilePosko = ({
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
               <Typography component="div">
-                <Box fontSize={17}>Lingkup Wilayah Tugas</Box>
+                <Box fontSize={17}>
+                  <b>Lingkup Wilayah Tugas</b>
+                </Box>
               </Typography>
               <TextField
-                name="dusun"
-                label="Dusun"
+                name="kecDesa"
+                label="Kecamatan Desa-Dusun"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
                 size="small"
                 fullWidth
                 onChange={(e) => onChange(e)}
-                value={dusun}
+                value={kecDesa}
               />
               <TextField
-                name="desa"
-                label="Desa"
+                name="kelurahan"
+                label="Kelurahan"
                 style={{ margin: 8, maxWidth: 500 }}
                 margin="normal"
                 variant="outlined"
@@ -161,7 +168,7 @@ const DataProfilePosko = ({
                 fullWidth
                 multiline
                 onChange={(e) => onChange(e)}
-                value={desa}
+                value={kelurahan}
               />
 
               <TextField
@@ -198,13 +205,6 @@ const DataProfilePosko = ({
             style={{ margin: 8, maxWidth: 500 }}
           >
             Simpan
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            style={{ margin: 8, maxWidth: 500 }}
-          >
-            <Link to="/petugas/dashboard">Kembali</Link>
           </Button>
           <Alert />
         </form>
