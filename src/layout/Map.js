@@ -42,7 +42,7 @@ const WrapMap = withScriptjs(withGoogleMap(Map));
 
 export default function MapPokso({ location, namaPosko }) {
   return (
-    <div style={{ width: "100%", height: "50vh" }}>
+    <div style={{ width: "90%", height: "50vh", paddingLeft: "5%" }}>
       <WrapMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCKZEfHCeuefpKow9-keKYD4vTRB41cV5U`}
         loadingElement={<div style={{ height: `100%` }} />}

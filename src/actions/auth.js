@@ -25,7 +25,7 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get("/posko/login");
+    const res = await axios.get("/pos/login");
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -59,7 +59,7 @@ export const register = ({
   });
 
   try {
-    const res = await axios.post("/posko/registrasi", body, config);
+    const res = await axios.post("/pos/registrasi", body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -88,7 +88,7 @@ export const login = (usernameposko, password) => async (dispatch) => {
   const body = JSON.stringify({ usernameposko, password });
 
   try {
-    const res = await axios.post("/posko/login", body, config);
+    const res = await axios.post("/pos/login", body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,

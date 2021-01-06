@@ -10,14 +10,7 @@ import Spinner from "../../../Components/Spinner";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import EditIcon from "@material-ui/icons/Edit";
 
-import {
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  TextField,
-  Button,
-} from "@material-ui/core";
+import { Grid, Paper, Typography, Box, Button } from "@material-ui/core";
 
 const ProfilePosko = ({
   profile: { profile, loading },
@@ -28,6 +21,7 @@ const ProfilePosko = ({
   const [profileData, setProfileData] = useState({
     namaPosko: "",
     alamatPosko: "",
+    kelPosko: "",
     kecPosko: "",
     kabPosko: "",
     namaPetugas: "",
@@ -40,6 +34,7 @@ const ProfilePosko = ({
   const {
     namaPosko,
     alamatPosko,
+    kelPosko,
     kecPosko,
     kabPosko,
     namaPetugas,
@@ -53,7 +48,7 @@ const ProfilePosko = ({
     setProfileData({
       namaPosko: loading || !profile.namaPosko ? "" : profile.namaPosko,
       alamatPosko: loading || !profile.alamatPosko ? "" : profile.alamatPosko,
-      dusunPosko: loading || !profile.dusunPosko ? "" : profile.dusunPosko,
+      kelPosko: loading || !profile.kelPosko ? "" : profile.kelPosko,
       kecPosko: loading || !profile.kecPosko ? "" : profile.kecPosko,
       kabPosko: loading || !profile.kabPosko ? "" : profile.kabPosko,
       lat: loading || !profile.location ? "" : profile.location.lat,
@@ -90,7 +85,7 @@ const ProfilePosko = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/posko/dashboard">Kembali</Link>
+        <Link to="/pos/dashboard">Kembali</Link>
       </Button>
       <Button
         variant="contained"
@@ -99,13 +94,13 @@ const ProfilePosko = ({
         startIcon={<EditIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/posko/data-posko/edit-profile" style={{ color: "white" }}>
+        <Link to="/pos/data-pos/edit-profile" style={{ color: "white" }}>
           Edit Profile
         </Link>
       </Button>
-      <Paper variant="outlined" className="body-posko-bencana">
+      <Paper variant="outlined">
         {profile && (
-          <div className="body-posko-bencana">
+          <div className="body-pos-bencana">
             <Grid container justify="space-around">
               <Grid xs={10} sm={4} item>
                 <Typography
@@ -122,10 +117,13 @@ const ProfilePosko = ({
                   <b>Alamat Pos :</b> {alamatPosko}
                 </Typography>
                 <Typography variant="subtitle1">
-                  <b>Kecamatan Pos :</b> {kecPosko}
+                  <b>Kelurahan/Desa :</b> {kelPosko}
                 </Typography>
                 <Typography variant="subtitle1">
-                  <b>Kabupaten Pos :</b> {kabPosko}
+                  <b>Kecamatan :</b> {kecPosko}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Kabupaten :</b> {kabPosko}
                 </Typography>
               </Grid>
               <Grid xs={10} sm={4} item>

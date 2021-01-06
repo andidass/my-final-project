@@ -42,14 +42,14 @@ function MenuPosko() {
           sm={4}
           lg={2}
           component={Link}
-          to="/posko/data-posko"
+          to="/pos/data-pos"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <HomeIcon />
               <Typography component="div">
-                <Box>Data Posko</Box>
+                <Box>Data Pos</Box>
               </Typography>
             </CardContent>
           </Card>
@@ -62,14 +62,14 @@ function MenuPosko() {
           sm={4}
           lg={2}
           component={Link}
-          to="/posko/fasilitas-posko"
+          to="/pos/fasilitas-pos"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <AssignmentIcon />
               <Typography component="div">
-                <Box>Fasilitas Posko</Box>
+                <Box>Fasilitas Pos</Box>
               </Typography>
             </CardContent>
           </Card>
@@ -82,7 +82,7 @@ function MenuPosko() {
           sm={4}
           lg={2}
           component={Link}
-          to="/posko/data-pengungsi"
+          to="/pos/data-pengungsi"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
@@ -101,7 +101,7 @@ function MenuPosko() {
           sm={4}
           lg={2}
           component={Link}
-          to="/posko/bantuan-masuk"
+          to="/pos/bantuan-masuk"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
@@ -121,7 +121,7 @@ function MenuPosko() {
           sm={4}
           lg={2}
           component={Link}
-          to="/posko/bantuan-keluar"
+          to="/pos/bantuan-keluar"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
@@ -141,7 +141,7 @@ function MenuPosko() {
           sm={4}
           lg={2}
           component={Link}
-          to="/posko/permintaan-bantuan"
+          to="/pos/permintaan-bantuan"
           className="link"
         >
           <Card className={classes.root} variant="outlined">

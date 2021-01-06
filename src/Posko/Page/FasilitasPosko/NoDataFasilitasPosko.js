@@ -5,14 +5,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import { createFasilitasPosko } from "../../../actions/fasilitasPosko";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
-import {
-  Button,
-  Typography,
-  Box,
-  Paper,
-  
-  TextField,
-} from "@material-ui/core";
+import { Button, Typography, Box, Paper, TextField } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 // import Count from "./Count";
 
@@ -55,7 +48,7 @@ const NoDataFasilitasPosko = ({
             textAlign="center"
             marginTop={3}
           >
-            Fasilitas Posko
+            Fasilitas Pos
           </Box>
         </Typography>
         <Paper variant="outlined" className="body-posko-bencana">

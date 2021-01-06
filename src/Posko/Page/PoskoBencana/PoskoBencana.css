@@ -1,15 +1,25 @@
-.body-posko-bencana {
+.body-pos-bencana {
     margin: 2vw;
-    /* padding: 10px; */
+    text-align: center;
 }
 
 .tabel-petugas{
     max-width: 90%;
-    margin: 0 30px 20px
+    margin: 30px
 }
 .sub-heading{
     padding: 2rem;
     text-transform: uppercase;
     color:#85929E;
     background-color: #F4F6F6;
+}
+.paper-form{
+    width: 80vw;
+    align-items: center;
+    text-align: center;
+    /* padding-left: 5rem; */
+}
+
+.button{
+    text-align: center;
 }

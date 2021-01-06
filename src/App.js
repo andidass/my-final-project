@@ -85,48 +85,44 @@ const App = () => {
       <Router>
         <MenuBars />
         <Switch>
-          <Route path="/" exact component={MainPetugas} />
-          {/* --------- POSKO --------- */}
+          <Route path="/" exact component={MainPosko} />
+          {/* --------- POS --------- */}
           {/* <Route path="/" exact component={SignInPosko} /> */}
-          <Route path="/posko/login" exact component={SignInPosko} />
-          <Route path="/posko/registrasi" exact component={RegistrasiPosko} />
-          <Route path="/posko/dashboard" exact component={MainPosko} />
+          <Route path="/pos/login" exact component={SignInPosko} />
+          <Route path="/pos/registrasi" exact component={RegistrasiPosko} />
+          <Route path="/pos/dashboard" exact component={MainPosko} />
           {/* --------- PROFILE POSKO --------- */}
-          <Route path="/posko/data-posko" exact component={PoskoBencana} />
+          <Route path="/pos/data-pos" exact component={PoskoBencana} />
           <Route
-            path="/posko/data-posko/form-profile" //create profile
+            path="/pos/data-pos/form-profile" //create profile
             exact
             component={FormProfile}
           />
           <Route
-            path="/posko/data-posko/edit-profile" //edit profile
+            path="/pos/data-pos/edit-profile" //edit profile
             exact
             component={EditProfile}
           />
           <Route
-            path="/posko/data-posko/profile" /// show data profile
+            path="/pos/data-pos/profile" /// show data profile
             exact
             component={ProfilePosko}
           />
           <Route
-            path="/posko/data-posko/data-petugas" // add data petugas
+            path="/pos/data-pos/data-petugas" // add data petugas
             exact
             component={DataPetugas}
           />
           {/* --------- FASILITAS POSKO --------- */}
-          <Route
-            path="/posko/fasilitas-posko"
-            exact
-            component={FasilitasPosko}
-          />
+          <Route path="/pos/fasilitas-pos" exact component={FasilitasPosko} />
           {/* --------- PERMINTAAN BANTUAN POSKO --------- */}
           <Route
-            path="/posko/permintaan-bantuan"
+            path="/pos/permintaan-bantuan"
             exact
             component={PermintaanBantuan}
           />
           {/* --------- PENGUNGSI POSKO --------- */}
-          <Route path="/posko/data-pengungsi" exact component={DataPengungsi} />
+          <Route path="/pos/data-pengungsi" exact component={DataPengungsi} />
           {/* --------- BANTUAN MASUK POSKO --------- */}
           {/* <Route path="/posko/bantuan-masuk" exact component={BantuanMasuk} />
           <Route
@@ -135,7 +131,7 @@ const App = () => {
             component={DataBantuanMasuk}
           /> */}
           <Route
-            path="/posko/bantuan-keluar"
+            path="/pos/bantuan-keluar"
             exact
             component={BantuanKeluarPosko}
           />
@@ -184,8 +180,8 @@ const App = () => {
           <Route path="/admin/login" exact component={LoginAdmin} />
           <Route path="/admin/dashboard" exact component={MainAdmin} />
           <Route path="/admin/bantuan-utama" exact component={BantuanUtama} />
-          <Route path="/admin/data-posko" exact component={DataPosko} />
-          <Route path="/admin/data-posko/:id" exact component={DataPoskoById} />
+          <Route path="/admin/data-pos" exact component={DataPosko} />
+          <Route path="/admin/data-pos/:id" exact component={DataPoskoById} />
           <Route path="/admin/map" exact component={MapPosko} />
           <Route path="/admin/data-bencana" exact component={AllDataBencana} />
           <Route path="/admin/bantuan-masuk" exact component={BantuanMasuk} />

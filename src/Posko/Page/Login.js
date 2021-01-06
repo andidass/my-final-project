@@ -61,7 +61,7 @@ const SignIn = ({ login, isAuthenticated }) => {
 
   // Redirect jika login success
   if (isAuthenticated) {
-    return <Redirect to="/posko/dashboard" />;
+    return <Redirect to="/pos/dashboard" />;
   }
 
   return (
@@ -81,8 +81,8 @@ const SignIn = ({ login, isAuthenticated }) => {
             required
             fullWidth
             id="usernameposko"
-            label="Username Posko"
             name="usernameposko"
+            label="Username Pos"
             autoComplete="usernameposko"
             value={usernameposko}
             onChange={(e) => onChange(e)}
@@ -122,7 +122,7 @@ const SignIn = ({ login, isAuthenticated }) => {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/posko/registrasi">
+              <Link to="/pos/registrasi">
                 <Linkes variant="body2">
                   {"Belum memiliki akun kah? Registrasi"}
                 </Linkes>

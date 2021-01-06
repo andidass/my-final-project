@@ -40,7 +40,9 @@ const DataPetugas = ({ insertPetugasVolunteer, history }) => {
         <Grid xs={2} sm={3} item />
         <Grid xs={8} sm={6} item>
           <Typography component="div">
-            <Box fontSize={17}>Tambah Petugas / Relawan Posko</Box>
+            <Box fontSize={17}>
+              <b>Tambah Petugas / Relawan Pos</b>
+            </Box>
           </Typography>
           <TextField
             id="tambahanPetugas"
@@ -75,10 +77,10 @@ const DataPetugas = ({ insertPetugasVolunteer, history }) => {
           <Button
             color="secondary"
             variant="contained"
-            style={{ margin: 8 }}
+            style={{ margin: 8, color: "white" }}
             aria-label="tambah petugas"
           >
-            <Link to="/posko/data-posko">Kembali</Link>
+            <Link to="/pos/data-pos">Kembali</Link>
           </Button>
           <Alert />
         </Grid>

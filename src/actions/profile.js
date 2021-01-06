@@ -11,7 +11,7 @@ import {
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    const res = await axios.get("/posko/profile/me");
+    const res = await axios.get("/pos/profile/me");
 
     dispatch({
       type: GET_PROFILE,
@@ -25,11 +25,11 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
-// get all data posko
+// get all data pos
 export const getAllDataPosko = () => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
-    const res = await axios.get("/posko/profile");
+    const res = await axios.get("/pos/profile");
 
     dispatch({
       type: GET_PROFILES,
@@ -46,7 +46,7 @@ export const getAllDataPosko = () => async (dispatch) => {
 // get profile by userID
 export const getDataPoskoById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/posko/profile/user/${userId}`);
+    const res = await axios.get(`/pos/profile/user/${userId}`);
 
     dispatch({
       type: GET_PROFILE,
@@ -71,10 +71,10 @@ export const createProfile = (profileData, history, edit = false) => async (
       },
     };
 
-    const res = await axios.post("/posko/profile", profileData, config);
+    const res = await axios.post("/pos/profile", profileData, config);
 
     dispatch({
-      type: GET_PROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data,
     });
 
@@ -84,7 +84,7 @@ export const createProfile = (profileData, history, edit = false) => async (
 
     // jika profile baru dibuat, redirect
     if (!edit) {
-      history.push("/posko/data-posko");
+      history.push("/pos/data-pos");
     }
   } catch (err) {
     const errors = err.response.data.errors;
@@ -111,7 +111,7 @@ export const insertPetugasVolunteer = (dataPetugas, history) => async (
     };
 
     const res = await axios.put(
-      "/posko/profile/petugas-volunteer",
+      "/pos/profile/petugas-volunteer",
       dataPetugas,
       config
     );
@@ -122,7 +122,7 @@ export const insertPetugasVolunteer = (dataPetugas, history) => async (
     });
 
     dispatch(setAlert("Petugas / volunteer berhasil ditambahkan", "success"));
-    history.push("/posko/data-posko");
+    history.push("/pos/data-pos");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -139,7 +139,7 @@ export const insertPetugasVolunteer = (dataPetugas, history) => async (
 // Delete petugas/volunteer
 export const deletePetugas = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/posko/profile/petugas-volunteer/${id}`);
+    const res = await axios.delete(`/pos/profile/petugas-volunteer/${id}`);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -158,12 +158,12 @@ export const deletePetugas = (id) => async (dispatch) => {
 export const deleteAccount = (id) => async (dispatch) => {
   if (window.confirm("Apakan anda yakin?")) {
     try {
-      // const res = await axios.delete("/posko/porfile");
+      // const res = await axios.delete("/pos/porfile");
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
       dispatch(
-        setAlert("Akun Posko berhasil dihapus berhasil dihapus", "success")
+        setAlert("Akun Pos berhasil dihapus berhasil dihapus", "success")
       );
     } catch (err) {
       dispatch({

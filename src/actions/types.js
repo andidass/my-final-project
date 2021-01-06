@@ -10,7 +10,7 @@ export const LOGOUT = "LOGOUT";
 export const GET_PROFILE = "GET_PROFILE";
 export const GET_PROFILES = "GET_PROFILES";
 export const PROFILE_ERROR = "PROFILE_ERROR";
-export const UPDATE_PROFILE = "GET_PETUGAS";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 // posko
 export const GET_PENGUNGSI = "GET_PENGUNGSI";

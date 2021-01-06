@@ -8,7 +8,7 @@ const NoProfile = () => {
     <div className="full-height isi">
       <Typography variant="h5">
         <Box fontSize={12} textAlign="left" marginTop={3}>
-          Profile posko belum memiliki profile
+          Pos ini belum memiliki profile
         </Box>
       </Typography>
       <Button
@@ -17,7 +17,7 @@ const NoProfile = () => {
         size="small"
         disableRipple
         component={Link}
-        to="/posko/data-posko/form-profile"
+        to="/pos/data-pos/form-profile"
         startIcon={<PersonIcon />}
       >
         Buat Profile

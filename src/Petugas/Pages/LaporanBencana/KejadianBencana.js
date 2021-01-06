@@ -3,8 +3,6 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
-import Spinner from "../../../Components/Spinner";
-
 import { createDataBencana } from "../../../actions/dataBencana";
 import {
   Grid,

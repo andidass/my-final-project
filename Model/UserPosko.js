@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   },
   session: {
     type: String,
-    default: "posko",
+    default: "pos",
   },
   date: {
     type: Date,

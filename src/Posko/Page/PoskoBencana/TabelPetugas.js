@@ -40,7 +40,7 @@ export default function TabelPetugas({ rows, onDelete }) {
         size="small"
         style={{ marginBottom: 8 }}
       >
-        <Link style={{ color: "white" }} to="/posko/data-posko/data-petugas">
+        <Link style={{ color: "white" }} to="/pos/data-pos/data-petugas">
           Tambah Petugas / Volunteer
         </Link>
       </Button>
@@ -66,7 +66,6 @@ export default function TabelPetugas({ rows, onDelete }) {
                       variant="contained"
                       color="secondary"
                       onClick={() => onDelete(row._id)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
-                      // onClick={() => props.deleteItem(index)} // memanggil fungsi dan mengambil index (utk lakukan delete item)
                     >
                       <DeleteIcon fontSize="small" />
                     </IconButton>

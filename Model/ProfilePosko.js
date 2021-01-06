@@ -15,6 +15,9 @@ const ProfilePoskoSchema = new mongoose.Schema({
   kecPosko: {
     type: String,
   },
+  kelPosko: {
+    type: String,
+  },
   kabPosko: {
     type: String,
   },

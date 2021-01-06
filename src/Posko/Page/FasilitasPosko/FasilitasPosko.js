@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { getDataFasilitasPosko } from "../../../actions/fasilitasPosko";
 import DataFasilitasPosko from "./DataFasilitasPosko";
 import NoDataFasilitasPosko from "./NoDataFasilitasPosko";
-import { Redirect, Link } from "react-router-dom";
+// import { Redirect, Link } from "react-router-dom";
 
 const FasilitasPosko = ({
   auth: { user },
@@ -15,16 +15,15 @@ const FasilitasPosko = ({
     getDataFasilitasPosko();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   // if (!user) {
   //   return <Redirect to="/posko/dashboard" />;
   // }
-  // return fasilitasPosko !== null ? (
-  //   <DataFasilitasPosko />
-  // ) : (
-  //   <NoDataFasilitasPosko />
-  // );
-  return fasilitasPosko && <DataFasilitasPosko />;
+  return fasilitasPosko !== null ? (
+    <DataFasilitasPosko />
+  ) : (
+    <NoDataFasilitasPosko />
+  );
 };
 
 FasilitasPosko.propTypes = {

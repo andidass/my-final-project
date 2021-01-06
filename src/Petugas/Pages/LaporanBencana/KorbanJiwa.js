@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
-import Spinner from "../../../Components/Spinner";
-
 import { insertKorban, deleteDataKorban } from "../../../actions/dataBencana";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import AddCircleIcon from "@material-ui/icons/AddCircle";

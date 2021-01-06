@@ -66,7 +66,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
 
   // Redirect jika login success
   if (isAuthenticated) {
-    return <Redirect to="/posko/dashboard" />;
+    return <Redirect to="/pos/dashboard" />;
   }
 
   const {
@@ -86,7 +86,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registrasi Posko Pengungsian
+          Registrasi Pos Pengungsian
         </Typography>
         <form className={classes.form} noValidate onSubmit={(e) => onSubmit(e)}>
           <TextField
@@ -116,7 +116,6 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
             onChange={(e) => onChange(e)}
             type="text"
             autoComplete="usernameposko"
-            autoFocus
           />
 
           <TextField
@@ -131,7 +130,6 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
             autoComplete="petugas"
             value={petugas}
             onChange={(e) => onChange(e)}
-            autoFocus
           />
 
           <TextField
@@ -189,7 +187,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
           </Button>
           <Grid container>
             <Grid item>
-              <Link to="/posko/login">
+              <Link to="/pos/login">
                 <Linkes variant="body2">{"Sudah memiliki akun? login"}</Linkes>
               </Link>
             </Grid>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
-import Spinner from "../../../Components/Spinner";
 import {
   insertDataKerusakan,
   deleteDataKerusakan,
@@ -76,7 +75,6 @@ const LaporanKerusakan = ({
     rusakBerat,
     rusakSedang,
     rusakRingan,
-    total,
     satuan,
   } = data;
 
@@ -149,7 +147,6 @@ const LaporanKerusakan = ({
                       size="small"
                       required
                       fullWidth
-                      required
                       select
                       SelectProps={{
                         native: true,

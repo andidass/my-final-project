@@ -34,10 +34,11 @@ router.post(
   [
     auth,
     [
-      check("namaPosko", "Nama posko harus diisi").not().isEmpty(),
-      check("alamatPosko", "Alamat posko harus diisi").not().isEmpty(),
-      check("kecPosko", "Kecamatan posko harus diisi").not().isEmpty(),
-      check("kabPosko", "Kabupaten posko harus diisi").not().isEmpty(),
+      check("namaPosko", "Nama pos harus diisi").not().isEmpty(),
+      check("alamatPosko", "Alamat pos harus diisi").not().isEmpty(),
+      check("kelPosko", "Kelurahan pos harus diisi").not().isEmpty(),
+      check("kecPosko", "Kecamatan pos harus diisi").not().isEmpty(),
+      check("kabPosko", "Kabupaten pos harus diisi").not().isEmpty(),
       check("namaPetugas", "Nama petugas harus diisi").not().isEmpty(),
       check("jabatan", "Jabatan harus diisi").not().isEmpty(),
       check("noHp", "Masukkan No Hp dengan format yang benar").isNumeric(),
@@ -52,6 +53,7 @@ router.post(
     const {
       namaPosko,
       alamatPosko,
+      kelPosko,
       kecPosko,
       kabPosko,
       namaPetugas,
@@ -66,6 +68,7 @@ router.post(
     profilePoskoFields.user = req.user.id;
     if (namaPosko) profilePoskoFields.namaPosko = namaPosko;
     if (alamatPosko) profilePoskoFields.alamatPosko = alamatPosko;
+    if (kelPosko) profilePoskoFields.kelPosko = kelPosko;
     if (kecPosko) profilePoskoFields.kecPosko = kecPosko;
     if (kabPosko) profilePoskoFields.kabPosko = kabPosko;
 

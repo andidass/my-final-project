@@ -17,7 +17,7 @@ const PoskoBencana = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (!user) {
-    return <Redirect to="/posko/dashboard" />;
+    return <Redirect to="/pos/dashboard" />;
   }
   return profile !== null ? <ProfilePosko /> : <NoProfile />;
 };

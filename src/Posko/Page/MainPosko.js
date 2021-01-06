@@ -25,7 +25,7 @@ const MainPosko = ({
   }, []);
 
   if (!isAuthenticated) {
-    return <Redirect to="/posko/login" />;
+    return <Redirect to="/pos/login" />;
   }
   return loading || user === null ? (
     <Spinner />
