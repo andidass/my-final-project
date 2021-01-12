@@ -13,21 +13,21 @@ import Spinner from "../../Components/Spinner";
 import { Typography, Box } from "@material-ui/core";
 
 const MainPosko = ({
-  loadUser,
-  getCurrentProfile,
+  // loadUser,
+  // getCurrentProfile,
   auth: { user, isAuthenticated },
-  profile: { profile, loading },
+  // profile: { profile, loading },
 }) => {
-  useEffect(() => {
-    loadUser();
-    getCurrentProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   loadUser();
+  //   getCurrentProfile();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   if (!isAuthenticated) {
     return <Redirect to="/pos/login" />;
   }
-  return loading || user === null ? (
+  return user === null ? (
     <Spinner />
   ) : (
     <div className="full-height">

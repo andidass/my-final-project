@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Confirmation from "./Confirmation";
@@ -8,7 +8,6 @@ import { insertBantuanMasuk } from "../../../actions/bantuanMasuk";
 import Alert from "../../../layout/Alert";
 // import Spinner from "../../../Components/Spinner";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
-import SaveIcon from "@material-ui/icons/Save";
 import uniqid from "uniqid";
 import Table from "./Table";
 import ItemData from "./ItemData";
@@ -18,7 +17,12 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import "./BantuanMasuk.css";
 
-const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
+const BantuanMasuk = ({
+  insertBantuanMasuk,
+  auth: { isAuthenticated },
+  bantuanMasuk,
+  history,
+}) => {
   const [id, setId] = useState(uniqid("bpbd-ntb-"));
   const [rows, setRows] = useState([]); // data item
   // const [open, setOpen] = React.useState(false);
@@ -59,22 +63,16 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
     });
   }
 
-  const cekState = (e) => {
-    e.preventDefault();
-    console.log("data init :", dataInit);
-  };
-
-  // ! LET'S FIX THIS
   const submitHandler = (e) => {
     // tombol simpan
     setDataInit((dataInit) => {
       return { ...dataInit, dataItemBantuan: rows };
-    }); // ! make sure state have been updated than execute next function
+    });
     // e.preventDefault();
   };
 
   const sumbitConfirmation = () => {
-    // e.preventDefault(e);
+    // event.preventDefault();
     insertBantuanMasuk(dataInit, history);
     setDataInit({
       kodeTransaksi: id,
@@ -83,9 +81,12 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
       alamatDonatur: "",
     });
     setRows([]);
-    // setId(uniqid("2123123"));
     setId(uniqid("bpbd-ntb-"));
   };
+
+  if (!isAuthenticated) {
+    return <Redirect to="/admin/login" />;
+  }
 
   return (
     <Fragment>
@@ -149,28 +150,10 @@ const BantuanMasuk = ({ insertBantuanMasuk, auth, bantuanMasuk, history }) => {
           <Grid xs={12} item>
             {/* ---------------------- TABLE.JS -------------------------- */}
             <Table rows={rows} deleteItem={deleteItem} />
-            {/* <Button
-            variant="contained"
-            color="primary"
-            style={{ margin: 8 }}
-            startIcon={<SaveIcon />}
-            type="submit"
-          >
-            Simpan
-          </Button> */}
             <Confirmation
               sumbitConfirmation={sumbitConfirmation}
               submitHandler={submitHandler}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ margin: 8 }}
-              startIcon={<SaveIcon />}
-              onClick={(e) => cekState(e)}
-            >
-              Cek state aja!
-            </Button>
           </Grid>
         </Grid>
       </form>

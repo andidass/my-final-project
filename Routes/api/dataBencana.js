@@ -341,14 +341,14 @@ router.put(
 // #desc    delete data korban
 // @access  Private
 
-router.delete("/data-kerusakan/:id", auth, async (req, res) => {
+router.delete("/data-kerusakan/:kerusakan_id", auth, async (req, res) => {
   try {
     const dataBencana = await DataBencana.findOne({ petugas: req.user.id });
 
     // get removed index
-    const removeIndex = dataBencana.dataKorban
+    const removeIndex = dataBencana.dataKerusakan
       .map((item) => item.id)
-      .indexOf(req.params.id);
+      .indexOf(req.params.kerusakan_id);
 
     dataBencana.dataKerusakan.splice(removeIndex, 1);
 

@@ -11,7 +11,7 @@ import {
 //get data permintaan bantuan
 export const getPermintaanBantuan = () => async (dispatch) => {
   try {
-    const res = await axios.get("/posko/permintaan-bantuan/me");
+    const res = await axios.get("/pos/permintaan-bantuan/me");
 
     dispatch({
       type: GET_PERMINTAAN_BANTUAN,
@@ -29,7 +29,7 @@ export const getPermintaanBantuan = () => async (dispatch) => {
 export const getAllPermintaanBantuan = () => async (dispatch) => {
   dispatch({ type: CLEAR_PERMINTAAN_BANTUAN });
   try {
-    const res = await axios.get("/posko/permintaan-bantuan");
+    const res = await axios.get("/pos/permintaan-bantuan");
 
     dispatch({
       type: GET_ALL_PERMINTAAN_BANTUAN,
@@ -46,7 +46,7 @@ export const getAllPermintaanBantuan = () => async (dispatch) => {
 // get data permintaan bantuan by userID
 export const getDataPermintaanById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/posko/permintaan-bantuan/${userId}`);
+    const res = await axios.get(`/pos/permintaan-bantuan/${userId}`);
 
     dispatch({
       type: GET_PERMINTAAN_BANTUAN,
@@ -69,7 +69,7 @@ export const createPermintaanBantuan = (history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.post("/posko/permintaan-bantuan", config);
+    const res = await axios.post("/pos/permintaan-bantuan", config);
 
     dispatch({
       type: GET_PERMINTAAN_BANTUAN,
@@ -77,9 +77,9 @@ export const createPermintaanBantuan = (history) => async (dispatch) => {
     });
 
     dispatch(
-      setAlert("Data permintaan bantuan posko berhasil dibuat", "success")
+      setAlert("Data permintaan bantuan pos berhasil dibuat", "success")
     );
-    history.push("/posko/permintaan-bantuan");
+    history.push("/pos/permintaan-bantuan");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -106,7 +106,7 @@ export const insertPermintaanBantuan = (dataPermintaan, history) => async (
     };
 
     const res = await axios.put(
-      "/posko/permintaan-bantuan",
+      "/pos/permintaan-bantuan",
       dataPermintaan,
       config
     );
@@ -134,7 +134,7 @@ export const insertPermintaanBantuan = (dataPermintaan, history) => async (
 // Delete data permintaan bantuan
 export const deletePermintaanBantuan = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/posko/permintaan-bantuan/${id}`);
+    const res = await axios.delete(`/pos/permintaan-bantuan/${id}`);
 
     dispatch({
       type: UPDATE_PERMINTAAN_BANTUAN,

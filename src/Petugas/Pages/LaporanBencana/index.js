@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentDataBencana } from "../../../actions/dataBencana";
 import { Redirect } from "react-router-dom";
-// import DataBencana from "./DataBencana";
 import MenuLaporanBencana from "./MenuLaporanBencana";
 import NoDataBencana from "./NoDataBencana";
+import Spinner from "../../../Components/Spinner";
 
 const LaporanBencana = ({
   auth: { user, isAuthenticated },
-  dataBencana: { dataBencana },
+  dataBencana: { dataBencana, loading },
   getCurrentDataBencana,
 }) => {
   useEffect(() => {
@@ -20,7 +20,13 @@ const LaporanBencana = ({
   if (!isAuthenticated) {
     return <Redirect to="/petugas/login" />;
   }
-  return dataBencana !== null ? <MenuLaporanBencana /> : <NoDataBencana />;
+  return loading ? (
+    <Spinner />
+  ) : dataBencana !== null ? (
+    <MenuLaporanBencana />
+  ) : (
+    <NoDataBencana />
+  );
 };
 
 LaporanBencana.propTypes = {

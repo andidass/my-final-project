@@ -64,14 +64,14 @@ function MenuAdmin() {
           sm={4}
           lg={2}
           component={Link}
-          to="/admin/data-posko"
+          to="/admin/data-pos"
           className="link"
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <AssignmentIcon />
               <Typography component="div">
-                <Box>Data Posko</Box>
+                <Box>Data Pos</Box>
               </Typography>
             </CardContent>
           </Card>

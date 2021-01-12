@@ -9,7 +9,7 @@ import { getDataPengungsiById } from "../../../actions/pengungsi";
 import { getDataFasilitasPoskoByUserId } from "../../../actions/fasilitasPosko";
 import MapPosko from "../../../layout/Map";
 import Spinner from "../../../Components/Spinner";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Grid } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import "./DataPosko.css";
@@ -34,12 +34,14 @@ const AllDataPosko = ({
   const b = (props) => (
     <Typography style={{ fontWeight: "bold" }}>{props.children}</Typography>
   );
-  return profile === null || loading ? (
+  return loading ? (
     <Spinner />
   ) : (
     <Fragment>
       <div className="sub-heading">
-        <Typography variant="h5">{profile && profile.namaPosko}</Typography>
+        <Typography variant="h5">
+          Profile {profile && profile.namaPosko}
+        </Typography>
         <Typography variant="subtitle2">
           Data Profile {profile && profile.namaPosko}
         </Typography>
@@ -50,28 +52,82 @@ const AllDataPosko = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/data-posko">Kembali</Link>
+        <Link to="/admin/data-pos">Kembali</Link>
       </Button>
       <div className="data-posko">
-        {profile && (
-          <Fragment>
-            <Typography variant="subtitle1">
-              <b>Alamat :</b> {profile.alamatPosko}
+        <Grid container>
+          <Grid item xs={12} sm={6}>
+            <Typography
+              variant="subtitle1"
+              align="center"
+              className="title-data-posko"
+            >
+              <b>Profile {profile && profile.namaPosko}</b>
             </Typography>
-            <Typography variant="subtitle1">
-              <b>Kecamatan :</b> {profile.kecPosko}
+            {!profile ? (
+              <Typography variant="subtitle1">
+                Pos Tidak Memiliki Profile
+              </Typography>
+            ) : (
+              <Fragment>
+                <Typography variant="subtitle1">
+                  <b>Alamat :</b> {profile.alamatPosko}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Kecamatan :</b> {profile.kecPosko}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Kabupaten :</b> {profile.kabPosko}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Koordinator Posko :</b> {profile.petugas.namaPetugas}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Jabatan :</b> {profile.petugas.jabatan}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>No Hp :</b> {profile.petugas.noHp}
+                </Typography>
+              </Fragment>
+            )}
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography
+              variant="subtitle1"
+              align="center"
+              className="title-data-posko"
+            >
+              <b>Fasilitas {profile && profile.namaPosko}</b>
             </Typography>
-            <Typography variant="subtitle1">
-              <b>Kabupaten :</b> {profile.kabPosko}
-            </Typography>
-            <Typography variant="subtitle1">
-              <b>Koordinator Posko :</b> {profile.petugas.namaPetugas}
-            </Typography>
-            <Typography variant="subtitle1">
-              <b>Jabatan :</b> {profile.petugas.jabatan}
-            </Typography>
-          </Fragment>
-        )}
+            {!fasilitasPosko ? (
+              <Typography variant="subtitle1">
+                Pos Tidak Memiliki Data Fasilitas
+              </Typography>
+            ) : (
+              <Fragment>
+                <Typography variant="subtitle1">
+                  <b>Fasilitas Kesehatan :</b> {fasilitasPosko.fkes}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Fasilitas Pendidikan :</b> {fasilitasPosko.fpend}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>MCK :</b> {fasilitasPosko.mck}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Mushollah :</b> {fasilitasPosko.musholah}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Dapur Umum :</b> {fasilitasPosko.dapurUmum}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <b>Tendan Umum :</b> {fasilitasPosko.tendaUmum}
+                </Typography>
+              </Fragment>
+            )}
+          </Grid>
+        </Grid>
+
         <Typography
           variant="subtitle1"
           align="center"
@@ -79,7 +135,13 @@ const AllDataPosko = ({
         >
           <b>Petugas / Relawan {profile && profile.namaPosko}</b>
         </Typography>
-        <TabelPetugas allPetugas={profile && profile.allPetugas} />
+        {profile && profile.allPetugas.length === 0 ? (
+          <Typography variant="subtitle1">
+            Tidak Ada Data Petugas / Relawan
+          </Typography>
+        ) : (
+          <TabelPetugas allPetugas={profile && profile.allPetugas} />
+        )}
         <Typography
           variant="subtitle1"
           align="center"
@@ -87,38 +149,13 @@ const AllDataPosko = ({
         >
           <b>Pengungsi {profile && profile.namaPosko}</b>
         </Typography>
-        <TabelPengungsi
-          allPengungsi={pengungsi && pengungsi.allPengungsi}
-          user={pengungsi && pengungsi.user}
-        />
-        <Typography
-          variant="subtitle1"
-          align="center"
-          className="title-data-posko"
-        >
-          <b>Fasilitas {profile && profile.namaPosko}</b>
-        </Typography>
-        {fasilitasPosko && (
-          <Fragment>
-            <Typography variant="subtitle1">
-              <b>Fasilitas Kesehatan :</b> {fasilitasPosko.fkes}
-            </Typography>
-            <Typography variant="subtitle1">
-              <b>Fasilitas Pendidikan :</b> {fasilitasPosko.fpend}
-            </Typography>
-            <Typography variant="subtitle1">
-              <b>MCK :</b> {fasilitasPosko.mck}
-            </Typography>
-            <Typography variant="subtitle1">
-              <b>Mushollah :</b> {fasilitasPosko.musholah}
-            </Typography>
-            <Typography variant="subtitle1">
-              <b>Dapur Umum :</b> {fasilitasPosko.dapurUmum}
-            </Typography>
-            <Typography variant="subtitle1">
-              <b>Tendan Umum :</b> {fasilitasPosko.tendaUmum}
-            </Typography>
-          </Fragment>
+        {profile && profile.allPetugas.length === 0 ? (
+          <Typography variant="subtitle1">Tidak Ada Data Pengungsi</Typography>
+        ) : (
+          <TabelPengungsi
+            allPengungsi={pengungsi && pengungsi.allPengungsi}
+            user={pengungsi && pengungsi.user}
+          />
         )}
         <Typography
           variant="subtitle1"
@@ -127,7 +164,11 @@ const AllDataPosko = ({
         >
           <b>Lokasi {profile && profile.namaPosko}</b>
         </Typography>
-        {profile && (
+        {profile && !profile.location ? (
+          <Typography variant="subtitle1">
+            Pos tidak memiliki lokasi koordinator
+          </Typography>
+        ) : (
           <MapPosko
             location={profile && profile.location}
             namaPosko={profile && profile.namaPosko}

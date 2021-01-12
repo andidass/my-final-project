@@ -11,7 +11,7 @@ import {
 //get pengungsi data
 export const getPengungsi = () => async (dispatch) => {
   try {
-    const res = await axios.get("/posko/pengungsi/me");
+    const res = await axios.get("/pos/pengungsi/me");
 
     dispatch({
       type: GET_PENGUNGSI,
@@ -29,7 +29,7 @@ export const getPengungsi = () => async (dispatch) => {
 export const getAllDataPengungsi = () => async (dispatch) => {
   dispatch({ type: CLEAR_PENGUNGSI });
   try {
-    const res = await axios.get("/posko/pengungsi");
+    const res = await axios.get("/pos/pengungsi");
 
     dispatch({
       type: GET_ALL_PENGUNGSI,
@@ -43,10 +43,10 @@ export const getAllDataPengungsi = () => async (dispatch) => {
   }
 };
 
-//get data pengungsi by userId / posko
+//get data pengungsi by userId / pos
 export const getDataPengungsiById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/posko/pengungsi/${userId}`);
+    const res = await axios.get(`/pos/pengungsi/${userId}`);
 
     dispatch({
       type: GET_PENGUNGSI,
@@ -61,7 +61,7 @@ export const getDataPengungsiById = (userId) => async (dispatch) => {
 };
 
 // create data pengungsi
-export const createPengungsi = (user, history) => async (dispatch) => {
+export const createPengungsi = (history) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -69,15 +69,15 @@ export const createPengungsi = (user, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.post("/posko/pengungsi", config);
+    const res = await axios.post("/pos/pengungsi", config);
 
     dispatch({
       type: GET_PENGUNGSI,
       payload: res.data,
     });
 
-    dispatch(setAlert("Data pengungsi posko berhasil dibuat", "success"));
-    history.push("/posko/data-pengungsi");
+    dispatch(setAlert("Data pengungsi pos berhasil dibuat", "success"));
+    history.push("/pos/data-pengungsi");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -101,7 +101,7 @@ export const insertPengungsi = (dataPengungsi, history) => async (dispatch) => {
     };
 
     const res = await axios.put(
-      "/posko/pengungsi/input-pengungsi",
+      "/pos/pengungsi/input-pengungsi",
       dataPengungsi,
       config
     );
@@ -127,7 +127,7 @@ export const insertPengungsi = (dataPengungsi, history) => async (dispatch) => {
 // Delete pengungsi
 export const deletePengungsi = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/posko/pengungsi/input-pengungsi/${id}`);
+    const res = await axios.delete(`/pos/pengungsi/input-pengungsi/${id}`);
 
     dispatch({
       type: UPDATE_PENGUNGSI,

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getPermintaanBantuan } from "../../../actions/permintaanBantuan";
 import DataPermintaanBantuan from "./DataPermintaanBantuan";
 import NoDataPermintaanBantuan from "./NoDataPermintaanBantuan";
-// import { Redirect } from "react-router-dom";
 
 const PermintaanBantuan = ({
-  auth: { user },
+  auth: { isAuthenticated },
   permintaanBantuan: { permintaanBantuan },
   getPermintaanBantuan,
 }) => {
@@ -15,9 +15,11 @@ const PermintaanBantuan = ({
     getPermintaanBantuan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // if (!user) {
-  //   return <Redirect to="/posko/dashboard" />;
-  // }
+
+  if (!isAuthenticated) {
+    return <Redirect to="/pos/dashboard" />;
+  }
+
   return permintaanBantuan !== null ? (
     <DataPermintaanBantuan />
   ) : (

@@ -42,7 +42,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         permintaanBantuan: null,
-        loading: false,
+        loading: true,
       };
     default:
       return state;

@@ -41,7 +41,7 @@ router.post(
       check("kabPosko", "Kabupaten pos harus diisi").not().isEmpty(),
       check("namaPetugas", "Nama petugas harus diisi").not().isEmpty(),
       check("jabatan", "Jabatan harus diisi").not().isEmpty(),
-      check("noHp", "Masukkan No Hp dengan format yang benar").isNumeric(),
+      check("noHp", "Masukkan No Hp dengan format yang benar").not().isEmpty(),
     ],
   ],
   async (req, res) => {

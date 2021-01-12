@@ -15,6 +15,10 @@ import {
   CLEAR_LAPORAN_BENCANA,
   CLEAR_PROFILE_PETUGAS,
   CLEAR_LAPORAN_HARIAN,
+  CLEAR_PERMINTAAN_BANTUAN,
+  CLEAR_PROFILE_ADMIN,
+  CLEAR_BANTUAN_UTAMA,
+  CLEAR_BANTUAN_KELUAR,
 } from "./types";
 import setAuthToken from "../utils/setTokenAuth";
 
@@ -109,13 +113,17 @@ export const login = (usernameposko, password) => async (dispatch) => {
 
 // LOGOUT (clear profile)
 export const logout = () => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
-  dispatch({ type: CLEAR_PENGUNGSI });
   dispatch({ type: LOGOUT });
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: CLEAR_PROFILE_ADMIN });
+  dispatch({ type: CLEAR_PENGUNGSI });
   dispatch({ type: CLEAR_BANTUAN_MASUK });
+  dispatch({ type: CLEAR_BANTUAN_KELUAR });
+  dispatch({ type: CLEAR_BANTUAN_UTAMA });
   dispatch({ type: CLEAR_FASILITAS_POSKO });
   dispatch({ type: CLEAR_PROFILE_PETUGAS });
   dispatch({ type: CLEAR_LAPORAN_BENCANA });
   dispatch({ type: CLEAR_LAPORAN_HARIAN });
+  dispatch({ type: CLEAR_PERMINTAAN_BANTUAN });
   // dispatch(loadUser());
 };

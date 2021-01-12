@@ -1,11 +1,12 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 import { withRouter, Link } from "react-router-dom";
 import { createFasilitasPosko } from "../../../actions/fasilitasPosko";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
-import { Button, Typography, Box, Paper, TextField } from "@material-ui/core";
+import { Button, Typography, Paper, TextField } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import "./style.css";
@@ -27,15 +28,12 @@ const DataFasilitasPosko = ({
   // get data fasilitas posko
   useEffect(() => {
     setDataFasilitas({
-      fkes: loading || !fasilitasPosko.fkes ? "0" : fasilitasPosko.fkes,
-      fpend: loading || !fasilitasPosko.fpend ? "0" : fasilitasPosko.fpend,
-      mck: loading || !fasilitasPosko.mck ? "0" : fasilitasPosko.mck,
-      musholah:
-        loading || !fasilitasPosko.musholah ? "0" : fasilitasPosko.musholah,
-      dapurUmum:
-        loading || !fasilitasPosko.dapurUmum ? "0" : fasilitasPosko.dapurUmum,
-      tendaUmum:
-        loading || !fasilitasPosko.tendaUmum ? "0" : fasilitasPosko.tendaUmum,
+      fkes: loading || !fasilitasPosko ? "0" : fasilitasPosko.fkes,
+      fpend: loading || !fasilitasPosko ? "0" : fasilitasPosko.fpend,
+      mck: loading || !fasilitasPosko ? "0" : fasilitasPosko.mck,
+      musholah: loading || !fasilitasPosko ? "0" : fasilitasPosko.musholah,
+      dapurUmum: loading || !fasilitasPosko ? "0" : fasilitasPosko.dapurUmum,
+      tendaUmum: loading || !fasilitasPosko ? "0" : fasilitasPosko.tendaUmum,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -50,6 +48,7 @@ const DataFasilitasPosko = ({
     e.preventDefault();
     createFasilitasPosko(dataFasilitas, history, true);
   };
+
   return loading ? (
     <Spinner />
   ) : (
@@ -57,7 +56,7 @@ const DataFasilitasPosko = ({
       <div className="sub-heading">
         <Typography variant="h5">Data Fasilitas Pos</Typography>
         <Typography variant="subtitle2">
-          Data Fasilitas Pos {user && user.name}
+          Edit Data Fasilitas Pos {user && user.name}
         </Typography>
       </div>
       <Button
@@ -66,7 +65,7 @@ const DataFasilitasPosko = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/posko/dashboard">Kembali</Link>
+        <Link to="/pos/dashboard">Kembali</Link>
       </Button>
 
       <form onSubmit={(e) => onSubmit(e)}>

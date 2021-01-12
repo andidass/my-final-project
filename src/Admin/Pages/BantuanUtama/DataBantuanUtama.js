@@ -83,7 +83,7 @@ const DataBantuanUtama = ({
       <div className="sub-heading">
         <Typography variant="h5">Set Bantuan Utama</Typography>
         <Typography variant="subtitle2">
-          Penentu Bantuan Utama Untuk Tiap Posko Pengungsian
+          Penentu Bantuan Utama Untuk Tiap Pos Pengungsian
         </Typography>
       </div>
       <Button
@@ -94,7 +94,7 @@ const DataBantuanUtama = ({
       >
         <Link to="/admin/dashboard">Kembali</Link>
       </Button>
-      <Paper variant="outlined" className="body-posko-bencana">
+      <Paper variant="outlined" className="body-pos-bencana">
         <Grid container justify="center">
           <Grid item>
             <form

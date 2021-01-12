@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createPengungsi, getPengungsi } from "../../../actions/pengungsi";
+import { createPengungsi } from "../../../actions/pengungsi";
 import { Button, Typography, Box } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import Spinner from "../../../Components/Spinner";
@@ -10,16 +10,16 @@ import Spinner from "../../../Components/Spinner";
 const NoPengungsi = ({
   pengungsi: { pengungsi, loading },
   auth: { user },
-  getPengungsi,
   createPengungsi,
+  history,
 }) => {
   const onSubmit = (e) => {
-    createPengungsi();
+    createPengungsi(history);
     e.preventDefault();
   };
 
   if (pengungsi) {
-    return <Redirect to="/posko/data-pengungsi" />;
+    return <Redirect to="/pos/data-pengungsi" />;
   }
 
   return loading ? (
@@ -28,7 +28,7 @@ const NoPengungsi = ({
     <div className="full-height isi">
       <Typography variant="h5">
         <Box fontSize={12} textAlign="left" marginTop={3}>
-          Data pengungsi posko ini belum ada.
+          Data pengungsi pos ini belum ada.
         </Box>
       </Typography>
       <Button
@@ -38,7 +38,7 @@ const NoPengungsi = ({
         size="small"
         disableRipple
         component={Link}
-        to="/posko/data-pengungsi/"
+        to="/pos/data-pengungsi/"
         startIcon={<PersonIcon />}
       >
         Buat Data Pengungsi
@@ -50,7 +50,6 @@ const NoPengungsi = ({
 NoPengungsi.propTypes = {
   auth: PropTypes.object.isRequired,
   createPengungsi: PropTypes.func.isRequired,
-  getPengungsi: PropTypes.func.isRequired,
   pengungsi: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
@@ -58,6 +57,6 @@ const mapStateToProps = (state) => ({
   pengungsi: state.pengungsi,
 });
 
-export default connect(mapStateToProps, { createPengungsi, getPengungsi })(
+export default connect(mapStateToProps, { createPengungsi })(
   withRouter(NoPengungsi)
 );

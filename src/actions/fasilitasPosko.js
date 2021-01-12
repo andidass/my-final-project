@@ -8,10 +8,10 @@ import {
   CLEAR_FASILITAS_POSKO,
 } from "./types";
 
-// get data fasilitas posko user
+// get data fasilitas pos user
 export const getDataFasilitasPosko = () => async (dispatch) => {
   try {
-    const res = await axios.get("/posko/fasilitas-posko/me");
+    const res = await axios.get("/pos/fasilitas-pos/me");
 
     dispatch({
       type: GET_FASILITAS_POSKO,
@@ -25,11 +25,11 @@ export const getDataFasilitasPosko = () => async (dispatch) => {
   }
 };
 
-// get data all data fasilitas posko
+// get data all data fasilitas pos
 export const getAllDataFasilitasPosko = () => async (dispatch) => {
   dispatch({ type: CLEAR_FASILITAS_POSKO });
   try {
-    const res = await axios.get("/posko/fasilitas-posko");
+    const res = await axios.get("/pos/fasilitas-pos");
 
     dispatch({
       type: GET_ALL_FASILITAS_POSKO,
@@ -43,10 +43,10 @@ export const getAllDataFasilitasPosko = () => async (dispatch) => {
   }
 };
 
-// get data fasilitas posko by userId
+// get data fasilitas pos by userId
 export const getDataFasilitasPoskoByUserId = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/posko/fasilitas-posko/${userId}`);
+    const res = await axios.get(`/pos/fasilitas-pos/${userId}`);
 
     dispatch({
       type: GET_FASILITAS_POSKO,
@@ -74,7 +74,7 @@ export const createFasilitasPosko = (
     };
 
     const res = await axios.post(
-      "/posko/fasilitas-posko",
+      "/pos/fasilitas-pos",
       dataFasilitasPosko,
       config
     );
@@ -87,15 +87,15 @@ export const createFasilitasPosko = (
     dispatch(
       setAlert(
         edit
-          ? "Data fasilitas poskso diupdate"
-          : "data fasilitas posko berhasil dibuat",
+          ? "Data fasilitas pos diupdate"
+          : "data fasilitas pos berhasil dibuat",
         "success"
       )
     );
 
     // jika data baru dibuat, redirect
     if (!edit) {
-      history.push("/posko/fasilitas-posko");
+      history.push("/pos/fasilitas-pos");
     }
   } catch (err) {
     const errors = err.response.data.errors;

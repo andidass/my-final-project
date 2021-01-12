@@ -25,7 +25,7 @@ const DataBantuanUtama = ({ auth: { user } }) => {
       <div className="sub-heading">
         <Typography variant="h5">Data pengungsi</Typography>
         <Typography variant="subtitle2">
-          Data semua pengungsi di seluruh posko pengungsian
+          Data semua pengungsi di seluruh pos pengungsian
         </Typography>
       </div>
       <Button
@@ -37,7 +37,7 @@ const DataBantuanUtama = ({ auth: { user } }) => {
         <Link to="/admin/dashboard">Kembali</Link>
       </Button>
 
-      <Paper variant="outlined" className="body-posko-bencana">
+      <Paper variant="outlined" className="body-pos-bencana">
         <Grid container justify="center">
           <Grid item>
             <div className="search">

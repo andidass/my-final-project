@@ -45,11 +45,107 @@ const jenisBidangKat = [
   },
 ];
 
-const LaporanKerusakan = ({
-  dataBencana: {
-    dataBencana: { dataKerusakan },
-    loading,
+const permukimanOpt = [
+  {
+    value: "Permukiman",
+    label: "Permukiman",
   },
+  {
+    value: "Jalan Lingkungan",
+    label: "Jalan Lingkungan",
+  },
+  {
+    value: "Sistem Air Minum",
+    label: "Sistem Air Minum",
+  },
+];
+
+const InfrastrukturOpt = [
+  {
+    value: "Transportasi Darat",
+    label: "Transportasi Darat",
+  },
+  {
+    value: "Transportasi Air",
+    label: "Transportasi Air",
+  },
+  {
+    value: "Transportasi Udara",
+    label: "Transportasi Udara",
+  },
+  {
+    value: "Sistem Drainase",
+    label: "Sistem Drainase",
+  },
+  {
+    value: "Sistem Listrik",
+    label: "Sistem Listrik",
+  },
+];
+
+const ekonomiOpt = [
+  {
+    value: "Pertanian",
+    label: "Pertanian",
+  },
+  {
+    value: "Perkebunan",
+    label: "Perkebunan",
+  },
+  {
+    value: "Peternakan",
+    label: "Peternakan",
+  },
+  {
+    value: "Perikanan",
+    label: "Perikanan",
+  },
+  {
+    value: "Perdagangan",
+    label: "Perdagangan",
+  },
+  {
+    value: "Perindustrian",
+    label: "Perindustrian",
+  },
+  {
+    value: "Pariwisata",
+    label: "Pariwisata",
+  },
+];
+
+const sosialOpt = [
+  {
+    value: "Pendidikan",
+    label: "Pendidikan",
+  },
+  {
+    value: "Keagamaan",
+    label: "Keagamaan",
+  },
+  {
+    value: "Kesehatan",
+    label: "Kesehatan",
+  },
+];
+
+const lintasSektorOpt = [
+  {
+    value: "Perkantoran",
+    label: "Perkantoran",
+  },
+  {
+    value: "Perbankan",
+    label: "Perbankan",
+  },
+  {
+    value: "Lingkungan",
+    label: "Lingkungan",
+  },
+];
+
+const LaporanKerusakan = ({
+  dataBencana: { dataBencana },
   insertDataKerusakan,
   deleteDataKerusakan,
   auth: { user },
@@ -76,14 +172,12 @@ const LaporanKerusakan = ({
     rusakSedang,
     rusakRingan,
     satuan,
+    total,
   } = data;
 
   function addItem(e) {
     e.preventDefault();
     insertDataKerusakan(data);
-    // setRows((prevRows) => {
-    //   return [...prevRows, data];
-    // });
     setData({
       jenisBidang: "Permukiman",
       bidang: "",
@@ -95,7 +189,6 @@ const LaporanKerusakan = ({
       total: 0,
       satuan: "",
     });
-    // console.log(rows);
   }
 
   // hapus data pada tabel
@@ -103,8 +196,13 @@ const LaporanKerusakan = ({
     deleteDataKerusakan(id);
   }
 
-  const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
-
+  const onChange = (e) =>
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+      total:
+        parseInt(rusakBerat) + parseInt(rusakSedang) + parseInt(rusakRingan),
+    });
   const handleShow = () => {
     setShow(!show);
   };
@@ -139,7 +237,7 @@ const LaporanKerusakan = ({
                 <Fragment>
                   <div>
                     <TextField
-                      id="jenisBidang"
+                      name="jenisBidang"
                       label="Jenis Bidang"
                       style={{ maxWidth: 500 }}
                       margin="normal"
@@ -170,9 +268,46 @@ const LaporanKerusakan = ({
                     size="small"
                     fullWidth
                     required
+                    select
+                    SelectProps={{
+                      native: true,
+                    }}
                     onChange={(e) => onChange(e)}
                     value={bidang}
-                  />
+                  >
+                    {jenisBidang === "Permukiman"
+                      ? permukimanOpt.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : jenisBidang === "Infrastruktur"
+                      ? InfrastrukturOpt.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : jenisBidang === "Ekonomi Produktif"
+                      ? ekonomiOpt.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : jenisBidang === "Sosial"
+                      ? sosialOpt.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : jenisBidang === "Lintas Sektor"
+                      ? lintasSektorOpt.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : null}
+                  </TextField>
+
                   <TextField
                     name="wilayah"
                     label="Wilayah"
@@ -248,13 +383,14 @@ const LaporanKerusakan = ({
                     required
                     disabled
                     onChange={(e) => onChange(e)}
-                    // value={`${rusakBerat * 2}`}
-                    value={
-                      parseInt(rusakBerat) +
-                      parseInt(rusakSedang) +
-                      parseInt(rusakRingan)
-                    }
+                    value={total}
+                    // value={
+                    // parseInt(rusakBerat) +
+                    // parseInt(rusakSedang) +
+                    // parseInt(rusakRingan)
+                    // }
                   />
+                  {/* <Button onClick={(e) => sum(e)}></Button> */}
                   <TextField
                     name="satuan"
                     label="Satuan"
@@ -293,8 +429,11 @@ const LaporanKerusakan = ({
               </Button>
             </form>
           </Grid>
-          {dataKerusakan.length > 0 ? (
-            <TabelKerusakan rows={dataKerusakan} deleteItem={deleteItem} />
+          {dataBencana && dataBencana.dataKerusakan.length > 0 ? (
+            <TabelKerusakan
+              rows={dataBencana.dataKerusakan}
+              deleteItem={deleteItem}
+            />
           ) : (
             <div className="no-data">
               <Typography variant="subtitle1">

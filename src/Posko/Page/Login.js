@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
 import Alert from "../../layout/Alert";
-
+import InputAdornment from "@material-ui/core/InputAdornment";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import LockIcon from "@material-ui/icons/Lock";
 import {
   Avatar,
   Button,
@@ -87,6 +89,13 @@ const SignIn = ({ login, isAuthenticated }) => {
             value={usernameposko}
             onChange={(e) => onChange(e)}
             autoFocus
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              ),
+            }}
           />
           <TextField
             variant="outlined"
@@ -100,6 +109,13 @@ const SignIn = ({ login, isAuthenticated }) => {
             value={password}
             onChange={(e) => onChange(e)}
             autoComplete="current-password"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LockIcon />
+                </InputAdornment>
+              ),
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

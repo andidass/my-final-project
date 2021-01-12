@@ -9,14 +9,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import Tabel from "./Tabel";
 
-import {
-  Grid,
-  Typography,
-  Box,
-  TextField,
-  Paper,
-  Button,
-} from "@material-ui/core";
+import { Grid, Typography, TextField, Paper, Button } from "@material-ui/core";
 
 const jenisKelamin = [
   {
@@ -45,7 +38,7 @@ const keadaan = [
 ];
 
 const DataDataPengungsi = ({
-  pengungsi: { pengungsi, loading, error },
+  pengungsi: { pengungsi, loading },
   history,
   insertPengungsi,
   deletePengungsi,
@@ -99,7 +92,7 @@ const DataDataPengungsi = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/posko/dashboard">Kembali</Link>
+        <Link to="/pos/dashboard">Kembali</Link>
       </Button>
 
       <div className="isi">
@@ -206,7 +199,7 @@ const DataDataPengungsi = ({
                         />
                       </div>
                     </div>
-                    <Alert />
+
                     <Button
                       variant="contained"
                       color="primary"
@@ -225,6 +218,7 @@ const DataDataPengungsi = ({
                 >
                   {show ? "Sembunyikan" : "Tambah Data"}
                 </Button>
+                <Alert />
               </form>
             </Grid>
           </Grid>
@@ -236,7 +230,13 @@ const DataDataPengungsi = ({
             />
           ) : (
             <div className="no-data">
-              <Typography variant="subtitle1">Data Pengungsi Kosong</Typography>
+              <Typography variant="subtitle1">
+                <img
+                  src="/img/undraw_empty_xct9.svg"
+                  alt="React Logo"
+                  style={{ width: `40%` }}
+                />
+              </Typography>
             </div>
           )}
         </Paper>

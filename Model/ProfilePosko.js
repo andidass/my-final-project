@@ -29,7 +29,7 @@ const ProfilePoskoSchema = new mongoose.Schema({
       type: String,
     },
     noHp: {
-      type: Number,
+      type: String,
     },
   },
   location: {

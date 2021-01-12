@@ -38,10 +38,10 @@ const jenisBantuan2 = [
     value: "Papan",
     label: "Papan",
   },
-  {
-    value: "Uang",
-    label: "Uang",
-  },
+  // {
+  //   value: "Uang",
+  //   label: "Uang",
+  // },
 ];
 
 const DataPermintaanBantuan = ({
@@ -100,7 +100,7 @@ const DataPermintaanBantuan = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/posko/dashboard">Kembali</Link>
+        <Link to="/pos/dashboard">Kembali</Link>
       </Button>
 
       <div className="isi">
@@ -179,7 +179,6 @@ const DataPermintaanBantuan = ({
                         value={banyaknya}
                       />
                     </div>
-                    <Alert />
                     <Button
                       variant="contained"
                       type="submit"
@@ -208,11 +207,14 @@ const DataPermintaanBantuan = ({
             />
           ) : (
             <div className="no-data">
-              <Typography variant="subtitle1">
-                Data Bantuan Utama Kosong
-              </Typography>
+              <img
+                src="/img/undraw_empty_xct9.svg"
+                alt="React Logo"
+                style={{ width: `40%` }}
+              />
             </div>
           )}
+          <Alert />
         </Paper>
       </div>
     </Fragment>

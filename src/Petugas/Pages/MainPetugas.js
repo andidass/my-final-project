@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
-
 import MenuPetugas from "../Components/MenuPetugas";
-import { getCurrentProfile } from "../../actions/profilePetugas";
 import { loadUser } from "../../actions/authPetugas";
 import Alert from "../../layout/Alert";
-
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
 import Spinner from "../../Components/Spinner";
 import { Typography, Box } from "@material-ui/core";
 
@@ -16,11 +12,9 @@ const MainPetugas = ({
   auth: { user, isAuthenticated, loading },
   profile: { profile },
   loadUser,
-  getCurrentProfile,
 }) => {
   useEffect(() => {
     loadUser();
-    getCurrentProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -52,7 +46,6 @@ const MainPetugas = ({
 MainPetugas.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
 };
 
@@ -62,6 +55,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getCurrentProfile,
   loadUser,
 })(MainPetugas);

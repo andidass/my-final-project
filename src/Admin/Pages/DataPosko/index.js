@@ -32,13 +32,13 @@ const AllDataPosko = ({
     );
   });
 
-  return profiles.length === 0 || loading ? (
+  return loading ? (
     <Spinner />
   ) : (
     <Fragment>
       <div className="sub-heading">
-        <Typography variant="h5">Posko Pengungsian</Typography>
-        <Typography variant="subtitle2">Data semua posko</Typography>
+        <Typography variant="h5">Pos Pengungsian</Typography>
+        <Typography variant="subtitle2">Data semua pos</Typography>
       </div>
       <Button
         variant="outlined"
@@ -51,7 +51,7 @@ const AllDataPosko = ({
       <div className="search">
         <TextField
           id="kataPencarian"
-          placeholder="cari posko pengungsian"
+          placeholder="cari pos pengungsian"
           style={{ minWidth: 300 }}
           margin="normal"
           variant="outlined"

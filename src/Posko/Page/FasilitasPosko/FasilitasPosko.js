@@ -1,14 +1,15 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getDataFasilitasPosko } from "../../../actions/fasilitasPosko";
 import DataFasilitasPosko from "./DataFasilitasPosko";
 import NoDataFasilitasPosko from "./NoDataFasilitasPosko";
-// import { Redirect, Link } from "react-router-dom";
+import Spinner from "../../../Components/Spinner";
 
 const FasilitasPosko = ({
-  auth: { user },
-  fasilitasPosko: { fasilitasPosko },
+  auth: { isAuthenticated },
+  fasilitasPosko: { fasilitasPosko, loading },
   getDataFasilitasPosko,
 }) => {
   useEffect(() => {
@@ -16,10 +17,13 @@ const FasilitasPosko = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // if (!user) {
-  //   return <Redirect to="/posko/dashboard" />;
-  // }
-  return fasilitasPosko !== null ? (
+  if (!isAuthenticated) {
+    return <Redirect to="/pos/dashboard" />;
+  }
+
+  return loading ? (
+    <Spinner />
+  ) : fasilitasPosko !== null ? (
     <DataFasilitasPosko />
   ) : (
     <NoDataFasilitasPosko />

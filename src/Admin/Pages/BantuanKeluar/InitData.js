@@ -3,7 +3,7 @@ import { Box, Typography, TextField } from "@material-ui/core";
 
 function InitData(props) {
   function changeHandler(event) {
-    props.changeHandlerInit(event); //memanggil fungsi pada BantuanMasukPosko.js
+    props.changeHandlerInit(event); //memanggil fungsi pada BantuanMasukPos.js
   }
 
   return (

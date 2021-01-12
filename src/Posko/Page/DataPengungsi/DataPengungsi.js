@@ -17,12 +17,15 @@ const DataPengungsi = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (!user) {
-    return <Redirect to="/posko/dashboard" />;
+    return <Redirect to="/pos/dashboard" />;
   }
-  if (loading) {
-    return <Spinner />;
-  }
-  return pengungsi !== null ? <DataDataPengungsi /> : <NoPengungsi />;
+  return loading ? (
+    <Spinner />
+  ) : pengungsi !== null ? (
+    <DataDataPengungsi />
+  ) : (
+    <NoPengungsi />
+  );
 };
 
 DataPengungsi.propTypes = {

@@ -1,46 +1,71 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createPermintaanBantuan } from "../../../actions/permintaanBantuan";
-import { Button, Typography, Box } from "@material-ui/core";
+import { Button, Typography, Box, Link, Grid, Paper } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import SaveIcon from "@material-ui/icons/Save";
 
 const NoDataPermintaanBantuan = ({
   permintaanBantuan: { permintaanBantuan, loading },
-  auth: { user },
   createPermintaanBantuan,
+  history,
 }) => {
   const onSubmit = (e) => {
-    createPermintaanBantuan();
+    createPermintaanBantuan(history);
     e.preventDefault();
   };
 
   if (permintaanBantuan) {
-    return <Redirect to="/posko/permintaan-bantuan" />;
+    return <Redirect to="/pos/permintaan-bantuan" />;
   }
 
   return loading ? (
     <Spinner />
   ) : (
-    <form className="full-height isi" onSubmit={(e) => onSubmit(e)}>
-      <Typography variant="h5">
-        <Box fontSize={12} textAlign="left" marginTop={3}>
-          Data permintaan bantuan posko ini belum ada.
-        </Box>
-      </Typography>
+    <Fragment>
+      <div className="sub-heading">
+        <Typography variant="h5">Permintaan Bantuan</Typography>
+        <Typography variant="subtitle2">
+          Buat Data Permintaan Bantuan
+        </Typography>
+      </div>
       <Button
-        variant="contained"
-        type="submit"
-        color="primary"
+        variant="outlined"
         size="small"
-        disableRipple
-        startIcon={<PersonIcon />}
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
       >
-        Buat Data Permintaan Bantuan
+        <Link to="/pos/dashboard">Kembali</Link>
       </Button>
-    </form>
+
+      <Grid container justify="center">
+        <Paper variant="outlined" className="paper-form">
+          <Grid item style={{ padding: `2rem` }}>
+            <Typography component="div">
+              <Box fontSize={17}>
+                <b>PERMINTAAN BANTUAN</b>
+              </Box>
+            </Typography>
+            <form type="submit" onSubmit={(e) => onSubmit(e)}>
+              <Button
+                variant="contained"
+                className="button"
+                color="primary"
+                type="submit"
+                style={{ margin: 8, maxWidth: 500 }}
+                startIcon={<SaveIcon />}
+              >
+                Buat Data Permintaan Bantuan
+              </Button>
+            </form>
+          </Grid>
+        </Paper>
+      </Grid>
+    </Fragment>
   );
 };
 

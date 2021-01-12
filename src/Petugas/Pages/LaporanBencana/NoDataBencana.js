@@ -47,7 +47,7 @@ const NoDataBencana = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/petugas/data-bencana">Kembali</Link>
+        <Link to="/petugas/dashboard">Kembali</Link>
       </Button>
 
       <Grid container justify="center">

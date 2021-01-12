@@ -3,23 +3,30 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import NoProfile from "./NoProfile";
+import Spinner from "../../../Components/Spinner";
 import { getCurrentProfile } from "../../../actions/profile";
 import ProfilePosko from "./ProfilePosko";
 
 import "./PoskoBencana.css";
 const PoskoBencana = ({
-  auth: { user },
-  profile: { profile },
+  auth: { isAuthenticated },
+  profile: { profile, loading },
   getCurrentProfile,
 }) => {
   useEffect(() => {
     getCurrentProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  if (!user) {
+  if (!isAuthenticated) {
     return <Redirect to="/pos/dashboard" />;
   }
-  return profile !== null ? <ProfilePosko /> : <NoProfile />;
+  return loading ? (
+    <Spinner />
+  ) : profile !== null ? (
+    <ProfilePosko />
+  ) : (
+    <NoProfile />
+  );
 };
 
 PoskoBencana.propTypes = {

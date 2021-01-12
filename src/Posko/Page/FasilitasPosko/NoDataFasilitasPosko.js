@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import { createFasilitasPosko } from "../../../actions/fasilitasPosko";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
 import { Button, Typography, Box, Paper, TextField } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
-// import Count from "./Count";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const NoDataFasilitasPosko = ({
   createFasilitasPosko,
   fasilitasPosko: { fasilitasPosko, loading },
+  auth: { user },
   history,
 }) => {
   const [dataFasilitas, setDataFasilitas] = useState({
@@ -39,98 +40,117 @@ const NoDataFasilitasPosko = ({
   return loading ? (
     <Spinner />
   ) : (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <div className="isi full-height">
-        <Typography component="div">
-          <Box
-            fontSize={18}
-            fontWeight="fontWeightBold"
-            textAlign="center"
-            marginTop={3}
-          >
-            Fasilitas Pos
-          </Box>
+    <Fragment>
+      <div className="sub-heading">
+        <Typography variant="h5">Data Fasilitas Pos</Typography>
+        <Typography variant="subtitle2">
+          Buat Data Fasilitas Pos {user && user.name}
         </Typography>
-        <Paper variant="outlined" className="body-posko-bencana">
-          <div className="body-posko-bencana" style={{ display: "block" }}>
-            {/* fasilitas : MCK, Kesehatan, Ibadah, Pendidikan */}
-            <TextField
-              id="fkes"
-              label="Fasilitas Kesehatan"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.fkes}
-            />
-            <TextField
-              id="fpend"
-              label="Fasilitas Pendidikan"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.fpend}
-            />
-            <TextField
-              id="mck"
-              label="MCK"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.mck}
-            />
-            <TextField
-              id="musholah"
-              label="musholah"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.musholah}
-            />
-            <TextField
-              id="dapurUmum"
-              label="Dapur Umum"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.dapurUmum}
-            />
-            <TextField
-              id="tendaUmum"
-              label="Tenda Utama"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.tendaUmum}
-            />
-            <div>
-              <Alert />
-              <Button
-                variant="contained"
-                type="submit"
-                color="primary"
-                size="small"
-                startIcon={<SaveIcon />}
-                style={{ margin: 8 }}
-              >
-                Simpan
-              </Button>
-            </div>
-          </div>
-        </Paper>
       </div>
-    </form>
+      <Button
+        variant="outlined"
+        size="small"
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
+      >
+        <Link to="/pos/dashboard">Kembali</Link>
+      </Button>
+
+      <form onSubmit={(e) => onSubmit(e)}>
+        <div className="isi full-height">
+          <Paper variant="outlined" className="body-posko-bencana">
+            <div
+              className="body-posko-bencana"
+              style={{ display: "inline-grid" }}
+            >
+              {/* <div> */}
+              <TextField
+                id="fkes"
+                label="Fasilitas Kesehatan"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                type="number"
+                onChange={(e) => changeHandler(e)}
+                value={dataFasilitas.fkes}
+              />
+              {/* </div> */}
+              {/* <div> */}
+              <TextField
+                id="fpend"
+                label="Fasilitas Pendidikan"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                type="number"
+                onChange={(e) => changeHandler(e)}
+                value={dataFasilitas.fpend}
+              />
+              {/* </div> */}
+              <TextField
+                id="mck"
+                label="MCK"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                type="number"
+                onChange={(e) => changeHandler(e)}
+                value={dataFasilitas.mck}
+              />
+              <TextField
+                id="musholah"
+                label="musholah"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                type="number"
+                onChange={(e) => changeHandler(e)}
+                value={dataFasilitas.musholah}
+              />
+              <TextField
+                id="dapurUmum"
+                label="Dapur Umum"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                type="number"
+                onChange={(e) => changeHandler(e)}
+                value={dataFasilitas.dapurUmum}
+              />
+              <TextField
+                id="tendaUmum"
+                label="Tenda Utama"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                type="number"
+                onChange={(e) => changeHandler(e)}
+                value={dataFasilitas.tendaUmum}
+              />
+              <div>
+                <Alert />
+                <Button
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  size="small"
+                  startIcon={<SaveIcon />}
+                  style={{ margin: 8 }}
+                >
+                  Simpan
+                </Button>
+              </div>
+            </div>
+          </Paper>
+        </div>
+      </form>
+    </Fragment>
   );
 };
 

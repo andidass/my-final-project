@@ -1,9 +1,7 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import {
   IconButton,
   TablePagination,
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -13,7 +11,6 @@ import {
   Paper,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import AddIcon from "@material-ui/icons/Add";
 
 export default function TabelPetugas({ rows, onDelete }) {
   const [page, setPage] = React.useState(0);
@@ -33,17 +30,6 @@ export default function TabelPetugas({ rows, onDelete }) {
 
   return (
     <div className="tabel-petugas">
-      <Button
-        startIcon={<AddIcon />}
-        variant="contained"
-        color="primary"
-        size="small"
-        style={{ marginBottom: 8 }}
-      >
-        <Link style={{ color: "white" }} to="/pos/data-pos/data-petugas">
-          Tambah Petugas / Volunteer
-        </Link>
-      </Button>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>

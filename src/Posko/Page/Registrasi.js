@@ -144,7 +144,6 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
             autoComplete="position"
             value={position}
             onChange={(e) => onChange(e)}
-            autoFocus
           />
 
           <TextField

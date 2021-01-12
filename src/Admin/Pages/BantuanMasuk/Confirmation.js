@@ -47,11 +47,12 @@ export default function TransitionsModal({
       <Button
         variant="contained"
         color="primary"
+        fullWidth
         style={{ margin: 8 }}
         onClick={handleOpen}
         startIcon={<SaveIcon />}
       >
-        Simpan
+        Simpan Data
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -59,7 +60,6 @@ export default function TransitionsModal({
         className={classes.modal}
         open={open}
         disableBackdropClick
-        // onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{

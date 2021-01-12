@@ -15,7 +15,7 @@ const DataPosko = ({
       item
       lg={2}
       component={Link}
-      to={`/admin/data-posko/${_id}`}
+      to={`/admin/data-pos/${_id}`}
       className="link"
     >
       <Card className="root" variant="outlined">

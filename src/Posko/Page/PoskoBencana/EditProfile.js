@@ -58,8 +58,8 @@ const EditProfile = ({
       kelPosko: loading || !profile.kelPosko ? "" : profile.kelPosko,
       kecPosko: loading || !profile.kecPosko ? "" : profile.kecPosko,
       kabPosko: loading || !profile.kabPosko ? "" : profile.kabPosko,
-      lat: loading || !profile.location.lat ? "" : profile.location.lat,
-      lng: loading || !profile.location.lng ? "" : profile.location.lng,
+      lat: loading || !profile.location ? "" : profile.location.lat,
+      lng: loading || !profile.location ? "" : profile.location.lng,
       namaPetugas:
         loading || !profile.petugas.namaPetugas
           ? ""

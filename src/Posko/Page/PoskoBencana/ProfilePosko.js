@@ -9,6 +9,7 @@ import MapPosko from "../../../layout/Map";
 import Spinner from "../../../Components/Spinner";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import EditIcon from "@material-ui/icons/Edit";
+import AddIcon from "@material-ui/icons/Add";
 
 import { Grid, Paper, Typography, Box, Button } from "@material-ui/core";
 
@@ -99,63 +100,88 @@ const ProfilePosko = ({
         </Link>
       </Button>
       <Paper variant="outlined">
-        {profile && (
-          <div className="body-pos-bencana">
-            <Grid container justify="space-around">
-              <Grid xs={10} sm={4} item>
-                <Typography
-                  component="div"
-                  align="center"
-                  style={{ marginBottom: 10, fontWeight: "bold" }}
-                >
-                  <Box fontSize={17}>Data Pos</Box>
-                </Typography>
-                <Typography variant="subtitle1">
-                  <b>Nama Pos :</b> {namaPosko}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <b>Alamat Pos :</b> {alamatPosko}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <b>Kelurahan/Desa :</b> {kelPosko}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <b>Kecamatan :</b> {kecPosko}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <b>Kabupaten :</b> {kabPosko}
-                </Typography>
+        <div className="body-pos-bencana">
+          {profile && (
+            <Fragment>
+              <Grid container justify="space-around">
+                <Grid xs={10} sm={4} item>
+                  <Typography
+                    component="div"
+                    align="center"
+                    style={{ marginBottom: 10, fontWeight: "bold" }}
+                  >
+                    <Box fontSize={17}>Data Pos</Box>
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>Nama Pos :</b> {namaPosko}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>Alamat Pos :</b> {alamatPosko}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>Kelurahan/Desa :</b> {kelPosko}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>Kecamatan :</b> {kecPosko}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>Kabupaten :</b> {kabPosko}
+                  </Typography>
+                </Grid>
+                <Grid xs={10} sm={4} item>
+                  <Typography
+                    component="div"
+                    align="center"
+                    style={{ marginBottom: 10, fontWeight: "bold" }}
+                  >
+                    <Box fontSize={17}>Data Petugas Pos</Box>
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>Nama Koor Petugas Pos :</b> {namaPetugas}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>Jabatan Petugas :</b> {jabatan}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    <b>No Hp :</b> {noHp}
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid xs={10} sm={4} item>
-                <Typography
-                  component="div"
-                  align="center"
-                  style={{ marginBottom: 10, fontWeight: "bold" }}
-                >
-                  <Box fontSize={17}>Data Petugas Pos</Box>
-                </Typography>
+              <Typography
+                component="div"
+                align="center"
+                style={{ marginBottom: 10, fontWeight: "bold" }}
+              >
+                <Box fontSize={17}>Lokasi Pos</Box>
+              </Typography>
+              {!lat || !lng ? (
                 <Typography variant="subtitle1">
-                  <b>Nama Koor Petugas Pos :</b> {namaPetugas}
+                  Pos Tidak Memiliki Titik Lokasi
                 </Typography>
-                <Typography variant="subtitle1">
-                  <b>Jabatan Petugas :</b> {jabatan}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <b>No Hp :</b> {noHp}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Typography
-              component="div"
-              align="center"
-              style={{ marginBottom: 10, fontWeight: "bold" }}
-            >
-              <Box fontSize={17}>Lokasi Pos</Box>
-            </Typography>
-            <MapPosko location={{ lat: lat, lng: lng }} namaPosko={namaPosko} />
-          </div>
-        )}
-        <TabelPetugas rows={profile.allPetugas} onDelete={onDelete} />
+              ) : (
+                <MapPosko
+                  location={{ lat: lat, lng: lng }}
+                  namaPosko={namaPosko}
+                />
+              )}
+            </Fragment>
+          )}
+
+          <Button
+            startIcon={<AddIcon />}
+            variant="contained"
+            color="primary"
+            size="small"
+            style={{ marginBottom: 8, marginTop: 8 }}
+          >
+            <Link style={{ color: "white" }} to="/pos/data-pos/data-petugas">
+              Tambah Petugas / Volunteer
+            </Link>
+          </Button>
+          {profile.allPetugas.length === 0 ? null : (
+            <TabelPetugas rows={profile.allPetugas} onDelete={onDelete} />
+          )}
+        </div>
       </Paper>
     </Fragment>
   );

@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import NoProfile from "./NoProfile";
+import { getCurrentProfile } from "../../../actions/profilePetugas";
 import DataProfilePetugas from "./DataProfilePetugas";
+import Spinner from "../../../Components/Spinner";
 
 // import "./PoskoBencana.css";
-const ProfilePetugas = ({ auth: { user }, profile: { profile } }) => {
+const ProfilePetugas = ({
+  auth: { user },
+  profile: { profile, loading },
+  getCurrentProfile,
+}) => {
+  useEffect(() => {
+    getCurrentProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   if (!user) {
     return <Redirect to="/petugas/login" />;
   }
-  return profile !== null ? <DataProfilePetugas /> : <NoProfile />;
+  return loading ? (
+    <Spinner />
+  ) : profile !== null ? (
+    <DataProfilePetugas />
+  ) : (
+    <NoProfile />
+  );
 };
 
 ProfilePetugas.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -23,4 +40,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps)(ProfilePetugas);
+export default connect(mapStateToProps, { getCurrentProfile })(ProfilePetugas);

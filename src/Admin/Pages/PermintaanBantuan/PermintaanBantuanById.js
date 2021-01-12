@@ -22,7 +22,7 @@ const PermintaanBantuanById = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return permintaanBantuan === null || loading ? (
+  return loading ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -44,20 +44,34 @@ const PermintaanBantuanById = ({
         <Link to="/admin/permintaan-bantuan">Kembali</Link>
       </Button>
       <div className="data-posko">
-        <Button
-          variant="contained"
-          size="small"
-          color="primary"
-          startIcon={<HomeIcon />}
-          style={{ margin: 8 }}
-        >
-          <Link to={`/admin/data-posko/${permintaanBantuan.user._id}`}>
-            Cek Profil Posko
-          </Link>
-        </Button>
-        <TabelData
-          rows={permintaanBantuan && permintaanBantuan.dataPermintaanBantuan}
-        />
+        {permintaanBantuan && (
+          <Button
+            variant="contained"
+            size="small"
+            color="primary"
+            startIcon={<HomeIcon />}
+            style={{ margin: 8 }}
+          >
+            <Link
+              to={`/admin/data-pos/${permintaanBantuan.user._id}`}
+              style={{ color: "white" }}
+            >
+              Cek Profil Pos
+            </Link>
+          </Button>
+        )}
+        {permintaanBantuan &&
+          (permintaanBantuan.dataPermintaanBantuan.length === 0 ? (
+            <Typography variant="subtitle1">
+              Pos Tidak Memiliki Permintaan Bantuan
+            </Typography>
+          ) : (
+            <TabelData
+              rows={
+                permintaanBantuan && permintaanBantuan.dataPermintaanBantuan
+              }
+            />
+          ))}
       </div>
     </Fragment>
   );

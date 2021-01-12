@@ -45,7 +45,7 @@ function ItemData(props) {
 
   const submitHandler2 = (event) => {
     // utk menyimpan state sementara pada state permanent.
-    props.addItem(data); // memanggil fungsi pada BantuanMasukPosko.js
+    props.addItem(data); // memanggil fungsi pada BantuanMasukPos.js
     setData({
       // mereset state {data} serta inputan textField menjadi kosong setelah button submit tertekan.
       namaBarang: "",

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -14,7 +14,7 @@ import DataBencana from "./DataBencana";
 const AllDataBencana = ({
   getAllDataBencana,
   dataBencana: { allDataBencana, loading },
-  auth: { user },
+  auth: { isAuthenticated },
 }) => {
   useEffect(() => {
     getAllDataBencana();
@@ -33,13 +33,27 @@ const AllDataBencana = ({
     );
   });
 
-  return allDataBencana.length === 0 || loading ? (
+  // if (!isAuthenticated) {
+  //   return <Redirect to="/admin/login" />;
+  // }
+
+  return loading ? (
     <Spinner />
+  ) : allDataBencana.length === 0 ? (
+    <div className="no-data">
+      <img
+        src="/img/undraw_empty_xct9.svg"
+        alt="React Logo"
+        style={{ width: `40%` }}
+      />
+    </div>
   ) : (
     <Fragment>
       <div className="sub-heading">
         <Typography variant="h5">Data Bencana</Typography>
-        <Typography variant="subtitle2">Semua Data</Typography>
+        <Typography variant="subtitle2">
+          Semua Data Bencana (Sumber TRC)
+        </Typography>
       </div>
       <Button
         variant="outlined"
@@ -52,7 +66,7 @@ const AllDataBencana = ({
       <div className="search">
         <TextField
           id="kataPencarian"
-          placeholder="cari posko pengungsian"
+          placeholder="cari pos pengungsian"
           style={{ minWidth: 300 }}
           margin="normal"
           variant="outlined"
@@ -72,7 +86,7 @@ const AllDataBencana = ({
             />
           ))
         ) : (
-          <h4>Tidak Ada Profile Ditemukan...</h4>
+          <h4>Tidak Ada Data Benacana Ditemukan...</h4>
         )}
       </Grid>
     </Fragment>

@@ -30,14 +30,14 @@ const AdminPermintaanBantuan = ({
     );
   });
 
-  return semuaPermintaanBantuan.length === 0 || loading ? (
+  return loading ? (
     <Spinner />
   ) : (
     <Fragment>
       <div className="sub-heading">
-        <Typography variant="h5">Permintaan Posko Pengungsian</Typography>
+        <Typography variant="h5">Permintaan Bantuan Pos Pengungsian</Typography>
         <Typography variant="subtitle2">
-          Data Permintaan Bantuan Tiap Posko Pengungsian
+          List Permintaan Bantuan Seluruh Pos Pengungsian
         </Typography>
       </div>
       <Button
@@ -51,7 +51,7 @@ const AdminPermintaanBantuan = ({
       <div className="search">
         <TextField
           id="kataPencarian"
-          placeholder="Cari Posko Pengungsian"
+          placeholder="Cari Pos Pengungsian"
           style={{ minWidth: 300 }}
           margin="normal"
           variant="outlined"
