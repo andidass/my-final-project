@@ -22,6 +22,10 @@ const MainPetugas = ({
     return <Redirect to="/petugas/login" />;
   }
 
+  if (user && user.session !== "petugas") {
+    return <Redirect to="/not-authorized" />;
+  }
+
   return loading ? (
     <Spinner />
   ) : (

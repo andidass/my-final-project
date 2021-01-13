@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -13,7 +13,7 @@ import "./style.css";
 const AdminPermintaanBantuan = ({
   getAllPermintaanBantuan,
   permintaanBantuan: { semuaPermintaanBantuan, loading },
-  auth,
+  auth: { user },
 }) => {
   useEffect(() => {
     getAllPermintaanBantuan();
@@ -29,6 +29,10 @@ const AdminPermintaanBantuan = ({
       data.user.name.toLowerCase().indexOf(kataPencarian.toLowerCase()) !== -1
     );
   });
+
+  if (!user) {
+    return <Redirect to="/admin/login" />;
+  }
 
   return loading ? (
     <Spinner />

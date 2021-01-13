@@ -17,6 +17,9 @@ const MainAdmin = ({ auth: { user, isAuthenticated, loading }, loadUser }) => {
   if (!isAuthenticated) {
     return <Redirect to="/admin/login" />;
   }
+  if (user && user.session !== "admin") {
+    return <Redirect to="/not-authorized" />;
+  }
 
   return loading ? (
     <Spinner />

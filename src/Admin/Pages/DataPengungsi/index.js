@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getAllDataPengungsi } from "../../../actions/pengungsi";
 import DataPengungsi from "./DataPengungsi";
@@ -7,15 +8,19 @@ import Spinner from "../../../Components/Spinner";
 
 const AllDataPengungsi = ({
   getAllDataPengungsi,
-  pengungsi: { pengungsi, loading },
-  auth,
+  pengungsi: { loading },
+  auth: { user },
 }) => {
   useEffect(() => {
     getAllDataPengungsi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return pengungsi !== null || loading ? <Spinner /> : <DataPengungsi />;
+  if (!user) {
+    return <Redirect to="/admin/login" />;
+  }
+
+  return loading ? <Spinner /> : <DataPengungsi />;
 };
 
 AllDataPengungsi.propTypes = {

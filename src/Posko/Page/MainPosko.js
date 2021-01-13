@@ -27,6 +27,11 @@ const MainPosko = ({
   if (!isAuthenticated) {
     return <Redirect to="/pos/login" />;
   }
+
+  if (user && user.session !== "pos") {
+    return <Redirect to="/not-authorized" />;
+  }
+
   return user === null ? (
     <Spinner />
   ) : (

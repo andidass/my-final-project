@@ -58,6 +58,7 @@ export const register = ({ name, position, email, password }) => async (
       payload: res.data,
     });
     dispatch(loadUser());
+    dispatch(setAlert("Akun Admin Berhasil Dibuat", "success"));
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -87,6 +88,7 @@ export const login = (email, password) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    dispatch(setAlert("Login Sukses", "success"));
   } catch (err) {
     const errors = err.response.data.errors;
 

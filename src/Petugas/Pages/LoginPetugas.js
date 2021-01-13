@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPetugas = ({ login, isAuthenticated }) => {
+const LoginPetugas = ({ login, auth: { user } }) => {
   const classes = useStyles();
 
   const [formLogin, setFormLogin] = useState({
@@ -59,7 +59,7 @@ const LoginPetugas = ({ login, isAuthenticated }) => {
   };
 
   // Redirect jika login success
-  if (isAuthenticated) {
+  if (user) {
     return <Redirect to="/petugas/dashboard" />;
   }
 
@@ -136,11 +136,11 @@ const LoginPetugas = ({ login, isAuthenticated }) => {
 
 LoginPetugas.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { login })(LoginPetugas);

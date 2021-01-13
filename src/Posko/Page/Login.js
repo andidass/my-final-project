@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = ({ login, isAuthenticated }) => {
+const SignIn = ({ login, auth: { user } }) => {
   const classes = useStyles();
 
   const [formLogin, setFormLogin] = useState({
@@ -62,7 +62,7 @@ const SignIn = ({ login, isAuthenticated }) => {
   };
 
   // Redirect jika login success
-  if (isAuthenticated) {
+  if (user) {
     return <Redirect to="/pos/dashboard" />;
   }
 
@@ -153,11 +153,11 @@ const SignIn = ({ login, isAuthenticated }) => {
 
 SignIn.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { login })(SignIn);

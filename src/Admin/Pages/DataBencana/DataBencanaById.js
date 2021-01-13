@@ -6,6 +6,7 @@ import Tabel from "./Tabel";
 import TabelKerusakan from "./TabelKerusakan";
 
 import { getDataBencanaById } from "../../../actions/dataBencana";
+import { Redirect } from "react-router-dom";
 import Spinner from "../../../Components/Spinner";
 import MapPosko from "../../../layout/Map";
 import { Button, Typography } from "@material-ui/core";
@@ -19,6 +20,7 @@ const DataBencana = ({
   getDataBencanaById,
   dataBencana: { dataBencana, loading },
   profile: { profile },
+  auth: { user },
 }) => {
   useEffect(() => {
     getDataBencanaById(match.params.id);
@@ -32,6 +34,9 @@ const DataBencana = ({
   const handleClick = () => {
     setShow(!show);
   };
+  if (!user) {
+    return <Redirect to="/admin/login" />;
+  }
 
   return loading ? (
     <Spinner />
@@ -195,12 +200,14 @@ const DataBencana = ({
 const mapStateToProps = (state) => ({
   dataBencana: state.dataBencana,
   profile: state.profile,
+  auth: state.auth,
 });
 
 DataBencana.propTypes = {
   getDataBencanaById: PropTypes.func.isRequired,
   dataBencana: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, {

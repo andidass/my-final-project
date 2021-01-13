@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import DataBantuanKeluar from "./DataBantuanKeluar";
 import NoData from "./NoData";
 import { connect } from "react-redux";
@@ -9,23 +10,34 @@ import Spinner from "../../../Components/Spinner";
 const BantuanKeluar = ({
   bantuanKeluar: { bantuanKeluar, loading },
   getBantuanKeluar,
+  auth: { user },
 }) => {
   useEffect(() => {
     getBantuanKeluar();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  if (bantuanKeluar === null && loading) {
-    return <Spinner />;
+
+  if (!user) {
+    return <Redirect to="/admin/login" />;
   }
-  return bantuanKeluar !== null ? <DataBantuanKeluar /> : <NoData />;
+
+  return loading ? (
+    <Spinner />
+  ) : !bantuanKeluar ? (
+    <NoData />
+  ) : (
+    <DataBantuanKeluar />
+  );
 };
 
 const mapStateToProps = (state) => ({
   bantuanKeluar: state.bantuanKeluar,
+  auth: state.auth,
 });
 
 BantuanKeluar.propTypes = {
   bantuanKeluar: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   getBantuanKeluar: PropTypes.func.isRequired,
 };
 

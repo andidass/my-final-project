@@ -6,11 +6,11 @@ import PropTypes from "prop-types";
 import Confirmation from "./Confirmation";
 import { insertBantuanMasuk } from "../../../actions/bantuanMasuk";
 import Alert from "../../../layout/Alert";
-import { Box, Grid, Typography, Button } from "@material-ui/core";
+import { Box, Grid, Typography, Button, TextField } from "@material-ui/core";
 import uniqid from "uniqid";
 import Table from "./Table";
 import ItemData from "./ItemData";
-import InitData from "./InitData";
+// import InitData from "./InitData";
 import HistoryIcon from "@material-ui/icons/History";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
@@ -136,11 +136,91 @@ const BantuanMasuk = ({
         </Typography>
         <Grid container className="isi-body">
           <Grid xs={12} sm={6} item>
-            {/* ------------------------ InitData.js -----------------------*/}
-            <InitData
+            {/* <InitData
               dataInit={dataInit}
               changeHandlerInit={changeHandlerInit}
-            />
+            /> */}
+            {/* ------------------------ InitData.js -----------------------*/}
+            <Typography component="div">
+              <Box fontSize={17}>Data Transaksi</Box>
+            </Typography>
+            <div className="data">
+              <TextField
+                id="kodeTransaksi"
+                label="Kode Transaksi"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                disabled
+                value={dataInit.kodeTransaksi}
+                onChange={changeHandlerInit}
+              />
+              <TextField
+                id="tanggalTransaksi"
+                label="Tanggal"
+                variant="outlined"
+                type="date"
+                format="dd-MM-yyyy"
+                style={{ margin: 8 }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                margin="normal"
+                size="small"
+                // required
+                value={dataInit.tanggalTransaksi}
+                onChange={changeHandlerInit}
+              />
+            </div>
+
+            <Typography component="div">
+              <Box fontSize={17} marginTop={2}>
+                Data Donatur
+              </Box>
+            </Typography>
+            <div className="data">
+              <TextField
+                id="namaDonatur"
+                label="Nama Donatur (Perorang/Instansi)"
+                style={{ margin: 8 }}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                size="small"
+                required
+                value={dataInit.namaDonatur}
+                onChange={changeHandlerInit}
+              />
+
+              <TextField
+                id="sumberDana"
+                label="Sumber Dana Bantuan"
+                style={{ margin: 8 }}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                size="small"
+                required
+                value={dataInit.sumberDana}
+                onChange={changeHandlerInit}
+              />
+
+              <TextField
+                id="alamatDonatur"
+                label="Alamat Donatur / Instansi"
+                style={{ margin: 8 }}
+                fullWidth
+                multiline
+                margin="normal"
+                variant="outlined"
+                size="small"
+                required
+                value={dataInit.alamatDonatur}
+                onChange={changeHandlerInit}
+              />
+            </div>
+            {/* --------------------------------------------- */}
           </Grid>
           <Grid xs={12} sm={6} item>
             {/* ------------------------ ItemData.js -----------------------*/}

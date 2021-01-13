@@ -1,7 +1,5 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import Tabel from "./Tabel";
@@ -16,7 +14,7 @@ import {
   Box,
 } from "@material-ui/core";
 
-const DataBantuanUtama = ({ auth: { user } }) => {
+const DataPengungsi = () => {
   const [kataPencarian, setKataPencarian] = useState("");
   const onChange = (e) => setKataPencarian(e.target.value);
 
@@ -71,11 +69,4 @@ const DataBantuanUtama = ({ auth: { user } }) => {
   );
 };
 
-DataBantuanUtama.propTypes = {
-  auth: PropTypes.object.isRequired,
-};
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps)(DataBantuanUtama);
+export default DataPengungsi;

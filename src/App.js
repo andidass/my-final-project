@@ -11,6 +11,7 @@ import store from "./store";
 import Error from "./Error";
 import Coba from "./Coba";
 // import Footer from "./Components/Footer";
+import Warning from "./Components/401";
 import MenuBars from "./Components/MenuBars";
 import Spinner from "./Components/Spinner";
 import SignInPosko from "./Posko/Page/Login";
@@ -90,6 +91,7 @@ const App = () => {
           <Route path="/" exact component={MainAdmin} />
           {/* --------- POS --------- */}
           {/* <Route path="/" exact component={SignInPosko} /> */}
+          <Route path="/pos" exact component={MainPosko} />
           <Route path="/pos/login" exact component={SignInPosko} />
           <Route path="/pos/registrasi" exact component={RegistrasiPosko} />
           <Route path="/pos/dashboard" exact component={MainPosko} />
@@ -144,6 +146,7 @@ const App = () => {
             exact
             component={RegistrasiPetugas}
           />
+          <Route path="/petugas" exact component={MainPetugas} />
           <Route path="/petugas/dashboard" exact component={MainPetugas} />
           <Route path="/petugas/profile" exact component={ProfilePetugas} />
           <Route
@@ -179,6 +182,7 @@ const App = () => {
 
           {/* ---------------- ADMIN ------------------- */}
           {/* <Route path="/" exact component={LoginAdmin} /> */}
+          <Route path="/admin" exact component={MainAdmin} />
           <Route path="/admin/login" exact component={LoginAdmin} />
           <Route path="/admin/dashboard" exact component={MainAdmin} />
           <Route path="/admin/bantuan-utama" exact component={BantuanUtama} />
@@ -223,6 +227,7 @@ const App = () => {
           {/* <Route path="/map" exact component={Map} /> */}
 
           <Route path="/coba" exact component={Coba} />
+          <Route path="/not-authorized" exact component={Warning} />
           <Route path="/error" exact component={Error} />
           <Route path="/spinner" exact component={Spinner} />
           <Route path="/snackbars" exact component={CustomizedSnackbars} />

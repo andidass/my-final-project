@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -16,11 +16,16 @@ const PermintaanBantuanById = ({
   match,
   getDataPermintaanById,
   permintaanBantuan: { permintaanBantuan, loading },
+  auth: { user },
 }) => {
   useEffect(() => {
     getDataPermintaanById(match.params.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!user) {
+    return <Redirect to="/admin/login" />;
+  }
 
   return loading ? (
     <Spinner />
@@ -79,11 +84,13 @@ const PermintaanBantuanById = ({
 
 const mapStateToProps = (state) => ({
   permintaanBantuan: state.permintaanBantuan,
+  auth: state.auth,
 });
 
 PermintaanBantuanById.propTypes = {
   getDataPermintaanById: PropTypes.func.isRequired,
   permintaanBantuan: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, { getDataPermintaanById })(

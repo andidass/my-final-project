@@ -42,7 +42,6 @@ const jenisBantuan2 = [
 const DataBantuanUtama = ({
   bantuanUtama: { bantuanUtama, loading },
   history,
-  auth: { user },
   insertBantuanUtama,
   deleteBantuanUtama,
 }) => {
@@ -83,7 +82,7 @@ const DataBantuanUtama = ({
       <div className="sub-heading">
         <Typography variant="h5">Set Bantuan Utama</Typography>
         <Typography variant="subtitle2">
-          Penentu Bantuan Utama Untuk Tiap Pos Pengungsian
+          Buat Data Bantuan Utama Untuk Tiap Pos Pengungsian
         </Typography>
       </div>
       <Button
@@ -177,13 +176,11 @@ const DataBantuanUtama = ({
 };
 
 DataBantuanUtama.propTypes = {
-  auth: PropTypes.object.isRequired,
   bantuanUtama: PropTypes.object.isRequired,
   insertBantuanUtama: PropTypes.func.isRequired,
   deleteBantuanUtama: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
-  auth: state.auth,
   bantuanUtama: state.bantuanUtama,
 });
 

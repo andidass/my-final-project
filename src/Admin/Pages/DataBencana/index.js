@@ -14,7 +14,7 @@ import DataBencana from "./DataBencana";
 const AllDataBencana = ({
   getAllDataBencana,
   dataBencana: { allDataBencana, loading },
-  auth: { isAuthenticated },
+  auth: { user },
 }) => {
   useEffect(() => {
     getAllDataBencana();
@@ -33,9 +33,9 @@ const AllDataBencana = ({
     );
   });
 
-  // if (!isAuthenticated) {
-  //   return <Redirect to="/admin/login" />;
-  // }
+  if (!user) {
+    return <Redirect to="/admin/login" />;
+  }
 
   return loading ? (
     <Spinner />

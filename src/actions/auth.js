@@ -70,6 +70,7 @@ export const register = ({
       payload: res.data,
     });
     dispatch(loadUser());
+    dispatch(setAlert("Akun Pos Lapangan Berhasil Dibuat", "success"));
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -99,6 +100,7 @@ export const login = (usernameposko, password) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    dispatch(setAlert("Login Sukses", "success"));
   } catch (err) {
     const errors = err.response.data.errors;
 
