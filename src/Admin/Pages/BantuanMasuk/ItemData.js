@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { Typography, Box, Button, TextField } from "@material-ui/core";
 
-const jenisBantuan = [
+const jenisBantuan2 = [
   {
     value: "Utama",
     label: "Utama",
@@ -24,10 +24,10 @@ const jenisBantuan = [
   },
 ];
 
-function ItemData(props) {
+function ItemData({ addItem, bantuanUtama }) {
   const [data, setData] = useState({
     // penyimpanan state sementara
-    namaBarang: "",
+    namaBarang: bantuanUtama[0].namaBarang,
     satuan: "",
     banyaknya: "",
     nilainya: "",
@@ -45,16 +45,21 @@ function ItemData(props) {
 
   const submitHandler2 = (event) => {
     // utk menyimpan state sementara pada state permanent.
-    props.addItem(data); // memanggil fungsi pada BantuanMasukPosko.js
+    addItem(data); // memanggil fungsi pada BantuanMasukPosko.js
     setData({
       // mereset state {data} serta inputan textField menjadi kosong setelah button submit tertekan.
-      namaBarang: "",
+      namaBarang: bantuanUtama[0].namaBarang,
       satuan: "",
       banyaknya: "",
       jenisBantuan: "Utama",
       nilainya: "",
     });
     event.preventDefault();
+  };
+
+  const cobaHandler = (e) => {
+    setData({ ...data, namaBarang: "" });
+    e.preventDefault(e);
   };
 
   return (
@@ -65,37 +70,61 @@ function ItemData(props) {
       <div className="data">
         <TextField
           id="jenisBantuan"
-          select
           label="Jenis Bantuan"
           onChange={changeHandler}
           value={data.jenisBantuan}
           fullWidth
           // required
           style={{ margin: 8 }}
+          select
           SelectProps={{
             native: true,
           }}
           variant="outlined"
           size="small"
         >
-          {jenisBantuan.map((option) => (
+          {jenisBantuan2.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </TextField>
-        <TextField
-          id="namaBarang"
-          label="Nama Barang"
-          style={{ margin: 8 }}
-          fullWidth
-          // required
-          margin="normal"
-          variant="outlined"
-          size="small"
-          value={data.namaBarang}
-          onChange={changeHandler}
-        />
+        {data.jenisBantuan === "Utama" ? (
+          <TextField
+            id="namaBarang"
+            label="Nama Barang"
+            style={{ margin: 8 }}
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            size="small"
+            onChange={changeHandler}
+            select
+            SelectProps={{
+              native: true,
+            }}
+            value={data.namaBarang}
+          >
+            {bantuanUtama.map((option) => (
+              <option key={option.namaBarang} value={option.namaBarang}>
+                {option.namaBarang}
+              </option>
+            ))}
+          </TextField>
+        ) : (
+          <TextField
+            id="namaBarang"
+            label="Nama Barang"
+            style={{ margin: 8 }}
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            size="small"
+            value={data.namaBarang}
+            onClick={(e) => cobaHandler(e)} //akalin ajalah
+            onChange={changeHandler}
+          />
+        )}
         <TextField
           id="satuan"
           label="Satuan"

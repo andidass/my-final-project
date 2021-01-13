@@ -8,7 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import InputIcon from "@material-ui/icons/Input";
 import AccessibleIcon from "@material-ui/icons/Accessible";
-import HomeIcon from "@material-ui/icons/Home";
+import KitchenIcon from "@material-ui/icons/Kitchen";
+// import HomeIcon from "@material-ui/icons/Home";
 import PanToolIcon from "@material-ui/icons/PanTool";
 import MapIcon from "@material-ui/icons/Map";
 import BrokenImageIcon from "@material-ui/icons/BrokenImage";
@@ -49,7 +50,7 @@ function MenuAdmin() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <HomeIcon />
+              <KitchenIcon />
               <Typography component="div">
                 <Box>Bantuan Utama</Box>
               </Typography>

@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import Confirmation from "./Confirmation";
 import { insertBantuanMasuk } from "../../../actions/bantuanMasuk";
 import Alert from "../../../layout/Alert";
-// import Spinner from "../../../Components/Spinner";
 import { Box, Grid, Typography, Button } from "@material-ui/core";
 import uniqid from "uniqid";
 import Table from "./Table";
@@ -21,6 +20,7 @@ const BantuanMasuk = ({
   insertBantuanMasuk,
   auth: { isAuthenticated },
   bantuanMasuk,
+  bantuanUtama: { bantuanUtama },
   history,
 }) => {
   const [id, setId] = useState(uniqid("bpbd-ntb-"));
@@ -144,7 +144,10 @@ const BantuanMasuk = ({
           </Grid>
           <Grid xs={12} sm={6} item>
             {/* ------------------------ ItemData.js -----------------------*/}
-            <ItemData addItem={addItem} />
+            <ItemData
+              bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
+              addItem={addItem}
+            />
             <Alert />
           </Grid>
           <Grid xs={12} item>
@@ -161,14 +164,16 @@ const BantuanMasuk = ({
   );
 };
 BantuanMasuk.propTypes = {
+  insertBantuanMasuk: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   bantuanMasuk: PropTypes.object.isRequired,
-  insertBantuanMasuk: PropTypes.func.isRequired,
+  bantuanUtama: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   bantuanMasuk: state.bantuanMasuk,
+  bantuanUtama: state.bantuanUtama,
 });
 
 export default connect(mapStateToProps, {

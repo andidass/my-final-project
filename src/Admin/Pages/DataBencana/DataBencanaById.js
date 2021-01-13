@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -7,8 +7,10 @@ import TabelKerusakan from "./TabelKerusakan";
 
 import { getDataBencanaById } from "../../../actions/dataBencana";
 import Spinner from "../../../Components/Spinner";
+import MapPosko from "../../../layout/Map";
 import { Button, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import RoomIcon from "@material-ui/icons/Room";
 
 import "./style.css";
 
@@ -23,19 +25,18 @@ const DataBencana = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [show, setShow] = useState(false);
   const b = (props) => (
     <Typography style={{ fontWeight: "bold" }}>{props.children}</Typography>
   );
+  const handleClick = () => {
+    setShow(!show);
+  };
+
   return loading ? (
     <Spinner />
   ) : !dataBencana ? (
-    <div className="no-data">
-      <img
-        src="/img/undraw_empty_xct9.svg"
-        alt="React Logo"
-        style={{ width: `40%` }}
-      />
-    </div>
+    <Spinner />
   ) : (
     <Fragment>
       <div className="sub-heading">
@@ -91,6 +92,28 @@ const DataBencana = ({
               dataBencana.lokasiBencana.lat +
                 ", " +
                 dataBencana.lokasiBencana.lng}
+            {dataBencana.lokasiBencana && (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleClick}
+                style={{ margin: 8 }}
+                size="small"
+                startIcon={<RoomIcon />}
+              >
+                {show ? "Sembunyikan" : "Tampilkan Lokasi"}
+              </Button>
+            )}
+            {!show ? null : !dataBencana.lokasiBencana ? (
+              <Typography variant="subtitle1">
+                Petugas belum memberikan info titik bencana
+              </Typography>
+            ) : (
+              <MapPosko
+                location={dataBencana.lokasiBencana}
+                namaPosko={dataBencana.jenisBencana}
+              />
+            )}
           </Typography>
           <Typography variant="subtitle1">
             <b>Cakupan Dampak Bencana : </b>

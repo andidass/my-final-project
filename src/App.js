@@ -85,7 +85,9 @@ const App = () => {
       <Router>
         <MenuBars />
         <Switch>
-          <Route path="/" exact component={MainPosko} />
+          {/* <Route path="/" exact component={MainPosko} />
+          <Route path="/" exact component={MainPetugas} /> */}
+          <Route path="/" exact component={MainAdmin} />
           {/* --------- POS --------- */}
           {/* <Route path="/" exact component={SignInPosko} /> */}
           <Route path="/pos/login" exact component={SignInPosko} />
