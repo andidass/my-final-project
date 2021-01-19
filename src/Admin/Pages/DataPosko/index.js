@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import DataPosko from "./DataPosko";
@@ -31,6 +31,10 @@ const AllDataPosko = ({
       -1
     );
   });
+
+  if (!user) {
+    return <Redirect to="/admin/login" />;
+  }
 
   return loading ? (
     <Spinner />

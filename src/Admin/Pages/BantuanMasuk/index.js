@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import DataBantuanMasuk from "./DataBantuanMasuk";
 import NoData from "./NoData";
 import { Redirect } from "react-router-dom";
@@ -8,10 +8,12 @@ import { getBantuanMasuk } from "../../../actions/bantuanMasuk";
 import { getBantuanUtama } from "../../../actions/setBantuanUtama";
 import FormBantuanMasuk from "./FormBantuanMasuk";
 import Spinner from "../../../Components/Spinner";
+import Item from "./Item";
 
 const BantuanMasuk = ({
   auth: { user },
   bantuanMasuk: { bantuanMasuk, loading },
+  bantuanUtama: { bantuanUtama },
   getBantuanMasuk,
   getBantuanUtama,
 }) => {
@@ -34,17 +36,29 @@ const BantuanMasuk = ({
   ) : !bantuanMasuk ? (
     <NoData />
   ) : (
-    <DataBantuanMasuk />
+    <Fragment>
+      <DataBantuanMasuk />
+      {bantuanUtama && (
+        <Fragment>
+          <Item
+            bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
+            bantuanMasuk={bantuanMasuk && bantuanMasuk.dataBantuanMasuk}
+          />
+        </Fragment>
+      )}
+    </Fragment>
   );
 };
 
 const mapStateToProps = (state) => ({
   bantuanMasuk: state.bantuanMasuk,
+  bantuanUtama: state.bantuanUtama,
   auth: state.auth,
 });
 
 BantuanMasuk.propTypes = {
   bantuanMasuk: PropTypes.object.isRequired,
+  bantuanUtama: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   getBantuanMasuk: PropTypes.func.isRequired,
   getBantuanUtama: PropTypes.func.isRequired,

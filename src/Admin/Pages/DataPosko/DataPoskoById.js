@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import TabelPetugas from "./TabelPetugas";
@@ -22,7 +22,7 @@ const AllDataPosko = ({
   profile: { profile },
   pengungsi: { pengungsi },
   fasilitasPosko: { fasilitasPosko, loading },
-  auth,
+  auth: { user },
 }) => {
   useEffect(() => {
     getDataPoskoById(match.params.id);
@@ -30,6 +30,10 @@ const AllDataPosko = ({
     getDataFasilitasPoskoByUserId(match.params.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!user) {
+    return <Redirect to="/admin/login" />;
+  }
 
   const b = (props) => (
     <Typography style={{ fontWeight: "bold" }}>{props.children}</Typography>
