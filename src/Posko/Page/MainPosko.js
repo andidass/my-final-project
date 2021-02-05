@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import MenuPosko from "../Components/MenuPosko";
 
-import { loadUser } from "../../actions/auth";
+// import { loadUser } from "../../actions/auth";
 import { getCurrentProfile } from "../../actions/profile";
 import Alert from "../../layout/Alert";
 
@@ -18,11 +18,11 @@ const MainPosko = ({
   auth: { user, isAuthenticated },
   // profile: { profile, loading },
 }) => {
-  // useEffect(() => {
-  //   loadUser();
-  //   getCurrentProfile();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    // loadUser();
+    getCurrentProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!isAuthenticated) {
     return <Redirect to="/pos/login" />;
@@ -54,7 +54,7 @@ const MainPosko = ({
 };
 
 MainPosko.propTypes = {
-  loadUser: PropTypes.func.isRequired,
+  // loadUser: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
@@ -66,6 +66,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  loadUser,
+  // loadUser,
   getCurrentProfile,
 })(MainPosko);

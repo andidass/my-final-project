@@ -17,7 +17,7 @@ const BantuanUtama = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (!user) {
-    return <Redirect to="/admin/login" />;
+    return <Redirect to="/admin/dashboard" />;
   }
   return loading ? (
     <Spinner />

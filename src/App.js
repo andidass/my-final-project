@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Redux
 import { Provider } from "react-redux";
@@ -63,7 +63,7 @@ import BantuanKeluar from "./Admin/Pages/BantuanKeluar";
 import FormBantuanMasuk from "./Admin/Pages/BantuanMasuk/FormBantuanMasuk";
 import FormBantuanKeluar from "./Admin/Pages/BantuanKeluar/FormBantuanKeluar";
 
-// import { loadUser } from "./actions/auth";
+import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
 
 // test component
@@ -78,9 +78,9 @@ if (localStorage.token) {
 }
 
 const App = () => {
-  // useEffect(() => {
-  //   store.dispatch(loadUser());
-  // }, []);
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <Provider store={store}>
       <Router>

@@ -20,7 +20,7 @@ const FasilitasPosko = ({
   if (!isAuthenticated) {
     return <Redirect to="/pos/dashboard" />;
   }
-
+  // return <DataFasilitasPosko />;
   return loading ? (
     <Spinner />
   ) : fasilitasPosko !== null ? (

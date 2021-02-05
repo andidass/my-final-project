@@ -24,7 +24,7 @@ const PermintaanBantuanById = ({
   }, []);
 
   if (!user) {
-    return <Redirect to="/admin/login" />;
+    return <Redirect to="/admin/dashboard" />;
   }
 
   return loading ? (

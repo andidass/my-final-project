@@ -24,7 +24,7 @@ const BantuanMasuk = ({
   }, []);
 
   if (!user) {
-    return <Redirect to="/admin/login" />;
+    return <Redirect to="/admin/dashboard" />;
   }
 
   if (bantuanMasuk && bantuanMasuk.dataBantuanMasuk.length === 0) {

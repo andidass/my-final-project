@@ -84,8 +84,8 @@ router.put(
     const { jenisBantuan, namaBarang, totalBarang } = req.body;
     const newBantuanUtama = {
       jenisBantuan,
-      namaBarang,
       totalBarang,
+      namaBarang,
     };
 
     try {
@@ -102,6 +102,19 @@ router.put(
     }
   }
 );
+
+// @route   Update admin/bantuan-utama
+// #desc    update data permintaan bantuan
+// @access  Private
+
+router.post("/", auth, async (req, res) => {
+  try {
+    let bantuanUtama = await BantuanUtama.findOne({});
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send({ msg: "Server Error" });
+  }
+});
 
 // @route   DELETE admin/bantuan-utama/:data_id
 // #desc    delete data permintaan bantuan profile

@@ -74,7 +74,7 @@ const SignIn = ({ login, auth: { user } }) => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login Pos Pengungsian
         </Typography>
         <form className={classes.form} noValidate onSubmit={(e) => onSubmit(e)}>
           <TextField
@@ -129,13 +129,13 @@ const SignIn = ({ login, auth: { user } }) => {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Masuk
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="#">
+              {/* <Link to="#">
                 <Linkes variant="body2">{"Lupa Kata Sandi"}</Linkes>
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item>
               <Link to="/pos/registrasi">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import TabelItem from "./TabelItem";
@@ -22,8 +22,8 @@ const SimpleTable = ({
 }) => {
   const classes = useStyles();
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -34,6 +34,10 @@ const SimpleTable = ({
     setPage(0);
   };
 
+  let data1 = 0;
+
+  // const emptyRows =
+  //   rowsPerPage - Math.min(rowsPerPage, data1 - page * rowsPerPage);
   return (
     <div className="table">
       <TableContainer component={Paper}>
@@ -57,13 +61,22 @@ const SimpleTable = ({
               rowsPerPage={rowsPerPage}
             />
           ))}
+          {/* {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
+            </TableRow>
+          )} */}
         </Table>
 
-        {/* {semuaPengungsi.map((data)=> var data1 = data.allPengungsi.length; var allData=allData + data1)} */}
+        {/* {semuaPengungsi.map(
+          (data) => (data1 = data.allPengungsi.length + data1)
+        )} */}
+
+        {/* {console.log(data1)} */}
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={2}
+          count={data1}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

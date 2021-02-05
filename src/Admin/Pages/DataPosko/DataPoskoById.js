@@ -32,7 +32,7 @@ const AllDataPosko = ({
   }, []);
 
   if (!user) {
-    return <Redirect to="/admin/login" />;
+    return <Redirect to="/admin/dashboard" />;
   }
 
   const b = (props) => (
@@ -184,6 +184,7 @@ const AllDataPosko = ({
 };
 
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   profile: state.profile,
   pengungsi: state.pengungsi,
   fasilitasPosko: state.fasilitasPosko,
@@ -193,6 +194,7 @@ AllDataPosko.propTypes = {
   getDataPoskoById: PropTypes.func.isRequired,
   getDataPengungsiById: PropTypes.func.isRequired,
   getDataFasilitasPoskoByUserId: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   pengungsi: PropTypes.object.isRequired,
   fasilitasPosko: PropTypes.object.isRequired,

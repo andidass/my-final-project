@@ -95,7 +95,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
             required
             fullWidth
             id="name"
-            label="Nama Posko"
+            label="Nama Pos"
             name="name"
             value={name}
             onChange={(e) => onChange(e)}
@@ -110,7 +110,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
             required
             fullWidth
             id="usernameposko"
-            label="Username Posko"
+            label="Username Pos"
             name="usernameposko"
             value={usernameposko}
             onChange={(e) => onChange(e)}
@@ -124,7 +124,7 @@ function Registrasi({ setAlert, register, isAuthenticated }) {
             required
             fullWidth
             id="petugas"
-            label="Nama Petugas Penanggung Jawab Posko"
+            label="Nama Petugas Penanggung Jawab Pos"
             name="petugas"
             type="text"
             autoComplete="petugas"

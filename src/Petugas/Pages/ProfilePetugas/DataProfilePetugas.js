@@ -81,8 +81,8 @@ const DataProfilePosko = ({
       >
         <Link to="/petugas/dashboard">Kembali</Link>
       </Button>
-      <Paper variant="outlined" className="body-posko-bencana">
-        <form className="body-posko-bencana" onSubmit={(e) => onSubmit(e)}>
+      <Paper variant="outlined" style={{ margin: 10 }}>
+        <form onSubmit={(e) => onSubmit(e)} className="body-pos-bencana">
           <Grid container justify="space-around">
             <Grid xs={12} sm={6} item>
               {/* <DataPosko /> */}
@@ -94,7 +94,7 @@ const DataProfilePosko = ({
               <TextField
                 name="name"
                 label="Nama Petugas"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -105,7 +105,7 @@ const DataProfilePosko = ({
               <TextField
                 name="position"
                 label="Jabatan Petugas"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -118,7 +118,7 @@ const DataProfilePosko = ({
               <TextField
                 name="nohp"
                 label="No HP Petugas"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -129,7 +129,7 @@ const DataProfilePosko = ({
               <TextField
                 name="jobdesc"
                 label="Deskripsi Tugas"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -150,7 +150,7 @@ const DataProfilePosko = ({
               <TextField
                 name="kecDesa"
                 label="Kecamatan Desa-Dusun"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -161,7 +161,7 @@ const DataProfilePosko = ({
               <TextField
                 name="kelurahan"
                 label="Kelurahan"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -174,7 +174,7 @@ const DataProfilePosko = ({
               <TextField
                 name="kabupaten"
                 label="Kabupaten"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -185,7 +185,7 @@ const DataProfilePosko = ({
               <TextField
                 name="regdesc"
                 label="Deskripsi Wilayah"
-                style={{ margin: 8, maxWidth: 500 }}
+                style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
                 size="small"
@@ -195,18 +195,20 @@ const DataProfilePosko = ({
                 value={regdesc}
               />
             </Grid>
+            <Grid xs={12} item>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="small"
+                startIcon={<SaveIcon />}
+                style={{ marginTop: 20, maxWidth: 500, minWidth: 200 }}
+              >
+                Simpan
+              </Button>
+            </Grid>
+            <Alert />
           </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            size="small"
-            startIcon={<SaveIcon />}
-            style={{ margin: 8, maxWidth: 500 }}
-          >
-            Simpan
-          </Button>
-          <Alert />
         </form>
       </Paper>
     </div>

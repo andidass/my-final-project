@@ -41,27 +41,68 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
+const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
   const classes = useStyles();
 
   const authLinks = (
     <Grid container alignItems="center">
       <Grid item>
-        {/* <InputBase
-          placeholder="Search topics"
-          className={classes.searchInput}
-          startAdornment={<SearchIcon fontSize="small" />}
-        /> */}
-        <Link className={classes.root2} to="/">
-          <Avatar
-            alt="BPBD NTB"
-            src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
-          />
-          <Avatar
-            alt="Universitas Mataram"
-            src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
-          />
-        </Link>
+        {user && user.session === "pos" && (
+          <Fragment>
+            <Link className={classes.root2} to="/pos">
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
+              />
+              <Avatar
+                alt="Universitas Mataram"
+                src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+            </Link>
+          </Fragment>
+        )}
+        {user && user.session === "admin" && (
+          <Fragment>
+            <Link className={classes.root2} to="/admin">
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
+              />
+              <Avatar
+                alt="Universitas Mataram"
+                src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+            </Link>
+          </Fragment>
+        )}
+        {user && user.session === "petugas" && (
+          <Fragment>
+            <Link className={classes.root2} to="/petugas">
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
+              />
+              <Avatar
+                alt="Universitas Mataram"
+                src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+            </Link>
+          </Fragment>
+        )}
+        {!user && (
+          <Fragment>
+            <Link className={classes.root2} to="/main-page">
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
+              />
+              <Avatar
+                alt="Universitas Mataram"
+                src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+            </Link>
+          </Fragment>
+        )}
       </Grid>
       <Grid item xs></Grid>
       <Grid item>
@@ -85,7 +126,7 @@ const MenuBars = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <Grid container alignItems="center" justify="space-around" spacing={3}>
       <Grid item to="/">
-        <Link className={classes.root2} to="/">
+        <Link className={classes.root2} to="/main-page">
           <Avatar
             alt="BPBD NTB"
             src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"

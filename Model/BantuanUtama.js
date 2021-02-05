@@ -22,12 +22,14 @@ const BantuanUtamaSchema = new mongoose.Schema({
       },
       totalBarang: {
         type: Number,
+        default: 0,
       },
       nilainya: {
         type: Number,
       },
       totalNilaiBarang: {
         type: Number,
+        default: 0,
       },
     },
   ],
