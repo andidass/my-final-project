@@ -16,7 +16,7 @@ router.get("/me", auth, async (req, res) => {
     }).populate("user", ["name"]);
     if (!bantuanMasuk) {
       return res.status(400).json({
-        msg: "Posko tidak memiliki data bantuan masuk",
+        msg: "Pos tidak memiliki data bantuan masuk",
       });
     }
     res.json(bantuanMasuk);

@@ -1,45 +1,60 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { createBantuanMasuk } from "../../../actions/bantuanMasuk";
 import Spinner from "../../../Components/Spinner";
 import { Button, Typography, Box } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const NoData = ({
   createBantuanMasuk,
-  bantuanMasuk: { dataBantuanMasuk, loading },
+  bantuanMasuk: { bantuanMasuk, loading },
 }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     createBantuanMasuk();
   };
 
-  if (dataBantuanMasuk !== null) {
-    return <Redirect to="/posko/bantuan-masuk" />;
+  if (bantuanMasuk !== null) {
+    return <Redirect to="/pos/bantuan-masuk" />;
   }
 
-  return dataBantuanMasuk && loading ? (
+  return bantuanMasuk && loading ? (
     <Spinner />
   ) : (
-    <form className="full-height isi" onSubmit={(e) => onSubmit(e)}>
-      <Typography variant="h5">
-        <Box fontSize={12} textAlign="left" marginTop={3}>
-          Data bantuan masuk posko ini belum ada.
-        </Box>
-      </Typography>
+    <Fragment>
+      <div className="sub-heading">
+        <Typography variant="h5">Buat Data Bantuan Masuk</Typography>
+        <Typography variant="subtitle2">Buar Data Bantuan Keluar</Typography>
+      </div>
       <Button
-        variant="contained"
-        type="submit"
-        color="primary"
+        variant="outlined"
         size="small"
-        disableRipple
-        startIcon={<PersonIcon />}
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
       >
-        Buat Data Bantuan Masuk
+        <Link to="/pos/dashboard">Kembali</Link>
       </Button>
-    </form>
+      <form className="full-height isi" onSubmit={(e) => onSubmit(e)}>
+        <Typography variant="h5">
+          <Box fontSize={12} textAlign="left" marginTop={3}>
+            Data bantuan masuk posko ini belum ada.
+          </Box>
+        </Typography>
+        <Button
+          variant="contained"
+          type="submit"
+          color="primary"
+          size="small"
+          disableRipple
+          startIcon={<PersonIcon />}
+        >
+          Buat Data Bantuan Masuk
+        </Button>
+      </form>
+    </Fragment>
   );
 };
 
