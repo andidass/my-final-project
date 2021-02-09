@@ -33,9 +33,9 @@ const AllDataBencana = ({
     );
   });
 
-  if (!user) {
-    return <Redirect to="/admin/dashboard" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/admin/dashboard" />;
+  // }
 
   return loading ? (
     <Spinner />
@@ -61,7 +61,11 @@ const AllDataBencana = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/dashboard">Kembali</Link>
+        {!user ? (
+          <Link to="/main-page">Kembali</Link>
+        ) : (
+          <Link to="/admin/dashboard">Kembali</Link>
+        )}
       </Button>
       <div className="search">
         <TextField
@@ -80,6 +84,7 @@ const AllDataBencana = ({
         {allDataBencana.length > 0 ? (
           filteredData.map((dataBencana) => (
             <DataBencana
+              user={user}
               key={dataBencana._id}
               dataBencana={dataBencana}
               kataPencarian={kataPencarian}

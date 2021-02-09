@@ -6,6 +6,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import "./DataPosko.css";
 
 const DataPosko = ({
+  user,
   profile: {
     user: { _id, name },
   },
@@ -15,7 +16,8 @@ const DataPosko = ({
       item
       lg={2}
       component={Link}
-      to={`/admin/data-pos/${_id}`}
+      // to={`/admin/data-pos/${_id}`}
+      to={!user ? `/data-pos/${_id}` : `/admin/data-pos/${_id}`}
       className="link"
     >
       <Card className="root" variant="outlined">

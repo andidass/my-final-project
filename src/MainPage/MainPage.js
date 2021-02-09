@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import MapMain from "./MapMain";
-import Modal from "./Components/Modal";
+import Modal from "../Components/Modal";
 import {
   Grid,
   Card,
@@ -14,7 +14,7 @@ import {
 
 import HomeIcon from "@material-ui/icons/Home";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
-import PeopleIcon from "@material-ui/icons/People";
+import PanToolIcon from "@material-ui/icons/PanTool";
 import ReportIcon from "@material-ui/icons/Report";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
@@ -54,7 +54,7 @@ export default function MainPage() {
           sm={6}
           container
           spacing={2}
-          style={{ paddingRight: `1%` }}
+          style={{ paddingRight: `1%`, paddingLeft: `1%` }}
         >
           {/* <img src="/bpbd-logo.png" alt="React Logo" style={{ width: `40%` }} /> */}
           <Grid item xs={12} className="link">
@@ -168,16 +168,16 @@ export default function MainPage() {
             xs={6}
             sm={4}
             component={Link}
-            to="/data-petugas"
+            to="/permintaan-bantuan"
             className="link"
           >
             <Card variant="outlined" className={classes.root}>
               <CardContent>
-                <PeopleIcon fontSize="large" />
+                <PanToolIcon fontSize="large" />
                 <Typography variant="h6">
                   <Box>
-                    Data <br />
-                    Petugas
+                    Permintaan <br />
+                    Bantuan
                   </Box>
                 </Typography>
               </CardContent>
@@ -189,7 +189,7 @@ export default function MainPage() {
             xs={6}
             sm={4}
             component={Link}
-            to="/donasi"
+            to="/info-dan-donasi"
             className="link"
           >
             <Card variant="outlined" className={classes.root}>

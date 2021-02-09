@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Typography } from "@material-ui/core";
 
-import { getAllDataPosko } from "./actions/profile";
+import { getAllDataPosko } from "../actions/profile";
 
 import {
   withScriptjs,

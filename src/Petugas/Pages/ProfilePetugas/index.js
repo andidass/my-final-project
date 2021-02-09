@@ -20,13 +20,14 @@ const ProfilePetugas = ({
   if (!user) {
     return <Redirect to="/petugas/login" />;
   }
-  return loading ? (
-    <Spinner />
-  ) : profile !== null ? (
-    <DataProfilePetugas />
-  ) : (
-    <NoProfile />
-  );
+  // return loading ? (
+  //   <Spinner />
+  // ) : profile !== null ? (
+  //   <DataProfilePetugas />
+  // ) : (
+  //   <NoProfile />
+  // );
+  return loading ? <Spinner /> : <DataProfilePetugas />;
 };
 
 ProfilePetugas.propTypes = {

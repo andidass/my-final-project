@@ -13,6 +13,7 @@ import HomeIcon from "@material-ui/icons/Home";
 // import "./DataPosko.css";
 
 const DataPermintaan = ({
+  user,
   dataPermintaan: {
     user: { _id, name },
     dataPermintaanBantuan,
@@ -23,7 +24,11 @@ const DataPermintaan = ({
       item
       lg={2}
       component={Link}
-      to={`/admin/permintaan-bantuan/${_id}`}
+      to={
+        !user
+          ? `/permintaan-bantuan/${_id}`
+          : `/admin/permintaan-bantuan/${_id}`
+      }
       className="link"
     >
       <Card className="root" variant="outlined">

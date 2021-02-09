@@ -6,7 +6,7 @@ import { withRouter, Link } from "react-router-dom";
 import { createFasilitasPosko } from "../../../actions/fasilitasPosko";
 import Alert from "../../../layout/Alert";
 import Spinner from "../../../Components/Spinner";
-import { Button, Typography, Paper, TextField } from "@material-ui/core";
+import { Button, Typography, Paper, TextField, Grid } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import "./style.css";
@@ -69,88 +69,102 @@ const DataFasilitasPosko = ({
       </Button>
 
       <form onSubmit={(e) => onSubmit(e)}>
-        <div className="isi full-height">
+        <div className="isi">
           <Paper variant="outlined" className="body-posko-bencana">
-            <TextField
-              id="fkes"
-              label="Fasilitas Kesehatan"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              type="number"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.fkes}
-            />
-            <TextField
-              id="fpend"
-              label="Fasilitas Pendidikan"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              type="number"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.fpend}
-            />
-            {/* </div> */}
-            <TextField
-              id="mck"
-              label="MCK"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              type="number"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.mck}
-            />
-            <TextField
-              id="musholah"
-              label="Musholah"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              type="number"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.musholah}
-            />
-            <TextField
-              id="dapurUmum"
-              label="Dapur Umum"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              type="number"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.dapurUmum}
-            />
-            <TextField
-              id="tendaUmum"
-              label="Tenda Utama"
-              style={{ margin: 8 }}
-              margin="normal"
-              variant="outlined"
-              size="small"
-              type="number"
-              onChange={(e) => changeHandler(e)}
-              value={dataFasilitas.tendaUmum}
-            />
-            <div>
-              <Alert />
-              <Button
-                variant="contained"
-                type="submit"
-                color="primary"
-                size="small"
-                startIcon={<SaveIcon />}
-                style={{ margin: 8, minWidth: 200 }}
-              >
-                Simpan
-              </Button>
-            </div>
+            <Grid
+              container
+              // spacing={2}
+              style={{ textAlign: "center" }}
+            >
+              <Grid item xs={12} sm={6} style={{ padding: `2%` }}>
+                <TextField
+                  id="fkes"
+                  label="Fasilitas Kesehatan"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  onChange={(e) => changeHandler(e)}
+                  value={dataFasilitas.fkes}
+                />
+                <TextField
+                  id="fpend"
+                  label="Fasilitas Pendidikan"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  onChange={(e) => changeHandler(e)}
+                  value={dataFasilitas.fpend}
+                />
+                {/* </div> */}
+                <TextField
+                  id="mck"
+                  label="MCK"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  onChange={(e) => changeHandler(e)}
+                  value={dataFasilitas.mck}
+                />
+                <TextField
+                  id="musholah"
+                  label="Musholah"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  onChange={(e) => changeHandler(e)}
+                  value={dataFasilitas.musholah}
+                />
+                <TextField
+                  id="dapurUmum"
+                  label="Dapur Umum"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  onChange={(e) => changeHandler(e)}
+                  value={dataFasilitas.dapurUmum}
+                />
+                <TextField
+                  id="tendaUmum"
+                  label="Tenda Utama"
+                  style={{ margin: 8 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  type="number"
+                  onChange={(e) => changeHandler(e)}
+                  value={dataFasilitas.tendaUmum}
+                />
+                <div>
+                  <Alert />
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    color="primary"
+                    size="small"
+                    startIcon={<SaveIcon />}
+                    style={{ margin: 8, minWidth: 200 }}
+                  >
+                    Simpan
+                  </Button>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <img
+                  src="/cover/posko.jpeg"
+                  style={{ width: `100% `, height: `100%`, objectFit: "cover" }}
+                />
+              </Grid>
+            </Grid>
           </Paper>
         </div>
       </form>

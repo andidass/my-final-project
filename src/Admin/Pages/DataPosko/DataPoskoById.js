@@ -31,9 +31,9 @@ const AllDataPosko = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!user) {
-    return <Redirect to="/admin/dashboard" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/admin/dashboard" />;
+  // }
 
   const b = (props) => (
     <Typography style={{ fontWeight: "bold" }}>{props.children}</Typography>
@@ -56,7 +56,11 @@ const AllDataPosko = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/data-pos">Kembali</Link>
+        {!user ? (
+          <Link to="/data-pos">Kembali</Link>
+        ) : (
+          <Link to="/admin/data-pos">Kembali</Link>
+        )}
       </Button>
       <div className="data-posko">
         <Grid container>

@@ -106,7 +106,7 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
       </Grid>
       <Grid item xs></Grid>
       <Grid item>
-        <IconButton>
+        {/* <IconButton>
           <Badge badgeContent={4} color="secondary">
             <NotificationsNoneIcon fontSize="small" />
           </Badge>
@@ -115,9 +115,9 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
           <Badge badgeContent={3} color="primary">
             <ChatBubbleOutlineIcon fontSize="small" />
           </Badge>
-        </IconButton>
+        </IconButton> */}
         <IconButton onClick={logout}>
-          <PowerSettingsNewIcon fontSize="small" />
+          <PowerSettingsNewIcon fontSize="small" color="secondary" />
         </IconButton>
       </Grid>
     </Grid>

@@ -30,9 +30,9 @@ const AdminPermintaanBantuan = ({
     );
   });
 
-  if (!user) {
-    return <Redirect to="/admin/dashboard" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/admin/dashboard" />;
+  // }
 
   return loading ? (
     <Spinner />
@@ -50,7 +50,11 @@ const AdminPermintaanBantuan = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/dashboard">Kembali</Link>
+        {!user ? (
+          <Link to="/main-page">Kembali</Link>
+        ) : (
+          <Link to="/admin/dashboard">Kembali</Link>
+        )}
       </Button>
       <div className="search">
         <TextField
@@ -69,6 +73,7 @@ const AdminPermintaanBantuan = ({
         {semuaPermintaanBantuan.length > 0 ? (
           filteredData.map((dataPermintaan) => (
             <DataPermintaan
+              user={user}
               key={dataPermintaan._id}
               dataPermintaan={dataPermintaan}
               kataPencarian={kataPencarian}

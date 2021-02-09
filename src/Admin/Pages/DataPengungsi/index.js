@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getAllDataPengungsi } from "../../../actions/pengungsi";
 import DataPengungsi from "./DataPengungsi";
@@ -16,11 +16,11 @@ const AllDataPengungsi = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!user) {
-    return <Redirect to="/admin/dashboard" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/admin/dashboard" />;
+  // }
 
-  return loading ? <Spinner /> : <DataPengungsi />;
+  return loading ? <Spinner /> : <DataPengungsi user={user} />;
 };
 
 AllDataPengungsi.propTypes = {

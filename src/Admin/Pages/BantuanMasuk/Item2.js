@@ -29,12 +29,13 @@ export default function Item2({
         // data2.namaBarang === bantuanUtama[1].namaBarang && //coba == data2.banyaknya;
         //   arrSementara.push(data2.banyaknya);
         // .reduce((total, nilai) => total + nilai);
-        data2.namaBarang === bantuanUtama[0].namaBarang &&
-          arr.push(data2.banyaknya);
-        data2.namaBarang === bantuanUtama[1].namaBarang &&
-          arr2.push(data2.banyaknya);
-        data2.namaBarang === bantuanUtama[2].namaBarang &&
-          arr3.push(data2.banyaknya);
+        arr.push(data2);
+        // data2.namaBarang === bantuanUtama[0].namaBarang &&
+        //   arr.push(data2.banyaknya);
+        // data2.namaBarang === bantuanUtama[1].namaBarang &&
+        //   arr2.push(data2.banyaknya);
+        // data2.namaBarang === bantuanUtama[2].namaBarang &&
+        //   arr3.push(data2.banyaknya);
       })}
     </div>
   );

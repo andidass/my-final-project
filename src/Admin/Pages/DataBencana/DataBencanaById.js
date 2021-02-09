@@ -34,9 +34,9 @@ const DataBencana = ({
   const handleClick = () => {
     setShow(!show);
   };
-  if (!user) {
-    return <Redirect to="/admin/dashboard" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/admin/dashboard" />;
+  // }
 
   return loading ? (
     <Spinner />

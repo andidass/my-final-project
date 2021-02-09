@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
-import MainPage from "./MainPage";
+import MainPage from "./MainPage/MainPage";
 //route
 // import PrivateRoute from "./routing/PrivateRoute";
 
 // main component
-import Error from "./Error";
+import Error from "./Components/404";
 import Coba from "./Coba";
 // import Footer from "./Components/Footer";
 import Warning from "./Components/401";
@@ -17,6 +17,7 @@ import Spinner from "./Components/Spinner";
 import SignInPosko from "./Posko/Page/Login";
 import RegistrasiPosko from "./Posko/Page/Registrasi";
 import MainPosko from "./Posko/Page/MainPosko";
+import InfoDonasi from "./MainPage/InfoDonasi";
 //profile posko
 import PoskoBencana from "./Posko/Page/PoskoBencana/PoskoBencana";
 import FormProfile from "./Posko/Page/PoskoBencana/FormPorfile";
@@ -88,6 +89,30 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={MainPage} />
           <Route path="/main-page" exact component={MainPage} />
+          <Route path="/data-pos" exact component={DataPosko} />
+          <Route path="/info-dan-donasi" exact component={InfoDonasi} />
+          <Route path="/data-pos/:id" exact component={DataPoskoById} />
+          <Route
+            path="/permintaan-bantuan"
+            exact
+            component={AdminPermintaanBantuan}
+          />
+          <Route
+            path="/permintaan-bantuan/:id"
+            exact
+            component={PermintaanBantuanById}
+          />
+          <Route
+            path="/data-laporan-bencana"
+            exact
+            component={AllDataBencana}
+          />
+          <Route
+            path="/data-laporan-bencana/:id"
+            exact
+            component={DataBencanaById}
+          />
+          <Route path="/data-pengungsi" exact component={AllDataPengungsi} />
           {/* <Route path="/" exact component={MainPosko} />
           <Route path="/" exact component={MainPetugas} /> */}
           {/* --------- POS --------- */}
@@ -190,7 +215,6 @@ const App = () => {
           <Route path="/admin/data-pos" exact component={DataPosko} />
           <Route path="/admin/data-pos/:id" exact component={DataPoskoById} />
           <Route path="/admin/map" exact component={MapPosko} />
-          <Route path="/admin/data-bencana" exact component={AllDataBencana} />
           <Route path="/admin/bantuan-masuk" exact component={BantuanMasuk} />
           <Route path="/admin/bantuan-keluar" exact component={BantuanKeluar} />
           <Route
@@ -204,10 +228,16 @@ const App = () => {
             component={FormBantuanMasuk}
           />
           <Route
+            path="/admin/permintaan-bantuan"
+            exact
+            component={AdminPermintaanBantuan}
+          />
+          <Route
             path="/admin/permintaan-bantuan/:id"
             exact
             component={PermintaanBantuanById}
           />
+          <Route path="/admin/data-bencana" exact component={AllDataBencana} />
           <Route
             path="/admin/data-bencana/:id"
             exact
@@ -218,11 +248,6 @@ const App = () => {
             path="/admin/data-pengungsi"
             exact
             component={AllDataPengungsi}
-          />
-          <Route
-            path="/admin/permintaan-bantuan"
-            exact
-            component={AdminPermintaanBantuan}
           />
           {/* COMPONEN COBA-COBA */}
           {/* <Route path="/map" exact component={Map} /> */}

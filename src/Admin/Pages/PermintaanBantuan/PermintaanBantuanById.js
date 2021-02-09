@@ -23,9 +23,9 @@ const PermintaanBantuanById = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!user) {
-    return <Redirect to="/admin/dashboard" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/admin/dashboard" />;
+  // }
 
   return loading ? (
     <Spinner />
@@ -46,10 +46,14 @@ const PermintaanBantuanById = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/permintaan-bantuan">Kembali</Link>
+        {!user ? (
+          <Link to="/permintaan-bantuan">Kembali</Link>
+        ) : (
+          <Link to="/admin/permintaan-bantuan">Kembali</Link>
+        )}
       </Button>
       <div className="data-posko">
-        {permintaanBantuan && (
+        {/* {permintaanBantuan && (
           <Button
             variant="contained"
             size="small"
@@ -64,7 +68,7 @@ const PermintaanBantuanById = ({
               Cek Profil Pos
             </Link>
           </Button>
-        )}
+        )} */}
         {permintaanBantuan &&
           (permintaanBantuan.dataPermintaanBantuan.length === 0 ? (
             <Typography variant="subtitle1">

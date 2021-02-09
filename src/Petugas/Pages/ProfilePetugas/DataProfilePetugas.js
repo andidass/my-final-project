@@ -55,14 +55,14 @@ const DataProfilePosko = ({
 
   useEffect(() => {
     setProfileData({
-      name: loading || !user.name ? "" : user.name,
-      position: loading || !user.position ? "" : user.position,
-      nohp: loading || !profile.nohp ? "" : profile.nohp,
-      jobdesc: loading || !profile.jobdesc ? "" : profile.jobdesc,
-      kelurahan: loading || !profile.kelurahan ? "" : profile.kelurahan,
-      kecDesa: loading || !profile.kecDesa ? "" : profile.kecDesa,
-      kabupaten: loading || !profile.kabupaten ? "" : profile.kabupaten,
-      regdesc: loading || !profile.regdesc ? "" : profile.regdesc,
+      name: loading || !user ? "" : user.name,
+      position: loading || !user ? "" : user.position,
+      nohp: loading || !profile ? "" : profile.nohp,
+      jobdesc: loading || !profile ? "" : profile.jobdesc,
+      kelurahan: loading || !profile ? "" : profile.kelurahan,
+      kecDesa: loading || !profile ? "" : profile.kecDesa,
+      kabupaten: loading || !profile ? "" : profile.kabupaten,
+      regdesc: loading || !profile ? "" : profile.regdesc,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

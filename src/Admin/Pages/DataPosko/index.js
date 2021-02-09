@@ -32,9 +32,9 @@ const AllDataPosko = ({
     );
   });
 
-  if (!user) {
-    return <Redirect to="/admin/dashboard" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/admin/dashboard" />;
+  // }
 
   return loading ? (
     <Spinner />
@@ -50,7 +50,11 @@ const AllDataPosko = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/dashboard">Kembali</Link>
+        {!user ? (
+          <Link to="/main-page">Kembali</Link>
+        ) : (
+          <Link to="/admin/dashboard">Kembali</Link>
+        )}
       </Button>
       <div className="search">
         <TextField
@@ -69,6 +73,7 @@ const AllDataPosko = ({
         {profiles.length > 0 ? (
           filteredPosko.map((profile) => (
             <DataPosko
+              user={user}
               key={profile._id}
               profile={profile}
               kataPencarian={kataPencarian}

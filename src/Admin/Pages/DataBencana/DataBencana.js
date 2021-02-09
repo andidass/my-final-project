@@ -6,6 +6,7 @@ import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";
 import "./style.css";
 
 const DataBencana = ({
+  user,
   dataBencana: {
     petugas: { _id, name },
   },
@@ -15,7 +16,7 @@ const DataBencana = ({
       item
       lg={2}
       component={Link}
-      to={`/admin/data-bencana/${_id}`}
+      to={!user ? `/data-laporan-bencana/${_id}` : `/admin/data-bencana/${_id}`}
       className="link"
     >
       <Card className="root" variant="outlined">

@@ -14,7 +14,7 @@ import {
   Box,
 } from "@material-ui/core";
 
-const DataPengungsi = () => {
+const DataPengungsi = ({ user }) => {
   const [kataPencarian, setKataPencarian] = useState("");
   const onChange = (e) => setKataPencarian(e.target.value);
 
@@ -32,7 +32,11 @@ const DataPengungsi = () => {
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/admin/dashboard">Kembali</Link>
+        {!user ? (
+          <Link to="/main-page">Kembali</Link>
+        ) : (
+          <Link to="/admin/dashboard">Kembali</Link>
+        )}
       </Button>
 
       <Paper variant="outlined" className="body-pos-bencana">
