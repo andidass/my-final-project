@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
-
+import MainPage from "./MainPage";
 //route
 // import PrivateRoute from "./routing/PrivateRoute";
 
@@ -86,9 +86,10 @@ const App = () => {
       <Router>
         <MenuBars />
         <Switch>
+          <Route path="/" exact component={MainPage} />
+          <Route path="/main-page" exact component={MainPage} />
           {/* <Route path="/" exact component={MainPosko} />
           <Route path="/" exact component={MainPetugas} /> */}
-          <Route path="/" exact component={MainAdmin} />
           {/* --------- POS --------- */}
           {/* <Route path="/" exact component={SignInPosko} /> */}
           <Route path="/pos" exact component={MainPosko} />
