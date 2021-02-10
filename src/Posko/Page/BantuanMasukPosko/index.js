@@ -12,7 +12,6 @@ import Spinner from "../../../Components/Spinner";
 const BantuanMasukPos = ({
   auth: { user },
   bantuanMasuk: { bantuanMasuk, loading },
-  bantuanUtama: { bantuanUtama },
   getBantuanMasuk,
   getAllBantuanUtama,
 }) => {
@@ -41,16 +40,13 @@ const BantuanMasukPos = ({
 
 const mapStateToProps = (state) => ({
   bantuanMasuk: state.bantuanMasuk,
-  bantuanUtama: state.bantuanUtama,
   auth: state.auth,
 });
 
 BantuanMasukPos.propTypes = {
   bantuanMasuk: PropTypes.object.isRequired,
-  bantuanUtama: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   getBantuanMasuk: PropTypes.func.isRequired,
-  getAllBantuanUtama: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, {

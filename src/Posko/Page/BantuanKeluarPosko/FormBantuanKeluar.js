@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Confirmation from "./Confirmation";
-import { insertBantuanKeluar } from "../../../actions/bantuanKeluar";
+import { insertBantuanKeluar } from "../../../actions/bantuanKeluarPos";
 import Alert from "../../../layout/Alert";
 import { Box, Grid, Typography, Button, TextField } from "@material-ui/core";
 import uniqid from "uniqid";
@@ -19,7 +19,7 @@ const BantuanKeluar = ({
   insertBantuanKeluar,
   auth: { isAuthenticated },
   bantuanKeluar,
-  bantuanUtama: { bantuanUtama },
+  bantuanUtama: { semuaBantuanUtama },
   history,
 }) => {
   const [id, setId] = useState(uniqid("bpbd-ntb-"));
@@ -78,7 +78,7 @@ const BantuanKeluar = ({
   };
 
   if (!isAuthenticated) {
-    return <Redirect to="/admin/dashboard" />;
+    return <Redirect to="/pos/dashboard" />;
   }
 
   return (
@@ -95,7 +95,7 @@ const BantuanKeluar = ({
           startIcon={<ArrowBackIosIcon />}
           style={{ margin: 8 }}
         >
-          <Link to="/admin/bantuan-keluar">Kembali</Link>
+          <Link to="/pos/bantuan-keluar">Kembali</Link>
         </Button>
       ) : (
         <Button
@@ -104,7 +104,7 @@ const BantuanKeluar = ({
           startIcon={<ArrowBackIosIcon />}
           style={{ margin: 8 }}
         >
-          <Link to="/admin/bantuan-keluar">Kembali</Link>
+          <Link to="/pos/bantuan-keluar">Kembali</Link>
         </Button>
       )}
       {bantuanKeluar &&
@@ -116,7 +116,7 @@ const BantuanKeluar = ({
           startIcon={<HistoryIcon />}
           style={{ margin: 8 }}
         >
-          <Link style={{ color: "white" }} to="/admin/bantuan-keluar">
+          <Link style={{ color: "white" }} to="/pos/bantuan-keluar">
             History Bantuan Keluar
           </Link>
         </Button>
@@ -199,7 +199,10 @@ const BantuanKeluar = ({
             {/* ------------------------ ItemData.js -----------------------*/}
             <ItemData
               addItem={addItem}
-              bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
+              bantuanUtama={
+                semuaBantuanUtama.length > 0 &&
+                semuaBantuanUtama[0].dataBantuanUtama
+              }
             />
             <Alert />
           </Grid>

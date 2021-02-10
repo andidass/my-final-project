@@ -22,6 +22,7 @@ app.use("/pos/pengungsi", require("./Routes/api/pengungsi"));
 app.use("/pos/fasilitas-pos", require("./Routes/api/fasilitasPosko"));
 app.use("/pos/permintaan-bantuan", require("./Routes/api/permintaanBantuan"));
 app.use("/pos/bantuan-masuk", require("./Routes/api/bantuanMasukPos"));
+app.use("/pos/bantuan-keluar", require("./Routes/api/bantuanKeluarPos"));
 
 // petugas
 app.use("/petugas/login", require("./Routes/api/authPetugas"));

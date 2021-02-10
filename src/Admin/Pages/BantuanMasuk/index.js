@@ -38,14 +38,15 @@ const BantuanMasuk = ({
   ) : (
     <Fragment>
       <DataBantuanMasuk />
-      {bantuanUtama && (
+      {/* tampilkan jml barang bantuan utama yang ada */}
+      {/* {bantuanUtama && (
         <Fragment>
           <Item
             bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
             bantuanMasuk={bantuanMasuk && bantuanMasuk.dataBantuanMasuk}
           />
         </Fragment>
-      )}
+      )} */}
     </Fragment>
   );
 };

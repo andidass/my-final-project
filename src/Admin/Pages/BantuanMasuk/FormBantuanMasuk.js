@@ -10,7 +10,6 @@ import { Box, Grid, Typography, Button, TextField } from "@material-ui/core";
 import uniqid from "uniqid";
 import Table from "./Table";
 import ItemData from "./ItemData";
-// import InitData from "./InitData"; //! hapus initdata
 import HistoryIcon from "@material-ui/icons/History";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
@@ -25,7 +24,6 @@ const BantuanMasuk = ({
 }) => {
   const [id, setId] = useState(uniqid("bpbd-ntb-"));
   const [rows, setRows] = useState([]); // data item
-  // const [open, setOpen] = React.useState(false);
   const [dataInit, setDataInit] = useState({
     kodeTransaksi: id,
     tanggalTransaksi: "",
@@ -70,7 +68,6 @@ const BantuanMasuk = ({
   };
 
   const sumbitConfirmation = () => {
-    // event.preventDefault();
     insertBantuanMasuk(dataInit, history);
     setDataInit({
       kodeTransaksi: id,
@@ -161,7 +158,6 @@ const BantuanMasuk = ({
                 }}
                 margin="normal"
                 size="small"
-                // required
                 value={dataInit.tanggalTransaksi}
                 onChange={changeHandlerInit}
               />
@@ -213,7 +209,6 @@ const BantuanMasuk = ({
                 onChange={changeHandlerInit}
               />
             </div>
-            {/* --------------------------------------------- */}
           </Grid>
           <Grid xs={12} sm={6} item>
             {/* ------------------------ ItemData.js -----------------------*/}

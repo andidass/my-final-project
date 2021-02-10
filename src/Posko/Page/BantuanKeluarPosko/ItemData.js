@@ -27,7 +27,7 @@ const jenisBantuan2 = [
 function ItemData({ addItem, bantuanUtama }) {
   const [data, setData] = useState({
     // penyimpanan state sementara
-    namaBarang: bantuanUtama[0].namaBarang,
+    namaBarang: bantuanUtama.length > 0 && bantuanUtama[0].namaBarang,
     satuan: "",
     banyaknya: "",
     nilainya: "",
@@ -48,7 +48,7 @@ function ItemData({ addItem, bantuanUtama }) {
     addItem(data); // memanggil fungsi pada BantuanMasukPosko.js
     setData({
       // mereset state {data} serta inputan textField menjadi kosong setelah button submit tertekan.
-      namaBarang: bantuanUtama[0].namaBarang,
+      namaBarang: bantuanUtama.length > 0 && bantuanUtama[0].namaBarang,
       satuan: "",
       banyaknya: "",
       jenisBantuan: "Utama",
@@ -105,11 +105,12 @@ function ItemData({ addItem, bantuanUtama }) {
             }}
             value={data.namaBarang}
           >
-            {bantuanUtama.map((option) => (
-              <option key={option.namaBarang} value={option.namaBarang}>
-                {option.namaBarang}
-              </option>
-            ))}
+            {bantuanUtama.length > 0 &&
+              bantuanUtama.map((option) => (
+                <option key={option.namaBarang} value={option.namaBarang}>
+                  {option.namaBarang}
+                </option>
+              ))}
           </TextField>
         ) : (
           <TextField
@@ -165,6 +166,7 @@ function ItemData({ addItem, bantuanUtama }) {
         />
         <Button
           variant="contained"
+          // type="submit"
           onClick={submitHandler2}
           color="primary"
           fullWidth

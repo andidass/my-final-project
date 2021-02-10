@@ -33,7 +33,8 @@ import PermintaanBantuan from "./Posko/Page/PermintaanBantuan/PermintaanBantuan"
 // bantuan masuk
 import BantuanMasukPos from "./Posko/Page/BantuanMasukPosko";
 import FormBantuanMasukPos from "./Posko/Page/BantuanMasukPosko/FormBantuanMasuk";
-import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/BantuanKeluarPosko";
+import BantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko";
+import FormBantuanKeluarPosko from "./Posko/Page/BantuanKeluarPosko/FormBantuanKeluar";
 
 // PETUGAS LAPANGAN
 import LoginPetugas from "./Petugas/Pages/LoginPetugas";
@@ -166,6 +167,11 @@ const App = () => {
             path="/pos/bantuan-keluar"
             exact
             component={BantuanKeluarPosko}
+          />
+          <Route
+            path="/pos/bantuan-keluar/input"
+            exact
+            component={FormBantuanKeluarPosko}
           />
           {/* ---------------- PETUGAS ------------------- */}
           <Route path="/petugas/login" exact component={LoginPetugas} />
