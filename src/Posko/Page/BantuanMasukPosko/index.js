@@ -4,8 +4,8 @@ import NoData from "./NoData";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getBantuanMasuk } from "../../../actions/bantuanMasuk";
-import { getBantuanUtama } from "../../../actions/setBantuanUtama";
+import { getBantuanMasuk } from "../../../actions/bantuanMasukPos";
+import { getAllBantuanUtama } from "../../../actions/setBantuanUtama";
 import FormBantuanMasuk from "./FormBantuanMasuk";
 import Spinner from "../../../Components/Spinner";
 
@@ -14,11 +14,11 @@ const BantuanMasukPos = ({
   bantuanMasuk: { bantuanMasuk, loading },
   bantuanUtama: { bantuanUtama },
   getBantuanMasuk,
-  getBantuanUtama,
+  getAllBantuanUtama,
 }) => {
   useEffect(() => {
     getBantuanMasuk();
-    getBantuanUtama();
+    getAllBantuanUtama();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -50,9 +50,10 @@ BantuanMasukPos.propTypes = {
   bantuanUtama: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   getBantuanMasuk: PropTypes.func.isRequired,
-  getBantuanUtama: PropTypes.func.isRequired,
+  getAllBantuanUtama: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { getBantuanMasuk, getBantuanUtama })(
-  BantuanMasukPos
-);
+export default connect(mapStateToProps, {
+  getBantuanMasuk,
+  getAllBantuanUtama,
+})(BantuanMasukPos);

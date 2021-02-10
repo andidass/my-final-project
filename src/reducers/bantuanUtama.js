@@ -1,5 +1,6 @@
 import {
   GET_BANTUAN_UTAMA,
+  GET_ALL_BANTUAN_UTAMA,
   BANTUAN_UTAMA_ERROR,
   CLEAR_BANTUAN_UTAMA,
   UPDATE_BANTUAN_UTAMA,
@@ -21,6 +22,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         bantuanUtama: payload,
+        loading: false,
+        error: {},
+      };
+
+    case GET_ALL_BANTUAN_UTAMA:
+      return {
+        ...state,
+        semuaBantuanUtama: payload,
         loading: false,
         error: {},
       };

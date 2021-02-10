@@ -71,9 +71,16 @@ const PermintaanBantuanById = ({
         )} */}
         {permintaanBantuan &&
           (permintaanBantuan.dataPermintaanBantuan.length === 0 ? (
-            <Typography variant="subtitle1">
-              Pos Tidak Memiliki Permintaan Bantuan
-            </Typography>
+            <div style={{ textAlign: "center" }}>
+              <Typography variant="subtitle1">
+                Pos Tidak Memiliki Permintaan Bantuan
+              </Typography>
+              <img
+                src="/img/undraw_empty_xct9.svg"
+                alt="empty data"
+                style={{ height: "50vh", PaddingTop: `2%` }}
+              />
+            </div>
           ) : (
             <TabelData
               rows={

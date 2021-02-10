@@ -13,7 +13,7 @@ app.get("/", (req, res) => res.send("API Running"));
 
 // * define router
 
-// posko
+// pos
 app.use("/pos/registrasi", require("./Routes/api/poskoUser"));
 app.use("/pos/login", require("./Routes/api/authposko"));
 app.use("/pos/profile", require("./Routes/api/profilePosko"));
@@ -21,7 +21,7 @@ app.use("/pos/pengungsi", require("./Routes/api/pengungsi"));
 // app.use("/posko/bantuan-masuk", require("./Routes/api/bantuanMasuk"));
 app.use("/pos/fasilitas-pos", require("./Routes/api/fasilitasPosko"));
 app.use("/pos/permintaan-bantuan", require("./Routes/api/permintaanBantuan"));
-app.use("/pos/bantuan-masuk", require("./Routes/api/bantuanMasuk"));
+app.use("/pos/bantuan-masuk", require("./Routes/api/bantuanMasukPos"));
 
 // petugas
 app.use("/petugas/login", require("./Routes/api/authPetugas"));

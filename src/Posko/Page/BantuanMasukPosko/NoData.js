@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect, Link } from "react-router-dom";
-import { createBantuanMasuk } from "../../../actions/bantuanMasuk";
+import { createBantuanMasuk } from "../../../actions/bantuanMasukPos";
 import Spinner from "../../../Components/Spinner";
 import { Button, Typography, Box } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";

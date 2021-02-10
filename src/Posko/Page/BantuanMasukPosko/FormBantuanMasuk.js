@@ -20,7 +20,7 @@ const BantuanMasuk = ({
   insertBantuanMasuk,
   auth: { isAuthenticated },
   bantuanMasuk,
-  bantuanUtama: { bantuanUtama },
+  bantuanUtama: { semuaBantuanUtama },
   history,
 }) => {
   const [id, setId] = useState(uniqid("bpbd-ntb-"));
@@ -225,7 +225,10 @@ const BantuanMasuk = ({
           <Grid xs={12} sm={6} item>
             {/* ------------------------ ItemData.js -----------------------*/}
             <ItemData
-              bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
+              bantuanUtama={
+                semuaBantuanUtama.length > 0 &&
+                semuaBantuanUtama[0].dataBantuanUtama
+              }
               addItem={addItem}
             />
             <Alert />

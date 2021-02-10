@@ -6,10 +6,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //icon material-ui
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import InputIcon from "@material-ui/icons/Input";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import AccessibleIcon from "@material-ui/icons/Accessible";
 import KitchenIcon from "@material-ui/icons/Kitchen";
-// import HomeIcon from "@material-ui/icons/Home";
+import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import PanToolIcon from "@material-ui/icons/PanTool";
 import MapIcon from "@material-ui/icons/Map";
 import BrokenImageIcon from "@material-ui/icons/BrokenImage";
@@ -109,7 +110,8 @@ function MenuAdmin() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <InputIcon />
+              {/* <InputIcon /> */}
+              <ArrowDownwardIcon />
               <Typography component="div">
                 <Box>Bantuan Masuk</Box>
               </Typography>
@@ -129,9 +131,29 @@ function MenuAdmin() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <InputIcon />
+              <ArrowUpwardIcon />
               <Typography component="div">
                 <Box>Bantuan Keluar</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          xl={6}
+          sm={4}
+          lg={2}
+          component={Link}
+          to="/admin/data-bantuan-pos"
+          className="link"
+        >
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <LocalHospitalIcon />
+              <Typography component="div">
+                <Box>Data Bantuan Pos</Box>
               </Typography>
             </CardContent>
           </Card>
@@ -151,7 +173,7 @@ function MenuAdmin() {
             <CardContent>
               <PanToolIcon />
               <Typography component="div">
-                <Box>Request Bantuan</Box>
+                <Box>Permintaan Bantuan</Box>
               </Typography>
             </CardContent>
           </Card>

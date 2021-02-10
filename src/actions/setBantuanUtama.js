@@ -2,6 +2,7 @@ import axios from "axios";
 import { setAlert } from "./alert";
 import {
   GET_BANTUAN_UTAMA,
+  GET_ALL_BANTUAN_UTAMA,
   BANTUAN_UTAMA_ERROR,
   UPDATE_BANTUAN_UTAMA,
 } from "./types";
@@ -13,6 +14,22 @@ export const getBantuanUtama = () => async (dispatch) => {
 
     dispatch({
       type: GET_BANTUAN_UTAMA,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: BANTUAN_UTAMA_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getAllBantuanUtama = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/admin/bantuan-utama");
+
+    dispatch({
+      type: GET_ALL_BANTUAN_UTAMA,
       payload: res.data,
     });
   } catch (err) {

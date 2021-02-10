@@ -10,7 +10,7 @@ import { Box, Grid, Typography, Button, TextField } from "@material-ui/core";
 import uniqid from "uniqid";
 import Table from "./Table";
 import ItemData from "./ItemData";
-// import InitData from "./InitData";
+// import InitData from "./InitData"; //! hapus initdata
 import HistoryIcon from "@material-ui/icons/History";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
@@ -40,7 +40,6 @@ const BantuanMasuk = ({
     setRows((prevRows) => {
       return [...prevRows, newItem];
     });
-    // console.log(rows);
   }
 
   function deleteItem(id) {
@@ -68,7 +67,6 @@ const BantuanMasuk = ({
     setDataInit((dataInit) => {
       return { ...dataInit, dataItemBantuan: rows };
     });
-    // e.preventDefault();
   };
 
   const sumbitConfirmation = () => {
@@ -136,11 +134,6 @@ const BantuanMasuk = ({
         </Typography>
         <Grid container className="isi-body">
           <Grid xs={12} sm={6} item>
-            {/* <InitData
-              dataInit={dataInit}
-              changeHandlerInit={changeHandlerInit}
-            /> */}
-            {/* ------------------------ InitData.js -----------------------*/}
             <Typography component="div">
               <Box fontSize={17}>Data Transaksi</Box>
             </Typography>

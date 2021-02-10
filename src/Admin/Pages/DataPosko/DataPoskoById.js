@@ -73,7 +73,7 @@ const AllDataPosko = ({
               <b>Profile {profile && profile.namaPosko}</b>
             </Typography>
             {!profile ? (
-              <Typography variant="subtitle1">
+              <Typography variant="subtitle1" style={{ textAlign: "center" }}>
                 Pos Tidak Memiliki Profile
               </Typography>
             ) : (
@@ -108,7 +108,7 @@ const AllDataPosko = ({
               <b>Fasilitas {profile && profile.namaPosko}</b>
             </Typography>
             {!fasilitasPosko ? (
-              <Typography variant="subtitle1">
+              <Typography variant="subtitle1" style={{ textAlign: "center" }}>
                 Pos Tidak Memiliki Data Fasilitas
               </Typography>
             ) : (

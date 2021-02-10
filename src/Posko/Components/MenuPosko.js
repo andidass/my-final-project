@@ -6,7 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //icon material-ui
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import InputIcon from "@material-ui/icons/Input";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import AccessibleIcon from "@material-ui/icons/Accessible";
 import HomeIcon from "@material-ui/icons/Home";
 import PanToolIcon from "@material-ui/icons/PanTool";
@@ -106,7 +107,7 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <InputIcon />
+              <ArrowDownwardIcon />
               <Typography component="div">
                 <Box>Bantuan Masuk</Box>
               </Typography>
@@ -126,7 +127,7 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <InputIcon />
+              <ArrowUpwardIcon />
               <Typography component="div">
                 <Box>Bantuan Keluar</Box>
               </Typography>

@@ -63,6 +63,8 @@ import BantuanMasuk from "./Admin/Pages/BantuanMasuk";
 import BantuanKeluar from "./Admin/Pages/BantuanKeluar";
 import FormBantuanMasuk from "./Admin/Pages/BantuanMasuk/FormBantuanMasuk";
 import FormBantuanKeluar from "./Admin/Pages/BantuanKeluar/FormBantuanKeluar";
+import DataBantuanPos from "./Admin/Pages/DataBantuanPos";
+import DataBantuanPosById from "./Admin/Pages/DataBantuanPos/DataBantuanPosById";
 
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
@@ -217,6 +219,16 @@ const App = () => {
           <Route path="/admin/map" exact component={MapPosko} />
           <Route path="/admin/bantuan-masuk" exact component={BantuanMasuk} />
           <Route path="/admin/bantuan-keluar" exact component={BantuanKeluar} />
+          <Route
+            path="/admin/data-bantuan-pos"
+            exact
+            component={DataBantuanPos}
+          />
+          <Route
+            path="/admin/data-bantuan-pos/:id"
+            exact
+            component={DataBantuanPosById}
+          />
           <Route
             path="/admin/bantuan-keluar/input"
             exact

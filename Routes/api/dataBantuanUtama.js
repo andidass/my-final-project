@@ -9,7 +9,7 @@ const BantuanUtama = require("../../Model/DataBantuanUtama");
 // #desc    GET data bantuan-masuk account
 // @access  Private
 
-router.get("/me", auth, async (req, res) => {
+router.get("/me", async (req, res) => {
   try {
     let bantuanUtama = await BantuanUtama.findOne({
       user: req.user.id,

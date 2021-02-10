@@ -1,27 +1,27 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Confirmation from "./Confirmation";
 import { insertBantuanKeluar } from "../../../actions/bantuanKeluar";
 import Alert from "../../../layout/Alert";
-// import Spinner from "../../../Components/Spinner";
-import { Box, Grid, Typography, Button } from "@material-ui/core";
-import SaveIcon from "@material-ui/icons/Save";
+import { Box, Grid, Typography, Button, TextField } from "@material-ui/core";
 import uniqid from "uniqid";
 import Table from "./Table";
 import ItemData from "./ItemData";
-import InitData from "./InitData";
+// import InitData from "./InitData"; //! hapus init data
 import HistoryIcon from "@material-ui/icons/History";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import SaveIcon from "@material-ui/icons/Save";
 
 import "./BantuanKeluar.css";
 
 const BantuanKeluar = ({
   insertBantuanKeluar,
-  auth,
+  auth: { isAuthenticated },
   bantuanKeluar,
+  bantuanUtama: { bantuanUtama },
   history,
 }) => {
   const [id, setId] = useState(uniqid("bpbd-ntb-"));
@@ -40,7 +40,6 @@ const BantuanKeluar = ({
     setRows((prevRows) => {
       return [...prevRows, newItem];
     });
-    // console.log(rows);
   }
 
   function deleteItem(id) {
@@ -68,13 +67,11 @@ const BantuanKeluar = ({
     console.log("data init :", dataInit);
   };
 
-  // ! LET'S FIX THIS
   const submitHandler = (e) => {
     // tombol simpan
     setDataInit((dataInit) => {
       return { ...dataInit, dataItemBantuan: rows };
-    }); // ! make sure state have been updated than execute next function
-    // e.preventDefault();
+    });
   };
 
   const sumbitConfirmation = () => {
@@ -86,9 +83,12 @@ const BantuanKeluar = ({
       jabatan: "",
     });
     setRows([]);
-    // setId(uniqid("2123123"));
     setId(uniqid("bpbd-ntb-"));
   };
+
+  if (!isAuthenticated) {
+    return <Redirect to="/admin/dashboard" />;
+  }
 
   return (
     <Fragment>
@@ -96,25 +96,40 @@ const BantuanKeluar = ({
         <Typography variant="h5">Input Bantuan keluar</Typography>
         <Typography variant="subtitle2">Input data bantuan keluar</Typography>
       </div>
-      <Button
-        variant="outlined"
-        size="small"
-        startIcon={<ArrowBackIosIcon />}
-        style={{ margin: 8 }}
-      >
-        <Link to="/admin/bantuan-keluar">Kembali</Link>
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        startIcon={<HistoryIcon />}
-        style={{ margin: 8 }}
-      >
-        <Link style={{ color: "white" }} to="/admin/bantuan-keluar">
-          History Bantuan Keluar
-        </Link>
-      </Button>
+      {bantuanKeluar &&
+      bantuanKeluar.bantuanKeluar.dataBantuanKeluar.length === 0 ? (
+        <Button
+          variant="outlined"
+          size="small"
+          startIcon={<ArrowBackIosIcon />}
+          style={{ margin: 8 }}
+        >
+          <Link to="/admin/bantuan-keluar">Kembali</Link>
+        </Button>
+      ) : (
+        <Button
+          variant="outlined"
+          size="small"
+          startIcon={<ArrowBackIosIcon />}
+          style={{ margin: 8 }}
+        >
+          <Link to="/admin/bantuan-keluar">Kembali</Link>
+        </Button>
+      )}
+      {bantuanKeluar &&
+      bantuanKeluar.bantuanKeluar.dataBantuanKeluar.length === 0 ? null : (
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          startIcon={<HistoryIcon />}
+          style={{ margin: 8 }}
+        >
+          <Link style={{ color: "white" }} to="/admin/bantuan-keluar">
+            History Bantuan Keluar
+          </Link>
+        </Button>
+      )}
       <form className="isi">
         <Typography component="div">
           <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
@@ -123,15 +138,78 @@ const BantuanKeluar = ({
         </Typography>
         <Grid container className="isi-body">
           <Grid xs={12} sm={6} item>
-            {/* ------------------------ InitData.js -----------------------*/}
-            <InitData
-              dataInit={dataInit}
-              changeHandlerInit={changeHandlerInit}
-            />
+            <Typography component="div">
+              <Box fontSize={17}>Data Transaksi</Box>
+            </Typography>
+            <div className="data">
+              <TextField
+                id="kodeTransaksi"
+                label="Kode Transaksi"
+                style={{ margin: 8 }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                disabled
+                value={dataInit.kodeTransaksi}
+                onChange={changeHandlerInit}
+              />
+              <TextField
+                id="tanggalTransaksi"
+                label="Tanggal"
+                variant="outlined"
+                type="date"
+                format="dd-MM-yyyy"
+                style={{ margin: 8 }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                margin="normal"
+                size="small"
+                // required
+                value={dataInit.tanggalTransaksi}
+                onChange={changeHandlerInit}
+              />
+            </div>
+
+            <Typography component="div">
+              <Box fontSize={17} marginTop={2}>
+                Data Donatur
+              </Box>
+            </Typography>
+            <div className="data">
+              <TextField
+                id="namaPenerima"
+                label="Nama Penerima"
+                style={{ margin: 8 }}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                size="small"
+                required
+                value={dataInit.namaPenerima}
+                onChange={changeHandlerInit}
+              />
+
+              <TextField
+                id="jabatan"
+                label="Jabatan"
+                style={{ margin: 8 }}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                size="small"
+                required
+                value={dataInit.jabatan}
+                onChange={changeHandlerInit}
+              />
+            </div>
           </Grid>
           <Grid xs={12} sm={6} item>
             {/* ------------------------ ItemData.js -----------------------*/}
-            <ItemData addItem={addItem} />
+            <ItemData
+              addItem={addItem}
+              bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
+            />
             <Alert />
           </Grid>
           <Grid xs={12} item>
@@ -141,15 +219,6 @@ const BantuanKeluar = ({
               sumbitConfirmation={sumbitConfirmation}
               submitHandler={submitHandler}
             />
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ margin: 8 }}
-              startIcon={<SaveIcon />}
-              onClick={(e) => cekState(e)}
-            >
-              Cek state aja!
-            </Button>
           </Grid>
         </Grid>
       </form>
@@ -159,12 +228,14 @@ const BantuanKeluar = ({
 BantuanKeluar.propTypes = {
   auth: PropTypes.object.isRequired,
   bantuanKeluar: PropTypes.object.isRequired,
+  bantuanUtama: PropTypes.object.isRequired,
   insertBantuanKeluar: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   bantuanKeluar: state.bantuanKeluar,
+  bantuanUtama: state.bantuanUtama,
 });
 
 export default connect(mapStateToProps, {
