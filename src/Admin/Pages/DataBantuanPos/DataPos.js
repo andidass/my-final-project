@@ -4,19 +4,14 @@ import { Link } from "react-router-dom";
 import { Grid, Box, Typography, Card, CardContent } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 
-const DataPosko = ({
-  user,
-  profile: {
-    user: { _id, name },
-  },
-}) => {
+const DataPos = ({ user, name: { _id, name } }) => {
   return (
     <Grid
       item
       lg={2}
       component={Link}
       // to={`/admin/data-pos/${_id}`}
-      to={!user ? `/data-bantuan/${_id}` : `/pos/data-bantuan-pos/${_id}`}
+      to={!user ? `/data-bantuan-pos/${_id}` : `/admin/data-bantuan-pos/${_id}`}
       className="link"
     >
       <Card className="root" variant="outlined">
@@ -31,4 +26,4 @@ const DataPosko = ({
   );
 };
 
-export default DataPosko;
+export default DataPos;

@@ -95,6 +95,12 @@ const App = () => {
           <Route path="/data-pos" exact component={DataPosko} />
           <Route path="/info-dan-donasi" exact component={InfoDonasi} />
           <Route path="/data-pos/:id" exact component={DataPoskoById} />
+          <Route path="/data-bantuan-pos" exact component={DataBantuanPos} />
+          <Route
+            path="/data-bantuan-pos/:id"
+            exact
+            component={DataBantuanPosById}
+          />
           <Route
             path="/permintaan-bantuan"
             exact
@@ -114,6 +120,12 @@ const App = () => {
             path="/data-laporan-bencana/:id"
             exact
             component={DataBencanaById}
+          />
+          <Route path="/data-bantuan" exact component={DataBantuanPos} />
+          <Route
+            path="/data-bantuan/:id"
+            exact
+            component={DataBantuanPosById}
           />
           <Route path="/data-pengungsi" exact component={AllDataPengungsi} />
           {/* <Route path="/" exact component={MainPosko} />

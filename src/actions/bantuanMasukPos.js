@@ -44,9 +44,9 @@ export const getAllDataBantuanMasuk = () => async (dispatch) => {
 };
 
 // get data bantuan masuk by id
-export const getBantuanMasukById = (itemId) => async (dispatch) => {
+export const getBantuanMasukById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/pos/bantuan-masuk/${itemId}`);
+    const res = await axios.get(`/pos/bantuan-masuk/${userId}`);
 
     dispatch({
       type: GET_BANTUAN_MASUK,

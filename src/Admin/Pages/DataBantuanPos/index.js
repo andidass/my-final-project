@@ -28,7 +28,7 @@ const AllDataPosko = ({
   // filter data with search feature
   const filteredPosko = semuaBantuanMasuk.filter((bantuanMasuk) => {
     return (
-      bantuanMasuk.namaPosko
+      bantuanMasuk.user.name
         .toLowerCase()
         .indexOf(kataPencarian.toLowerCase()) !== -1
     );
@@ -72,10 +72,11 @@ const AllDataPosko = ({
         />
       </div>
       <Grid container justify="center" className="grid-container">
-        {semuaBantuanMasuk.length > 0 ? (
-          semuaBantuanMasuk.map((bantuanMasuk) => (
+        {filteredPosko.length > 0 ? (
+          filteredPosko.map((bantuanMasuk) => (
             <DataPos
               user={user}
+              name={bantuanMasuk.user}
               key={bantuanMasuk._id}
               bantuanMasuk={bantuanMasuk}
               kataPencarian={kataPencarian}
