@@ -1,11 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createPengungsi } from "../../../actions/pengungsi";
-import { Button, Typography, Box } from "@material-ui/core";
+import { Button, Typography, Box, Grid, Paper } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import Spinner from "../../../Components/Spinner";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const NoPengungsi = ({
   pengungsi: { pengungsi, loading },
@@ -25,25 +26,47 @@ const NoPengungsi = ({
   return loading ? (
     <Spinner />
   ) : (
-    <div className="full-height isi">
-      <Typography variant="h5">
-        <Box fontSize={12} textAlign="left" marginTop={3}>
-          Data pengungsi pos ini belum ada.
-        </Box>
-      </Typography>
+    <Fragment>
+      <div className="sub-heading">
+        <Typography variant="h5">Data Pengungsi Pos</Typography>
+        <Typography variant="subtitle2">Buat Data Pengungsi</Typography>
+      </div>
       <Button
-        variant="contained"
-        onClick={(e) => onSubmit(e)}
-        color="primary"
+        variant="outlined"
         size="small"
-        disableRipple
-        component={Link}
-        to="/pos/data-pengungsi/"
-        startIcon={<PersonIcon />}
+        startIcon={<ArrowBackIosIcon />}
+        style={{ margin: 8 }}
       >
-        Buat Data Pengungsi
+        <Link to="/pos/dashboard">Kembali</Link>
       </Button>
-    </div>
+
+      <Grid container justify="center">
+        <Paper variant="outlined" className="paper-form">
+          <Grid item style={{ padding: `2rem` }}>
+            <Typography component="div">
+              <Box fontSize={17}>
+                <b>DATA PENGUNGSI POS</b>
+              </Box>
+              <Box fontSize={15} textAlign="center">
+                Data pengungsi pos ini belum ada
+              </Box>
+            </Typography>
+            <form type="submit" onSubmit={(e) => onSubmit(e)}>
+              <Button
+                variant="contained"
+                className="button"
+                color="primary"
+                type="submit"
+                style={{ margin: 8, maxWidth: 500 }}
+                startIcon={<PersonIcon />}
+              >
+                Buat Data Pengungsi Pos
+              </Button>
+            </form>
+          </Grid>
+        </Paper>
+      </Grid>
+    </Fragment>
   );
 };
 

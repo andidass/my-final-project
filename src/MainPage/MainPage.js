@@ -51,7 +51,7 @@ export default function MainPage() {
         <Grid
           item
           xs={12}
-          sm={6}
+          md={6}
           container
           spacing={2}
           style={{ paddingRight: `1%`, paddingLeft: `1%` }}
@@ -205,7 +205,7 @@ export default function MainPage() {
             </Card>
           </Grid>
         </Grid>
-        <Grid item xs={12} sm={6} style={{ paddingLeft: `1%` }}>
+        <Grid item xs={12} md={6} style={{ paddingLeft: `1%` }}>
           <Typography variant="h6">
             <Box>Titik Lokasi Pos Pengungsian</Box>
           </Typography>

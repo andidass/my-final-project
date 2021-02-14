@@ -6,7 +6,7 @@ import Alert from "../../layout/Alert";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../../Components/Spinner";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Paper } from "@material-ui/core";
 
 const MainPetugas = ({
   auth: { user, isAuthenticated, loading },
@@ -30,18 +30,23 @@ const MainPetugas = ({
     <Spinner />
   ) : (
     <div className="full-height">
+      <Paper
+        variant="outlined"
+        style={{ margin: `5%`, width: "90%", backgroundColor: "#F4F6F6" }}
+      >
+        <div style={{ margin: `2%` }}>
+          <Typography variant="h6">
+            Hallo, Anda masuk dengan akun petugas<b> {user && user.name} </b>
+          </Typography>
+          <Typography variant="subtitle1">
+            Selalu lakukan update berkala data terkini bencana
+          </Typography>
+          <Typography variant="subtitle1">
+            Selamat bekerja {user && user.name}
+          </Typography>
+        </div>
+      </Paper>
       <Alert />
-      <Typography component="div">
-        <Box
-          textAlign="center"
-          fontSize={20}
-          fontWeight="fontWeightBold"
-          marginTop={4}
-          color="red"
-        >
-          Welcome {user && user.name}
-        </Box>
-      </Typography>
       <MenuPetugas />
     </div>
   );

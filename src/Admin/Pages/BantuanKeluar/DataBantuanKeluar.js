@@ -6,6 +6,7 @@ import TableBantuanKeluar from "./TableBantuanKeluar";
 import Spinner from "../../../Components/Spinner";
 import { Button, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import Alert from "../../../layout/Alert";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 import "./BantuanKeluar.css";
@@ -15,6 +16,7 @@ const DataBantuanKeluar = ({ bantuanKeluar: { bantuanKeluar, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
+      <Alert />
       <div className="sub-heading">
         <Typography variant="h5">Data Bantuan Keluar</Typography>
         <Typography variant="subtitle2">List Data Bantuan Keluar</Typography>

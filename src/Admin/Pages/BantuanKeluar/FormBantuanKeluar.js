@@ -95,7 +95,7 @@ const BantuanKeluar = ({
           startIcon={<ArrowBackIosIcon />}
           style={{ margin: 8 }}
         >
-          <Link to="/admin/bantuan-keluar">Kembali</Link>
+          <Link to="/admin/dashboard">Kembali</Link>
         </Button>
       ) : (
         <Button
@@ -197,10 +197,12 @@ const BantuanKeluar = ({
           </Grid>
           <Grid xs={12} sm={6} item>
             {/* ------------------------ ItemData.js -----------------------*/}
-            <ItemData
-              addItem={addItem}
-              bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
-            />
+            {bantuanUtama && (
+              <ItemData
+                addItem={addItem}
+                bantuanUtama={bantuanUtama && bantuanUtama.dataBantuanUtama}
+              />
+            )}
             <Alert />
           </Grid>
           <Grid xs={12} item>

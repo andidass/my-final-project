@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Alert from "../../../layout/Alert";
 import TabelBantuanMasuk from "./TableBantuanMasuk";
 import Spinner from "../../../Components/Spinner";
 import { Button, Typography } from "@material-ui/core";
@@ -15,6 +16,7 @@ const DataBantuanMasuk = ({ bantuanMasuk: { bantuanMasuk, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
+      <Alert />
       <div className="sub-heading">
         <Typography variant="h5">Data Bantuan Masuk</Typography>
         <Typography variant="subtitle2">List Data Bantuan Masuk</Typography>

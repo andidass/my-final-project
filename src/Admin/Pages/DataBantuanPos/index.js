@@ -83,7 +83,14 @@ const AllDataPosko = ({
             />
           ))
         ) : (
-          <h4>Tidak Ada Profile Ditemukan...</h4>
+          <div className="no-data">
+            <h4>Tidak Ada Data Bantuan Pos Ditemukan...</h4>
+            <img
+              src="/img/undraw_empty_xct9.svg"
+              alt="React Logo"
+              style={{ width: `40%` }}
+            />
+          </div>
         )}
       </Grid>
     </Fragment>

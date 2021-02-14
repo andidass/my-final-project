@@ -11,7 +11,7 @@ const BantuanMasukSchema = new mongoose.Schema({
     {
       kodeTransaksi: {
         type: String,
-        default: uniqid("bpbd-ntb-"),
+        // default: uniqid("bpbd-ntb-"),
       },
       tanggal: {
         type: Date,

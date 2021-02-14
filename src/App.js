@@ -46,8 +46,6 @@ import KejadianBencana from "./Petugas/Pages/LaporanBencana/KejadianBencana";
 import KorbanJiwa from "./Petugas/Pages/LaporanBencana/KorbanJiwa";
 import LaporanKerusakan from "./Petugas/Pages/LaporanBencana/LaporanKerusakan";
 import FasumPenanganan from "./Petugas/Pages/LaporanBencana/FasumPenanganan";
-// import LaporanBencana from "./Petugas/Pages/LaporanBencana";
-import LaporanHarian from "./Petugas/Pages/LaporanHarian";
 
 // ADMIN
 import LoginAdmin from "./Admin/Pages/LoginAdmin";
@@ -195,11 +193,6 @@ const App = () => {
           <Route path="/petugas" exact component={MainPetugas} />
           <Route path="/petugas/dashboard" exact component={MainPetugas} />
           <Route path="/petugas/profile" exact component={ProfilePetugas} />
-          <Route
-            path="/petugas/laporan-harian"
-            exact
-            component={LaporanHarian}
-          />
           <Route
             path="/petugas/data-bencana"
             exact

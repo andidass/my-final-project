@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
@@ -20,6 +20,7 @@ import "./style.css";
 const KejadianBencana = ({
   createDataBencana,
   history,
+  auth: { user, token },
   dataBencana: { dataBencana, loading },
 }) => {
   useEffect(() => {
@@ -138,6 +139,10 @@ const KejadianBencana = ({
       });
     }
   };
+
+  if (token === null) {
+    return <Redirect to="/petugas/login" />;
+  }
 
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
@@ -349,6 +354,7 @@ const KejadianBencana = ({
 };
 
 KejadianBencana.propTypes = {
+  auth: PropTypes.object.isRequired,
   createDataBencana: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   dataBencana: PropTypes.object.isRequired,

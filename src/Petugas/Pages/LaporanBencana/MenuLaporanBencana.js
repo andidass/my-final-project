@@ -26,6 +26,7 @@ const useStyles = makeStyles({
     radius: 100,
     fontSize: 15,
     margin: 5,
+    borderRadius: 15,
   },
   padding: {
     paddingLeft: 50,
@@ -65,7 +66,7 @@ function MenuLaporanBencana() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <HomeIcon />
+              <HomeIcon fontSize="large" />
               <Typography component="div">
                 <Box>Kejadian Bencana</Box>
               </Typography>
@@ -85,7 +86,7 @@ function MenuLaporanBencana() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <AssignmentIcon />
+              <AssignmentIcon fontSize="large" />
               <Typography component="div">
                 <Box>Fasilitas & Penanganan</Box>
               </Typography>
@@ -105,7 +106,7 @@ function MenuLaporanBencana() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <AssignmentIcon />
+              <AssignmentIcon fontSize="large" />
               <Typography component="div">
                 <Box>Korban Jiwa</Box>
               </Typography>
@@ -125,7 +126,7 @@ function MenuLaporanBencana() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <AssignmentIcon />
+              <AssignmentIcon fontSize="large" />
               <Typography component="div">
                 <Box>Data Kerusakan</Box>
               </Typography>

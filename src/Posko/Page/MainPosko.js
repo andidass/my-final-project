@@ -10,12 +10,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import Spinner from "../../Components/Spinner";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Paper } from "@material-ui/core";
 
 const MainPosko = ({
   // loadUser,
   // getCurrentProfile,
-  auth: { user, isAuthenticated },
+  auth: { user, isAuthenticated, token },
   // profile: { profile, loading },
 }) => {
   useEffect(() => {
@@ -24,7 +24,7 @@ const MainPosko = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <Redirect to="/pos/login" />;
   }
 
@@ -36,18 +36,23 @@ const MainPosko = ({
     <Spinner />
   ) : (
     <div className="full-height">
+      <Paper
+        variant="outlined"
+        style={{ margin: `5%`, width: "90%", backgroundColor: "#F4F6F6" }}
+      >
+        <div style={{ margin: `2%` }}>
+          <Typography variant="h6">
+            Hallo, Anda masuk dengan akun<b> {user && user.name} </b>
+          </Typography>
+          <Typography variant="subtitle1">
+            Selalu lakukan update berkala data terkini di {user && user.name}
+          </Typography>
+          <Typography variant="subtitle1">
+            Selamat bekerja, petugas <b>{user && user.petugas}</b>
+          </Typography>
+        </div>
+      </Paper>
       <Alert />
-      <Typography component="div">
-        <Box
-          textAlign="center"
-          fontSize={20}
-          fontWeight="fontWeightBold"
-          marginTop={4}
-          color="red"
-        >
-          welcome {user && user.name}
-        </Box>
-      </Typography>
       <MenuPosko />
     </div>
   );

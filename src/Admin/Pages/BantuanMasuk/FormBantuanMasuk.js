@@ -26,7 +26,7 @@ const BantuanMasuk = ({
   const [rows, setRows] = useState([]); // data item
   const [dataInit, setDataInit] = useState({
     kodeTransaksi: id,
-    tanggalTransaksi: "",
+    tanggal: "",
     namaDonatur: "",
     sumberDana: "",
     alamatDonatur: "",
@@ -69,6 +69,7 @@ const BantuanMasuk = ({
 
   const sumbitConfirmation = () => {
     insertBantuanMasuk(dataInit, history);
+    console.log(dataInit);
     setDataInit({
       kodeTransaksi: id,
       namaDonatur: "",
@@ -147,7 +148,7 @@ const BantuanMasuk = ({
                 onChange={changeHandlerInit}
               />
               <TextField
-                id="tanggalTransaksi"
+                id="tanggal"
                 label="Tanggal"
                 variant="outlined"
                 type="date"
@@ -158,7 +159,8 @@ const BantuanMasuk = ({
                 }}
                 margin="normal"
                 size="small"
-                value={dataInit.tanggalTransaksi}
+                required
+                value={dataInit.tanggal}
                 onChange={changeHandlerInit}
               />
             </div>

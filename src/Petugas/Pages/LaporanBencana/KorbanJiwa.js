@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
@@ -61,7 +61,7 @@ const DataKorban = ({
   },
   insertKorban,
   deleteDataKorban,
-  auth: { user },
+  auth: { user, token },
 }) => {
   const [korban, setKorban] = useState({
     namaPengungsi: "",
@@ -102,6 +102,10 @@ const DataKorban = ({
   const handleClick = () => {
     setShow(!show);
   };
+
+  if (token === null) {
+    return <Redirect to="/petugas/login" />;
+  }
 
   return (
     <Fragment>

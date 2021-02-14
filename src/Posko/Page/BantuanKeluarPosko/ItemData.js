@@ -7,10 +7,6 @@ const jenisBantuan2 = [
     label: "Utama",
   },
   {
-    value: "Sandang",
-    label: "Sandang",
-  },
-  {
     value: "Pangan",
     label: "Pangan",
   },
@@ -19,8 +15,8 @@ const jenisBantuan2 = [
     label: "Papan",
   },
   {
-    value: "Uang",
-    label: "Uang",
+    value: "Sandang",
+    label: "Sandang",
   },
 ];
 

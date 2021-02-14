@@ -48,7 +48,7 @@ export default function TransitionsModal({
         variant="contained"
         color="primary"
         fullWidth
-        style={{ margin: 8 }}
+        style={{ marginTop: 8 }}
         onClick={handleOpen}
         startIcon={<SaveIcon />}
       >

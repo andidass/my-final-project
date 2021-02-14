@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import NoProfile from "./NoProfile";
+import FormProfile from "./FormPorfile";
 import Spinner from "../../../Components/Spinner";
 import { getCurrentProfile } from "../../../actions/profile";
 import ProfilePosko from "./ProfilePosko";
@@ -25,7 +25,7 @@ const PoskoBencana = ({
   ) : profile !== null ? (
     <ProfilePosko />
   ) : (
-    <NoProfile />
+    <FormProfile />
   );
 };
 

@@ -17,17 +17,19 @@ import "./MenuPosko.css";
 const useStyles = makeStyles({
   root: {
     minWidth: 160,
+    minHeight: 100,
+    // maxWidth: 250,
     textAlign: "center",
     backgroundColor: "#3f51b5",
     color: "white",
-    radius: 100,
     fontSize: 15,
     margin: 5,
+    borderRadius: 15,
   },
   padding: {
     paddingLeft: 50,
     paddingRight: 50,
-    paddingTop: 50,
+    textAlign: "center",
   },
 });
 
@@ -39,8 +41,8 @@ function MenuPosko() {
         <Grid
           item
           xs={12}
-          xl={6}
-          sm={4}
+          sm={6}
+          md={3}
           lg={2}
           component={Link}
           to="/pos/data-pos"
@@ -48,7 +50,7 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <HomeIcon />
+              <HomeIcon fontSize="large" />
               <Typography component="div">
                 <Box>Data Pos</Box>
               </Typography>
@@ -59,8 +61,8 @@ function MenuPosko() {
         <Grid
           item
           xs={12}
-          xl={6}
-          sm={4}
+          sm={6}
+          md={3}
           lg={2}
           component={Link}
           to="/pos/fasilitas-pos"
@@ -68,7 +70,7 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <AssignmentIcon />
+              <AssignmentIcon fontSize="large" />
               <Typography component="div">
                 <Box>Fasilitas Pos</Box>
               </Typography>
@@ -79,8 +81,8 @@ function MenuPosko() {
         <Grid
           item
           xs={12}
-          xl={6}
-          sm={4}
+          sm={6}
+          md={3}
           lg={2}
           component={Link}
           to="/pos/data-pengungsi"
@@ -88,7 +90,7 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <AccessibleIcon />
+              <AccessibleIcon fontSize="large" />
               <Typography component="div">
                 <Box>Data Pengungsi</Box>
               </Typography>
@@ -98,8 +100,8 @@ function MenuPosko() {
         <Grid
           item
           xs={12}
-          xl={6}
-          sm={4}
+          sm={6}
+          md={3}
           lg={2}
           component={Link}
           to="/pos/bantuan-masuk"
@@ -107,7 +109,7 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <ArrowDownwardIcon />
+              <ArrowDownwardIcon fontSize="large" />
               <Typography component="div">
                 <Box>Bantuan Masuk</Box>
               </Typography>
@@ -118,8 +120,8 @@ function MenuPosko() {
         <Grid
           item
           xs={12}
-          xl={6}
-          sm={4}
+          sm={6}
+          md={3}
           lg={2}
           component={Link}
           to="/pos/bantuan-keluar"
@@ -127,7 +129,7 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <ArrowUpwardIcon />
+              <ArrowUpwardIcon fontSize="large" />
               <Typography component="div">
                 <Box>Bantuan Keluar</Box>
               </Typography>
@@ -138,8 +140,8 @@ function MenuPosko() {
         <Grid
           item
           xs={12}
-          xl={6}
-          sm={4}
+          sm={6}
+          md={3}
           lg={2}
           component={Link}
           to="/pos/permintaan-bantuan"
@@ -147,9 +149,9 @@ function MenuPosko() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <PanToolIcon />
+              <PanToolIcon fontSize="large" />
               <Typography component="div">
-                <Box>Request Bantuan</Box>
+                <Box>Permintaan Bantuan</Box>
               </Typography>
             </CardContent>
           </Card>

@@ -7,10 +7,6 @@ const jenisBantuan2 = [
     label: "Utama",
   },
   {
-    value: "Sandang",
-    label: "Sandang",
-  },
-  {
     value: "Pangan",
     label: "Pangan",
   },
@@ -19,15 +15,15 @@ const jenisBantuan2 = [
     label: "Papan",
   },
   {
-    value: "Uang",
-    label: "Uang",
+    value: "Sandang",
+    label: "Sandang",
   },
 ];
 
 function ItemData({ addItem, bantuanUtama }) {
   const [data, setData] = useState({
     // penyimpanan state sementara
-    namaBarang: bantuanUtama[0].namaBarang,
+    namaBarang: bantuanUtama.length > 0 ? bantuanUtama[0].namaBarang : "",
     satuan: "",
     banyaknya: "",
     nilainya: "",

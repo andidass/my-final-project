@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getBantuanKeluar } from "../../../actions/bantuanKeluar";
 import { getBantuanUtama } from "../../../actions/setBantuanUtama";
+import FormBantuanKeluar from "./FormBantuanKeluar";
 import Spinner from "../../../Components/Spinner";
 
 const BantuanKeluar = ({
@@ -22,6 +23,10 @@ const BantuanKeluar = ({
 
   if (!user) {
     return <Redirect to="/admin/dashboard" />;
+  }
+
+  if (bantuanKeluar && bantuanKeluar.dataBantuanKeluar.length === 0) {
+    return <FormBantuanKeluar />;
   }
 
   return loading ? (

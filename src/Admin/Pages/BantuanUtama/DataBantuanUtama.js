@@ -18,10 +18,6 @@ import { Grid, Typography, TextField, Paper, Button } from "@material-ui/core";
 
 const jenisBantuan2 = [
   {
-    value: "Sandang",
-    label: "Sandang",
-  },
-  {
     value: "Pangan",
     label: "Pangan",
   },
@@ -30,8 +26,8 @@ const jenisBantuan2 = [
     label: "Papan",
   },
   {
-    value: "Sanitasi",
-    label: "Sanitasi",
+    value: "Sandang",
+    label: "Sandang",
   },
   {
     value: "Peralatan",
@@ -79,6 +75,7 @@ const DataBantuanUtama = ({
     <Spinner />
   ) : (
     <Fragment>
+      <Alert />
       <div className="sub-heading">
         <Typography variant="h5">Set Bantuan Utama</Typography>
         <Typography variant="subtitle2">
@@ -139,7 +136,6 @@ const DataBantuanUtama = ({
                       value={namaBarang}
                     />
                   </div>
-                  <Alert />
                   <Button
                     variant="contained"
                     type="submit"

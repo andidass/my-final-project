@@ -39,14 +39,6 @@ const AllDataBencana = ({
 
   return loading ? (
     <Spinner />
-  ) : allDataBencana.length === 0 ? (
-    <div className="no-data">
-      <img
-        src="/img/undraw_empty_xct9.svg"
-        alt="React Logo"
-        style={{ width: `40%` }}
-      />
-    </div>
   ) : (
     <Fragment>
       <div className="sub-heading">
@@ -91,7 +83,14 @@ const AllDataBencana = ({
             />
           ))
         ) : (
-          <h4>Tidak Ada Data Benacana Ditemukan...</h4>
+          <div className="no-data">
+            <h4>Tidak Ada Data Benacana Ditemukan...</h4>
+            <img
+              src="/img/undraw_empty_xct9.svg"
+              alt="React Logo"
+              style={{ width: `40%` }}
+            />
+          </div>
         )}
       </Grid>
     </Fragment>

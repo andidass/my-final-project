@@ -48,9 +48,23 @@ export default function SimpleTable(props) {
                   {item.namaBarang}
                 </TableCell>
                 <TableCell align="right">{item.satuan}</TableCell>
-                <TableCell align="right">{item.banyaknya}</TableCell>
-                <TableCell align="right">{item.nilainya}</TableCell>
-                <TableCell align="right">{item.jenisBantuan}</TableCell>
+                <TableCell align="right">
+                  {Intl.NumberFormat("id").format(item.banyaknya)}
+                </TableCell>
+                <TableCell align="right">
+                  {Intl.NumberFormat("id").format(item.nilainya)}
+                </TableCell>
+                <TableCell align="right">
+                  {item.jenisBantuan === "Utama" ? (
+                    <Button variant="contained" color="primary" size="small">
+                      {item.jenisBantuan}
+                    </Button>
+                  ) : (
+                    <Button variant="contained" color="secondary" size="small">
+                      {item.jenisBantuan}
+                    </Button>
+                  )}
+                </TableCell>
                 <TableCell align="right">
                   <Button
                     variant="contained"

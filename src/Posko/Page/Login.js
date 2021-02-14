@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = ({ login, auth: { user } }) => {
+const SignIn = ({ login, auth: { token } }) => {
   const classes = useStyles();
 
   const [formLogin, setFormLogin] = useState({
@@ -62,7 +62,7 @@ const SignIn = ({ login, auth: { user } }) => {
   };
 
   // Redirect jika login success
-  if (user) {
+  if (token) {
     return <Redirect to="/pos/dashboard" />;
   }
 

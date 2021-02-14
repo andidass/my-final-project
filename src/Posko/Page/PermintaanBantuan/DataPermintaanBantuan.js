@@ -23,14 +23,6 @@ import {
 
 const jenisBantuan2 = [
   {
-    value: "Utama",
-    label: "Utama",
-  },
-  {
-    value: "Sandang",
-    label: "Sandang",
-  },
-  {
     value: "Pangan",
     label: "Pangan",
   },
@@ -38,10 +30,10 @@ const jenisBantuan2 = [
     value: "Papan",
     label: "Papan",
   },
-  // {
-  //   value: "Uang",
-  //   label: "Uang",
-  // },
+  {
+    value: "Sandang",
+    label: "Sandang",
+  },
 ];
 
 const DataPermintaanBantuan = ({
@@ -52,7 +44,7 @@ const DataPermintaanBantuan = ({
   auth: { user },
 }) => {
   const [dataPermintaan, setDataPermintaan] = useState({
-    jenisBantuan: "Utama",
+    jenisBantuan: "Pangan",
     namaBarang: "",
     satuan: "",
     banyaknya: "",
@@ -68,7 +60,7 @@ const DataPermintaanBantuan = ({
     event.preventDefault();
     insertPermintaanBantuan(dataPermintaan, history);
     setDataPermintaan({
-      jenisBantuan: "Utama",
+      jenisBantuan: "Pangan",
       namaBarang: "",
       satuan: "",
       banyaknya: "",

@@ -95,7 +95,7 @@ const BantuanKeluar = ({
           startIcon={<ArrowBackIosIcon />}
           style={{ margin: 8 }}
         >
-          <Link to="/pos/bantuan-keluar">Kembali</Link>
+          <Link to="/pos/dashboard">Kembali</Link>
         </Button>
       ) : (
         <Button

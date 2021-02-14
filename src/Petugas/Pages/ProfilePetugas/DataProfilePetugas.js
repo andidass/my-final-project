@@ -99,6 +99,7 @@ const DataProfilePosko = ({
                 variant="outlined"
                 size="small"
                 fullWidth
+                required
                 onChange={(e) => onChange(e)}
                 value={name}
               />
@@ -110,6 +111,7 @@ const DataProfilePosko = ({
                 variant="outlined"
                 size="small"
                 fullWidth
+                required
                 multiline
                 onChange={(e) => onChange(e)}
                 value={position}
@@ -122,6 +124,7 @@ const DataProfilePosko = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
+                required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={nohp}
@@ -135,13 +138,13 @@ const DataProfilePosko = ({
                 size="small"
                 fullWidth
                 multiline
+                required
                 onChange={(e) => onChange(e)}
                 value={jobdesc}
               />
             </Grid>
 
             <Grid xs={12} sm={6} item>
-              {/* <DataPosko /> */}
               <Typography component="div">
                 <Box fontSize={17}>
                   <b>Lingkup Wilayah Tugas</b>
@@ -155,6 +158,7 @@ const DataProfilePosko = ({
                 variant="outlined"
                 size="small"
                 fullWidth
+                required
                 onChange={(e) => onChange(e)}
                 value={kecDesa}
               />
@@ -166,6 +170,7 @@ const DataProfilePosko = ({
                 variant="outlined"
                 size="small"
                 fullWidth
+                required
                 multiline
                 onChange={(e) => onChange(e)}
                 value={kelurahan}
@@ -179,6 +184,7 @@ const DataProfilePosko = ({
                 variant="outlined"
                 size="small"
                 fullWidth
+                required
                 onChange={(e) => onChange(e)}
                 value={kabupaten}
               />
@@ -190,6 +196,7 @@ const DataProfilePosko = ({
                 variant="outlined"
                 size="small"
                 fullWidth
+                required
                 multiline
                 onChange={(e) => onChange(e)}
                 value={regdesc}
@@ -200,7 +207,7 @@ const DataProfilePosko = ({
                 type="submit"
                 variant="contained"
                 color="primary"
-                size="small"
+                size="large"
                 startIcon={<SaveIcon />}
                 style={{ marginTop: 20, maxWidth: 500, minWidth: 200 }}
               >

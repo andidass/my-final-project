@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import moment from "moment";
 import {
   Box,
   Collapse,
@@ -42,11 +43,11 @@ function Row({ rows2 }) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {rows2.tanggal}
+          {moment(rows2.tanggal).format("DD MMM YY")}
         </TableCell>
         <TableCell>{rows2.namaPenerima}</TableCell>
         <TableCell align="right">{rows2.jabatan}</TableCell>
-        <TableCell align="right">{rows2._id}</TableCell>
+        <TableCell align="right">{rows2.kodeTransaksi}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -62,6 +63,7 @@ function Row({ rows2 }) {
                     <TableCell>Satuan</TableCell>
                     <TableCell align="right">Banyaknya</TableCell>
                     <TableCell align="right">Nilai Barang (Rp)</TableCell>
+                    <TableCell align="right">Total Nilai Barang (Rp)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -71,8 +73,17 @@ function Row({ rows2 }) {
                         {dataRow.namaBarang}
                       </TableCell>
                       <TableCell>{dataRow.satuan}</TableCell>
-                      <TableCell align="right">{dataRow.banyaknya}</TableCell>
-                      <TableCell align="right">{dataRow.nilainya}</TableCell>
+                      <TableCell align="right">
+                        {Intl.NumberFormat("id").format(dataRow.banyaknya)}
+                      </TableCell>
+                      <TableCell align="right">
+                        {Intl.NumberFormat("id").format(dataRow.nilainya)}
+                      </TableCell>
+                      <TableCell align="right">
+                        {Intl.NumberFormat("id").format(
+                          dataRow.nilainya * dataRow.banyaknya
+                        )}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

@@ -7,10 +7,6 @@ const jenisBantuan2 = [
     label: "Utama",
   },
   {
-    value: "Sandang",
-    label: "Sandang",
-  },
-  {
     value: "Pangan",
     label: "Pangan",
   },
@@ -19,8 +15,8 @@ const jenisBantuan2 = [
     label: "Papan",
   },
   {
-    value: "Uang",
-    label: "Uang",
+    value: "Sandang",
+    label: "Sandang",
   },
 ];
 
@@ -162,6 +158,7 @@ function ItemData({ addItem, bantuanUtama }) {
           variant="outlined"
           size="small"
           value={data.nilainya}
+          // value={Intl.NumberFormat("id").format(data.nilainya)}
           onChange={changeHandler}
         />
         <Button

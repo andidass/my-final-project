@@ -28,12 +28,12 @@ const DataFasilitasPosko = ({
   // get data fasilitas posko
   useEffect(() => {
     setDataFasilitas({
-      fkes: loading || !fasilitasPosko ? "0" : fasilitasPosko.fkes,
-      fpend: loading || !fasilitasPosko ? "0" : fasilitasPosko.fpend,
-      mck: loading || !fasilitasPosko ? "0" : fasilitasPosko.mck,
-      musholah: loading || !fasilitasPosko ? "0" : fasilitasPosko.musholah,
-      dapurUmum: loading || !fasilitasPosko ? "0" : fasilitasPosko.dapurUmum,
-      tendaUmum: loading || !fasilitasPosko ? "0" : fasilitasPosko.tendaUmum,
+      fkes: loading || !fasilitasPosko ? "" : fasilitasPosko.fkes,
+      fpend: loading || !fasilitasPosko ? "" : fasilitasPosko.fpend,
+      mck: loading || !fasilitasPosko ? "" : fasilitasPosko.mck,
+      musholah: loading || !fasilitasPosko ? "" : fasilitasPosko.musholah,
+      dapurUmum: loading || !fasilitasPosko ? "" : fasilitasPosko.dapurUmum,
+      tendaUmum: loading || !fasilitasPosko ? "" : fasilitasPosko.tendaUmum,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

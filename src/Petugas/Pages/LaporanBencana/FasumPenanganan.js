@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import {
   Grid,
   Paper,
@@ -17,6 +17,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import "./style.css";
 
 const FasumPenanganan = ({
+  auth: { token },
   createDataBencana,
   dataBencana: { dataBencana, loading },
   history,
@@ -126,6 +127,10 @@ const FasumPenanganan = ({
     e.preventDefault();
     createDataBencana(data, history, true);
   };
+
+  if (token === null) {
+    return <Redirect to="/petugas/login" />;
+  }
 
   return (
     <Fragment>
@@ -263,6 +268,7 @@ const FasumPenanganan = ({
 };
 
 FasumPenanganan.propTypes = {
+  auth: PropTypes.object.isRequired,
   createDataBencana: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   dataBencana: PropTypes.object.isRequired,

@@ -26,11 +26,11 @@ const useStyles = makeStyles({
     radius: 100,
     fontSize: 15,
     margin: 5,
+    borderRadius: 15,
   },
   padding: {
     paddingLeft: 50,
     paddingRight: 50,
-    paddingTop: 50,
   },
 });
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import moment from "moment";
 import {
   Box,
   Collapse,
@@ -42,12 +43,12 @@ function Row({ rows2 }) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {rows2.tanggal}
+          {moment(rows2.tanggal).format("DD MMM YY")}
         </TableCell>
         <TableCell>{rows2.namaDonatur}</TableCell>
         <TableCell align="right">{rows2.sumberDana}</TableCell>
         <TableCell align="right">{rows2.alamatDonatur}</TableCell>
-        <TableCell align="right">{rows2._id}</TableCell>
+        <TableCell align="right">{rows2.kodeTransaksi}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -63,6 +64,7 @@ function Row({ rows2 }) {
                     <TableCell>Satuan</TableCell>
                     <TableCell align="right">Banyaknya</TableCell>
                     <TableCell align="right">Nilai Barang (Rp)</TableCell>
+                    <TableCell align="right">Total Nilai Barang (Rp)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -72,8 +74,17 @@ function Row({ rows2 }) {
                         {row.namaBarang}
                       </TableCell>
                       <TableCell>{row.satuan}</TableCell>
-                      <TableCell align="right">{row.banyaknya}</TableCell>
-                      <TableCell align="right">{row.nilainya}</TableCell>
+                      <TableCell align="right">
+                        {Intl.NumberFormat("id").format(row.banyaknya)}
+                      </TableCell>
+                      <TableCell align="right">
+                        {Intl.NumberFormat("id").format(row.nilainya)}
+                      </TableCell>
+                      <TableCell align="right">
+                        {Intl.NumberFormat("id").format(
+                          row.nilainya * row.banyaknya
+                        )}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

@@ -17,11 +17,11 @@ const useStyles = makeStyles({
     radius: 100,
     fontSize: 15,
     margin: 5,
+    borderRadius: 15,
   },
   padding: {
     paddingLeft: 50,
     paddingRight: 50,
-    paddingTop: 50,
   },
 });
 
@@ -42,7 +42,7 @@ function MenuPetugas() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <HomeIcon />
+              <HomeIcon fontSize="large" />
               <Typography component="div">
                 <Box>Profile Petugas</Box>
               </Typography>
@@ -62,7 +62,7 @@ function MenuPetugas() {
         >
           <Card className={classes.root} variant="outlined">
             <CardContent>
-              <AssignmentIcon />
+              <AssignmentIcon fontSize="large" />
               <Typography component="div">
                 <Box>Data Bencana</Box>
               </Typography>

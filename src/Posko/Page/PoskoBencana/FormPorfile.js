@@ -33,8 +33,8 @@ const FormProfile = ({
     kecPosko: "",
     kelPosko: "",
     kabPosko: "",
-    namaPetugas: "",
-    jabatan: "",
+    namaPetugas: user && user.petugas,
+    jabatan: user && user.position,
     lat: "",
     lng: "",
     noHp: "",
@@ -102,7 +102,7 @@ const FormProfile = ({
         startIcon={<ArrowBackIosIcon />}
         style={{ margin: 8 }}
       >
-        <Link to="/pos/data-pos">Kembali</Link>
+        <Link to={!profile ? "/pos/dashboard" : "/pos/data-pos"}>Kembali</Link>
       </Button>
 
       <Grid container justify="center">
