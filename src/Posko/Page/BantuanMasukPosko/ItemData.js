@@ -18,6 +18,10 @@ const jenisBantuan2 = [
     value: "Sandang",
     label: "Sandang",
   },
+  {
+    value: "Peralatan",
+    label: "Peralatan",
+  },
 ];
 
 function ItemData({ addItem, bantuanUtama }) {

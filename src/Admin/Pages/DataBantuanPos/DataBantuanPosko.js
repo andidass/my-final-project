@@ -2,8 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getBantuanMasuk } from "../../../actions/bantuanMasuk";
-import { getBantuanKeluar } from "../../../actions/bantuanKeluar";
+import { getAllDataBantuanMasuk } from "../../../actions/bantuanMasuk";
+import { getAllDataBantuanKeluar } from "../../../actions/bantuanKeluar";
 // import TabelDataBantuan from "./TableDataBantuan";
 import Tabs from "./Tabs";
 
@@ -12,15 +12,15 @@ import Spinner from "../../../Components/Spinner";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 const DataBantuanPosko = ({
-  getBantuanKeluar,
-  getBantuanMasuk,
-  bantuanMasuk: { bantuanMasuk },
-  bantuanKeluar: { bantuanKeluar, loading },
+  getAllDataBantuanKeluar,
+  getAllDataBantuanMasuk,
+  bantuanMasuk: { semuaBantuanMasuk },
+  bantuanKeluar: { semuaBantuanKeluar, loading },
   auth: { user },
 }) => {
   useEffect(() => {
-    getBantuanKeluar();
-    getBantuanMasuk();
+    getAllDataBantuanKeluar();
+    getAllDataBantuanMasuk();
   }, []);
   return loading ? (
     <Spinner />
@@ -46,7 +46,7 @@ const DataBantuanPosko = ({
           <Link to="/admin/data-bantuan-pos">Kembali</Link>
         )}
       </Button>
-      <div className="data-bantuan">
+      {/* <div className="data-bantuan">
         {bantuanMasuk && (
           <Fragment>
             <Tabs
@@ -55,7 +55,7 @@ const DataBantuanPosko = ({
             />
           </Fragment>
         )}
-      </div>
+      </div> */}
     </Fragment>
   );
 };
@@ -67,14 +67,14 @@ const mapStateToProps = (state) => ({
 });
 
 DataBantuanPosko.propTypes = {
-  getBantuanKeluar: PropTypes.func.isRequired,
-  getBantuanMasuk: PropTypes.func.isRequired,
+  getAllDataBantuanKeluar: PropTypes.func.isRequired,
+  getAllDataBantuanMasuk: PropTypes.func.isRequired,
   bantuanMasuk: PropTypes.object.isRequired,
   bantuanKeluar: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, {
-  getBantuanKeluar,
-  getBantuanMasuk,
+  getAllDataBantuanKeluar,
+  getAllDataBantuanMasuk,
 })(DataBantuanPosko);

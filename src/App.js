@@ -63,7 +63,7 @@ import BantuanKeluar from "./Admin/Pages/BantuanKeluar";
 import FormBantuanMasuk from "./Admin/Pages/BantuanMasuk/FormBantuanMasuk";
 import FormBantuanKeluar from "./Admin/Pages/BantuanKeluar/FormBantuanKeluar";
 import DataBantuanPos from "./Admin/Pages/DataBantuanPos";
-import DataBantuanPosko from "./Admin/Pages/DataBantuanPosko";
+import DataBantuanPosko from "./Admin/Pages/DataBantuanPos/DataBantuanPosko";
 import DataBantuanPosById from "./Admin/Pages/DataBantuanPos/DataBantuanPosById";
 
 import { loadUser } from "./actions/auth";
@@ -126,6 +126,11 @@ const App = () => {
             component={DataBencanaById}
           />
           <Route path="/data-bantuan" exact component={DataBantuanPos} />
+          <Route
+            path="/data-bantuan/posko"
+            exact
+            component={DataBantuanPosko}
+          />
           <Route
             path="/data-bantuan/:id"
             exact

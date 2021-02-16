@@ -28,7 +28,7 @@ const BantuanMasuk = ({
   // const [open, setOpen] = React.useState(false);
   const [dataInit, setDataInit] = useState({
     kodeTransaksi: id,
-    tanggalTransaksi: "",
+    tanggal: "",
     namaDonatur: "",
     sumberDana: "",
     alamatDonatur: "",
@@ -157,7 +157,7 @@ const BantuanMasuk = ({
                 onChange={changeHandlerInit}
               />
               <TextField
-                id="tanggalTransaksi"
+                id="tanggal"
                 label="Tanggal"
                 variant="outlined"
                 type="date"
@@ -169,7 +169,7 @@ const BantuanMasuk = ({
                 margin="normal"
                 size="small"
                 // required
-                value={dataInit.tanggalTransaksi}
+                value={dataInit.tanggal}
                 onChange={changeHandlerInit}
               />
             </div>

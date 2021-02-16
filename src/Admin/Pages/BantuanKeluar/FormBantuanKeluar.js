@@ -26,7 +26,7 @@ const BantuanKeluar = ({
   const [rows, setRows] = useState([]); // data item
   const [dataInit, setDataInit] = useState({
     kodeTransaksi: id,
-    tanggalTransaksi: "",
+    tanggal: "",
     namaPenerima: "",
     jabatan: "",
     dataItemBantuan: rows,
@@ -145,7 +145,7 @@ const BantuanKeluar = ({
                 onChange={changeHandlerInit}
               />
               <TextField
-                id="tanggalTransaksi"
+                id="tanggal"
                 label="Tanggal"
                 variant="outlined"
                 type="date"
@@ -157,7 +157,7 @@ const BantuanKeluar = ({
                 margin="normal"
                 size="small"
                 // required
-                value={dataInit.tanggalTransaksi}
+                value={dataInit.tanggal}
                 onChange={changeHandlerInit}
               />
             </div>
