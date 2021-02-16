@@ -41,7 +41,7 @@ export default function SimpleTable({ rows, deleteItem }) {
           fontWeight="fontWeightBold"
           textAlign="center"
           fontSize={18}
-          marginTop={5}
+          // marginTop={5}
         >
           Daftar Data Kerusakan
         </Box>

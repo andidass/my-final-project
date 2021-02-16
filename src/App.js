@@ -63,6 +63,7 @@ import BantuanKeluar from "./Admin/Pages/BantuanKeluar";
 import FormBantuanMasuk from "./Admin/Pages/BantuanMasuk/FormBantuanMasuk";
 import FormBantuanKeluar from "./Admin/Pages/BantuanKeluar/FormBantuanKeluar";
 import DataBantuanPos from "./Admin/Pages/DataBantuanPos";
+import DataBantuanPosko from "./Admin/Pages/DataBantuanPosko";
 import DataBantuanPosById from "./Admin/Pages/DataBantuanPos/DataBantuanPosById";
 
 import { loadUser } from "./actions/auth";
@@ -94,6 +95,11 @@ const App = () => {
           <Route path="/info-dan-donasi" exact component={InfoDonasi} />
           <Route path="/data-pos/:id" exact component={DataPoskoById} />
           <Route path="/data-bantuan-pos" exact component={DataBantuanPos} />
+          <Route
+            path="/data-bantuan-pos/posko"
+            exact
+            component={DataBantuanPosko}
+          />
           <Route
             path="/data-bantuan-pos/:id"
             exact

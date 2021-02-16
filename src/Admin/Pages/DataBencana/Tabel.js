@@ -37,12 +37,7 @@ export default function SimpleTable({ rows, deleteItem }) {
   return (
     <div className="table">
       <Typography component="div">
-        <Box
-          fontWeight="fontWeightBold"
-          textAlign="center"
-          fontSize={18}
-          marginTop={5}
-        >
+        <Box fontWeight="fontWeightBold" textAlign="center" fontSize={18}>
           Daftar Pengungsi
         </Box>
       </Typography>

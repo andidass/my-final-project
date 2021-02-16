@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 import Spinner from "../../Components/Spinner";
 import { Typography, Paper } from "@material-ui/core";
 
-const MainAdmin = ({ auth: { user, token, loading }, loadUser }) => {
+const MainAdmin = ({ auth: { user, loading }, loadUser }) => {
   useEffect(() => {
     loadUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!token) {
+  if (!user) {
     return <Redirect to="/admin/login" />;
   }
 

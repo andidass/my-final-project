@@ -28,7 +28,7 @@ function Map({ location, namaPosko }) {
               <Fragment>
                 <h3 style={{ textAlign: "center" }}>lokasi {namaPosko}</h3>
                 <div>
-                  lat : {location.lat}, lng:{location.lng}
+                  lat : {location.lat.toFixed(5)}, lng:{location.lng.toFixed(5)}
                 </div>
               </Fragment>
             </InfoWindow>

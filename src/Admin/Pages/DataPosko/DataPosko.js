@@ -20,7 +20,11 @@ const DataPosko = ({
       to={!user ? `/data-pos/${_id}` : `/admin/data-pos/${_id}`}
       className="link"
     >
-      <Card className="root" variant="outlined">
+      <Card
+        className="root"
+        style={{ borderRadius: `15px` }}
+        variant="outlined"
+      >
         <CardContent className="card">
           <HomeIcon />
           <Typography component="div">

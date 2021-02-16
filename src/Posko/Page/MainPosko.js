@@ -24,7 +24,7 @@ const MainPosko = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!token) {
+  if (!user) {
     return <Redirect to="/pos/login" />;
   }
 

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Box, Typography } from "@material-ui/core";
+import { Button, Box, Typography, Chip } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -56,13 +56,17 @@ export default function SimpleTable(props) {
                 </TableCell>
                 <TableCell align="right">
                   {item.jenisBantuan === "Utama" ? (
-                    <Button variant="contained" color="primary" size="small">
-                      {item.jenisBantuan}
-                    </Button>
+                    <Chip
+                      color="primary"
+                      size="small"
+                      label={item.jenisBantuan}
+                    />
                   ) : (
-                    <Button variant="contained" color="secondary" size="small">
-                      {item.jenisBantuan}
-                    </Button>
+                    <Chip
+                      color="secondary"
+                      size="small"
+                      label={item.jenisBantuan}
+                    />
                   )}
                 </TableCell>
                 <TableCell align="right">

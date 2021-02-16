@@ -19,7 +19,11 @@ const DataBencana = ({
       to={!user ? `/data-laporan-bencana/${_id}` : `/admin/data-bencana/${_id}`}
       className="link"
     >
-      <Card className="root" variant="outlined">
+      <Card
+        className="root"
+        style={{ borderRadius: `15px` }}
+        variant="outlined"
+      >
         <CardContent className="card">
           <RecordVoiceOverIcon />
           <Typography component="div">

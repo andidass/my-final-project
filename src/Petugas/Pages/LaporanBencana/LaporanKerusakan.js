@@ -153,7 +153,19 @@ const LaporanKerusakan = ({
   const [show, setShow] = useState(false);
   const [data, setData] = useState({
     jenisBidang: "Permukiman",
-    bidang: "",
+    bidang: "Permukiman",
+    // bidang:
+    //   data.jenisBidang === "Permukiman"
+    //     ? "Permukiman"
+    //     : data.jenisBidang === "Infrastruktur"
+    //     ? "Transportasi Darat"
+    //     : data.jenisBidang === "Ekonomi Produktif"
+    //     ? "Pertanian"
+    //     : data.jenisBidang === "Sosial"
+    //     ? "Pendidikan"
+    //     : data.jenisBidang === "Lintas Sektor"
+    //     ? "Perkantoran"
+    //     : "",
     wilayah: "",
     jenisKerusakan: "",
     rusakBerat: 0,
@@ -180,7 +192,7 @@ const LaporanKerusakan = ({
     insertDataKerusakan(data);
     setData({
       jenisBidang: "Permukiman",
-      bidang: "",
+      bidang: "Permukiman",
       wilayah: "",
       jenisKerusakan: "",
       rusakBerat: 0,

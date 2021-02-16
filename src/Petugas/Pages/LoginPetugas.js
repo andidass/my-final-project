@@ -4,14 +4,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authPetugas";
 import Alert from "../../layout/Alert";
-
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link as Linkes,
   Grid,
   Typography,
@@ -30,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+    width: theme.spacing(7),
+    height: theme.spacing(7),
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -68,7 +67,7 @@ const LoginPetugas = ({ login, auth: { user } }) => {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon fontSize="large" />
         </Avatar>
         <Typography component="h1" variant="h5">
           Login Petugas Lapangan
@@ -100,10 +99,6 @@ const LoginPetugas = ({ login, auth: { user } }) => {
             onChange={(e) => onChange(e)}
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Ingatkan saya"
-          />
           <Alert />
           <Button
             type="submit"
@@ -115,11 +110,7 @@ const LoginPetugas = ({ login, auth: { user } }) => {
             Masuk
           </Button>
           <Grid container>
-            <Grid item xs>
-              {/* <Link to="#">
-                <Linkes variant="body2">{"Lupa Kata Sandi"}</Linkes>
-              </Link> */}
-            </Grid>
+            <Grid item xs></Grid>
             <Grid item>
               <Link to="./registrasi">
                 <Linkes variant="body2">

@@ -18,7 +18,7 @@ const MainPetugas = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isAuthenticated) {
+  if (!user) {
     return <Redirect to="/petugas/login" />;
   }
 

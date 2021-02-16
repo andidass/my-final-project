@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+    width: theme.spacing(7),
+    height: theme.spacing(7),
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = ({ login, auth: { token } }) => {
+const SignIn = ({ login, auth: { user } }) => {
   const classes = useStyles();
 
   const [formLogin, setFormLogin] = useState({
@@ -62,7 +64,7 @@ const SignIn = ({ login, auth: { token } }) => {
   };
 
   // Redirect jika login success
-  if (token) {
+  if (user) {
     return <Redirect to="/pos/dashboard" />;
   }
 
@@ -71,7 +73,7 @@ const SignIn = ({ login, auth: { token } }) => {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon fontSize="large" />
         </Avatar>
         <Typography component="h1" variant="h5">
           Login Pos Pengungsian
@@ -117,10 +119,6 @@ const SignIn = ({ login, auth: { token } }) => {
               ),
             }}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Ingatkan saya"
-          />
           <Alert />
           <Button
             type="submit"
@@ -132,11 +130,7 @@ const SignIn = ({ login, auth: { token } }) => {
             Masuk
           </Button>
           <Grid container>
-            <Grid item xs>
-              {/* <Link to="#">
-                <Linkes variant="body2">{"Lupa Kata Sandi"}</Linkes>
-              </Link> */}
-            </Grid>
+            <Grid item xs></Grid>
             <Grid item>
               <Link to="/pos/registrasi">
                 <Linkes variant="body2">

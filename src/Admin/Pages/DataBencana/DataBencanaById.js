@@ -6,12 +6,20 @@ import Tabel from "./Tabel";
 import TabelKerusakan from "./TabelKerusakan";
 
 import { getDataBencanaById } from "../../../actions/dataBencana";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import Spinner from "../../../Components/Spinner";
 import MapPosko from "../../../layout/Map";
-import { Button, Typography } from "@material-ui/core";
+import {
+  Button,
+  Typography,
+  Paper,
+  Table,
+  TableRow,
+  TableCell,
+} from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import RoomIcon from "@material-ui/icons/Room";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 
 import "./style.css";
 
@@ -59,44 +67,92 @@ const DataBencana = ({
       >
         <Link to="/admin/data-bencana">Kembali</Link>
       </Button>
-      {dataBencana && (
-        <div className="data-posko">
-          <Typography variant="h6">
-            <b>1. Kejadian Bencana</b>
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Jenis Bencana :</b> {dataBencana.jenisBencana}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Tanggal Kejadian :</b> {dataBencana.tglKejadian}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Waktu Kejadian :</b> {dataBencana.waktuKejadian}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Lokasi</b>
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Kabupaten :</b>
-            {dataBencana.lokasiBencana && dataBencana.lokasiBencana.kabupaten}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Kecamatan :</b>
-            {dataBencana.lokasiBencana && dataBencana.lokasiBencana.kec}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Kelurahan / Desa : </b>
-            {dataBencana.lokasiBencana && dataBencana.lokasiBencana.kelurahan}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Letak Geografis</b>
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Koordinat Bencana : </b>
-            {dataBencana.lokasiBencana &&
-              dataBencana.lokasiBencana.lat +
-                ", " +
-                dataBencana.lokasiBencana.lng}
+      <Paper variant="outlined" style={{ margin: `5%` }}>
+        {dataBencana && (
+          <div className="data-posko">
+            <Typography variant="h6">
+              <b>1. Kejadian Bencana</b>
+            </Typography>
+            <Table>
+              <TableRow>
+                <TableCell variant="head">Jenis Bencana</TableCell>
+                <TableCell>{dataBencana.jenisBencana}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Tanggal Kejadian</TableCell>
+                <TableCell>{dataBencana.tglKejadian}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Waktu Kejadian</TableCell>
+                <TableCell>{dataBencana.waktuKejadian}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Tanggal Kejadian</TableCell>
+                <TableCell>{dataBencana.tglKejadian}</TableCell>
+              </TableRow>
+            </Table>
+            <br />
+            <Typography variant="subtitle1">
+              <b>Lokasi</b>
+            </Typography>
+            <Table>
+              <TableRow>
+                <TableCell variant="head">Kabupaten</TableCell>
+                <TableCell>
+                  {dataBencana.lokasiBencana &&
+                    dataBencana.lokasiBencana.kabupaten}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Kecamatan</TableCell>
+                <TableCell>
+                  {dataBencana.lokasiBencana && dataBencana.lokasiBencana.kec}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Kelurahan / Desa</TableCell>
+                <TableCell>
+                  {dataBencana.lokasiBencana &&
+                    dataBencana.lokasiBencana.kelurahan}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Cakupan Dampak Bencana</TableCell>
+                <TableCell>
+                  {dataBencana.lokasiBencana &&
+                    dataBencana.lokasiBencana.cakupan}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Penyebab Bencana</TableCell>
+                <TableCell>{dataBencana && dataBencana.penyebab}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Deskripsi</TableCell>
+                <TableCell>{dataBencana && dataBencana.desc}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant="head">Kondisi Cuaca</TableCell>
+                <TableCell>{dataBencana && dataBencana.cuaca}</TableCell>
+              </TableRow>
+            </Table>
+            <br />
+
+            <Typography variant="subtitle1">
+              <b>Letak Geografis</b>
+            </Typography>
+            <Table>
+              <TableRow>
+                <TableCell variant="head">Koordinat Bencana</TableCell>
+                <TableCell>
+                  {dataBencana.lokasiBencana &&
+                    dataBencana.lokasiBencana.lat.toFixed(5) +
+                      ", " +
+                      dataBencana.lokasiBencana.lng.toFixed(5)}
+                </TableCell>
+              </TableRow>
+            </Table>
+
             {dataBencana.lokasiBencana && (
               <Button
                 variant="contained"
@@ -119,80 +175,77 @@ const DataBencana = ({
                 namaPosko={dataBencana.jenisBencana}
               />
             )}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Cakupan Dampak Bencana : </b>
-            {dataBencana.lokasiBencana && dataBencana.lokasiBencana.cakupan}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Penyebab Bencana : </b> {dataBencana.penyebab}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Deskripsi : </b> {dataBencana.desc}
-          </Typography>
-          <Typography variant="subtitle1">
-            <b>Kondisi Cuaca : </b> {dataBencana.cuaca}
-          </Typography>
-          <hr />
-          <Typography variant="h6">
-            <b>2. Korban Jiwa</b>
-          </Typography>
-          {dataBencana && dataBencana.dataKorban.length === 0 ? (
-            <Typography variant="subtitle1">
-              Tidak ada data korban jiwa
+            <br />
+            <Typography variant="h6">
+              <b>2. Korban Jiwa</b>
             </Typography>
-          ) : (
-            <Tabel rows={dataBencana.dataKorban} />
-          )}
-          <hr />
-          <Typography variant="h6">
-            <b>3. Kerusakan</b>
-          </Typography>
-          {dataBencana && dataBencana.dataKerusakan.length === 0 ? (
-            <Typography variant="subtitle1">
-              Tidak ada data Kerusakan
+            {dataBencana && dataBencana.dataKorban.length === 0 ? (
+              <Typography variant="subtitle1">
+                Tidak ada data korban jiwa
+              </Typography>
+            ) : (
+              <Tabel rows={dataBencana.dataKorban} />
+            )}
+            <br />
+            <Typography variant="h6">
+              <b>3. Kerusakan</b>
             </Typography>
-          ) : (
-            <TabelKerusakan rows={dataBencana.dataKerusakan} />
-          )}
-          <hr />
-          <Typography variant="h6">
-            <b>4. Fasilitas Umum Yang Masih Bisa Digunakan</b>
-          </Typography>
-          {!dataBencana.fasum ? (
-            <Typography variant="subtitle1">
-              Tidak ada data Fasilitas Umum
+            {dataBencana && dataBencana.dataKerusakan.length === 0 ? (
+              <Typography variant="subtitle1">
+                Tidak ada data Kerusakan
+              </Typography>
+            ) : (
+              <TabelKerusakan rows={dataBencana.dataKerusakan} />
+            )}
+            <br />
+            <Typography variant="h6">
+              <b>4. Fasilitas Umum Yang Masih Bisa Digunakan</b>
             </Typography>
-          ) : (
-            <Fragment>
+            {!dataBencana.fasum ? (
               <Typography variant="subtitle1">
-                <b>Akses ke lokasi Bencana : </b>
-                {dataBencana.fasum.aksesKeLokasi}
+                Tidak ada data Fasilitas Umum
               </Typography>
-              <Typography variant="subtitle1">
-                <b>Sarana Transportasi (angkutan umum, ketersediaan BBM) : </b>
-                {dataBencana.fasum.saranaTransportasi}
-              </Typography>
-              <Typography variant="subtitle1">
-                <b>Jalur Komunikasi (seluler, telepon, radio Komunikasi) : </b>
-                {dataBencana.fasum.jalurKomunikasi}
-              </Typography>
-              <Typography variant="subtitle1">
-                <b>Keadaan jaringan listrik : </b>
-                {dataBencana.fasum.keadaanJaringanListrik}
-              </Typography>
-              <Typography variant="subtitle1">
-                <b>Keadaan jaringan air/air bersih: </b>
-                {dataBencana.fasum.keadaanJaringanAir}
-              </Typography>
-              <Typography variant="subtitle1">
-                <b>Fasilitas Kesehatan (RS, Puskesmas, Pustu) : </b>
-                {dataBencana.fasum.fasKes}
-              </Typography>
-            </Fragment>
-          )}
-        </div>
-      )}
+            ) : (
+              <Table>
+                <TableRow>
+                  <TableCell variant="head">Akses ke lokasi Bencana</TableCell>
+                  <TableCell>{dataBencana.fasum.aksesKeLokasi}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">
+                    Sarana Transportasi (angkutan umum, ketersediaan BBM)
+                  </TableCell>
+                  <TableCell>{dataBencana.fasum.saranaTransportasi}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">
+                    Jalur Komunikasi (seluler, telepon, radio Komunikasi)
+                  </TableCell>
+                  <TableCell>{dataBencana.fasum.jalurKomunikasi}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Keadaan jaringan listrik</TableCell>
+                  <TableCell>
+                    {dataBencana.fasum.keadaanJaringanListrik}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">
+                    Keadaan jaringan air/air bersih
+                  </TableCell>
+                  <TableCell>{dataBencana.fasum.keadaanJaringanAir}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">
+                    Fasilitas Kesehatan (RS, Puskesmas, Pustu)
+                  </TableCell>
+                  <TableCell>{dataBencana.fasum.fasKes}</TableCell>
+                </TableRow>
+              </Table>
+            )}
+          </div>
+        )}
+      </Paper>
     </Fragment>
   );
 };

@@ -31,7 +31,11 @@ const DataPermintaan = ({
       }
       className="link"
     >
-      <Card className="root" variant="outlined">
+      <Card
+        className="root"
+        style={{ borderRadius: `15px` }}
+        variant="outlined"
+      >
         <CardContent className="card">
           <Badge badgeContent={dataPermintaanBantuan.length} color="secondary">
             <HomeIcon />

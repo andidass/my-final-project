@@ -20,10 +20,7 @@ const Warning = ({ auth: { user } }) => {
         style={{ margin: 8 }}
         onClick={(e) => handleClick(e)}
       >
-        <Link
-          to={`/${user && user.session}/dashboard`}
-          style={{ color: "white" }}
-        >
+        <Link to={`/main-page`} style={{ color: "white" }}>
           Kembali
         </Link>
       </Button>

@@ -20,6 +20,7 @@ const ProfilePetugas = ({
     return <Redirect to="/petugas/login" />;
   }
   return loading ? <Spinner /> : <DataProfilePetugas />;
+  // return <DataProfilePetugas />;
 };
 
 ProfilePetugas.propTypes = {

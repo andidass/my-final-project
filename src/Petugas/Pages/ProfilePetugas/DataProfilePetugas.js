@@ -52,8 +52,16 @@ const DataProfilePosko = ({
     e.preventDefault();
     createProfile(profileData, history, true);
   };
+  // const [kecamatan, setKecamatan] = useState([]);
 
   useEffect(() => {
+    // fetch(
+    //   "https://raw.githubusercontent.com/ibnux/data-indonesia/master/kecamatan/5201.json"
+    // )
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     setKecamatan(json);
+    //   });
     setProfileData({
       name: loading || !user ? "" : user.name,
       position: loading || !user ? "" : user.position,
@@ -151,8 +159,20 @@ const DataProfilePosko = ({
                 </Box>
               </Typography>
               <TextField
+                name="kabupaten"
+                label="Kabupaten"
+                style={{ margin: 8, maxWidth: "90%" }}
+                margin="normal"
+                variant="outlined"
+                size="small"
+                fullWidth
+                required
+                onChange={(e) => onChange(e)}
+                value={kabupaten}
+              />
+              <TextField
                 name="kecDesa"
-                label="Kecamatan Desa-Dusun"
+                label="Kecamatan"
                 style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
@@ -164,7 +184,7 @@ const DataProfilePosko = ({
               />
               <TextField
                 name="kelurahan"
-                label="Kelurahan"
+                label="Kelurahan / Desa-Dusun"
                 style={{ margin: 8, maxWidth: "90%" }}
                 margin="normal"
                 variant="outlined"
@@ -174,19 +194,6 @@ const DataProfilePosko = ({
                 multiline
                 onChange={(e) => onChange(e)}
                 value={kelurahan}
-              />
-
-              <TextField
-                name="kabupaten"
-                label="Kabupaten"
-                style={{ margin: 8, maxWidth: "90%" }}
-                margin="normal"
-                variant="outlined"
-                size="small"
-                fullWidth
-                required
-                onChange={(e) => onChange(e)}
-                value={kabupaten}
               />
               <TextField
                 name="regdesc"

@@ -19,8 +19,12 @@ function Map({ profiles }) {
     <Fragment>
       {profiles.length > 0 && (
         <GoogleMap
-          defaultZoom={13}
-          defaultCenter={{ lat: -8.582086102277305, lng: 116.12219436577753 }}
+          defaultZoom={12}
+          // defaultCenter={{ lat: -8.582086102277305, lng: 116.12219436577753 }}
+          defaultCenter={{
+            lat: profiles[0].location.lat,
+            lng: profiles[0].location.lng,
+          }}
         >
           {profiles.map((profile) => (
             <Marker
