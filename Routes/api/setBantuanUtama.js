@@ -110,6 +110,7 @@ router.put(
 router.post("/", auth, async (req, res) => {
   try {
     let bantuanUtama = await BantuanUtama.findOne({});
+    res.json(bantuanUtama);
   } catch (err) {
     console.error(err.message);
     res.status(500).send({ msg: "Server Error" });

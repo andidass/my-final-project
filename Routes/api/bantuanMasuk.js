@@ -26,8 +26,8 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
-// @route   GET admin/bantuan-masuk/me
-// #desc    GET data bantuan-masuk account
+// @route   GET admin/bantuan-masuk
+// #desc    GET all data bantuan-masuk
 // @access  Private
 
 router.get("/", async (req, res) => {
