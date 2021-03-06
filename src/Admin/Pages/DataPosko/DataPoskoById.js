@@ -20,8 +20,8 @@ const AllDataPosko = ({
   getDataPengungsiById,
   getDataFasilitasPoskoByUserId,
   profile: { profile },
-  pengungsi: { pengungsi },
-  fasilitasPosko: { fasilitasPosko, loading },
+  pengungsi: { pengungsi, loading },
+  fasilitasPosko: { fasilitasPosko },
   auth: { user },
 }) => {
   useEffect(() => {
@@ -157,14 +157,32 @@ const AllDataPosko = ({
         >
           <b>Pengungsi {profile && profile.namaPosko}</b>
         </Typography>
-        {profile && profile.allPetugas.length === 0 ? (
+        {pengungsi && pengungsi.allPengungsi.length > 0 ? (
+          <Fragment>
+            {pengungsi.allPengungsi > 0 && (
+              <TabelPengungsi
+                allPengungsi={pengungsi && pengungsi.allPengungsi}
+                user={pengungsi && pengungsi.user}
+              />
+            )}
+            {JSON.stringify(pengungsi.allPengungsi.length)}
+          </Fragment>
+        ) : (
+          <Typography variant="subtitle1">Tidak Ada Data Pengungsi</Typography>
+        )}
+        {/* {pengungsi && pengungsi.allPengungsi.length === 0 ? (
           <Typography variant="subtitle1">Tidak Ada Data Pengungsi</Typography>
         ) : (
-          <TabelPengungsi
-            allPengungsi={pengungsi && pengungsi.allPengungsi}
-            user={pengungsi && pengungsi.user}
-          />
-        )}
+          <Fragment>
+            {pengungsi.allPengungsi > 0 && (
+              <TabelPengungsi
+                allPengungsi={pengungsi && pengungsi.allPengungsi}
+                user={pengungsi && pengungsi.user}
+              />
+            )}
+            {JSON.stringify(pengungsi.allPengungsi.length)}
+          </Fragment>
+        )} */}
         <Typography
           variant="subtitle1"
           align="center"

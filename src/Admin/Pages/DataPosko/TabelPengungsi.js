@@ -23,10 +23,7 @@ export default function TabelPengungsi({ allPengungsi, user }) {
 
   const emptyRows =
     rowsPerPage -
-    Math.min(
-      rowsPerPage,
-      allPengungsi && allPengungsi.length - page * rowsPerPage
-    );
+    Math.min(rowsPerPage, allPengungsi.length - page * rowsPerPage);
 
   return (
     <Fragment>
@@ -43,7 +40,7 @@ export default function TabelPengungsi({ allPengungsi, user }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allPengungsi &&
+            {allPengungsi.length > 0 &&
               allPengungsi
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => (
@@ -68,7 +65,7 @@ export default function TabelPengungsi({ allPengungsi, user }) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={allPengungsi && allPengungsi.length}
+          count={allPengungsi.length > 0 && allPengungsi.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

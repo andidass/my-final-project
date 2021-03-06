@@ -132,7 +132,7 @@ const DataProfilePosko = ({
                 margin="normal"
                 variant="outlined"
                 size="small"
-                required
+                // required
                 fullWidth
                 onChange={(e) => onChange(e)}
                 value={nohp}
@@ -146,7 +146,7 @@ const DataProfilePosko = ({
                 size="small"
                 fullWidth
                 multiline
-                required
+                // required
                 onChange={(e) => onChange(e)}
                 value={jobdesc}
               />
@@ -203,7 +203,7 @@ const DataProfilePosko = ({
                 variant="outlined"
                 size="small"
                 fullWidth
-                required
+                // required
                 multiline
                 onChange={(e) => onChange(e)}
                 value={regdesc}

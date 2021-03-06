@@ -3,6 +3,7 @@ import { withRouter, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Alert from "../../../layout/Alert";
+import MapPosko from "../../../layout/Map";
 import { createDataBencana } from "../../../actions/dataBencana";
 import {
   Grid,
@@ -227,19 +228,8 @@ const KejadianBencana = ({
                   value={kabupaten}
                 />
                 <TextField
-                  name="kelurahan"
-                  label="Kelurahan"
-                  style={{ margin: 8, maxWidth: 500 }}
-                  margin="normal"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  onChange={(e) => onChange(e)}
-                  value={kelurahan}
-                />
-                <TextField
                   name="kec"
-                  label="Kecamatan/Desa-Dusun"
+                  label="Kecamatan"
                   style={{ margin: 8, maxWidth: 500 }}
                   margin="normal"
                   variant="outlined"
@@ -248,6 +238,17 @@ const KejadianBencana = ({
                   multiline
                   onChange={(e) => onChange(e)}
                   value={kec}
+                />
+                <TextField
+                  name="kelurahan"
+                  label="Kelurahan/Desa-Dusun"
+                  style={{ margin: 8, maxWidth: 500 }}
+                  margin="normal"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onChange={(e) => onChange(e)}
+                  value={kelurahan}
                 />
                 <TextField
                   name="cakupan"
@@ -297,6 +298,12 @@ const KejadianBencana = ({
                 >
                   Set Lokasi
                 </Button>
+                {lat && lng && (
+                  <MapPosko
+                    location={{ lat: lat, lng: lng }}
+                    namaPosko={jenisBencana}
+                  />
+                )}
                 <TextField
                   name="penyebab"
                   label="Penyebab Bencana"

@@ -34,6 +34,10 @@ const jenisBantuan2 = [
     value: "Sandang",
     label: "Sandang",
   },
+  {
+    value: "Peralatan",
+    label: "Peralatan",
+  },
 ];
 
 const DataPermintaanBantuan = ({

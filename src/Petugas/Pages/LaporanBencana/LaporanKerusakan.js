@@ -344,7 +344,7 @@ const LaporanKerusakan = ({
                     variant="outlined"
                     size="small"
                     fullWidth
-                    required
+                    // required
                     onChange={(e) => onChange(e)}
                     value={jenisKerusakan}
                   />

@@ -34,12 +34,12 @@ router.post(
   [
     auth,
     [
-      check("nohp", "No Hp Harus diisi").isNumeric(),
+      // check("nohp", "No Hp Harus diisi").isNumeric(),
       check("jobdesc", "Job Deskripsi harus diisi").not().isEmpty(),
       check("kecDesa", "Kecamatan / Desa-Dusun harus diisi").not().isEmpty(),
       check("kelurahan", "kelurahan harus diisi").not().isEmpty(),
       check("kabupaten", "Kabupaten harus diisi").not().isEmpty(),
-      check("regdesc", "Deskripsi wilayah harus diisi").not().isEmpty(),
+      // check("regdesc", "Deskripsi wilayah harus diisi").not().isEmpty(),
     ],
   ],
   async (req, res) => {

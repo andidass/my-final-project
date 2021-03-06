@@ -279,7 +279,7 @@ router.put(
     [
       check("bidang", "bidang harus diisi").not().isEmpty(),
       check("wilayah", "wilayah harus diisi").not().isEmpty(),
-      check("jenisKerusakan", "jenis kerusakan harus diisi").not().isEmpty(),
+      // check("jenisKerusakan", "jenis kerusakan harus diisi").not().isEmpty(),
       check(
         "rusakBerat",
         "banyak kerusakan berat harus diisi menggunakan angka"

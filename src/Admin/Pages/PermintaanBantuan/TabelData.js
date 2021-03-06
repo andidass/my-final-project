@@ -5,7 +5,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Paper, TablePagination } from "@material-ui/core";
+import { Paper, TablePagination, Chip } from "@material-ui/core";
 
 export default function TabelData({ rows }) {
   const [page, setPage] = React.useState(0);
@@ -45,7 +45,21 @@ export default function TabelData({ rows }) {
                   </TableCell>
                   <TableCell align="left">{row.satuan}</TableCell>
                   <TableCell align="left">{row.banyaknya}</TableCell>
-                  <TableCell align="left">{row.jenisBantuan}</TableCell>
+                  <TableCell align="left">
+                    {row.jenisBantuan === "Utama" ? (
+                      <Chip
+                        color="primary"
+                        size="small"
+                        label={row.jenisBantuan}
+                      />
+                    ) : (
+                      <Chip
+                        color="secondary"
+                        size="small"
+                        label={row.jenisBantuan}
+                      />
+                    )}
+                  </TableCell>
                 </TableRow>
               ))}
           {emptyRows > 0 && (

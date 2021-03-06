@@ -1,5 +1,10 @@
 import React, { Fragment } from "react";
 import { Grid, Card, CardContent, Typography, Box } from "@material-ui/core";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import PaymentIcon from "@material-ui/icons/Payment";
 
 export default function InfoDonasi() {
   return (
@@ -13,14 +18,28 @@ export default function InfoDonasi() {
             <CardContent>
               <Typography component="div">
                 <Box>
+                  <b>Posko Penanganan Darurat Bencana Gempa Lombok</b>
+                </Box>
+                <Box>
+                  Lap. Supersemar Tanjung - Jl. Raya Tanjung Depan Kantor Bupati
+                  Lombok Utara
+                </Box>
+                <br />
+                <Box>
                   <b>Nomor Rekening Donasi</b>
                 </Box>
-                <Box>BRI XXXXXXX a/n BPBD NTB</Box>
+                <Box style={{ display: "flex" }}>
+                  <PaymentIcon />
+                  <b>BRI</b> 0052-01-002421-30-8 (Posko PDB Lombok)
+                </Box>
               </Typography>
               <br />
               <Typography component="div">
                 <Box>
                   <b>Nomor Penting :</b>
+                </Box>
+                <Box>
+                  POSKO Penanganan Darurat: 0853 3863 9789 / 0859 6147 2837
                 </Box>
                 <Box>SAR Mataram: (0370) 533253</Box>
                 <Box>Pemadam Kebakaran: (0370) 6662113</Box>
@@ -33,6 +52,18 @@ export default function InfoDonasi() {
                 <Box>RS Dr. Soedjono Selong, Lombok Timur : (0376) 21118</Box>
                 <Box>RS Risa Sentra Medika Lombok Timur: (0376) 23888</Box>
                 <Box>Puskesmas Tanjung, Lombok Utara: (0370) 623010</Box>
+                <Box style={{ display: "flex" }}>
+                  <TwitterIcon /> poskogempalomb1
+                </Box>
+                <Box style={{ display: "flex" }}>
+                  <FacebookIcon /> posko.lombok
+                </Box>
+                <Box style={{ display: "flex" }}>
+                  <InstagramIcon /> poskogempalombok
+                </Box>
+                <Box style={{ display: "flex" }}>
+                  <WhatsAppIcon /> 085961472837
+                </Box>
               </Typography>
             </CardContent>
           </Card>
