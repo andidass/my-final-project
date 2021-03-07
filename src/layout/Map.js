@@ -20,7 +20,7 @@ function Map({ location, namaPosko }) {
           <Marker
             position={{ lat: location.lat, lng: location.lng }}
             icon={{
-              url: "https://i.ibb.co/stQmjqK/pin-posko.png",
+              url: "https://i.ibb.co/JjTbyCB/pin-posko1.png",
               scaledSize: new window.google.maps.Size(50, 50),
             }}
           >

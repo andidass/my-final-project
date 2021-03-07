@@ -42,7 +42,7 @@ function MenuLaporanBencana() {
       <div className="sub-heading">
         <Typography variant="h5">Menu Data Kejadian Bencana</Typography>
         <Typography variant="subtitle2">
-          Catatan Data Kejadian Bencana (Berdasarkan Perka 89)
+          Catatan Data Kejadian Bencana (Berdasarkan Perka No.8 Tahun 2011)
         </Typography>
       </div>
       <Button

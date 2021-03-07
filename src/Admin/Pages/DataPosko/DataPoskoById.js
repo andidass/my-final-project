@@ -157,16 +157,12 @@ const AllDataPosko = ({
         >
           <b>Pengungsi {profile && profile.namaPosko}</b>
         </Typography>
+        {/* {JSON.stringify(pengungsi.allPengungsi.length)} */}
         {pengungsi && pengungsi.allPengungsi.length > 0 ? (
-          <Fragment>
-            {pengungsi.allPengungsi > 0 && (
-              <TabelPengungsi
-                allPengungsi={pengungsi && pengungsi.allPengungsi}
-                user={pengungsi && pengungsi.user}
-              />
-            )}
-            {JSON.stringify(pengungsi.allPengungsi.length)}
-          </Fragment>
+          <TabelPengungsi
+            allPengungsi={pengungsi && pengungsi.allPengungsi}
+            user={pengungsi && pengungsi.user}
+          />
         ) : (
           <Typography variant="subtitle1">Tidak Ada Data Pengungsi</Typography>
         )}

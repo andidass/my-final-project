@@ -49,7 +49,7 @@ const SimpleTable = ({
               <TableCell align="right">Umur</TableCell>
               <TableCell align="right">Keadaan</TableCell>
               <TableCell align="right">Alamat</TableCell>
-              <TableCell align="right">Posko</TableCell>
+              <TableCell align="right">Pos</TableCell>
             </TableRow>
           </TableHead>
           {semuaPengungsi.map((data) => (

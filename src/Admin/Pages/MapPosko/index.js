@@ -37,7 +37,7 @@ function Map({ profiles }) {
                 setSelectedPosko(profile);
               }}
               icon={{
-                url: "https://i.ibb.co/stQmjqK/pin-posko.png",
+                url: "https://i.ibb.co/JjTbyCB/pin-posko1.png",
                 scaledSize: new window.google.maps.Size(50, 50),
               }}
             />
