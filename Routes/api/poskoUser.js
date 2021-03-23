@@ -62,23 +62,23 @@ router.post(
       await user.save();
 
       // return jsonwebtoken for access protected route
-      // res.send("User berhasil terdaftar");
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
+      res.send("User berhasil terdaftar");
+      // const payload = {
+      //   user: {
+      //     id: user.id,
+      //   },
+      // };
 
-      jwt.sign(
-        payload,
-        config.get("jwtSecret"),
-        { expiresIn: 360000 }, // expiresIn set ke 3600 second / 1 jam expired.
-        (err, token) => {
-          if (err) throw err;
-          // tampilkan token
-          res.json({ token });
-        }
-      );
+      // jwt.sign(
+      //   payload,
+      //   config.get("jwtSecret"),
+      //   { expiresIn: 360000 }, // expiresIn set ke 3600 second / 1 jam expired.
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     // tampilkan token
+      //     res.json({ token });
+      //   }
+      // );
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");

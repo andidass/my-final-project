@@ -22,6 +22,20 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// @route   Get petugas/login/all-accounts-petugas
+// #desc    get all accounts
+// @access  auth
+
+router.get("/all-accounts-petugas", auth, async (req, res) => {
+  try {
+    const petugas = await Petugas.find().select("-password");
+    res.json(petugas);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "server error" });
+  }
+});
+
 // @route       POST petugas/login
 // @desc        Login user with email & password
 // @access      Authenticated

@@ -62,23 +62,24 @@ router.post(
       await petugas.save();
 
       // return jsonwebtoken for access protected route
-      // res.send("petugas berhasil terdaftar");
-      const payload = {
-        user: {
-          id: petugas.id,
-        },
-      };
+      res.send("petugas berhasil terdaftar");
 
-      jwt.sign(
-        payload,
-        config.get("jwtSecret"),
-        { expiresIn: 360000 }, // expiresIn set ke 3600 second / 1 jam expired.
-        (err, token) => {
-          if (err) throw err;
-          // tampilkan token
-          res.json({ token });
-        }
-      );
+      // LANGUNG AUTO LOGIN
+      // const payload = {
+      //   user: {
+      //     id: petugas.id,
+      //   },
+      // };
+      // jwt.sign(
+      //   payload,
+      //   config.get("jwtSecret"),
+      //   { expiresIn: 360000 }, // expiresIn set ke 3600 second / 1 jam expired.
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     // tampilkan token
+      //     res.json({ token });
+      //   }
+      // );
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");

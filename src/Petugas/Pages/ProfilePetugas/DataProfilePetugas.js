@@ -55,13 +55,6 @@ const DataProfilePosko = ({
   // const [kecamatan, setKecamatan] = useState([]);
 
   useEffect(() => {
-    // fetch(
-    //   "https://raw.githubusercontent.com/ibnux/data-indonesia/master/kecamatan/5201.json"
-    // )
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     setKecamatan(json);
-    //   });
     setProfileData({
       name: loading || !user ? "" : user.name,
       position: loading || !user ? "" : user.position,

@@ -19,6 +19,8 @@ import {
   CLEAR_PROFILE_ADMIN,
   CLEAR_BANTUAN_UTAMA,
   CLEAR_BANTUAN_KELUAR,
+  GET_ALL_ACCOUNTS_POS,
+  ACCOUNTS_POS_ERROR,
 } from "./types";
 import setAuthToken from "../utils/setTokenAuth";
 
@@ -42,13 +44,10 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register Posko
-export const register = ({
-  name,
-  usernameposko,
-  petugas,
-  password,
-  position,
-}) => async (dispatch) => {
+export const register = (
+  { name, usernameposko, petugas, password, position },
+  history
+) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -64,16 +63,15 @@ export const register = ({
 
   try {
     const res = await axios.post("/pos/registrasi", body, config);
-
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
-    dispatch(loadUser());
-    dispatch(setAlert("Akun Pos Lapangan Berhasil Dibuat", "success"));
+    // dispatch(loadUser());
+    dispatch(setAlert("Akun Pos Pengungsian Berhasil Dibuat", "success"));
+    history.push("/admin/registrasi-akun/data-akun-pos");
   } catch (err) {
     const errors = err.response.data.errors;
-
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "error")));
     }
@@ -91,10 +89,8 @@ export const login = (usernameposko, password) => async (dispatch) => {
     },
   };
   const body = JSON.stringify({ usernameposko, password });
-
   try {
     const res = await axios.post("/pos/login", body, config);
-
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -103,12 +99,26 @@ export const login = (usernameposko, password) => async (dispatch) => {
     dispatch(setAlert("Login Sukses", "success"));
   } catch (err) {
     const errors = err.response.data.errors;
-
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "error", 4000)));
     }
     dispatch({
       type: LOGIN_FAIL,
+    });
+  }
+};
+
+export const getAllAccountsPos = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/pos/login/all-accounts-pos");
+    dispatch({
+      type: GET_ALL_ACCOUNTS_POS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ACCOUNTS_POS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
@@ -127,5 +137,4 @@ export const logout = () => async (dispatch) => {
   dispatch({ type: CLEAR_LAPORAN_BENCANA });
   dispatch({ type: CLEAR_LAPORAN_HARIAN });
   dispatch({ type: CLEAR_PERMINTAAN_BANTUAN });
-  // dispatch(loadUser());
 };

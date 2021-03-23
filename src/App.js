@@ -65,6 +65,9 @@ import FormBantuanKeluar from "./Admin/Pages/BantuanKeluar/FormBantuanKeluar";
 import DataBantuanPos from "./Admin/Pages/DataBantuanPos";
 import DataBantuanPosko from "./Admin/Pages/DataBantuanPos/DataBantuanPosko";
 import DataBantuanPosById from "./Admin/Pages/DataBantuanPos/DataBantuanPosById";
+import RegistrasiAkun from "./Admin/Pages/RegistrasiAkun";
+import ListAkunPetugas from "./Admin/Pages/RegistrasiAkun/ListAkunPetugas";
+import ListAkunPos from "./Admin/Pages/RegistrasiAkun/ListAkunPos";
 
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setTokenAuth";
@@ -143,7 +146,7 @@ const App = () => {
           {/* <Route path="/" exact component={SignInPosko} /> */}
           <Route path="/pos" exact component={MainPosko} />
           <Route path="/pos/login" exact component={SignInPosko} />
-          <Route path="/pos/registrasi" exact component={RegistrasiPosko} />
+          {/* <Route path="/pos/registrasi" exact component={RegistrasiPosko} /> */}
           <Route path="/pos/dashboard" exact component={MainPosko} />
           {/* --------- PROFILE POSKO --------- */}
           <Route path="/pos/data-pos" exact component={PoskoBencana} />
@@ -196,11 +199,11 @@ const App = () => {
           />
           {/* ---------------- PETUGAS ------------------- */}
           <Route path="/petugas/login" exact component={LoginPetugas} />
-          <Route
+          {/* <Route
             path="/petugas/registrasi"
             exact
             component={RegistrasiPetugas}
-          />
+          /> */}
           <Route path="/petugas" exact component={MainPetugas} />
           <Route path="/petugas/dashboard" exact component={MainPetugas} />
           <Route path="/petugas/profile" exact component={ProfilePetugas} />
@@ -282,6 +285,36 @@ const App = () => {
             path="/admin/data-pengungsi"
             exact
             component={AllDataPengungsi}
+          />
+
+          <Route
+            path="/admin/registrasi-akun"
+            exact
+            component={RegistrasiAkun}
+          />
+
+          <Route
+            path="/admin/registrasi-akun/petugas"
+            exact
+            component={RegistrasiPetugas}
+          />
+
+          <Route
+            path="/admin/registrasi-akun/data-akun-petugas"
+            exact
+            component={ListAkunPetugas}
+          />
+
+          <Route
+            path="/admin/registrasi-akun/pos"
+            exact
+            component={RegistrasiPosko}
+          />
+
+          <Route
+            path="/admin/registrasi-akun/data-akun-pos"
+            exact
+            component={ListAkunPos}
           />
           {/* COMPONEN COBA-COBA */}
           {/* <Route path="/map" exact component={Map} /> */}

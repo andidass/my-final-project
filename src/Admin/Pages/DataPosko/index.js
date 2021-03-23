@@ -69,27 +69,29 @@ const AllDataPosko = ({
           value={kataPencarian}
         />
       </div>
-      <Grid container justify="center" className="grid-container">
-        {profiles.length > 0 ? (
-          filteredPosko.map((profile) => (
-            <DataPosko
-              user={user}
-              key={profile._id}
-              profile={profile}
-              kataPencarian={kataPencarian}
-            />
-          ))
-        ) : (
-          <div className="no-data">
-            <h4>Tidak Ada Data Pos Ditemukan...</h4>
-            <img
-              src="/img/undraw_empty_xct9.svg"
-              alt="React Logo"
-              style={{ width: `40%` }}
-            />
-          </div>
-        )}
-      </Grid>
+      <div style={{ maxWidth: `95vw`, paddingLeft: `2.5vw` }}>
+        <Grid container justify="center" className="grid-container">
+          {profiles.length > 0 ? (
+            filteredPosko.map((profile) => (
+              <DataPosko
+                user={user}
+                key={profile._id}
+                profile={profile}
+                kataPencarian={kataPencarian}
+              />
+            ))
+          ) : (
+            <div className="no-data">
+              <h4>Tidak Ada Data Pos Ditemukan...</h4>
+              <img
+                src="/img/undraw_empty_xct9.svg"
+                alt="React Logo"
+                style={{ width: `40%` }}
+              />
+            </div>
+          )}
+        </Grid>
+      </div>
     </Fragment>
   );
 };

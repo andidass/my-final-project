@@ -109,16 +109,6 @@ const LoginPetugas = ({ login, auth: { user } }) => {
           >
             Masuk
           </Button>
-          <Grid container>
-            <Grid item xs></Grid>
-            <Grid item>
-              <Link to="./registrasi">
-                <Linkes variant="body2">
-                  {"Belum memiliki akun? Registrasi"}
-                </Linkes>
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
     </Container>

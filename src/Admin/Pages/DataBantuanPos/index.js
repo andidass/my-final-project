@@ -71,28 +71,30 @@ const AllDataPosko = ({
           value={kataPencarian}
         />
       </div>
-      <Grid container justify="center" className="grid-container">
-        {filteredPosko.length > 0 ? (
-          filteredPosko.map((bantuanMasuk) => (
-            <DataPos
-              user={user}
-              name={bantuanMasuk.user}
-              key={bantuanMasuk._id}
-              bantuanMasuk={bantuanMasuk}
-              kataPencarian={kataPencarian}
-            />
-          ))
-        ) : (
-          <div className="no-data">
-            <h4>Tidak Ada Data Bantuan Pos Ditemukan...</h4>
-            <img
-              src="/img/undraw_empty_xct9.svg"
-              alt="React Logo"
-              style={{ width: `40%` }}
-            />
-          </div>
-        )}
-      </Grid>
+      <div style={{ maxWidth: `95vw`, paddingLeft: `2.5vw` }}>
+        <Grid container justify="center" className="grid-container">
+          {filteredPosko.length > 0 ? (
+            filteredPosko.map((bantuanMasuk) => (
+              <DataPos
+                user={user}
+                name={bantuanMasuk.user}
+                key={bantuanMasuk._id}
+                bantuanMasuk={bantuanMasuk}
+                kataPencarian={kataPencarian}
+              />
+            ))
+          ) : (
+            <div className="no-data">
+              <h4>Tidak Ada Data Bantuan Pos Ditemukan...</h4>
+              <img
+                src="/img/undraw_empty_xct9.svg"
+                alt="React Logo"
+                style={{ width: `40%` }}
+              />
+            </div>
+          )}
+        </Grid>
+      </div>
     </Fragment>
   );
 };

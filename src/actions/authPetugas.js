@@ -9,6 +9,8 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_PROFILE,
+  GET_ALL_ACCOUNTS_PETUGAS,
+  ACCOUNTS_PETUGAS_ERROR,
   //   CLEAR_PENGUNGSI,
   //   CLEAR_FASILITAS_POSKO,
   //   CLEAR_BANTUAN_MASUK,
@@ -35,9 +37,10 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register Petugas
-export const register = ({ name, position, email, password }) => async (
-  dispatch
-) => {
+export const register = (
+  { name, position, email, password },
+  history
+) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -57,8 +60,11 @@ export const register = ({ name, position, email, password }) => async (
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
-    dispatch(loadUser());
-    dispatch(setAlert("Akun Petugas Berhasil Dibuat", "success"));
+    // dispatch(loadUser());
+    dispatch(
+      setAlert("Akun Petugas Pendata Bencana Berhasil Dibuat", "success")
+    );
+    history.push("/admin/registrasi-akun/data-akun-petugas");
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -97,6 +103,21 @@ export const login = (email, password) => async (dispatch) => {
     }
     dispatch({
       type: LOGIN_FAIL,
+    });
+  }
+};
+
+export const getAllAccountsPetugas = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/petugas/login/all-accounts-petugas");
+    dispatch({
+      type: GET_ALL_ACCOUNTS_PETUGAS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ACCOUNTS_PETUGAS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

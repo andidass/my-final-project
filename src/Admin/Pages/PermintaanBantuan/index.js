@@ -69,27 +69,29 @@ const AdminPermintaanBantuan = ({
           value={kataPencarian}
         />
       </div>
-      <Grid container justify="center" className="grid-container text">
-        {semuaPermintaanBantuan.length > 0 ? (
-          filteredData.map((dataPermintaan) => (
-            <DataPermintaan
-              user={user}
-              key={dataPermintaan._id}
-              dataPermintaan={dataPermintaan}
-              kataPencarian={kataPencarian}
-            />
-          ))
-        ) : (
-          <div className="no-data">
-            <h4>Tidak Ada Data Permintaan Bantuan Ditemukan...</h4>
-            <img
-              src="/img/undraw_empty_xct9.svg"
-              alt="React Logo"
-              style={{ width: `40%` }}
-            />
-          </div>
-        )}
-      </Grid>
+      <div style={{ maxWidth: `95vw`, paddingLeft: `2.5vw` }}>
+        <Grid container justify="center" className="grid-container text">
+          {semuaPermintaanBantuan.length > 0 ? (
+            filteredData.map((dataPermintaan) => (
+              <DataPermintaan
+                user={user}
+                key={dataPermintaan._id}
+                dataPermintaan={dataPermintaan}
+                kataPencarian={kataPencarian}
+              />
+            ))
+          ) : (
+            <div className="no-data">
+              <h4>Tidak Ada Data Permintaan Bantuan Ditemukan...</h4>
+              <img
+                src="/img/undraw_empty_xct9.svg"
+                alt="React Logo"
+                style={{ width: `40%` }}
+              />
+            </div>
+          )}
+        </Grid>
+      </div>
     </Fragment>
   );
 };

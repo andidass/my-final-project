@@ -129,16 +129,6 @@ const SignIn = ({ login, auth: { user } }) => {
           >
             Masuk
           </Button>
-          <Grid container>
-            <Grid item xs></Grid>
-            <Grid item>
-              <Link to="/pos/registrasi">
-                <Linkes variant="body2">
-                  {"Belum memiliki akun kah? Registrasi"}
-                </Linkes>
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
     </Container>

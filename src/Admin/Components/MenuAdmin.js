@@ -14,6 +14,7 @@ import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import PanToolIcon from "@material-ui/icons/PanTool";
 import MapIcon from "@material-ui/icons/Map";
 import BrokenImageIcon from "@material-ui/icons/BrokenImage";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 // import "./MenuPosko.css";
 
@@ -214,6 +215,26 @@ function MenuAdmin() {
               <BrokenImageIcon />
               <Typography component="div">
                 <Box>Data Bencana</Box>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          xl={6}
+          sm={4}
+          lg={2}
+          component={Link}
+          to="/admin/registrasi-akun"
+          className="link"
+        >
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <PersonAddIcon />
+              <Typography component="div">
+                <Box>Registrasi Akun</Box>
               </Typography>
             </CardContent>
           </Card>

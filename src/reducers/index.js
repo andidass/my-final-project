@@ -9,6 +9,7 @@ import permintaanBantuan from "./permintaanBantuan";
 import dataBencana from "./dataBencana";
 import bantuanUtama from "./bantuanUtama";
 import bantuanKeluar from "./bantuanKeluar";
+import accounts from "./accounts";
 
 export default combineReducers({
   alert,
@@ -21,4 +22,5 @@ export default combineReducers({
   dataBencana,
   bantuanUtama,
   bantuanKeluar,
+  accounts,
 });

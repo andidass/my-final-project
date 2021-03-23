@@ -9,12 +9,26 @@ const auth = require("../../Middleware/auth");
 const UserPosko = require("../../Model/UserPosko");
 
 // @route   Get posko/login
-// #desc    Test route
+// #desc    login akun pos
 // @access  Auth
 
 router.get("/", auth, async (req, res) => {
   try {
     const user = await UserPosko.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "server error" });
+  }
+});
+
+// @route   Get posko/login/all-accounts-pos
+// #desc    get all accounts pos
+// @access  Auth
+
+router.get("/all-accounts-pos", auth, async (req, res) => {
+  try {
+    const user = await UserPosko.find().select("-password");
     res.json(user);
   } catch (err) {
     console.error(err.message);

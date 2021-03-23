@@ -8,15 +8,11 @@ import {
   Toolbar,
   Grid,
   IconButton,
-  Badge,
   makeStyles,
   Typography,
   Avatar,
 } from "@material-ui/core";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-// import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   root2: {
@@ -43,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
   const classes = useStyles();
-
   const authLinks = (
     <Grid container alignItems="center">
       <Grid item>
@@ -51,12 +46,12 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
           <Fragment>
             <Link className={classes.root2} to="/pos">
               <Avatar
-                alt="BPBD NTB"
-                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
-              />
-              <Avatar
                 alt="Universitas Mataram"
                 src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
               />
             </Link>
           </Fragment>
@@ -65,12 +60,12 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
           <Fragment>
             <Link className={classes.root2} to="/admin">
               <Avatar
-                alt="BPBD NTB"
-                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
-              />
-              <Avatar
                 alt="Universitas Mataram"
                 src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
               />
             </Link>
           </Fragment>
@@ -79,12 +74,12 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
           <Fragment>
             <Link className={classes.root2} to="/petugas">
               <Avatar
-                alt="BPBD NTB"
-                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
-              />
-              <Avatar
                 alt="Universitas Mataram"
                 src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
               />
             </Link>
           </Fragment>
@@ -93,12 +88,12 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
           <Fragment>
             <Link className={classes.root2} to="/main-page">
               <Avatar
-                alt="BPBD NTB"
-                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
-              />
-              <Avatar
                 alt="Universitas Mataram"
                 src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+              />
+              <Avatar
+                alt="BPBD NTB"
+                src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
               />
             </Link>
           </Fragment>
@@ -106,16 +101,6 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
       </Grid>
       <Grid item xs></Grid>
       <Grid item>
-        {/* <IconButton>
-          <Badge badgeContent={4} color="secondary">
-            <NotificationsNoneIcon fontSize="small" />
-          </Badge>
-        </IconButton>
-        <IconButton>
-          <Badge badgeContent={3} color="primary">
-            <ChatBubbleOutlineIcon fontSize="small" />
-          </Badge>
-        </IconButton> */}
         <IconButton onClick={logout}>
           <PowerSettingsNewIcon fontSize="small" color="secondary" />
         </IconButton>
@@ -128,12 +113,12 @@ const MenuBars = ({ auth: { user, isAuthenticated, loading }, logout }) => {
       <Grid item to="/">
         <Link className={classes.root2} to="/main-page">
           <Avatar
-            alt="BPBD NTB"
-            src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
-          />
-          <Avatar
             alt="Universitas Mataram"
             src="https://i.ibb.co/j8nZwQR/LOGO-UNRAM-BARU.png"
+          />
+          <Avatar
+            alt="BPBD NTB"
+            src="https://i.ibb.co/tPt2DPz/logo-bulet-22-4.png"
           />
         </Link>
       </Grid>
@@ -169,4 +154,5 @@ MenuBars.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
+
 export default connect(mapStateToProps, { logout })(MenuBars);
