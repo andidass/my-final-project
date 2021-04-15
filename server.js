@@ -12,6 +12,7 @@ app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("API Running"));
 
 // * define router
+app.use("/login", require("./Routes/api/authAll"));
 // pos
 app.use("/pos/registrasi", require("./Routes/api/poskoUser"));
 app.use("/pos/login", require("./Routes/api/authposko"));

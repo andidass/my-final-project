@@ -29,8 +29,8 @@ export default function InfoDonasi() {
                   <b>Nomor Rekening Donasi</b>
                 </Box>
                 <Box style={{ display: "flex" }}>
-                  <PaymentIcon />
-                  <b>BRI</b> 0052-01-002421-30-8 (Posko PDB Lombok)
+                  <PaymentIcon /> &nbsp;<b>BRI</b> &nbsp; 0052-01-002421-30-8
+                  (Posko PDB Lombok)
                 </Box>
               </Typography>
               <br />

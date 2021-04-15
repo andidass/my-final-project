@@ -10,6 +10,7 @@ import MainPage from "./MainPage/MainPage";
 // main component
 import Error from "./Components/404";
 import Coba from "./Coba";
+import LoginAll from "./MainPage/LoginAll";
 // import Footer from "./Components/Footer";
 import Warning from "./Components/401";
 import MenuBars from "./Components/MenuBars";
@@ -93,6 +94,7 @@ const App = () => {
         <MenuBars />
         <Switch>
           <Route path="/" exact component={MainPage} />
+          <Route path="/login" exact component={LoginAll} />
           <Route path="/main-page" exact component={MainPage} />
           <Route path="/data-pos" exact component={DataPosko} />
           <Route path="/info-dan-donasi" exact component={InfoDonasi} />
