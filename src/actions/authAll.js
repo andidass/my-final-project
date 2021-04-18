@@ -1,8 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
@@ -19,10 +17,9 @@ import {
   CLEAR_PROFILE_ADMIN,
   CLEAR_BANTUAN_UTAMA,
   CLEAR_BANTUAN_KELUAR,
-  GET_ALL_ACCOUNTS_POS,
-  ACCOUNTS_POS_ERROR,
 } from "./types";
 import setAuthToken from "../utils/setTokenAuth";
+import jwt_decode from "jwt-decode";
 
 // loaded user
 export const loadUser = () => async (dispatch) => {
@@ -31,9 +28,17 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    // const res = await axios.get("/login/petugas");
-    const res = await axios.get("/login/admin");
-    // const res = await axios.get("/login/petugas");
+    var decoded = jwt_decode(localStorage.token);
+    if (decoded.user.role === "admin") {
+      var res = await axios.get("/login/admin");
+    }
+    if (decoded.user.role === "petugas") {
+      var res = await axios.get("/login/petugas");
+    }
+    if (decoded.user.role === "pos") {
+      var res = await axios.get("/login/pos");
+    }
+
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -46,13 +51,13 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // LOGIN USER
-export const login = (email, password) => async (dispatch) => {
+export const login = (usernameemail, password) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ usernameemail, password });
 
   try {
     const res = await axios.post("/login", body, config);
@@ -61,6 +66,7 @@ export const login = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+
     dispatch(loadUser());
     dispatch(setAlert("Login Sukses", "success"));
   } catch (err) {

@@ -142,7 +142,7 @@ const KejadianBencana = ({
   };
 
   if (token === null) {
-    return <Redirect to="/petugas/login" />;
+    return <Redirect to="/login" />;
   }
 
   const onChange = (e) => setData({ ...data, [e.target.name]: e.target.value });

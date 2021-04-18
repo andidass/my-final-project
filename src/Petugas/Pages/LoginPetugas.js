@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPetugas = ({ login, auth: { user } }) => {
+const LoginPetugas = ({ login, auth: { user, token } }) => {
   const classes = useStyles();
 
   const [formLogin, setFormLogin] = useState({
@@ -60,6 +60,10 @@ const LoginPetugas = ({ login, auth: { user } }) => {
   // Redirect jika login success
   if (user) {
     return <Redirect to="/petugas/dashboard" />;
+  }
+
+  if (token === null) {
+    return <Redirect to="/login" />;
   }
 
   return (

@@ -104,7 +104,7 @@ const DataKorban = ({
   };
 
   if (token === null) {
-    return <Redirect to="/petugas/login" />;
+    return <Redirect to="/login" />;
   }
 
   return (

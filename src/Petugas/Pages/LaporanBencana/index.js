@@ -18,7 +18,7 @@ const LaporanBencana = ({
   }, []);
 
   if (!isAuthenticated) {
-    return <Redirect to="/petugas/login" />;
+    return <Redirect to="/login" />;
   }
   return loading ? (
     <Spinner />

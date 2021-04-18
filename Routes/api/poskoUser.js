@@ -6,6 +6,8 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 
 const UserPosko = require("../../Model/UserPosko");
+const Petugas = require("../../Model/Petugas");
+const Admin = require("../../Model/Admin");
 
 // @route       POST api/users
 // @desc        Register PetugasPosko
@@ -35,12 +37,36 @@ router.post(
     try {
       // apakah email exist?
       let user = await UserPosko.findOne({ usernameposko });
+      let petugasAccount = await Petugas.findOne({ email: usernameposko });
+      let admin = await Admin.findOne({ email: usernameposko });
       if (user) {
         return res.status(400).json({
           errors: [
             {
               msg:
                 "username ini sudah terdaftar, silahkan gunakan username lain",
+            },
+          ],
+        });
+      }
+
+      if (petugasAccount) {
+        return res.status(400).json({
+          errors: [
+            {
+              msg:
+                "username ini sudah terdaftar sebagai petugas lapangan, silahkan gunakan username lain",
+            },
+          ],
+        });
+      }
+
+      if (admin) {
+        return res.status(400).json({
+          errors: [
+            {
+              msg:
+                "username ini sudah terdaftar sebagai admin, silahkan gunakan username lain",
             },
           ],
         });

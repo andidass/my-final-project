@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../actions/authAll";
@@ -43,24 +43,32 @@ const LoginAll = ({ login, auth: { user } }) => {
   const classes = useStyles();
 
   const [formLogin, setFormLogin] = useState({
-    email: "",
+    usernameemail: "",
     password: "",
   });
 
-  const { email, password } = formLogin;
+  const { usernameemail, password } = formLogin;
 
   const onChange = (e) =>
     setFormLogin({ ...formLogin, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    login(usernameemail, password);
   };
 
   // Redirect jika login success
-  // if (user) {
-  //   return <Redirect to="/petugas/dashboard" />;
-  // }
+  if (user && user.session == "petugas") {
+    return <Redirect to="/petugas/dashboard" />;
+  }
+
+  if (user && user.session == "admin") {
+    return <Redirect to="/admin/dashboard" />;
+  }
+
+  if (user && user.session == "pos") {
+    return <Redirect to="/pos/dashboard" />;
+  }
 
   return (
     <Container component="main" maxWidth="xs" className="full-height">
@@ -70,7 +78,7 @@ const LoginAll = ({ login, auth: { user } }) => {
           <LockOutlinedIcon fontSize="large" />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Login Sipendi
         </Typography>
         <form className={classes.form} noValidate onSubmit={(e) => onSubmit(e)}>
           <TextField
@@ -78,11 +86,11 @@ const LoginAll = ({ login, auth: { user } }) => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            value={email}
+            id="usernameemail"
+            label="Username / Email Address"
+            name="usernameemail"
+            autoComplete="usernameemail"
+            value={usernameemail}
             onChange={(e) => onChange(e)}
             autoFocus
           />

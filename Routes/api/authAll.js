@@ -28,24 +28,24 @@ router.get("/admin", auth, async (req, res) => {
 // #desc    login akun petugas
 // @access  Auth
 
-// router.get("/petugas", auth, async (req, res) => {
-//   try {
-//     const petugas = await Petugas.findById(req.user.id).select("-password");
-//     res.json(petugas);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).json({ msg: "server error" });
-//   }
-// });
+router.get("/petugas", auth, async (req, res) => {
+  try {
+    const petugas = await Petugas.findById(req.user.id).select("-password");
+    res.json(petugas);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "server error" });
+  }
+});
 
-// @route   Get posko/login/all-accounts-pos
-// #desc    get all accounts pos
+// @route   Get login
+// #desc    login akun pos
 // @access  Auth
 
-router.get("/all-accounts-pos", auth, async (req, res) => {
+router.get("/pos", auth, async (req, res) => {
   try {
-    const user = await UserPosko.find().select("-password");
-    res.json(user);
+    const pos = await UserPosko.findById(req.user.id).select("-password");
+    res.json(pos);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: "server error" });
@@ -58,7 +58,7 @@ router.get("/all-accounts-pos", auth, async (req, res) => {
 router.post(
   "/",
   [
-    check("email", "Username / email wajib diisi").not().isEmpty(),
+    check("usernameemail", "Username / email wajib diisi").not().isEmpty(),
     check("password", "password harus berisi minimal 6 karakter").isLength({
       min: 6,
     }),
@@ -70,13 +70,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() }); // bad request 400, dengan errors.array utk menampilkan error yg terjadi
     }
 
-    const { email, password } = req.body;
+    const { usernameemail, password } = req.body;
 
     try {
-      let petugas = await Petugas.findOne({ email });
-      let admin = await Admin.findOne({ email });
+      let petugas = await Petugas.findOne({ email: usernameemail });
+      let admin = await Admin.findOne({ email: usernameemail });
+      let pos = await UserPosko.findOne({ usernameposko: usernameemail });
 
-      if (!petugas && !admin) {
+      if (!petugas && !admin && !pos) {
         return res.status(400).json({
           errors: [{ msg: "email / username anda salah" }],
         });
@@ -112,10 +113,25 @@ router.post(
         };
       }
 
+      if (pos) {
+        const isMatchPos = await bcrypt.compare(password, pos.password);
+        if (!isMatchPos) {
+          return res.status(400).json({
+            errors: [{ msg: "password pos anda salah" }],
+          });
+        }
+        var payload = {
+          user: {
+            id: pos.id,
+            role: "pos",
+          },
+        };
+      }
+
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 360000 }, // expiresIn set ke 3600 second / 1 jam expired.
+        { expiresIn: 3600 }, // expiresIn : 3600 second / 1 jam expired.
         (err, token) => {
           if (err) throw err;
           // tampilkan token

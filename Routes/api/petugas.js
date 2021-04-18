@@ -7,6 +7,7 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 
 const Petugas = require("../../Model/Petugas");
+const Admin = require("../../Model/Admin");
 
 // @route       POST api/petugas
 // @desc        Register PetugasPosko
@@ -33,9 +34,21 @@ router.post(
     try {
       // apakah email exist?
       let petugas = await Petugas.findOne({ email });
+      let admin = await Admin.findOne({ email });
       if (petugas) {
         return res.status(400).json({
           errors: [{ msg: "email sudah terdaftar, silahkan lakukan login" }],
+        });
+      }
+
+      if (admin) {
+        return res.status(400).json({
+          errors: [
+            {
+              msg:
+                "email sudah terdaftar sebagai admin, silahkan lakukan login",
+            },
+          ],
         });
       }
 

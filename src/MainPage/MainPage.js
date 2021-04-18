@@ -67,14 +67,16 @@ export default function MainPage() {
                     <br /> <b>Gempa Bumi</b>
                   </Box>
                   <Box>Anda petugas? Silahkan Login disini</Box>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    style={{ minWidth: 150 }}
-                    onClick={(e) => klikLogin(e)}
-                  >
-                    LOGIN PETUGAS
-                  </Button>
+                  <Link to="./login">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{ minWidth: 150 }}
+                      // onClick={(e) => klikLogin(e)}
+                    >
+                      LOGIN PETUGAS
+                    </Button>
+                  </Link>
                 </Typography>
               </CardContent>
             </Card>
